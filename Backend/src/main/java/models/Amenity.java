@@ -1,7 +1,8 @@
 package models;
 
+import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
-
+@Document
 public class Amenity {
 
     @Id
