@@ -27,6 +27,7 @@ buildNumber.properties
 *.user
 *.userosscache
 *.sln.docstates
+package-lock.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
