@@ -11,6 +11,7 @@
       <section class="modal-body">
         <slot name="body">  
           Modal body
+          <AddUserForm />
         </slot>
        </section>
 
@@ -28,7 +29,12 @@
 </template>
 
 <script>
+import AddUserForm from '../components/addUserForm.vue'
+
 export default {
+  components:{
+  AddUserForm
+  },
     name: 'Modal',
     methods: {
       close() {
