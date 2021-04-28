@@ -12,13 +12,18 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+}
 .amenity {
   display: flex;
   flex-direction: row;
 }
 img {
   align-self: center;
-  height: 32px;
-  width: 32px;
+  height: 16px;
+  width: 16px;
 }
 </style>
