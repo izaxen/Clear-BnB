@@ -1,0 +1,136 @@
+[ {
+  "id" : "XSG1gxayEJSAdKMSwbdRK",
+  "userId" : null,
+  "startDate" : null,
+  "endDate" : null,
+  "checkInTime" : null,
+  "checkOutTime" : null,
+  "freeText" : "Pellentesque at nulla. Suspendisse potenti.",
+  "description" : "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.",
+  "city" : "Yaroslavskaya",
+  "availableBeds" : 1,
+  "price" : 0,
+  "amenities" : [ {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  } ]
+}, {
+  "id" : "XSG9g2ayEJSAdKMSwbdRK",
+  "userId" : null,
+  "startDate" : null,
+  "endDate" : null,
+  "checkInTime" : null,
+  "checkOutTime" : null,
+  "freeText" : "Pellentesque at nulla. Suspendisse potenti.",
+  "description" : "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.",
+  "city" : "Yaroslavskaya",
+  "availableBeds" : 1,
+  "price" : 0,
+  "amenities" : [ {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  } ]
+}, {
+  "id" : "XSG9gxayEJSAd3MSwbdRK",
+  "userId" : null,
+  "startDate" : null,
+  "endDate" : null,
+  "checkInTime" : null,
+  "checkOutTime" : null,
+  "freeText" : "Pellentesque at nulla. Suspendisse potenti.",
+  "description" : "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.",
+  "city" : "Yaroslavskaya",
+  "availableBeds" : 1,
+  "price" : 0,
+  "amenities" : [ {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  }, {
+    "id" : null,
+    "text" : "Has Wifi",
+    "iconUrl" : "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-up-a-512.png"
+  } ]
+} ]
