@@ -8,6 +8,11 @@ public class Main {
         Express app = new Express();
 
         collection(op -> op.useBrowser = true);
+
+        app.get("/", (req, res) -> {
+            res.send("Hello World");
+        });
         app.listen(4000);
+
     }
 }

@@ -8,6 +8,12 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+Backend.iml
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
 
 # Generated files
 .idea/**/contentModel.xml
