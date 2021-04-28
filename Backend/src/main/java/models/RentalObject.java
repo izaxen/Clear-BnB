@@ -3,10 +3,12 @@ package models;
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
 
+import java.util.Arrays;
 import java.util.Date;
 
 @Document
 public class RentalObject {
+
     @Id
     private String id;
     private String userId;
@@ -19,55 +21,9 @@ public class RentalObject {
     private String city;
     private int availableBeds;
     private int price;
-    private boolean hasWifi;
-    private boolean petsAllowed;
-    private boolean hasChildChair;
-    private boolean hasSmokeAlarm;
-    private boolean hasTv;
-    private boolean hasParking;
-    private boolean hasFireExtinguisher;
-    private boolean hasTravelBed;
-    private boolean hasFireplace;
-    private boolean hasHotWater;
-    private boolean smokingAllowed;
-    private boolean partyAllowed;
+    private Amenity[] amenities;
 
-
-    public RentalObject(){
-
-    }
-
-    public RentalObject(String id, String userId, Date startDate, Date endDate,
-                       String checkInTime, String checkOutTime, String freeText,
-                       String description, String city, int availableBeds, int price,
-                       boolean hasWifi, boolean petsAllowed, boolean hasChildChair,
-                       boolean hasSmokeAlarm, boolean hasTv, boolean hasParking,
-                       boolean hasFireExtinguisher, boolean hasTravelBed,
-                       boolean hasFireplace, boolean hasHotWater, boolean smokingAllowed,
-                       boolean partyAllowed) {
-        this.id = id;
-        this.userId = userId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.checkInTime = checkInTime;
-        this.checkOutTime = checkOutTime;
-        this.freeText = freeText;
-        this.description = description;
-        this.city = city;
-        this.availableBeds = availableBeds;
-        this.price = price;
-        this.hasWifi = hasWifi;
-        this.petsAllowed = petsAllowed;
-        this.hasChildChair = hasChildChair;
-        this.hasSmokeAlarm = hasSmokeAlarm;
-        this.hasTv = hasTv;
-        this.hasParking = hasParking;
-        this.hasFireExtinguisher = hasFireExtinguisher;
-        this.hasTravelBed = hasTravelBed;
-        this.hasFireplace = hasFireplace;
-        this.hasHotWater = hasHotWater;
-        this.smokingAllowed = smokingAllowed;
-        this.partyAllowed = partyAllowed;
+    public RentalObject() {
     }
 
     public String getId() {
@@ -158,128 +114,30 @@ public class RentalObject {
         this.price = price;
     }
 
-    public boolean isHasWifi() {
-        return hasWifi;
+    public Amenity[] getAmenities() {
+        return amenities;
     }
 
-    public void setHasWifi(boolean hasWifi) {
-        this.hasWifi = hasWifi;
-    }
-
-    public boolean isPetsAllowed() {
-        return petsAllowed;
-    }
-
-    public void setPetsAllowed(boolean petsAllowed) {
-        this.petsAllowed = petsAllowed;
-    }
-
-    public boolean isHasChildChair() {
-        return hasChildChair;
-    }
-
-    public void setHasChildChair(boolean hasChildChair) {
-        this.hasChildChair = hasChildChair;
-    }
-
-    public boolean isHasSmokeAlarm() {
-        return hasSmokeAlarm;
-    }
-
-    public void setHasSmokeAlarm(boolean hasSmokeAlarm) {
-        this.hasSmokeAlarm = hasSmokeAlarm;
-    }
-
-    public boolean isHasTv() {
-        return hasTv;
-    }
-
-    public void setHasTv(boolean hasTv) {
-        this.hasTv = hasTv;
-    }
-
-    public boolean isHasParking() {
-        return hasParking;
-    }
-
-    public void setHasParking(boolean hasParking) {
-        this.hasParking = hasParking;
-    }
-
-    public boolean isHasFireExtinguisher() {
-        return hasFireExtinguisher;
-    }
-
-    public void setHasFireExtinguisher(boolean hasFireExtinguisher) {
-        this.hasFireExtinguisher = hasFireExtinguisher;
-    }
-
-    public boolean isHasTravelBed() {
-        return hasTravelBed;
-    }
-
-    public void setHasTravelBed(boolean hasTravelBed) {
-        this.hasTravelBed = hasTravelBed;
-    }
-
-    public boolean isHasFireplace() {
-        return hasFireplace;
-    }
-
-    public void setHasFireplace(boolean hasFireplace) {
-        this.hasFireplace = hasFireplace;
-    }
-
-    public boolean isHasHotWater() {
-        return hasHotWater;
-    }
-
-    public void setHasHotWater(boolean hasHotWater) {
-        this.hasHotWater = hasHotWater;
-    }
-
-    public boolean isSmokingAllowed() {
-        return smokingAllowed;
-    }
-
-    public void setSmokingAllowed(boolean smokingAllowed) {
-        this.smokingAllowed = smokingAllowed;
-    }
-
-    public boolean isPartyAllowed() {
-        return partyAllowed;
-    }
-
-    public void setPartyAllowed(boolean partyAllowed) {
-        this.partyAllowed = partyAllowed;
+    public void setAmenities(Amenity[] amenities) {
+        this.amenities = amenities;
     }
 
     @Override
     public String toString() {
         return "RentalObject{" +
-                "id='" + id + '\'' +
-                ", userId='" + userId + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", checkInTime='" + checkInTime + '\'' +
-                ", checkOutTime='" + checkOutTime + '\'' +
-                ", freeText='" + freeText + '\'' +
-                ", description='" + description + '\'' +
-                ", city='" + city + '\'' +
-                ", availableBeds=" + availableBeds +
-                ", price=" + price +
-                ", hasWifi=" + hasWifi +
-                ", petsAllowed=" + petsAllowed +
-                ", hasChildChair=" + hasChildChair +
-                ", hasSmokeAlarm=" + hasSmokeAlarm +
-                ", hasTv=" + hasTv +
-                ", hasParking=" + hasParking +
-                ", hasFireExtinguisher=" + hasFireExtinguisher +
-                ", hasTravelBed=" + hasTravelBed +
-                ", hasFireplace=" + hasFireplace +
-                ", hasHotWater=" + hasHotWater +
-                ", smokingAllowed=" + smokingAllowed +
-                ", partyAllowed=" + partyAllowed +
-                '}';
+               "id='" + id + '\'' +
+               ", userId='" + userId + '\'' +
+               ", startDate=" + startDate +
+               ", endDate=" + endDate +
+               ", checkInTime='" + checkInTime + '\'' +
+               ", checkOutTime='" + checkOutTime + '\'' +
+               ", freeText='" + freeText + '\'' +
+               ", description='" + description + '\'' +
+               ", city='" + city + '\'' +
+               ", availableBeds=" + availableBeds +
+               ", price=" + price +
+               ", amenities=" + Arrays.toString(amenities) +
+               '}';
     }
+
 }
