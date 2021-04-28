@@ -6,7 +6,7 @@ import nosqlite.annotations.Id;
 import java.util.Date;
 
 @Document
-public class BookingRecipe {
+public class BookingReceipt {
     @Id private String id;
     private String houseId;
     private String userId;
@@ -16,11 +16,11 @@ public class BookingRecipe {
     private int numChild;
     private int totalPrice;
 
-    private BookingRecipe(){
+    private BookingReceipt(){
 
     }
 
-    public BookingRecipe(String id, String houseId, String userId,
+    public BookingReceipt(String id, String houseId, String userId,
                          Date startDate, Date endDate, int numAdult,
                          int numChild, int totalPrice) {
         this.id = id;

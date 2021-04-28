@@ -6,7 +6,7 @@ import nosqlite.annotations.Id;
 import java.util.Date;
 
 @Document
-public class RentalHouse {
+public class RentalObject {
     @Id
     private String id;
     private String userId;
@@ -33,11 +33,11 @@ public class RentalHouse {
     private boolean partyAllowed;
 
 
-    public RentalHouse(){
+    public RentalObject(){
 
     }
 
-    public RentalHouse(String id, String userId, Date startDate, Date endDate,
+    public RentalObject(String id, String userId, Date startDate, Date endDate,
                        String checkInTime, String checkOutTime, String freeText,
                        String description, String city, int availableBeds, int price,
                        boolean hasWifi, boolean petsAllowed, boolean hasChildChair,
@@ -256,7 +256,7 @@ public class RentalHouse {
 
     @Override
     public String toString() {
-        return "RentalHouse{" +
+        return "RentalObject{" +
                 "id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
                 ", startDate=" + startDate +
