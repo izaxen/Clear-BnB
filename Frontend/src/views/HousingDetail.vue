@@ -1,5 +1,7 @@
 <template>
+<div>
   <Amenity v-for="am of rentalObject.amenities" :key="am.id" :amenity="am" />
+</div>
 </template>
 
 <script>
