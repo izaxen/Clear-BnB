@@ -1,6 +1,13 @@
+import express.Express;
+
+import static nosqlite.Database.collection;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hej");
+        Express app = new Express();
+
+        collection(op -> op.useBrowser = true);
+        app.listen(4000);
     }
 }
