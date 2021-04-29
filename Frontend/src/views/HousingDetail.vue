@@ -1,16 +1,16 @@
 <template>
   <Amenity v-for="am of rentalObject.amenities" :key="am.id" :amenity="am" />
-  <BookingForm />
+  <BookHousingForm />
 </template>
 
 <script>
 import Amenity from '../components/Amenity.vue'
-import BookingForm from '../components/BookingForm.vue'
+import BookHousingForm from '../components/BookHousingForm.vue'
 
 export default {
   components: {
     Amenity,
-    BookingForm,
+    BookHousingForm,
   },
 
   data() {

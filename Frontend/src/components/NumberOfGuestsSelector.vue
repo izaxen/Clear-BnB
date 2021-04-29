@@ -4,30 +4,37 @@
   </a>
   <div class="expandable" :class="{ active: isActive }">
     <div class="guest-counter">
-      Vuxna: {{ adultCount }}
+      <div class="type">Vuxna:</div>
+      <div>{{ adultCount }}</div>
       <div class="buttons">
         <button @click="adultCount++, totalCount++">+</button>
         <button @click="subtractAdult">-</button>
       </div>
     </div>
     <div class="guest-counter">
-      Barn: {{ childrenCount }}
+      <div class="type">Barn:</div>
+      <div>{{ childrenCount }}</div>
       <div class="buttons">
         <button @click="childrenCount++, totalCount++">+</button>
         <button @click="subtractChildren">-</button>
       </div>
     </div>
   </div>
+
+  <div>Sum: {{ calculatedPrice }}</div>
 </template>
 
 <script>
 export default {
+  props: ['numOfDays'],
+
   data() {
     return {
       adultCount: 0,
       childrenCount: 0,
       totalCount: 0,
       isActive: false,
+      sum: 0,
     }
   },
 
@@ -41,6 +48,12 @@ export default {
       this.childrenCount == 0
         ? (this.childrenCount = 0)
         : (this.childrenCount--, this.totalCount--)
+    },
+
+    computed: {
+      calculatedPrice() {
+        console.log(this.numOfDays)
+      },
     },
   },
 }
@@ -60,6 +73,10 @@ button {
   display: none;
 }
 
+.type {
+  width: 14px;
+}
+
 .guest-counter {
   display: flex;
   flex-direction: row;
@@ -67,12 +84,14 @@ button {
 }
 
 .active {
+  padding: 10px 5px 10px 5px;
   justify-content: space-between;
   position: absolute;
   z-index: 100;
   display: flex;
   flex-direction: column;
-  background: grey;
+  background: rgba(128, 128, 128, 0.521);
   width: 200px;
+  border-radius: 4px;
 }
 </style>
