@@ -3,8 +3,8 @@ package models;
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
 
-import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Document
 public class RentalObject {
@@ -21,9 +21,27 @@ public class RentalObject {
     private String city;
     private int availableBeds;
     private int price;
-    private Amenity[] amenities;
+    private List<Amenity> amenities;
 
     public RentalObject() {
+    }
+
+    @Override
+    public String toString() {
+        return "RentalObject{" +
+               "id='" + id + '\'' +
+               ", userId='" + userId + '\'' +
+               ", startDate=" + startDate +
+               ", endDate=" + endDate +
+               ", checkInTime='" + checkInTime + '\'' +
+               ", checkOutTime='" + checkOutTime + '\'' +
+               ", freeText='" + freeText + '\'' +
+               ", description='" + description + '\'' +
+               ", city='" + city + '\'' +
+               ", availableBeds=" + availableBeds +
+               ", price=" + price +
+               ", amenities=" + amenities +
+               '}';
     }
 
     public String getId() {
@@ -114,30 +132,12 @@ public class RentalObject {
         this.price = price;
     }
 
-    public Amenity[] getAmenities() {
+    public List<Amenity> getAmenities() {
         return amenities;
     }
 
-    public void setAmenities(Amenity[] amenities) {
+    public void setAmenities(List<Amenity> amenities) {
         this.amenities = amenities;
-    }
-
-    @Override
-    public String toString() {
-        return "RentalObject{" +
-               "id='" + id + '\'' +
-               ", userId='" + userId + '\'' +
-               ", startDate=" + startDate +
-               ", endDate=" + endDate +
-               ", checkInTime='" + checkInTime + '\'' +
-               ", checkOutTime='" + checkOutTime + '\'' +
-               ", freeText='" + freeText + '\'' +
-               ", description='" + description + '\'' +
-               ", city='" + city + '\'' +
-               ", availableBeds=" + availableBeds +
-               ", price=" + price +
-               ", amenities=" + Arrays.toString(amenities) +
-               '}';
     }
 
 }
