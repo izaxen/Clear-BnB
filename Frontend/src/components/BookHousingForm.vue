@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Calendar @days-selected="recive" />
-    <NumberOfGuests :numOfDays="a" />
+    <NumberOfGuests :numOfDays="days" />
   </div>
 </template>
 
@@ -17,14 +17,13 @@ export default {
 
   data() {
     return {
-      a: '',
+      days: '',
     }
   },
 
   methods: {
-    recive(hej) {
-      this.a = hej
-      console.log(this.a)
+    recive(data) {
+      this.days = data
     },
   },
 }

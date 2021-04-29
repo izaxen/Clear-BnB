@@ -17,13 +17,13 @@ export default {
   computed: {
     calcDays() {
       let dayInMs = 24 * 60 * 60 * 1000
-      let a = this.fromDate.split('-')
-      a = new Date(...a).getTime()
-      let b = this.toDate.split('-')
-      b = new Date(...b).getTime()
-      let c = Math.abs((a - b) / dayInMs)
+      let dayOne = this.fromDate.split('-')
+      dayOne = new Date(...dayOne).getTime()
+      let dayTwo = this.toDate.split('-')
+      dayTwo = new Date(...dayTwo).getTime()
+      let diff = Math.abs((dayOne - dayTwo) / dayInMs)
 
-      return this.$emit('days-selected', c)
+      return this.$emit('days-selected', diff)
     },
   },
 }

@@ -23,9 +23,8 @@
       </div>
     </div>
   </div>
-  {{ numOfDays }}
 
-  <div>Sum: {{ sum == 0 ? 'Inget valt' : sum }}</div>
+  <div>Sum: {{ sum == 0 ? 'Alla fält är inte valda' : sum }}</div>
 </template>
 
 <script>
