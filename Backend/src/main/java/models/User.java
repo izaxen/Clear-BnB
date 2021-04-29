@@ -6,7 +6,8 @@ import nosqlite.annotations.Id;
 @Document
 public class User {
 
-    @Id private String id;
+    @Id
+    private String id;
     private String firstName;
     private String lastName;
     private String email;

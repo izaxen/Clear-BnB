@@ -2,7 +2,9 @@
   <nav>
     <router-link to ="/">Home</router-link>
     |
-    <router-link to="/my-page">My Page</router-link>
+    <router-link to="/">My Page</router-link>
+    |
+    <router-link to="/add-housing">Add Housing</router-link>
    
   </nav>
 </template>
