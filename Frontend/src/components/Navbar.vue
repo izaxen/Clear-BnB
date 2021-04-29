@@ -4,7 +4,7 @@
     |
     <router-link to="/my-page">My Page</router-link>
     |
-    <router-link to="/login" @click="showModalLogin">Login</router-link>
+    <router-link to="" @click="showModalLogin">Login</router-link>
     <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
   </nav>
 </template>

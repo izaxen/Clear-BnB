@@ -8,7 +8,7 @@
     <input v-model ="rePassword" required type="text" placeholder="Re-enter password">
 
   <div class="register-btn">
-    <button type="reset">clear fields</button>
+    <button type="reset">clear</button>
     <div v-if="validatePassword">  <!-- Kan vara att detta inte funkar-->
       <button>create user</button></div>
     <div v-else>
@@ -72,7 +72,7 @@ input {
 }
 
 button{
-  width: 100px;
+  width: 120px;
   margin: 10px 10px;
   background-color: #4AAE9B;
   color: white;
