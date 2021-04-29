@@ -3,26 +3,23 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          Login
-        </slot>
+          <h1 v-if="!isVisibility">Login here!</h1>
+          <h1 v-if="isVisibility">Register here!</h1> 
+          </slot>
         <button type="button" class="btn-close" @click="close">x</button>
       </header>
 
       <section class="modal-body">
-        <slot name="body">  
-          Modal body
-          <AddUserForm />
+        <slot name="body">
+          <LoginForm v-if="!isVisibility"/>
+          <AddUserForm v-if="isVisibility" />
         </slot>
-       </section>
+      </section>
 
       <footer class="modal-footer">
-        <slot name="footer">
-         
-        </slot>
-        <button type="button" class="btn-modal" @click="close">
-          Exit
-        </button>
-        <button type="button" class="btn-modal">Login</button>
+        <slot name="footer"></slot>
+        <button v-if="!isVisibility" type="button" class="btn-modal" @click="registerForm">register</button>
+        <button v-if="isVisibility" type="button" class="btn-modal" @click="registerForm">login</button>
       </footer>
     </div>
   </div>
@@ -30,22 +27,46 @@
 
 <script>
 import AddUserForm from '../components/addUserForm.vue'
+import LoginForm from '../components/LoginForm.vue'
 
 export default {
+
+  data(){
+    return {
+      isVisibility: false
+    }
+  },
+
   components:{
-  AddUserForm
+  AddUserForm,
+  LoginForm
+  },
+
+  computed: {
+    loginCheck(){
+      return 
+    }
+
   },
     name: 'Modal',
     methods: {
       close() {
         this.$emit('close');
+        this.isVisibility = false;
       },
+      
+    registerForm(){
+       this.isVisibility = !this.isVisibility;
     },
+
+    loginForm(){
+      this.isVisibility = true
+    }
+  },
 }
 </script>
 
 <style scoped>
-/* The Modal (background) */
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -53,26 +74,23 @@ export default {
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
   }
 
   .modal {
+    text-align: center;
     background: #FFFFFF;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
-    width: 300px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
+    width: 400px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 15% 75% 10%;
     border-radius: 5px;
-  }
-
-  .modal-header,
-  .modal-footer {
-    padding: 15px;
-    display: flex;
+    padding: 10px;
   }
 
   .modal-header {
@@ -110,7 +128,7 @@ export default {
   .btn-modal {
     color: white;
     background: #4AAE9B;
-    border: 1px solid #4AAE9B;
+    border: none;
     border-radius: 3px;
     width: 100px;
     margin: 3px;
@@ -120,7 +138,8 @@ export default {
 
   .btn-modal:hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.05);
+    background-color: #297567;
   }
 
 </style>

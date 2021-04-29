@@ -7,14 +7,15 @@
     <input v-model ="password" required type="text" placeholder="Enter password">
     <input v-model ="rePassword" required type="text" placeholder="Re-enter password">
 
-    <button type="reset"></button>
+  <div class="register-btn">
+    <button type="reset">clear fields</button>
     <div v-if="validatePassword">  <!-- Kan vara att detta inte funkar-->
-      <button>Create user</button></div>
+      <button>create user</button></div>
     <div v-else>
       Password don´t match
     </div>
-    </form>
-    
+  </div>
+    </form>  
 </template>
 
 
@@ -58,22 +59,38 @@ export default {
 }
 </script>
 
-<style>
-input, button{
-  margin-bottom: 15px ;
-  padding: 5px;
-  width: 100%;
-  border-radius: 7px;
-  border: 1px solid black;
+<style scoped>
+input {
+  margin: 8px;
+  text-decoration: none;
+  width: 300px;
+  height: 25px;
+  justify-self: center;
+  align-self: center;
+
 
 }
 
 button{
   width: 100px;
-  margin: 0 25px;
+  margin: 10px 10px;
+  background-color: #4AAE9B;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #297567;
+  transform: scale(1.05);
 }
 input:focus{
   outline: none;
+}
+
+.register-btn {
+  display: flex;
+  justify-content: center;
 }
 
 </style>
