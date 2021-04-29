@@ -19,7 +19,7 @@ public class Authorization {
 
     private void initAuthorization() {
 
-        app.post("/api/register", (req, res) -> {   //Create user
+        app.post("/api/registerUser", (req, res) -> {   //Create user
             User user = req.body(User.class);
 
             User exist = Database.collection("User").findOne("email==" + user.getEmail());
