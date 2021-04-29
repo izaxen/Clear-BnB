@@ -23,6 +23,7 @@
       </div>
     </div>
   </div>
+  {{ numOfDays }}
 
   <div>Sum: {{ sum == 0 ? 'Inget valt' : sum }}</div>
 </template>
@@ -32,17 +33,22 @@ export default {
   props: ['numOfDays'],
 
   data() {
-    return {
+    let data = {
       adultCount: 0,
       childrenCount: 0,
       totalCount: 0,
       isActive: false,
       sum: 0,
     }
+    data = Object.assign({}, data, this.numOfDays)
+    return data
   },
 
   watch: {
     totalCount: function () {
+      this.sum = this.numOfDays * 87 * this.totalCount
+    },
+    numOfDays: function () {
       this.sum = this.numOfDays * 87 * this.totalCount
     },
   },
