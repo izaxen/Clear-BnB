@@ -80,11 +80,23 @@ export default createStore({
         method: 'POST',
         body: JSON.stringify(user),
       })
-
-      let userFromServer = await res.json()
+        let userFromServer = await res.json()
       console.log('postUser, userFromServer:', userFromServer)
       store.commit('addUser', userFromServer)
     },
+
+    async registerUser(store, user) {
+      let res = await fetch('/api/registerUser', {
+        method: 'POST',
+        body: JSON.stringify(user)
+      })
+
+      let loggedInUser = await res.json()
+      console.log('Registerd user', loggedInUser);
+      store.commit('setUser', loggedInUser)
+    },
+
+    
     async deleteUser(store, user) {
       let res = await fetch('/rest/users/' + user.id, {
         method: 'DELETE',
