@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <Calendar />
-    <NumberOfGuests :numOfDays="10" />
+    <Calendar @days-selected="recive" />
+    <NumberOfGuests :numOfDays="a" />
   </div>
 </template>
 
@@ -13,6 +13,19 @@ export default {
   components: {
     NumberOfGuests,
     Calendar,
+  },
+
+  data() {
+    return {
+      a: '',
+    }
+  },
+
+  methods: {
+    recive(hej) {
+      this.a = hej
+      console.log(this.a)
+    },
   },
 }
 </script>
