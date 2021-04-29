@@ -1,10 +1,10 @@
 <template>
   <form @submit.prevent="loginUser">
-    <input v-model="userName" required type="text" placeholder="Enter email">
+    <input v-model="email" type="text" placeholder="Enter email">
     <input v-model="password" required type="text" placeholder="Enter password">
    <div>
     <button type="reset">clear</button>
-    <button>login</button>
+    <button @click="login">login</button>
    </div>
   
     <br>
@@ -16,15 +16,20 @@
 export default {
   data(){
     return{
-      userName:'',
+      email:'',
       password:''
     }
   },
 
   methods:{
-    validateLogin(){
-      //Continue with valifdate
-    }
+    login() {
+      let credentials = {
+        email: this.email,
+        password: this.password
+      }
+      console.log('clicked login');
+      this.$store.dispatch('login', credentials)
+    },
   }
 }
 </script>
