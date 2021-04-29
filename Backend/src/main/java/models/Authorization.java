@@ -3,9 +3,9 @@ package models;
 import utilities.HashPassword;
 import express.Express;
 import nosqlite.Database;
-
+import models.User;
 import static nosqlite.Database.collection;
-import static nosqlite.Database.useBrowser;
+import nosqlite.utilities.Filter;
 
 import java.util.Map;
 
