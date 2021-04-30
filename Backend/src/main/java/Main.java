@@ -1,4 +1,5 @@
 import express.Express;
+import models.Authorization;
 import models.BookingReceipt;
 import models.RentalObject;
 import models.User;
@@ -14,6 +15,8 @@ public class Main {
         Express app = new Express();
 
         collection(op -> op.useBrowser = true);
+
+        new Authorization(app);
 
         //User
 //        app.get("/rest/users", (req, res) -> {

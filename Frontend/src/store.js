@@ -7,6 +7,7 @@ export default createStore({
     receipts: [],
     users: [],
     rentalObjects: [],
+    user: null
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -23,6 +24,9 @@ export default createStore({
     },
     setUsers(state, users) {
       state.users = users
+    },
+    setUser(state, user) {
+      state.user = user
     },
     addUser(state, user) {
       state.users.push(user)
@@ -76,13 +80,13 @@ export default createStore({
       store.commit('setUsers', users)
     },
     async postUser(store, user) {
-      let res = await fetch('/rest/users', {
+      let res = await fetch('/api/registerUser', {
         method: 'POST',
         body: JSON.stringify(user),
       })
         let userFromServer = await res.json()
       console.log('postUser, userFromServer:', userFromServer)
-      store.commit('addUser', userFromServer)
+      store.commit('setUser', userFromServer)
     },
 
     async registerUser(store, user) {
@@ -129,6 +133,23 @@ export default createStore({
       })
       let deletedRentalObject = await res.json()
       store.commit('removeRentalObject', deletedRentalObject)
+    },
+    async login(store, credentials) {
+      let res = await fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify(credentials)
+      })
+
+      let loggedInUser = await res.json()
+      console.log('logged in user', loggedInUser)
+      store.commit('setUser', loggedInUser)
+    },
+    async whoAmI(store) {
+      let res = await fetch('/api/whoami')
+      let user = await res.json()
+      console.log(user);
+
+      store.commit('setUser', user)
     },
   },
 })

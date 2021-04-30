@@ -19,10 +19,10 @@ public class Authorization {
 
     private void initAuthorization() {
 
-        app.post("/api/register", (req, res) -> {   //Create user
+        app.post("/api/registerUser", (req, res) -> {   //Create user
             User user = req.body(User.class);
 
-            User exist = Database.collection("User").findOne("email==" + user.getEmail());
+            User exist = collection("User").findOne("email==" + user.getEmail());
             if (exist != null) {
                 res.json(Map.of("error", "Username already exist")); // Console variabel bara?
                 return;
@@ -30,7 +30,7 @@ public class Authorization {
 
             String hashedPassword = HashPassword.hash(user.getPassword());
             user.setPassword(hashedPassword);
-            Database.collection("User").save(user);
+            collection("User").save(user);
 
             req.session("current-user", user);
         });

@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     proxy: {
-      '/rest': 'http://localhost:4000',
-      '/api': 'http://localhost:4000' // same port as backend
+      '/rest': 'http://localhost:4000', // same port as backend
+      '/api': 'http://localhost:4000'
     }
   }
 })

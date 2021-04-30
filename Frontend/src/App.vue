@@ -20,6 +20,7 @@ export default {
 
   created() {
     this.$store.dispatch('fetchRentalObjects')
+    this.$store.dispatch('whoAmI')
   },
 }
 </script>
