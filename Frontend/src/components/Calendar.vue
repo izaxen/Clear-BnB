@@ -35,10 +35,17 @@ div {
   display: flex;
   flex-direction: row;
 }
+input {
+  -webkit-appearance: none;
+  box-shadow: none !important;
+}
 
 input {
-  width: 45%;
+  height: 2rem;
+
+  font-size: 0.8rem;
+  width: 48%;
   background: rgb(137, 136, 136);
-  -webkit-appearance: none;
+  border: 1px solid black;
 }
 </style>

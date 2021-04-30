@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <a @click="isActive = !isActive">
-      <span>Antal gäster {{ totalCount }}</span>
-    </a>
+    <div class="link" @click="isActive = !isActive">
+      <div class="num-guest-text">Number of guests {{ totalCount }}</div>
+    </div>
 
     <div class="expandable" :class="{ active: isActive }">
       <div class="guest-counter">
-        <div class="type">Vuxna:</div>
+        <div class="type">Adult:</div>
         <div>{{ adultCount }}</div>
         <div class="buttons">
           <button @click="adultCount++, totalCount++">+</button>
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="guest-counter">
-        <div class="type">Barn:</div>
+        <div class="type">Children:</div>
         <div>{{ childrenCount }}</div>
         <div class="buttons">
           <button @click="childrenCount++, totalCount++">+</button>
@@ -23,8 +23,10 @@
       </div>
     </div>
   </div>
-
-  <div>Sum: {{ sum == 0 ? 'Alla fält är inte valda' : sum }}</div>
+  <div class="sum">
+    <div>Total:</div>
+    <div>{{ sum == 0 || isNaN(sum) ? 'Select all fields' : `${sum} kr` }}</div>
+  </div>
 </template>
 
 <script>
@@ -68,22 +70,31 @@ export default {
 </script>
 
 <style scoped>
-a {
+* {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.link {
   background: rgb(137, 136, 136);
   width: 100%;
   display: block;
   height: 2rem;
-  border-radius: 4px;
+  border-radius: 1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
 }
-a:hover {
+.link:hover {
   cursor: pointer;
   color: red;
 }
 
-span {
-  align-self: center;
-  justify-self: center;
+.sum {
+  display: flex;
+  justify-content: space-between;
 }
+
 button {
   width: 40px;
   height: 20px;

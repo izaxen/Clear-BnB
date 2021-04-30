@@ -38,5 +38,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   height: 250px;
+  border-radius: 2px;
 }
 </style>
