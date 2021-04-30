@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-
+//update?
 export default createStore({
   // state is where we store reactive variables
   // this.$store.state.nameOfVariable
