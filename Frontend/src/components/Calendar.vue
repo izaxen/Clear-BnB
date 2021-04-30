@@ -14,13 +14,22 @@ export default {
     }
   },
 
+  watch: {
+    toDate: function () {
+      let dayOne = new Date(this.fromDate)
+      let dayTwo = new Date(this.toDate)
+      if (dayOne && dayTwo) {
+        return this.$emit('dates', dayOne, dayTwo)
+      }
+    },
+  },
+
   computed: {
     calcDays() {
       let dayInMs = 24 * 60 * 60 * 1000
-      let dayOne = this.fromDate.split('-')
-      dayOne = new Date(...dayOne).getTime()
-      let dayTwo = this.toDate.split('-')
-      dayTwo = new Date(...dayTwo).getTime()
+
+      let dayOne = new Date(this.fromDate).getTime()
+      let dayTwo = new Date(this.toDate).getTime()
       let diff = Math.abs((dayOne - dayTwo) / dayInMs)
 
       return this.$emit('days-selected', diff)

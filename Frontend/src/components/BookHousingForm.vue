@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <Calendar @days-selected="recive" />
-    <NumberOfGuests :numOfDays="days" />
+    <Calendar @days-selected="recive" @dates="confirmDates" />
+    <NumberOfGuests @num-guest="confirmGuest" :numOfDays="days" />
+    <button @click="book">Book</button>
   </div>
 </template>
 
@@ -18,12 +19,39 @@ export default {
   data() {
     return {
       days: '',
+      fromDate: '',
+      toDate: '',
+      numAdults: '',
+      numChildren: '',
+      totalPrice: '',
     }
   },
 
   methods: {
     recive(data) {
       this.days = data
+    },
+
+    confirmDates(from, to) {
+      this.fromDate = from
+      this.toDate = to
+    },
+
+    confirmGuest(adults, children, sum) {
+      this.numAdults = adults
+      this.numChildren = children
+      this.totalPrice = sum
+    },
+
+    book() {
+      let object = {
+        startDate: this.fromDate,
+        endDate: this.toDate,
+        numAdult: this.numAdult,
+        numChild: this.numChildren,
+        totalPrice: this.totalPrice,
+      }
+      this.$store.dispatch('postReceipt', object)
     },
   },
 }

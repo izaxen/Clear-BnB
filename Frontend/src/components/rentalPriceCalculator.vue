@@ -52,6 +52,9 @@ export default {
     numOfDays: function () {
       this.sum = this.numOfDays * 87 * this.totalCount
     },
+    sum: function () {
+      this.$emit('num-guest', this.adultCount, this.childrenCount, this.sum)
+    },
   },
 
   methods: {
