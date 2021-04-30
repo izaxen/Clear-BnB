@@ -9,8 +9,8 @@
     <textarea class="freetext" v-model="freeText" rows="10" cols="17" placeholder="Freetext"/>
     <textarea class="city" v-model="city" rows="1" cols="17" placeholder="City"/>
     <input class="num-beds" v-model="availableBeds" type="number" placeholder="Number of beds"/>
-    <input class="price" v-model="adultPrice" type="number" placeholder="Adult price per night"/>
-    <input class="price" v-model="childPrice" type="number" placeholder="Child price per night"/></div>
+    <input class="price" v-model="price" type="number" placeholder="Price per night"/>
+    </div>
     <button>Add house</button>
     </form>
 
@@ -27,8 +27,7 @@ export default {
       description : "",
       city : "",
       availableBeds: "",
-      adultPrice : "",
-      childPrice : "",
+      price : "",
     }
   },
   methods: {
@@ -40,8 +39,7 @@ export default {
       description : this.description,
       city : this.city,
       availableBeds: this.availableBeds,
-      adultPrice : this.adultPrice,
-      childPrice : this.childPrice,
+      price : this.price,
       }
       this.$store.dispatch('postRentalObject', rentalObject)
     }

@@ -18,8 +18,7 @@ public class RentalObject {
     private String description;
     private String city;
     private int availableBeds;
-    private int adultPrice;
-    private int childPrice;
+    private int price;
     private List<Amenity> amenities;
 
     public RentalObject() {
@@ -36,26 +35,17 @@ public class RentalObject {
                 ", description='" + description + '\'' +
                 ", city='" + city + '\'' +
                 ", availableBeds=" + availableBeds +
-                ", adultPrice=" + adultPrice +
-                ", childPrice=" + childPrice +
+                ", price=" + price +
                 ", amenities=" + amenities +
                 '}';
     }
 
-    public int getAdultPrice() {
-        return adultPrice;
+    public int getPrice() {
+        return price;
     }
 
-    public void setAdultPrice(int adultPrice) {
-        this.adultPrice = adultPrice;
-    }
-
-    public int getChildPrice() {
-        return childPrice;
-    }
-
-    public void setChildPrice(int childPrice) {
-        this.childPrice = childPrice;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getId() {

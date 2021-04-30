@@ -1,7 +1,9 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 @Document
 public class User {
@@ -15,9 +17,9 @@ public class User {
     private String city;
     private String address;
     private String imageUrl;
-    private String passWord;
+    private String password;
 
-    public User(){
+    public User() {
 
     }
 
@@ -32,7 +34,46 @@ public class User {
         this.city = city;
         this.address = address;
         this.imageUrl = imageUrl;
-        this.passWord = passWord;
+        this.password = passWord;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getId() {
@@ -75,50 +116,12 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getCity() {
-        return city;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", city='" + city + '\'' +
-                ", address='" + address + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", passWord='" + passWord + '\'' +
-                '}';
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
+
