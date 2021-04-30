@@ -1,10 +1,9 @@
 <template>
   <nav>
     <router-link to ="/">Home</router-link>
-    |
-    <router-link to="/my-page">My Page</router-link>
-    |
-    <router-link to="" @click="showModalLogin">Login</router-link>
+    <router-link to="/my-page" v-if="loggedIn!==null">My Page</router-link>
+    <router-link to="" @click="showModalLogin" v-if="loggedIn===null">Login</router-link>
+    <router-link to="" @click="logout" v-if="loggedIn!==null">Logout</router-link>
     <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
   </nav>
 </template>
@@ -20,15 +19,26 @@ export default {
       isModalVisible: false
     };
   },
+
+  computed: {
+    loggedIn(){
+      if(this.$store.state.user !== null)
+        return this.isModalVisible = false;
+      return this.$store.state.user
+    }
+  },
   
   methods: {
     showModalLogin() {
         this.isModalVisible = true;
-      },
-      closeModal() {
-        console.log('inside close modal');
-        this.isModalVisible = false;
-      }
+    },
+    closeModal() {
+       console.log('inside close modal');
+       this.isModalVisible = false;
+    },
+    logout(){
+      this.$store.dispatch('logout')
+    }
   }
 
 }
@@ -51,6 +61,7 @@ nav {
 a{
   text-decoration: none;
   color: rgb(0, 0, 0);
+  margin: 20px;
   
 }
 

@@ -1,10 +1,11 @@
 <template>
   <form @submit.prevent="loginUser">
-    <input v-model="userName" required type="text" placeholder="Enter email">
+    <input v-model="email" type="text" placeholder="Enter email">
     <input v-model="password" required type="text" placeholder="Enter password">
+    <p v-if="wrongInput===true">Wrong username/password</p>
    <div>
     <button type="reset">clear</button>
-    <button>login</button>
+    <button @click="login">login</button>
    </div>
   
     <br>
@@ -16,15 +17,26 @@
 export default {
   data(){
     return{
-      userName:'',
+      email:'',
       password:''
     }
   },
 
-  methods:{
-    validateLogin(){
-      //Continue with valifdate
+  computed: {
+    wrongInput(){
+      return this.$store.state.failedLogIn
     }
+  },
+
+  methods:{
+    login() {
+      let credentials = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('login', credentials) 
+    },
+    
   }
 }
 </script>
@@ -43,6 +55,10 @@ export default {
     height: 25px;
     justify-self: center;
     align-self: center;
+  }
+
+  p{
+    color: red;
   }
 
   div {
