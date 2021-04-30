@@ -8,6 +8,9 @@
     |
     <router-link to="" @click="showModalLogin">Login</router-link>
     <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
+
+    | 
+    <router-link to="/test-page">Test Page</router-link>
   </nav>
 </template>
 

@@ -22,5 +22,9 @@ export default createRouter({
       path: '/add-housing',
       component: AddRentalObjectForm,
     },
+    {
+      path: '/test-page',
+      component: TestPage,
+    }
   ],
 })
