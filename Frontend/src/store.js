@@ -25,7 +25,7 @@ export default createStore({
       state.users = users
     },
     addUser(state, user) {
-      state.user.push(user)
+      state.users.push(user)
     },
     removeUser(state, user) {
       state.users = state.receipts.filter((u) => u.id != user.id)
