@@ -7,9 +7,13 @@ import java.util.Date;
 
 @Document
 public class BookingReceipt {
-    @Id private String id;
-    private String houseId;
+
+    @Id
+    private String id;
+    private String rentalObjectId;
     private String userId;
+    private String checkInTime;
+    private String checkOutTime;
     private Date startDate;
     private Date endDate;
     private int numAdult;
@@ -20,17 +24,33 @@ public class BookingReceipt {
 
     }
 
-    public BookingReceipt(String id, String houseId, String userId,
-                         Date startDate, Date endDate, int numAdult,
-                         int numChild, int totalPrice) {
+    public BookingReceipt(String id, String rentalObjectId, String userId,
+                          Date startDate, Date endDate, int numAdult,
+                          int numChild, int totalPrice) {
         this.id = id;
-        this.houseId = houseId;
+        this.rentalObjectId = rentalObjectId;
         this.userId = userId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.numAdult = numAdult;
         this.numChild = numChild;
         this.totalPrice = totalPrice;
+    }
+
+    public String getCheckInTime() {
+        return checkInTime;
+    }
+
+    public void setCheckInTime(String checkInTime) {
+        this.checkInTime = checkInTime;
+    }
+
+    public String getCheckOutTime() {
+        return checkOutTime;
+    }
+
+    public void setCheckOutTime(String checkOutTime) {
+        this.checkOutTime = checkOutTime;
     }
 
     public String getId() {
@@ -41,12 +61,12 @@ public class BookingReceipt {
         this.id = id;
     }
 
-    public String getHouseId() {
-        return houseId;
+    public String getRentalObjectId() {
+        return rentalObjectId;
     }
 
-    public void setHouseId(String houseId) {
-        this.houseId = houseId;
+    public void setRentalObjectId(String rentalObjectId) {
+        this.rentalObjectId = rentalObjectId;
     }
 
     public String getUserId() {
@@ -101,7 +121,7 @@ public class BookingReceipt {
     public String toString() {
         return "BookingRecipe{" +
                 "id='" + id + '\'' +
-                ", houseId='" + houseId + '\'' +
+                ", houseId='" + rentalObjectId + '\'' +
                 ", userId='" + userId + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +

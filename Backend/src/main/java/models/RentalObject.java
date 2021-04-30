@@ -12,10 +12,8 @@ public class RentalObject {
     @Id
     private String id;
     private String userId;
-    private Date startDate;
-    private Date endDate;
-    private String checkInTime;
-    private String checkOutTime;
+    private Date availableFrom;
+    private Date availableTo;
     private String freeText;
     private String description;
     private String city;
@@ -29,19 +27,25 @@ public class RentalObject {
     @Override
     public String toString() {
         return "RentalObject{" +
-               "id='" + id + '\'' +
-               ", userId='" + userId + '\'' +
-               ", startDate=" + startDate +
-               ", endDate=" + endDate +
-               ", checkInTime='" + checkInTime + '\'' +
-               ", checkOutTime='" + checkOutTime + '\'' +
-               ", freeText='" + freeText + '\'' +
-               ", description='" + description + '\'' +
-               ", city='" + city + '\'' +
-               ", availableBeds=" + availableBeds +
-               ", price=" + price +
-               ", amenities=" + amenities +
-               '}';
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", availableFrom=" + availableFrom +
+                ", availableTo=" + availableTo +
+                ", freeText='" + freeText + '\'' +
+                ", description='" + description + '\'' +
+                ", city='" + city + '\'' +
+                ", availableBeds=" + availableBeds +
+                ", price=" + price +
+                ", amenities=" + amenities +
+                '}';
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getId() {
@@ -58,38 +62,6 @@ public class RentalObject {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getCheckInTime() {
-        return checkInTime;
-    }
-
-    public void setCheckInTime(String checkInTime) {
-        this.checkInTime = checkInTime;
-    }
-
-    public String getCheckOutTime() {
-        return checkOutTime;
-    }
-
-    public void setCheckOutTime(String checkOutTime) {
-        this.checkOutTime = checkOutTime;
     }
 
     public String getFreeText() {
@@ -124,20 +96,28 @@ public class RentalObject {
         this.availableBeds = availableBeds;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public List<Amenity> getAmenities() {
         return amenities;
     }
 
     public void setAmenities(List<Amenity> amenities) {
         this.amenities = amenities;
+    }
+
+    public Date getAvailableFrom() {
+        return availableFrom;
+    }
+
+    public void setAvailableFrom(Date availableFrom) {
+        this.availableFrom = availableFrom;
+    }
+
+    public Date getAvailableTo() {
+        return availableTo;
+    }
+
+    public void setAvailableTo(Date availableTo) {
+        this.availableTo = availableTo;
     }
 
 }
