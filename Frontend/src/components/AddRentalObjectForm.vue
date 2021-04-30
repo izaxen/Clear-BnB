@@ -1,20 +1,26 @@
 <template>
-  <div class="rental-info">
-    <form @submit.prevent="addRentalObject">
-    <!--Replace inputs for date with calendar for choosing from- and to- dates-->
-    <h5>Rent out from</h5><input v-model="availableFrom" type="date"/>
-    <h5>Rent out until</h5><input v-model="availableTo" type="date">
-    <div class="input-boxes">
-      <textarea class="description" v-model="description" rows="1" cols="17" type="text" placeholder="Description"/>
-    <textarea class="freetext" v-model="freeText" rows="10" cols="17" placeholder="Freetext"/>
-    <textarea class="city" v-model="city" rows="1" cols="17" placeholder="City"/>
-    <input class="num-beds" v-model="availableBeds" type="number" placeholder="Number of beds"/>
-    <input class="price" v-model="price" type="number" placeholder="Price per night"/>
-    </div>
+  <form @submit.prevent="addRentalObject">
+    <div class="rental-info">
+    <div class="row">
+      <div class="column">
+        <p>Available from</p>
+        <input v-model="availableFrom" type="date"/>
+      </div>
+      <div class="column">
+        <p>Available to</p>
+        <input v-model="availableTo" type="date"/>
+        </div>
+      </div>
+      <div class="input-boxes">
+        <textarea class="description" v-model="description" rows="1" cols="17" type="text" placeholder="Description"/>
+        <textarea class="freetext" v-model="freeText" rows="10" cols="17" placeholder="Freetext"/>
+        <textarea class="city small-box" v-model="city" rows="1" cols="17" placeholder="City"/>
+        <input class="num-beds small-box" v-model="availableBeds" type="number" placeholder="Number of beds"/>
+        <input class="price small-box" v-model="price" type="number" placeholder="Price per night"/>
+      </div>
     <button>Add house</button>
+    </div>
     </form>
-
-  </div>
 </template>
 
 <script>
@@ -42,6 +48,13 @@ export default {
       price : this.price,
       }
       this.$store.dispatch('postRentalObject', rentalObject)
+      this.availableFrom = ""
+      this.availableTo = ""
+      this.freeText = ""
+      this.description = ""
+      this.city = ""
+      this.availableBeds = ""
+      this.price = ""
     }
   }
 
@@ -50,43 +63,63 @@ export default {
 
 <style scoped>
 .rental-info{
+  padding: 10px;
+  width: 290px;
+  border: 1px solid rgb(34, 32, 32);
+  font-family: 'Times New Roman', Times, serif;
+}
+p{
+  font-size: 12px;
+}
+.column{
+  width: 50%;
   display: flex;
   flex-direction: column;
-  width: 300px;
-  height: fit-content;
-  padding: 10px 20px;
+  align-content: space-around;
+  border: 1px solid rgb(34, 32, 32);
+  padding: 3px;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.row p{
+  color: rgb(0, 0, 0);
+  margin: 0;
+}
+input[type=date]{
+  font-size: 13px;
 }
 .input-boxes{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-content: space-around;
+  display: inline-block;
 }
-input[type=text], input[type=number]{
-  margin: 20px;
+input[type=number]{
+  margin-top: 10px;
+  padding: 0;
 }
-button {
-  margin: 0 30px;
-  width: 60px;
-  height: 30px;
-  color: green;
+form button {
+  margin-top: 10px;
+  width: 70px;
+  height: 25px;
+  color: rgb(7, 7, 7);
+  font-size: 12px;
+}
+textarea{
+  font-size: 13px;
+  width: 100%;
+  margin-top: 10px;
 }
 .description{
-  min-height: 150px;
-  display: flex;
-  justify-content: space-around;
-  align-content: space-between;
+  min-height: 70px;
 }
 .freetext{
 min-height: 150px;
 }
-.city{
-min-height: 60px;
-}
-.num-beds{
-min-height: 50px;
-}
-.price{
-min-height: 40px;
+.small-box{
+  font-size: 13px;
+  min-height: 30px;
+  width: 60%;
 }
 </style>
