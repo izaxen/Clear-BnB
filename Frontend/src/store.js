@@ -7,7 +7,8 @@ export default createStore({
     receipts: [],
     users: [],
     rentalObjects: [],
-    user: null
+    user: null,
+    failedLogIn: true
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -20,19 +21,11 @@ export default createStore({
       state.receipt.push(receipt)
     },
     removeReceipt(state, receipt) {
-      state.receipts = state.receipts.filter((r) => r.id != receipt.id)
-    },
-    setUsers(state, users) {
-      state.users = users
+      state.receipts  = state.receipts.filter((r) => r.id != receipt.id)
     },
     setUser(state, user) {
       state.user = user
-    },
-    addUser(state, user) {
-      state.users.push(user)
-    },
-    removeUser(state, user) {
-      state.users = state.receipts.filter((u) => u.id != user.id)
+      state.failedLogIn = false
     },
     setRentalObjects(state, rentalObjects) {
       state.rentalObjects = rentalObjects
@@ -72,12 +65,6 @@ export default createStore({
       })
       let deletedReceipt = await res.json()
       store.commit('removeReceipt', deletedReceipt)
-    },
-    async fetchUsers(store) {
-      let res = await fetch('/rest/users')
-      let users = res.json()
-      console.log('fetchUsers, users:', users)
-      store.commit('setUsers', users)
     },
     async postUser(store, user) {
       let res = await fetch('/api/registerUser', {
@@ -139,8 +126,13 @@ export default createStore({
         method: 'POST',
         body: JSON.stringify(credentials)
       })
-
       let loggedInUser = await res.json()
+      if ('error' in loggedInUser) {
+        console.log('Failed to login', loggedInUser)
+        this.state.failedLogIn = true
+        return;
+      }
+     
       console.log('logged in user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
@@ -150,6 +142,12 @@ export default createStore({
       console.log(user);
 
       store.commit('setUser', user)
+    },
+    async logout(store) {
+      let res = await fetch('/api/logout')
+
+      // remove user from state
+      store.commit('setUser', null)
     },
   },
 })
