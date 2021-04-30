@@ -454,3 +454,8 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 .DS_Store
+Backend/.settings/org.eclipse.m2e.core.prefs
+Backend/.settings/org.eclipse.jdt.apt.core.prefs
+Backend/.settings/org.eclipse.jdt.core.prefs
+Backend/.project
+Backend/.classpath
