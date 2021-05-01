@@ -13,8 +13,9 @@
         mode="date"
         :masks="masks"
         is-range
-        :min-date='new Date()'
-        :max-date='new Date("2021-06-01")'
+        :min-date= 'new Date()'
+        :max-date="rentalObject"
+        :disabled-dates="disableObject"
       >
         <template v-slot="{ inputValue, inputEvents, isDragging }">
           <div class="date-range">
@@ -92,8 +93,13 @@ export default {
     Calendar,
     DatePicker,
   },
+  props:[
+    "rentalObject",
+    "disableObject"
+  ],
   data() {
     return {
+      
       range: {
         start: new Date(),
         end: new Date()
@@ -106,7 +112,7 @@ export default {
   },
 
   methods:{
-
+    
   },
   created(){
         
