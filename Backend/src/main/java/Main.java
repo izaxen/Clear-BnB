@@ -83,7 +83,7 @@ public class Main {
 
         app.post("/rest/booking-receipts", (req, res) -> {
             BookingReceipt bookingReceipt = req.body(BookingReceipt.class);
-            collection("RentalObject").save(bookingReceipt);
+            collection("BookingReceipt").save(bookingReceipt);
             res.json(bookingReceipt);
         });
 
