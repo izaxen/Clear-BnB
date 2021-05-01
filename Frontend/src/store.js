@@ -118,5 +118,33 @@ export default createStore({
       let deletedRentalObject = await res.json()
       store.commit('removeRentalObject', deletedRentalObject)
     },
+    async login(store, credentials) {
+      let res = await fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify(credentials)
+      })
+      let loggedInUser = await res.json()
+      if ('error' in loggedInUser) {
+        console.log('Failed to login', loggedInUser)
+        this.state.failedLogIn = true
+        return;
+      }
+     
+      console.log('logged in user', loggedInUser)
+      store.commit('setUser', loggedInUser)
+    },
+    async whoAmI(store) {
+      let res = await fetch('/api/whoami')
+      let user = await res.json()
+      console.log(user);
+
+      store.commit('setUser', user)
+    },
+    async logout(store) {
+      let res = await fetch('/api/logout')
+
+      // remove user from state
+      store.commit('setUser', null)
+    },
   },
 })
