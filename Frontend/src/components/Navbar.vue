@@ -1,21 +1,26 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link>
-    |
-    <router-link to="/">My Page</router-link>
-    |
-    <router-link to="/add-housing">Add Housing</router-link>
-    |
-    <router-link to="" @click="showModalLogin">Login</router-link>
-    <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
+    <div class="home-btns">
+      <router-link to="/">Home</router-link>
+      <router-link to="/">My Page</router-link>
+      <router-link to="/add-housing">Add Housing</router-link>
+    </div>
+    <div class="Login-btn">
+      <router-link to="" @click="showModalLogin">Login</router-link>
+      <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
+    </div>
+    
+    <div class="search-bar"><SearchBar /></div>
+  
   </nav>
 </template>
 
 <script>
 import LoginModal from '../views/LoginModal.vue'
+import SearchBar from './SearchBar.vue'
 export default {
   components: {
-    LoginModal,
+    LoginModal, SearchBar
   },
   data() {
     return {
@@ -36,14 +41,37 @@ export default {
 </script>
 
 <style scoped>
+.search-bar {
+  grid-area: Search;
+  justify-self: center;
+}
 nav {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: 
+  "Home Search Login";
   padding: 10px;
   background-image: linear-gradient(#bff8ee, #4aae9b);
   color: black;
   font-weight: 800;
   box-shadow: 0 0 5px 2px;
-  text-align: center;
+  align-items: center;
   font-size: 20px;
+}
+
+.home-btns {
+  grid-area: Home;
+  margin-left: 30px;
+}
+
+.home-btns a {
+  margin: 10px;
+}
+
+.Login-btn{
+  grid-area: Login;
+  justify-self: right;
+  margin-right: 40px;
 }
 
 a {
