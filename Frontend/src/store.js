@@ -24,7 +24,7 @@ export default createStore({
     },
     setUser(state, user) {
       state.user = user
-      state.failedLogIn = true
+      state.failedLogIn = false
     },
     setRentalObjects(state, rentalObjects) {
       state.rentalObjects = rentalObjects
@@ -119,7 +119,7 @@ export default createStore({
       let loggedInUser = await res.json()
       if ('error' in loggedInUser) {
         console.log('Failed to login', loggedInUser)
-        this.state.failedLogIn = false;
+        this.state.failedLogIn = true;
         return;
       }
      
