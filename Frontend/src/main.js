@@ -3,7 +3,10 @@ import App from './App.vue'
 import store from './store.js'
 import router from './router.js'
 import './style.css'
-import VCalender from 'v-calendar'
+
+
+//Calendar @popperjs/core och v-calendar
+
 
 // const app = createApp(App)
 // app.use(store)
@@ -13,5 +16,4 @@ import VCalender from 'v-calendar'
 createApp(App) // == app
   .use(store)
   .use(router)
-  .use(VCalender, {})
   .mount('#app')
