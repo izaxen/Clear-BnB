@@ -22,6 +22,12 @@ export default {
   components: {
     LoginModal, SearchBar
   },
+
+  data() {
+    return {
+      isModalVisible: false,
+    }
+  },
  computed: {
     loggedIn(){
       if(this.$store.state.user !== null)
