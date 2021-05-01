@@ -2,17 +2,22 @@
   <div class="modal-backdrop">
     <div class="modal">
       <header class="modal-header">
+        <slot name="header">
           <h1 v-if="!isVisibility">Login here!</h1>
           <h1 v-if="isVisibility">Register here!</h1> 
+          </slot>
         <button type="button" class="btn-close" @click="close">x</button>
       </header>
 
       <section class="modal-body">
+        <slot name="body">
           <LoginForm v-if="!isVisibility"/>
           <AddUserForm v-if="isVisibility" />
+        </slot>
       </section>
 
       <footer class="modal-footer">
+        <slot name="footer"></slot>
         <button v-if="!isVisibility" type="button" class="btn-modal" @click="registerForm">register</button>
         <button v-if="isVisibility" type="button" class="btn-modal" @click="registerForm">login</button>
       </footer>
@@ -37,6 +42,12 @@ export default {
   LoginForm
   },
 
+  computed: {
+    loginCheck(){
+      return 
+    }
+
+  },
     name: 'Modal',
     methods: {
       close() {
@@ -44,13 +55,13 @@ export default {
         this.isVisibility = false;
       },
       
-      registerForm(){
-        this.isVisibility = !this.isVisibility;
-      },
+    registerForm(){
+       this.isVisibility = !this.isVisibility;
+    },
 
-      loginForm(){
-        this.isVisibility = true
-      },
+    loginForm(){
+      this.isVisibility = true
+    }
   },
 }
 </script>
@@ -97,6 +108,7 @@ export default {
   }
 
   .modal-body {
+    position: relative;
     padding: 20px 10px;
   }
 

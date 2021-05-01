@@ -28,27 +28,15 @@ export default {
     }
   },
 
-  computed: {
-    loggedIn(){
-      if(this.$store.state.user !== null)
-        return this.isModalVisible = false;
-      return this.$store.state.user
-    }
-  },
-  
   methods: {
     showModalLogin() {
-        this.isModalVisible = true;
+      this.isModalVisible = true
     },
     closeModal() {
-       console.log('inside close modal');
-       this.isModalVisible = false;
+      console.log('inside close modal')
+      this.isModalVisible = false
     },
-    logout(){
-      this.$store.dispatch('logout')
-    }
-  }
-
+  },
 }
 </script>
 
@@ -89,8 +77,6 @@ nav {
 a {
   text-decoration: none;
   color: rgb(0, 0, 0);
-  margin: 20px;
-  
 }
 
 a:hover {
