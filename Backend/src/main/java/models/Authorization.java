@@ -66,10 +66,6 @@ public class Authorization {
 
          res.json(Map.of("ok", "Logged out"));
         });
-
-
-
-
     }
-    }
+}
 
