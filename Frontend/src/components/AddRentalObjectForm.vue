@@ -26,11 +26,11 @@
         </div>
         <div class="input-holder">
         <p>Number of beds</p>
-        <input class="num-beds small-box" v-model="availableBeds" type="number" placeholder="Number of beds"/>
+        <input class="num-beds small-box" v-model="availableBeds" type="number" min="1" placeholder="Number of beds"/>
         </div>
         <div class="input-holder">
         <p>Price per night</p>
-        <input class="price small-box" v-model="price" type="number" placeholder="Price per night"/>
+        <input class="price small-box" v-model="price" type="number" min="1" placeholder="Price per night"/>
         </div>
       </div>
     <button>Add house</button>
