@@ -2,6 +2,7 @@
   <nav>
     <router-link to ="/">Home</router-link>
     <router-link to="/my-page" v-if="loggedIn!==null">My Page</router-link>
+    <router-link to="/add-housing">Add housing</router-link> 
     <router-link to="" @click="showModalLogin" v-if="loggedIn===null">Login</router-link>
     <router-link to="" @click="logout" v-if="loggedIn!==null">Logout</router-link>
     <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
