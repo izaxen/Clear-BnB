@@ -5,10 +5,9 @@ export default createStore({
   // this.$store.state.nameOfVariable
   state: {
     receipts: [],
-    users: [],
     rentalObjects: [],
     user: null,
-    failedLogIn: true
+    failedLogIn: false
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -25,7 +24,7 @@ export default createStore({
     },
     setUser(state, user) {
       state.user = user
-      state.failedLogIn = false
+      state.failedLogIn = true
     },
     setRentalObjects(state, rentalObjects) {
       state.rentalObjects = rentalObjects
@@ -66,16 +65,6 @@ export default createStore({
       let deletedReceipt = await res.json()
       store.commit('removeReceipt', deletedReceipt)
     },
-    async postUser(store, user) {
-      let res = await fetch('/api/registerUser', {
-        method: 'POST',
-        body: JSON.stringify(user),
-      })
-        let userFromServer = await res.json()
-      console.log('postUser, userFromServer:', userFromServer)
-      store.commit('setUser', userFromServer)
-    },
-
     async registerUser(store, user) {
       let res = await fetch('/api/registerUser', {
         method: 'POST',
@@ -121,6 +110,7 @@ export default createStore({
       let deletedRentalObject = await res.json()
       store.commit('removeRentalObject', deletedRentalObject)
     },
+
     async login(store, credentials) {
       let res = await fetch('/api/login', {
         method: 'POST',
@@ -129,20 +119,21 @@ export default createStore({
       let loggedInUser = await res.json()
       if ('error' in loggedInUser) {
         console.log('Failed to login', loggedInUser)
-        this.state.failedLogIn = true
+        this.state.failedLogIn = false;
         return;
       }
      
       console.log('logged in user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
+
     async whoAmI(store) {
       let res = await fetch('/api/whoami')
       let user = await res.json()
       console.log(user);
-
       store.commit('setUser', user)
     },
+    
     async logout(store) {
       let res = await fetch('/api/logout')
 
