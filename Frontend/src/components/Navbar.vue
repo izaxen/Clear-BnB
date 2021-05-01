@@ -2,53 +2,57 @@
   <nav>
     <div class="home-btns">
       <router-link to="/">Home</router-link>
-      <router-link to="/">My Page</router-link>
-      <router-link to="/add-housing">Add Housing</router-link>
+      <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
+      <router-link to="/add-housing">Add housing</router-link>
     </div>
     <div class="Login-btn">
-      <router-link to="" @click="showModalLogin">Login</router-link>
+      <router-link to="" @click="showModalLogin" v-if="loggedIn === null"
+        >Login</router-link
+      >
+      <router-link to="" @click="logout" v-if="loggedIn !== null"
+        >Logout</router-link
+      >
       <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
     </div>
-    
+
     <div class="search-bar"><SearchBar /></div>
-  
   </nav>
 </template>
 
 <script>
-import LoginModal from '../views/LoginModal.vue'
-import SearchBar from './SearchBar.vue'
+import LoginModal from "../views/LoginModal.vue";
+import SearchBar from "./SearchBar.vue";
 export default {
   components: {
-    LoginModal, SearchBar
+    LoginModal,
+    SearchBar,
   },
 
   data() {
     return {
       isModalVisible: false,
-    }
+    };
   },
- computed: {
-    loggedIn(){
-      if(this.$store.state.user !== null)
-        return this.isModalVisible = false;
-      return this.$store.state.user
-    }
+  computed: {
+    loggedIn() {
+      if (this.$store.state.user !== null) return (this.isModalVisible = false);
+      return this.$store.state.user;
+    },
   },
-  
+
   methods: {
     showModalLogin() {
-        this.isModalVisible = true;
+      this.isModalVisible = true;
     },
     closeModal() {
-       console.log('inside close modal');
-       this.isModalVisible = false;
+      console.log("inside close modal");
+      this.isModalVisible = false;
     },
-    logout(){
-      this.$store.dispatch('logout')
-    }
-  }
-}
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -59,8 +63,7 @@ export default {
 nav {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-areas: 
-  "Home Search Login";
+  grid-template-areas: "Home Search Login";
   padding: 10px;
   background-image: linear-gradient(#bff8ee, #4aae9b);
   color: black;
@@ -79,7 +82,7 @@ nav {
   margin: 10px;
 }
 
-.Login-btn{
+.Login-btn {
   grid-area: Login;
   justify-self: right;
   margin-right: 40px;

@@ -1,20 +1,41 @@
 <template>
-  <div class="rental-info">
-    <form @submit.prevent="addRentalObject">
-    <!--Replace inputs for date with calendar for choosing from- and to- dates-->
-    <h5>Rent out from</h5><input v-model="availableFrom" type="date"/>
-    <h5>Rent out until</h5><input v-model="availableTo" type="date">
-    <div class="input-boxes">
-      <textarea class="description" v-model="description" rows="1" cols="17" type="text" placeholder="Description"/>
-    <textarea class="freetext" v-model="freeText" rows="10" cols="17" placeholder="Freetext"/>
-    <textarea class="city" v-model="city" rows="1" cols="17" placeholder="City"/>
-    <input class="num-beds" v-model="availableBeds" type="number" placeholder="Number of beds"/>
-    <input class="price" v-model="price" type="number" placeholder="Price per night"/>
-    </div>
+  <form @submit.prevent="addRentalObject">
+    <div class="rental-info">
+    <div class="row">
+      <div class="column">
+        <p>Available from</p>
+        <input v-model="availableFrom" type="date"/>
+      </div>
+      <div class="column">
+        <p>Available to</p>
+        <input v-model="availableTo" type="date"/>
+        </div>
+      </div>
+      <div class="input-boxes">
+        <div class="input-holder">
+        <p>Description</p>
+        <textarea class="description" v-model="description" rows="1" cols="17" type="text" placeholder="Description"/>
+        </div>
+        <div class="input-holder">
+        <p>Freetext</p>
+        <textarea class="freetext" v-model="freeText" rows="10" cols="17" placeholder="Freetext"/>
+        </div>
+        <div class="input-holder">
+        <p>City</p>
+        <textarea class="city small-box" v-model="city" rows="1" cols="17" placeholder="City"/>
+        </div>
+        <div class="input-holder">
+        <p>Number of beds</p>
+        <input class="num-beds small-box" v-model="availableBeds" type="number" min="1" placeholder="Number of beds"/>
+        </div>
+        <div class="input-holder">
+        <p>Price per night</p>
+        <input class="price small-box" v-model="price" type="number" min="1" placeholder="Price per night"/>
+        </div>
+      </div>
     <button>Add house</button>
+    </div>
     </form>
-
-  </div>
 </template>
 
 <script>
@@ -42,6 +63,13 @@ export default {
       price : this.price,
       }
       this.$store.dispatch('postRentalObject', rentalObject)
+      this.availableFrom = ""
+      this.availableTo = ""
+      this.freeText = ""
+      this.description = ""
+      this.city = ""
+      this.availableBeds = ""
+      this.price = ""
     }
   }
 
@@ -52,41 +80,73 @@ export default {
 .rental-info{
   display: flex;
   flex-direction: column;
-  width: 300px;
+  padding: 10px;
+  width: 290px;
+  border: 1px solid rgb(34, 32, 32);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+}
+.input-holder{
   height: fit-content;
-  padding: 10px 20px;
+  width: 100%;
+  margin-top: 10px;
+}
+p{
+  font-size: 12px;
+  margin: 0;
+  margin-bottom: 2px;
+}
+.column{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  border: 1px solid rgb(34, 32, 32);
+  padding: 3px;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 7px;
+}
+.row p{
+  color: rgb(0, 0, 0);
+  margin: 0;
+}
+input[type=date]{
+  font-size: 13px;
 }
 .input-boxes{
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-content: space-around;
+  width: 100%;
 }
-input[type=text], input[type=number]{
-  margin: 20px;
+input[type=number]{
+  margin: 0;
+  padding: 0;
 }
-button {
-  margin: 0 30px;
-  width: 60px;
-  height: 30px;
-  color: green;
+form button {
+  display: block;
+  margin-top: 10px;
+  width: 70px;
+  height: 25px;
+  color: rgb(7, 7, 7);
+  font-size: 12px;
+}
+textarea{
+  width: 100%;
+  resize: none;
 }
 .description{
-  min-height: 150px;
-  display: flex;
-  justify-content: space-around;
-  align-content: space-between;
+  min-height: 70px;
 }
 .freetext{
 min-height: 150px;
 }
-.city{
-min-height: 60px;
-}
-.num-beds{
-min-height: 50px;
-}
-.price{
-min-height: 40px;
+.small-box{
+  line-height: 13px;
+  min-height: 20px;
+  width: 60%;
 }
 </style>
