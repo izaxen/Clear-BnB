@@ -91,6 +91,7 @@ export default {
     grid-template-rows: 15% 75% 10%;
     border-radius: 5px;
     padding: 10px;
+    
   }
 
   .modal-header {

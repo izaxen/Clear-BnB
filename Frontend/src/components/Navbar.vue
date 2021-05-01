@@ -65,12 +65,13 @@ nav {
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas: "Home Search Login";
   padding: 10px;
-  background-image: linear-gradient(#bff8ee, #4aae9b);
+  background-image: linear-gradient(#c8e4fd, #59deff);
   color: black;
   font-weight: 800;
   box-shadow: 0 0 5px 2px;
   align-items: center;
   font-size: 20px;
+  border-bottom: 1px solid rgb(167, 167, 167);
 }
 
 .home-btns {
