@@ -36,7 +36,7 @@ public class Main {
         app.delete("/rest/users/:id", (req, res) -> {
            String id = req.params("id");
            collection("User").deleteById(id);
-           res.send("Deleted");
+           res.send("OK");
         });
 
         //RentalHouse
@@ -62,7 +62,7 @@ public class Main {
         app.delete("/rest/rental-objects/:id", (req, res) -> {
             String id = req.params("id");
             collection("RentalObject").deleteById(id);
-            res.send("Deleted");
+            res.send("OK");
         });
 
         //BookingReceipt

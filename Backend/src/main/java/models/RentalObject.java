@@ -28,10 +28,8 @@ public class RentalObject {
         return "RentalObject{" +
                "id='" + id + '\'' +
                ", userId='" + userId + '\'' +
-               ", startDate=" + startDate +
-               ", endDate=" + endDate +
-               ", checkInTime='" + checkInTime + '\'' +
-               ", checkOutTime='" + checkOutTime + '\'' +
+               ", availableFrom=" + availableFrom +
+               ", availableTo=" + availableTo +
                ", freeText='" + freeText + '\'' +
                ", description='" + description + '\'' +
                ", city='" + city + '\'' +
@@ -110,5 +108,4 @@ public class RentalObject {
     public void setAvailableTo(Date availableTo) {
         this.availableTo = availableTo;
     }
-
 }
