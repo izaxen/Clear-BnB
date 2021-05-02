@@ -20,13 +20,9 @@ body {
 }
 
 main {
+  /*With flexbox take all speace*/
   flex: 1;
-  max-width: 50rem;
-  padding: 0 10px;
+  max-width: 70rem;
   width: 100%;
   margin: auto;
-}
-
-nav {
-  margin-bottom: 10px;
 }
