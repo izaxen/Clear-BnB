@@ -1,7 +1,11 @@
 import express.Express;
+<<<<<<< HEAD
 import models.BookingReceipt;
 import models.RentalObject;
 import models.User;
+=======
+import models.*;
+>>>>>>> dev
 
 import java.util.List;
 
@@ -36,7 +40,7 @@ public class Main {
         app.delete("/rest/users/:id", (req, res) -> {
            String id = req.params("id");
            collection("User").deleteById(id);
-           res.send("Deleted");
+           res.send("OK");
         });
 
         //RentalHouse
@@ -62,13 +66,14 @@ public class Main {
         app.delete("/rest/rental-objects/:id", (req, res) -> {
             String id = req.params("id");
             collection("RentalObject").deleteById(id);
-            res.send("Deleted");
+            res.send("OK");
         });
 
         //BookingReceipt
+
         app.get("/rest/booking-receipts", (req, res) -> {
-            List<BookingReceipt> bookingReceipt = collection("BookingReceipt").find();
-            res.json(bookingReceipt);
+            List<BookingReceipt> bookingReceipts = collection("BookingReceipt").find();
+            res.json(bookingReceipts);
         });
 
 
@@ -87,7 +92,57 @@ public class Main {
         app.delete("/rest/booking-receipts/:id", (req, res) -> {
             String id = req.params("id");
             collection("BookingReceipt").deleteById(id);
-            res.send("Deleted");
+            res.send("OK");
+        });
+
+        // Amenity
+
+        app.get("/rest/amenities", (req, res) -> {
+            List<Amenity>amenities = collection("Amenity").find();
+            res.json(amenities);
+        });
+
+        app.get("/rest/amenities/:id", (req, res) -> {
+            String id = req.params("id");
+            Amenity amenity = collection("Amenity").findById(id);
+            res.json(amenity);
+        });
+
+        app.post("/rest/amenities", (req,res) -> {
+            Amenity amenity = req.body(Amenity.class);
+            collection("Amenity").save(amenity);
+            res.json(amenity);
+        });
+
+        app.delete("/rest/amenities/:id", (req,res) -> {
+            String id = req.params("id");
+            collection("Amenity").deleteById(id);
+            res.send("OK");
+        });
+
+        //RentalAmenity
+
+        app.get("/rest/rental-amenities", (req, res) -> {
+            List<RentalAmenity>rentalAmenities = collection("RentalAmenity").find();
+            res.json(rentalAmenities);
+        });
+
+        app.get("/rest/rental-amenities/:id", (req, res) -> {
+            String id = req.params("id");
+            RentalAmenity rentalAmenity = collection("RentalAmenity").findById(id);
+            res.json(rentalAmenity);
+        });
+
+        app.post("/rest/rental-amenities", (req,res) -> {
+            RentalAmenity rentalAmenity = req.body(RentalAmenity.class);
+            collection("RentalAmenity").save(rentalAmenity);
+            res.json(rentalAmenity);
+        });
+
+        app.delete("/rest/rental-amenities/:id", (req,res) -> {
+            String id = req.params("id");
+            collection("RentalAmenity").deleteById(id);
+            res.send("OK");
         });
 
 
