@@ -1,4 +1,5 @@
 <template>
+<div id="app">
   <header>
     <Navbar />
   </header>
@@ -6,6 +7,7 @@
     <router-view />
   </main>
   <Footer />
+  </div>
 </template>
 
 <script>
@@ -24,3 +26,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  header{
+    width: 100%;
+  }
+</style>

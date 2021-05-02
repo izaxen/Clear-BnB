@@ -130,7 +130,6 @@ export default createStore({
     async whoAmI(store) {
       let res = await fetch('/api/whoami')
       let user = await res.json()
-      console.log(user);
       store.commit('setUser', user)
     },
     

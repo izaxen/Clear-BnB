@@ -74,14 +74,14 @@ input {
 button{
   width: 120px;
   margin: 10px 10px;
-  background-color: #4AAE9B;
+  background-color: #05b3df;
   color: white;
   border: none;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #297567;
+  background-color: #05b3df;
   transform: scale(1.05);
 }
 input:focus{

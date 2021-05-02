@@ -72,7 +72,7 @@ export default {
     justify-self: center;
     margin-right: 10px;
     margin-top: 20px;
-    background-color: #4AAE9B;
+    background-color: #05b3df;
     color: white;
     border: none;
     border-radius: 3px;
@@ -80,7 +80,7 @@ export default {
 
   button:hover{
     cursor: pointer;
-    background-color: #297567;
+    background-color: #05b3df;
     transform: scale(1.05);
   
   }

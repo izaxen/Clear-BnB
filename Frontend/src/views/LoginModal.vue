@@ -77,6 +77,7 @@ export default {
     display: grid;
     justify-content: center;
     align-items: center;
+    z-index: 10;
   }
 
   .modal {
@@ -91,13 +92,14 @@ export default {
     grid-template-rows: 15% 75% 10%;
     border-radius: 5px;
     padding: 10px;
-    
+    z-index: 11;
+
   }
 
   .modal-header {
     position: relative;
     border-bottom: 1px solid #eeeeee;
-    color: #4AAE9B;
+    color: #05b3df;
     justify-content: space-between;
   }
 
@@ -122,13 +124,13 @@ export default {
     padding: 10px;
     cursor: pointer;
     font-weight: bold;
-    color: #4AAE9B;
+    color: #05b3df;
     background: transparent;
   }
 
   .btn-modal {
     color: white;
-    background: #4AAE9B;
+    background: #05b3df;
     border: none;
     border-radius: 3px;
     width: 100px;
@@ -140,7 +142,7 @@ export default {
   .btn-modal:hover {
     cursor: pointer;
     transform: scale(1.05);
-    background-color: #297567;
+    background-color: #05b3df;
   }
 
 </style>
