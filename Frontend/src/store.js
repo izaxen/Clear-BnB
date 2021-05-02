@@ -148,7 +148,6 @@ export default createStore({
         this.state.failedLogIn = true
         return
       }
-
       console.log('logged in user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },

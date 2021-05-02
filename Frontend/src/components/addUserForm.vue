@@ -49,7 +49,6 @@ export default {
       }
       console.log('User', user)
     this.$store.dispatch('registerUser', user)
-    this.$router.push('/user/') //Här vill jag ha userid men det skapas automatiskt på serven??
     }
   }
 }

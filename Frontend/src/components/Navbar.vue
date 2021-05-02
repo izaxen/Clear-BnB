@@ -34,7 +34,8 @@ export default {
   },
   computed: {
     loggedIn() {
-      if (this.$store.state.user !== null) return (this.isModalVisible = false);
+      if (this.$store.state.user !== null) 
+        return (this.isModalVisible = false);
       return this.$store.state.user;
     },
   },
