@@ -13,6 +13,8 @@ public class Main {
 
         collection(op -> op.useBrowser = true);
 
+        new Authorization(app);
+
         //User
 //        app.get("/rest/users", (req, res) -> {
 //           List<User> users = collection("User").find();
@@ -79,7 +81,7 @@ public class Main {
 
         app.post("/rest/booking-receipts", (req, res) -> {
             BookingReceipt bookingReceipt = req.body(BookingReceipt.class);
-            collection("RentalObject").save(bookingReceipt);
+            collection("BookingReceipt").save(bookingReceipt);
             res.json(bookingReceipt);
         });
 

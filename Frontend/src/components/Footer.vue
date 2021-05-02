@@ -5,9 +5,13 @@
 <style scoped>
 footer {
   background-image: linear-gradient(
-    rgba(77, 224, 9, 0.787),
-    rgb(208, 255, 164)
+    #bff8ee,
+    #4AAE9B
   );
   padding: 20px;
+  box-shadow: 0 0 5px 2px;
+  color: black;
+  font-weight: 800;
+  text-align: center;
 }
 </style>

@@ -12,10 +12,8 @@ public class RentalObject {
     @Id
     private String id;
     private String userId;
-    private Date startDate;
-    private Date endDate;
-    private String checkInTime;
-    private String checkOutTime;
+    private Date availableFrom;
+    private Date availableTo;
     private String freeText;
     private String description;
     private String city;
@@ -58,38 +56,6 @@ public class RentalObject {
         this.userId = userId;
     }
 
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getCheckInTime() {
-        return checkInTime;
-    }
-
-    public void setCheckInTime(String checkInTime) {
-        this.checkInTime = checkInTime;
-    }
-
-    public String getCheckOutTime() {
-        return checkOutTime;
-    }
-
-    public void setCheckOutTime(String checkOutTime) {
-        this.checkOutTime = checkOutTime;
-    }
-
     public String getFreeText() {
         return freeText;
     }
@@ -128,6 +94,21 @@ public class RentalObject {
 
     public void setPrice(int price) {
         this.price = price;
+
+    public Date getAvailableFrom() {
+        return availableFrom;
+    }
+
+    public void setAvailableFrom(Date availableFrom) {
+        this.availableFrom = availableFrom;
+    }
+
+    public Date getAvailableTo() {
+        return availableTo;
+    }
+
+    public void setAvailableTo(Date availableTo) {
+        this.availableTo = availableTo;
     }
 
 }
