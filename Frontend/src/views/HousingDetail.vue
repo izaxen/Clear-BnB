@@ -1,5 +1,5 @@
 <template>
-<div>
+  <div>
     <div class="hero-picture">
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
@@ -42,18 +42,10 @@
     <hr class="separator" />
     <div class="hej">
       <div class="am">
-        <Amenity
-          v-for="am of amenities"
-          :key="am.id"
-          :amenity="am"
-        />
+        <Amenity v-for="am of amenities" :key="am.id" :amenity="am" />
       </div>
       <div class="am">
-        <Amenity
-          v-for="am of amenities"
-          :key="am.id"
-          :amenity="am"
-        />
+        <Amenity v-for="am of amenities" :key="am.id" :amenity="am" />
       </div>
     </div>
   </div>
@@ -97,9 +89,9 @@ export default {
 
 .picture-text {
   position: absolute;
-  top: 50%;
+  top: 75%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -75%);
   color: whitesmoke;
   font-weight: 700;
 }
@@ -120,6 +112,8 @@ export default {
 }
 .hero-picture {
   height: 50vh;
+  position: relative;
+  z-index: -1;
 }
 
 .slider {
