@@ -21,13 +21,11 @@ export default {
       password:''
     }
   },
-
   computed: {
     wrongInput(){
       return this.$store.state.failedLogIn
     }
   },
-
   methods:{
     login() {
       let credentials = {
@@ -42,12 +40,10 @@ export default {
 </script>
 
 <style scoped>
-
   form {
     display: grid;
     grid-template-columns: 1fr;
   }
-
   input {
     margin: 4px;
     text-decoration: none;
@@ -56,35 +52,30 @@ export default {
     justify-self: center;
     align-self: center;
   }
-
   p{
     color: red;
   }
-
   div {
     display: flex;
     justify-content: center;
   }
-
   button {
     width: 100px;
     align-self: center;
     justify-self: center;
     margin-right: 10px;
     margin-top: 20px;
-    background-color: #4AAE9B;
+    background-color: #05b3df;
     color: white;
     border: none;
     border-radius: 3px;
   }
-
   button:hover{
     cursor: pointer;
-    background-color: #297567;
+    background-color: #05b3df;
     transform: scale(1.05);
   
   }
-
   .logo{
     font-size: 40px;
     font-weight: 900;
