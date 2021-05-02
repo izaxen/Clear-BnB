@@ -99,8 +99,6 @@ export default createStore({
       console.log('Registerd user', loggedInUser);
       store.commit('setUser', loggedInUser)
     },
-
-    
     async deleteUser(store, user) {
       let res = await fetch('/rest/users/' + user.id, {
         method: 'DELETE',

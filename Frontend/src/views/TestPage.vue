@@ -1,5 +1,5 @@
 <template>
-<Calendar :rentalObject="rentalObject"  :disableObject="disableObject"/>
+<Calendar :disabledDates="disableObject"/>
 
 </template>
 
@@ -14,7 +14,10 @@ export default {
   },
   data(){
     return{
-    rentalObject : new Date("2021-06-03"),
+    /*rentalObject : {
+      availableFrom : new Date('2021-06-01'),
+      availableTo : new Date('2021-07-01')
+      },*/
     disableObject: new Date("2021-05-25")
     }
   }

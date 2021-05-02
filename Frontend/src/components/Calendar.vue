@@ -13,9 +13,9 @@
         mode="date"
         :masks="masks"
         is-range
-        :min-date= 'new Date()'
-        :max-date="rentalObject"
-        :disabled-dates="disableObject"
+        :min-date="rentalObject==undefined ? new Date() : rentalObject.availableFrom"
+        :max-date="rentalObject==undefined ? '' : rentalObject.availableTo"
+        :disabled-dates="disabledDates"
       >
         <template v-slot="{ inputValue, inputEvents, isDragging }">
           <div class="date-range">
@@ -95,8 +95,9 @@ export default {
   },
   props:[
     "rentalObject",
-    "disableObject"
+    "disabledDates"
   ],
+
   data() {
     return {
       
@@ -111,21 +112,49 @@ export default {
     };
   },
 
-  methods:{
-    
+watch:{
+range: function(){
+  console.log('this.rentalObject', this.rentalObject)
+    this.$emit('dates', this.range.start, this.range.end)
+    this.$emit('days-selected', this.addDaysToArray().length-1)
   },
+
+},
+
+
+  methods:{
+    addDaysToArray(){
+      for(var arr=[],dt=new Date(this.range.start); dt<=this.range.end; dt.setDate(dt.getDate()+1)){
+      arr.push(new Date(dt));
+    }
+    return arr;
+
+    },
+    findAllDisabledDates(){
+    for(var arr=[],dt=new Date(this.range.start); dt<=this.range.end; dt.setDate(dt.getDate()+1)){
+      arr.push(new Date(dt));
+    }
+   }
+  },
+
   created(){
+    this.$store.dispatch('fetchReceipts')
         
     Date.prototype.addDays = function() {
       var date = new Date(this.valueOf());
       date.setDate(date.getDate() + 2);
       return date
     }
-      let endDate = new Date()
-      this.range.end = endDate.addDays()
-    }
-  } 
-
+    //this.range.start = rentalObject.availableFrom
+  
+      if(this.rentalObject!=null){
+        this.range.start = this.rentalObject.availableFrom.valueOf() > new Date().valueOf() ? this.rentalObject.availableFrom : new Date()
+        this.rentalObject.availableFrom = this.rentalObject.availableFrom.valueOf() < new Date().valueOf() ? new Date() : this.rentalObject.availableFrom  
+      }
+      this.range.end = this.range.start.addDays()
+  }
+  
+}
 </script>
 
 <style scoped>
