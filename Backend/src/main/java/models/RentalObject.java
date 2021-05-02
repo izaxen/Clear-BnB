@@ -54,6 +54,22 @@ public class RentalObject {
         this.userId = userId;
     }
 
+    public Date getAvailableFrom() {
+        return availableFrom;
+    }
+
+    public void setAvailableFrom(Date availableFrom) {
+        this.availableFrom = availableFrom;
+    }
+
+    public Date getAvailableTo() {
+        return availableTo;
+    }
+
+    public void setAvailableTo(Date availableTo) {
+        this.availableTo = availableTo;
+    }
+
     public String getFreeText() {
         return freeText;
     }
@@ -92,20 +108,6 @@ public class RentalObject {
 
     public void setPrice(int price) {
         this.price = price;
-
-    public Date getAvailableFrom() {
-        return availableFrom;
     }
 
-    public void setAvailableFrom(Date availableFrom) {
-        this.availableFrom = availableFrom;
-    }
-
-    public Date getAvailableTo() {
-        return availableTo;
-    }
-
-    public void setAvailableTo(Date availableTo) {
-        this.availableTo = availableTo;
-    }
 }
