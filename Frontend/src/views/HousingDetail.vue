@@ -1,66 +1,40 @@
 <template>
   <div>
-    <div class="detail-pictures">
-      <div class="pic-1">
-        <img
-          src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        />
-      </div>
-      <div class="pic-2">
-        <img
-          src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        />
-      </div>
-      <div class="pic-3">
-        <img
-          src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        />
-      </div>
-      <div class="pic-5">
-        <img
-          src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        />
+    <div class="hero-picture">
+      <img
+        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
+      />
+      <div class="picture-text">
+        {{ rentalObject.description }}
       </div>
     </div>
+    <div class="slider">
+      <img
+        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
+      />
+      <img
+        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
+      />
+      <img
+        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
+      />
+      <img
+        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
+      />
+    </div>
+    <hr class="separator" />
 
     <div class="seller-info">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem asperiores ut
-      ab, officiis dolore temporibus. Nesciunt, laudantium beatae incidunt illo
-      nihil eum, nemo maiores, non tempore nobis adipisci excepturi quas?
+      ab, officiis dolore temporibus.
+      <img src="https://www.shankarainfra.com/img/avatar.png" />
     </div>
 
     <hr class="separator" />
     <div class="hero">
-      <div class="amenity-focus">
-        <li>
-          <ul>
-            1
-          </ul>
-          <ul>
-            1
-          </ul>
-          <ul>
-            1
-          </ul>
-          <ul>
-            1
-          </ul>
-          <ul>
-            1
-          </ul>
-          <ul>
-            1
-          </ul>
-        </li>
-      </div>
+      <div class="amenity-focus"></div>
       <div class="hero-text">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus nisi
-        saepe dicta dolore quidem quo odit aliquid fugiat cumque laboriosam?
-        Itaque maiores sapiente aliquam beatae ratione magni consectetur
-        assumenda quisquam?Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Minima quidem, suscipit laudantium quia ea omnis voluptatibus
-        porro repellendus molestias earum dolor, quos accusamus cum error
-        quibusdam pariatur architecto. Repudiandae, delectus.
+        {{ rentalObject.description }}
       </div>
       <BookHousingForm />
     </div>
@@ -117,9 +91,18 @@ export default {
   background-color: black;
 }
 
+.picture-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: whitesmoke;
+  font-weight: 700;
+}
+
 .hej {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .am {
@@ -130,22 +113,18 @@ export default {
 .hero-text {
   padding: 1rem;
 }
-.detail-pictures {
-  display: flex;
-  min-height: 50vh;
+.hero-picture {
+  height: 50vh;
 }
 
-@media screen and (max-width: 800px) {
-  .pic-5 {
-    display: none;
-  }
+.slider {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
 }
-@media screen and (max-width: 600px) {
-  .pic-5,
-  .pic-2,
-  .pic-3 {
-    display: none;
-  }
+.slider img {
+  height: 100px;
+  width: 80px;
 }
 
 .hero {
@@ -153,13 +132,27 @@ export default {
   justify-content: space-between;
 }
 
-img {
-  object-fit: cover;
-  width: 100%;
-  min-height: 100%;
-}
-
 .amenity {
   margin-bottom: 10px;
+}
+
+.seller-info {
+  margin: 10px;
+  display: flex;
+
+  width: 50%;
+  font-size: 0.8rem;
+}
+
+.seller-info img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  display: block; /* remove extra space below image */
 }
 </style>
