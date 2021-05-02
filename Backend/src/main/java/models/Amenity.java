@@ -7,7 +7,7 @@ public class Amenity {
 
     @Id
     private String id;
-    private String text;
+    private String title;
     private String iconUrl;
 
     public Amenity() {
@@ -17,7 +17,7 @@ public class Amenity {
     public String toString() {
         return "Amenity{" +
                "id='" + id + '\'' +
-               ", text='" + text + '\'' +
+               ", text='" + title + '\'' +
                ", iconUrl='" + iconUrl + '\'' +
                '}';
     }
@@ -30,12 +30,12 @@ public class Amenity {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getTitle() {
+        return title;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getIconUrl() {

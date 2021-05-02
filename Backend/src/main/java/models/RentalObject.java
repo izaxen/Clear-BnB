@@ -21,7 +21,6 @@ public class RentalObject {
     private String city;
     private int availableBeds;
     private int price;
-    private List<Amenity> amenities;
 
     public RentalObject() {
     }
@@ -40,7 +39,6 @@ public class RentalObject {
                ", city='" + city + '\'' +
                ", availableBeds=" + availableBeds +
                ", price=" + price +
-               ", amenities=" + amenities +
                '}';
     }
 
@@ -130,14 +128,6 @@ public class RentalObject {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public List<Amenity> getAmenities() {
-        return amenities;
-    }
-
-    public void setAmenities(List<Amenity> amenities) {
-        this.amenities = amenities;
     }
 
 }
