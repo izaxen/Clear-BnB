@@ -4,6 +4,7 @@ import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
 
 import java.util.Date;
+import java.util.List;
 
 @Document
 public class RentalObject {
@@ -18,6 +19,7 @@ public class RentalObject {
     private String city;
     private String address;
     private String zipCode;
+    private List<String> amenityID;
     private int availableBeds;
     private int price;
 
@@ -36,9 +38,18 @@ public class RentalObject {
                ", city='" + city + '\'' +
                ", address='" + address + '\'' +
                ", zipCode='" + zipCode + '\'' +
+               ", amenityID=" + amenityID +
                ", availableBeds=" + availableBeds +
                ", price=" + price +
                '}';
+    }
+
+    public List<String> getAmenityID() {
+        return amenityID;
+    }
+
+    public void setAmenityID(List<String> amenityID) {
+        this.amenityID = amenityID;
     }
 
     public String getId() {

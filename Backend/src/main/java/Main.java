@@ -1,10 +1,11 @@
 import express.Express;
 import models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static nosqlite.Database.collection;
-
+import static nosqlite.utilities.Filter.eq;
 
 public class Main {
 
@@ -52,6 +53,22 @@ public class Main {
             RentalObject rentalObject = collection("RentalObject").findById(id);
             res.json(rentalObject);
         });
+
+        app.get("/rest/rental-objects/:id/amenities/", (req, res) -> {
+            String id = req.params("id");
+            RentalObject rentalObject = collection("RentalObject").findById(id); //100gr
+            List<String> temp = rentalObject.getAmenityID();
+            List<Amenity> amenities = new ArrayList<>();
+            for(String s: temp){ //100gr
+                amenities.add(collection("Amenity").findById(s));//100 * 100
+            }
+            System.out.println(amenities);
+            System.out.println(amenities.size());
+            res.json(amenities);
+        });
+
+
+
 
         app.post("/rest/rental-objects", (req, res) -> {
             RentalObject rentalObject = req.body(RentalObject.class);
@@ -116,30 +133,6 @@ public class Main {
             res.send("OK");
         });
 
-        //RentalAmenity
-
-        app.get("/rest/rental-amenities", (req, res) -> {
-            List<RentalAmenity>rentalAmenities = collection("RentalAmenity").find();
-            res.json(rentalAmenities);
-        });
-
-        app.get("/rest/rental-amenities/:id", (req, res) -> {
-            String id = req.params("id");
-            RentalAmenity rentalAmenity = collection("RentalAmenity").findById(id);
-            res.json(rentalAmenity);
-        });
-
-        app.post("/rest/rental-amenities", (req,res) -> {
-            RentalAmenity rentalAmenity = req.body(RentalAmenity.class);
-            collection("RentalAmenity").save(rentalAmenity);
-            res.json(rentalAmenity);
-        });
-
-        app.delete("/rest/rental-amenities/:id", (req,res) -> {
-            String id = req.params("id");
-            collection("RentalAmenity").deleteById(id);
-            res.send("OK");
-        });
 
 
 
