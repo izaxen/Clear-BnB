@@ -21,16 +21,13 @@
 
 
 <script>
-
 export default {
-
   computed:{
     validatePassword(){
       console.log('Valiedate', this.password, this.rePassword)
       return (this.rePassword === this.password)
     }
   },
-
   data(){
     return{
       firstName:'',
@@ -51,9 +48,8 @@ export default {
         password: this.password
       }
       console.log('User', user)
-
     this.$store.dispatch('registerUser', user)
-    //this.$router.push('/user/') //Här vill jag ha userid men det skapas automatiskt på serven??
+    this.$router.push('/user/') //Här vill jag ha userid men det skapas automatiskt på serven??
     }
   }
 }
@@ -67,30 +63,24 @@ input {
   height: 25px;
   justify-self: center;
   align-self: center;
-
-
 }
-
 button{
   width: 120px;
   margin: 10px 10px;
-  background-color: #4AAE9B;
+  background-color: #05b3df;
   color: white;
   border: none;
 }
-
 button:hover {
   cursor: pointer;
-  background-color: #297567;
+  background-color: #05b3df;
   transform: scale(1.05);
 }
 input:focus{
   outline: none;
 }
-
 .register-btn {
   display: flex;
   justify-content: center;
 }
-
 </style>
