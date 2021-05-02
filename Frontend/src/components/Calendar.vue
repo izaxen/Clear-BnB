@@ -139,6 +139,8 @@ range: function(){
 
   created(){
     this.$store.dispatch('fetchReceipts')
+    let receipts = this.$store.state.receipts.filter((rec) => 
+      this.rentalObject.id == rec.rentalObjectId)
         
     Date.prototype.addDays = function() {
       var date = new Date(this.valueOf());
