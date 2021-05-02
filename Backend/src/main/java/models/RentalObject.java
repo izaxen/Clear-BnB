@@ -4,7 +4,6 @@ import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
 
 import java.util.Date;
-import java.util.List;
 
 @Document
 public class RentalObject {
@@ -17,6 +16,8 @@ public class RentalObject {
     private String freeText;
     private String description;
     private String city;
+    private String address;
+    private String zipCode;
     private int availableBeds;
     private int price;
 
@@ -33,6 +34,8 @@ public class RentalObject {
                ", freeText='" + freeText + '\'' +
                ", description='" + description + '\'' +
                ", city='" + city + '\'' +
+               ", address='" + address + '\'' +
+               ", zipCode='" + zipCode + '\'' +
                ", availableBeds=" + availableBeds +
                ", price=" + price +
                '}';
@@ -52,6 +55,22 @@ public class RentalObject {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Date getAvailableFrom() {
+        return availableFrom;
+    }
+
+    public void setAvailableFrom(Date availableFrom) {
+        this.availableFrom = availableFrom;
+    }
+
+    public Date getAvailableTo() {
+        return availableTo;
+    }
+
+    public void setAvailableTo(Date availableTo) {
+        this.availableTo = availableTo;
     }
 
     public String getFreeText() {
@@ -78,6 +97,22 @@ public class RentalObject {
         this.city = city;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public int getAvailableBeds() {
         return availableBeds;
     }
@@ -92,20 +127,6 @@ public class RentalObject {
 
     public void setPrice(int price) {
         this.price = price;
-
-    public Date getAvailableFrom() {
-        return availableFrom;
     }
 
-    public void setAvailableFrom(Date availableFrom) {
-        this.availableFrom = availableFrom;
-    }
-
-    public Date getAvailableTo() {
-        return availableTo;
-    }
-
-    public void setAvailableTo(Date availableTo) {
-        this.availableTo = availableTo;
-    }
 }
