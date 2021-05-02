@@ -98,6 +98,7 @@ export default {
   data() {
     return {
       rentalObject: null,
+      amenities: null,
     }
   },
 
@@ -106,6 +107,9 @@ export default {
     this.rentalObject = await fetch(`/rest/rental-objects/${id}`).then((res) =>
       res.json()
     )
+    this.amenities = await fetch(
+      `/rest/rental-objects/${id}/amenities/`
+    ).then((res) => res.json())
   },
 }
 </script>
