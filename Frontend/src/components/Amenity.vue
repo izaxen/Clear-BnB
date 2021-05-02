@@ -1,7 +1,7 @@
 <template>
   <div class="amenity">
     <img :src="amenity.iconUrl" alt="" srcset="" />
-    <h2>{{ amenity.title }}</h2>
+    <h2>{{ amenity.text }}</h2>
   </div>
 </template>
 
