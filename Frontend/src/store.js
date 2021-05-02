@@ -5,11 +5,10 @@ export default createStore({
   // this.$store.state.nameOfVariable
   state: {
     receipts: [],
-    users: [],
     rentalObjects: [],
     amenities: [],
     user: null,
-    failedLogIn: true,
+    failedLogIn: false,
   },
 
   // we cannot update state directly, so we use mutation methods to do that
