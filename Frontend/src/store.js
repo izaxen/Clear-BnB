@@ -7,8 +7,9 @@ export default createStore({
     receipts: [],
     users: [],
     rentalObjects: [],
+    amenities: [],
     user: null,
-    failedLogIn: true
+    failedLogIn: true,
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -21,12 +22,17 @@ export default createStore({
       state.receipt.push(receipt)
     },
     removeReceipt(state, receipt) {
-      state.receipts  = state.receipts.filter((r) => r.id != receipt.id)
+      state.receipts = state.receipts.filter((r) => r.id != receipt.id)
     },
     setUser(state, user) {
       state.user = user
       state.failedLogIn = false
     },
+
+    setAmenities(state, amenities) {
+      state.amenities = amenities
+    },
+
     setRentalObjects(state, rentalObjects) {
       state.rentalObjects = rentalObjects
     },
@@ -71,7 +77,7 @@ export default createStore({
         method: 'POST',
         body: JSON.stringify(user),
       })
-        let userFromServer = await res.json()
+      let userFromServer = await res.json()
       console.log('postUser, userFromServer:', userFromServer)
       store.commit('setUser', userFromServer)
     },
@@ -79,15 +85,14 @@ export default createStore({
     async registerUser(store, user) {
       let res = await fetch('/api/registerUser', {
         method: 'POST',
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
       })
 
       let loggedInUser = await res.json()
-      console.log('Registerd user', loggedInUser);
+      console.log('Registerd user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
 
-    
     async deleteUser(store, user) {
       let res = await fetch('/rest/users/' + user.id, {
         method: 'DELETE',
@@ -101,6 +106,18 @@ export default createStore({
       console.log('fetchRentalObjects, rentalObjects:', rentalObjects)
       store.commit('setRentalObjects', rentalObjects)
     },
+    async fetchAmenities(store) {
+      let res = await fetch('/rest/amenities')
+      let amenities = await res.json()
+      store.commit('setRentalObjects', amenities)
+    },
+
+    async fetRentalObjectAmenities(store, id) {
+      let res = await fetch(`rest/rental-objects/${id}/amenities`)
+      let amenities = await res.json()
+      store.commit('setAmenities', amenities)
+    },
+
     async postRentalObject(store, rentalObject) {
       let res = await fetch('/rest/rental-objects', {
         method: 'POST',
@@ -124,22 +141,22 @@ export default createStore({
     async login(store, credentials) {
       let res = await fetch('/api/login', {
         method: 'POST',
-        body: JSON.stringify(credentials)
+        body: JSON.stringify(credentials),
       })
       let loggedInUser = await res.json()
       if ('error' in loggedInUser) {
         console.log('Failed to login', loggedInUser)
         this.state.failedLogIn = true
-        return;
+        return
       }
-     
+
       console.log('logged in user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
     async whoAmI(store) {
       let res = await fetch('/api/whoami')
       let user = await res.json()
-      console.log(user);
+      console.log(user)
 
       store.commit('setUser', user)
     },
