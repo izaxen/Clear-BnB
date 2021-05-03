@@ -47,28 +47,11 @@ public class Main {
            res.json(rentalObjects);
         });
 
-
         app.get("/rest/rental-objects/:id", (req, res) -> {
             String id = req.params("id");
             RentalObject rentalObject = collection("RentalObject").findById(id);
             res.json(rentalObject);
         });
-
-        app.get("/rest/rental-objects/:id/amenities/", (req, res) -> {
-            String id = req.params("id");
-            RentalObject rentalObject = collection("RentalObject").findById(id); //100gr
-            List<String> temp = rentalObject.getAmenityID();
-            List<Amenity> amenities = new ArrayList<>();
-            for(String s: temp){ //100gr
-                amenities.add(collection("Amenity").findById(s));//100 * 100
-            }
-            System.out.println(amenities);
-            System.out.println(amenities.size());
-            res.json(amenities);
-        });
-
-
-
 
         app.post("/rest/rental-objects", (req, res) -> {
             RentalObject rentalObject = req.body(RentalObject.class);
@@ -81,6 +64,7 @@ public class Main {
             collection("RentalObject").deleteById(id);
             res.send("OK");
         });
+
 
         //BookingReceipt
 

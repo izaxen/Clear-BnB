@@ -5,11 +5,9 @@ export default createStore({
   // this.$store.state.nameOfVariable
   state: {
     receipts: [],
-    users: [],
     rentalObjects: [],
-    amenities: [],
     user: null,
-    failedLogIn: true,
+    failedLogIn: false,
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -27,10 +25,6 @@ export default createStore({
     setUser(state, user) {
       state.user = user
       state.failedLogIn = false
-    },
-
-    setAmenities(state, amenities) {
-      state.amenities = amenities
     },
 
     setRentalObjects(state, rentalObjects) {
@@ -106,17 +100,6 @@ export default createStore({
       console.log('fetchRentalObjects, rentalObjects:', rentalObjects)
       store.commit('setRentalObjects', rentalObjects)
     },
-    async fetchAmenities(store) {
-      let res = await fetch('/rest/amenities')
-      let amenities = await res.json()
-      store.commit('setRentalObjects', amenities)
-    },
-
-    async fetRentalObjectAmenities(store, id) {
-      let res = await fetch(`rest/rental-objects/${id}/amenities`)
-      let amenities = await res.json()
-      store.commit('setAmenities', amenities)
-    },
 
     async postRentalObject(store, rentalObject) {
       let res = await fetch('/rest/rental-objects', {
@@ -149,7 +132,6 @@ export default createStore({
         this.state.failedLogIn = true
         return
       }
-
       console.log('logged in user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },

@@ -42,10 +42,18 @@
     <hr class="separator" />
     <div class="hej">
       <div class="am">
-        <Amenity v-for="am of amenities" :key="am.id" :amenity="am" />
+        <Amenity
+          v-for="(name, value) in amenities"
+          :key="name"
+          :amenity="value"
+        />
       </div>
       <div class="am">
-        <Amenity v-for="am of amenities" :key="am.id" :amenity="am" />
+        <Amenity
+          v-for="(name, value) in amenities"
+          :key="name"
+          :amenity="value"
+        />
       </div>
     </div>
   </div>
@@ -73,9 +81,10 @@ export default {
     this.rentalObject = await fetch(`/rest/rental-objects/${id}`).then((res) =>
       res.json()
     )
-    this.amenities = await fetch(
-      `/rest/rental-objects/${id}/amenities/`
-    ).then((res) => res.json())
+
+    this.amenities = this.rentalObject.amenities
+
+    console.log(this.amenities)
   },
 }
 </script>
