@@ -1,16 +1,19 @@
 <template>
   <input v-model="textSearch" type="text" placeholder="search city..." />
 
-  <!-- <rentalObjects
+  <RentalObject
     v-for="object of rentalObjects"
-    v-bind:key="recipe.id" 
-    v-bind:recipe="recipe" 
-  /> -->
+    :key="object.id"
+    :object="object"
+  />
 </template>
 
 <script>
+import RentalObject from './RentalObject.vue'
 export default {
-  components: {},
+  components: {
+    RentalObject,
+  },
 
   data() {
     return {
@@ -25,7 +28,7 @@ export default {
           let city = object.city.toLowerCase()
           let search = this.textSearch.toLowerCase()
           if (city.includes(search)) {
-            return recipe
+            return object
           }
         })
       } else {
