@@ -1,16 +1,18 @@
 <template>
 <Calendar :textOne="textOne" :disabledDates="disableObject" :rentalObject="rentalObject"/>
-
+<AddRentalObjectForm />
 </template>
 
 
 
 <script>
 import Calendar from '../components/Calendar.vue'
+import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
 
 export default {
   components:{
   Calendar,
+  AddRentalObjectForm,
   },
   data(){
     return{
