@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from './views/Home.vue'
 import Detail from './views/HousingDetail.vue'
 import AddRentalObjectForm from './components/addRentalObjectForm.vue'
+import TestPage from './views/TestPage.vue'
 
 // create routes with views
 export default createRouter({
@@ -22,5 +23,9 @@ export default createRouter({
       path: '/add-housing',
       component: AddRentalObjectForm,
     },
+    {
+      path: '/test-page',
+      component: TestPage,
+    }
   ],
 })

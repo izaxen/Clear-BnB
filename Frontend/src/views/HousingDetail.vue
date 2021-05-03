@@ -8,17 +8,20 @@
 
 <script>
 import Amenity from '../components/Amenity.vue'
+import Calendar from '../components/Calendar.vue'
 import BookHousingForm from '../components/BookHousingForm.vue'
 
 export default {
   components: {
     Amenity,
+    Calendar,
     BookHousingForm,
   },
 
   data() {
     return {
       rentalObject: null,
+      bookingReceipts: null,
       amenities: null,
     }
   },

@@ -23,11 +23,12 @@
       </div>
     </div>
   </div>
+  
   <div class="sum">
     <div>Total:</div>
     <div>{{ sum == 0 || isNaN(sum) ? 'Select all fields' : `${sum} kr` }}</div>
   </div>
-</template>
+  </template>
 
 <script>
 export default {
