@@ -1,24 +1,28 @@
 <template>
 <div>
+  <BookHousingForm />
+  <Amenity v-for="am of amenities" :key="am.id" :amenity="am" />
   <Calendar :rentalObject="rentalObject"  :disableObject="disableObject"/>
-  <Amenity v-for="am of rentalObject.amenities" :key="am.id" :amenity="am" />
 </div>
 </template>
 
 <script>
 import Amenity from '../components/Amenity.vue'
 import Calendar from '../components/Calendar.vue'
+import BookHousingForm from '../components/BookHousingForm.vue'
 
 export default {
   components: {
     Amenity,
     Calendar,
+    BookHousingForm,
   },
 
   data() {
     return {
       rentalObject: null,
       bookingReceipts: null,
+      amenities: null,
     }
   },
 
@@ -28,6 +32,9 @@ export default {
       res.json()
     )
     //this.$store.dispatch('fetchReceipts', id)
+    this.amenities = await fetch(
+      `/rest/rental-objects/${id}/amenities/`
+    ).then((res) => res.json())
   },
 }
 </script>

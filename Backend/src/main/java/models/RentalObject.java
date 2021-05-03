@@ -17,9 +17,11 @@ public class RentalObject {
     private String freeText;
     private String description;
     private String city;
+    private String address;
+    private String zipCode;
+    private List<String> amenityID;
     private int availableBeds;
     private int price;
-    private List<Amenity> amenities;
 
     public RentalObject() {
     }
@@ -27,25 +29,27 @@ public class RentalObject {
     @Override
     public String toString() {
         return "RentalObject{" +
-                "id='" + id + '\'' +
-                ", userId='" + userId + '\'' +
-                ", availableFrom=" + availableFrom +
-                ", availableTo=" + availableTo +
-                ", freeText='" + freeText + '\'' +
-                ", description='" + description + '\'' +
-                ", city='" + city + '\'' +
-                ", availableBeds=" + availableBeds +
-                ", price=" + price +
-                ", amenities=" + amenities +
-                '}';
+               "id='" + id + '\'' +
+               ", userId='" + userId + '\'' +
+               ", availableFrom=" + availableFrom +
+               ", availableTo=" + availableTo +
+               ", freeText='" + freeText + '\'' +
+               ", description='" + description + '\'' +
+               ", city='" + city + '\'' +
+               ", address='" + address + '\'' +
+               ", zipCode='" + zipCode + '\'' +
+               ", amenityID=" + amenityID +
+               ", availableBeds=" + availableBeds +
+               ", price=" + price +
+               '}';
     }
 
-    public int getPrice() {
-        return price;
+    public List<String> getAmenityID() {
+        return amenityID;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setAmenityID(List<String> amenityID) {
+        this.amenityID = amenityID;
     }
 
     public String getId() {
@@ -62,6 +66,22 @@ public class RentalObject {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Date getAvailableFrom() {
+        return availableFrom;
+    }
+
+    public void setAvailableFrom(Date availableFrom) {
+        this.availableFrom = availableFrom;
+    }
+
+    public Date getAvailableTo() {
+        return availableTo;
+    }
+
+    public void setAvailableTo(Date availableTo) {
+        this.availableTo = availableTo;
     }
 
     public String getFreeText() {
@@ -88,6 +108,22 @@ public class RentalObject {
         this.city = city;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
     public int getAvailableBeds() {
         return availableBeds;
     }
@@ -96,28 +132,12 @@ public class RentalObject {
         this.availableBeds = availableBeds;
     }
 
-    public List<Amenity> getAmenities() {
-        return amenities;
+    public int getPrice() {
+        return price;
     }
 
-    public void setAmenities(List<Amenity> amenities) {
-        this.amenities = amenities;
-    }
-
-    public Date getAvailableFrom() {
-        return availableFrom;
-    }
-
-    public void setAvailableFrom(Date availableFrom) {
-        this.availableFrom = availableFrom;
-    }
-
-    public Date getAvailableTo() {
-        return availableTo;
-    }
-
-    public void setAvailableTo(Date availableTo) {
-        this.availableTo = availableTo;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
 }
