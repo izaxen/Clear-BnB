@@ -6,7 +6,7 @@
       <div class="input-boxes">
         <div class="input-holder">
         <p>Description</p>
-        <textarea class="description" v-model="description" rows="1" cols="17" type="text" placeholder="Description....."/>
+        <textarea class="description" v-model="description" rows="1" cols="17" type="text" placeholder="Description..."/>
         </div>
         <div class="input-holder">
         <p>Freetext</p>
