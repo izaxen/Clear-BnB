@@ -60,12 +60,12 @@ export default {
 <style scoped>
 .container {
   padding: 10px;
-  width: 300px;
-  background: rgb(216, 216, 216);
+  width: 350px;
+  border: 0.1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 250px;
-  border-radius: 2px;
+  height: 290px;
+  border-radius: 5px;
 }
 </style>

@@ -22,7 +22,7 @@ body {
 main {
   /*With flexbox take all speace*/
   flex: 1;
-  max-width: 50rem;
+  max-width: 65rem;
   width: 100%;
   margin: auto;
 }

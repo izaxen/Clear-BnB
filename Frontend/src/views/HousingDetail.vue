@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="hero-picture">
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
@@ -33,7 +33,16 @@
     <hr class="separator" />
     <div class="hero">
       <div class="amenity-focus"></div>
+
       <div class="hero-text">
+        {{ rentalObject.description }}
+        {{ rentalObject.description }}
+        {{ rentalObject.description }}
+        {{ rentalObject.description }}
+        {{ rentalObject.description }}
+        {{ rentalObject.description }}
+        {{ rentalObject.description }}
+        {{ rentalObject.description }}
         {{ rentalObject.description }}
       </div>
       <BookHousingForm />
@@ -41,18 +50,12 @@
 
     <hr class="separator" />
     <div class="hej">
-      <div class="am">
-        <Amenity
-          v-for="(name, value) in amenities"
-          :key="name"
-          :amenity="value"
-        />
-      </div>
-      <div class="am">
-        <Amenity
-          v-for="(name, value) in amenities"
-          :key="name"
-          :amenity="value"
+      <div class="amenities">
+        <AmenityLoggo
+          v-for="(key, value) in amenities"
+          :key="key"
+          :value="key"
+          :name="value"
         />
       </div>
     </div>
@@ -60,13 +63,13 @@
 </template>
 
 <script>
-import Amenity from '../components/Amenity.vue'
 import BookHousingForm from '../components/BookHousingForm.vue'
+import AmenityLoggo from '../components/AmenityLoggo.vue'
 
 export default {
   components: {
-    Amenity,
     BookHousingForm,
+    AmenityLoggo,
   },
 
   data() {
@@ -81,17 +84,14 @@ export default {
     this.rentalObject = await fetch(`/rest/rental-objects/${id}`).then((res) =>
       res.json()
     )
-
     this.amenities = this.rentalObject.amenities
-
-    console.log(this.amenities)
   },
 }
 </script>
 
 <style scoped>
 .separator {
-  width: 100%;
+  width: 99%;
   height: 1px;
   background-color: black;
 }
@@ -116,13 +116,16 @@ export default {
   flex-direction: column;
 }
 
+.hero {
+  margin: 3rem 0;
+}
+
 .hero-text {
   padding: 1rem;
 }
 .hero-picture {
   height: 50vh;
   position: relative;
-  z-index: -1;
 }
 
 .slider {
@@ -133,6 +136,8 @@ export default {
 .slider img {
   height: 100px;
   width: 80px;
+  border-radius: 5px;
+  margin: 1rem 0;
 }
 
 .hero {
@@ -145,7 +150,8 @@ export default {
 }
 
 .seller-info {
-  margin: 10px;
+  margin: 1.5rem 0;
+
   display: flex;
 
   width: 50%;
@@ -158,7 +164,16 @@ export default {
   border-radius: 50%;
 }
 
+.amenities {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
 img {
+  border-radius: 5px;
+
   width: 100%;
   height: 100%;
   display: block; /* remove extra space below image */
