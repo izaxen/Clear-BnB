@@ -1,8 +1,7 @@
 <template>
   <div class="search-box">
     <div class="box1"><input class="search-text" type="text" name="" placeholder="ruta 1"></div>
-    <div class="box2"><input class="search-text" type="text" name="" placeholder="ruta 2"></div>
-    <div class="box3"><input class="search-text" type="text" name="" placeholder="ruta 3"></div>
+      <Calendar :searchBar="searchBar" />
     <div class="box4"><input class="search-text" type="text" name="" placeholder="ruta 4"></div>
     <a class="search-btn" href="#">
       <em class="fas fa-search"></em>
@@ -11,7 +10,18 @@
 </template>
 
 <script>
+import Calendar from './Calendar.vue'
+
 export default {
+components:{
+  Calendar,
+},
+data(){
+  return{
+    searchBar: true,
+  }
+}
+
 }
 </script>
 
@@ -19,11 +29,8 @@ export default {
 .box1 {
   border-right: 1px solid gray;
 }
-.box2 {
-  border-right: 1px solid gray;
-}
-.box3 {
-  border-right: 1px solid gray;
+.box4 {
+  border-left: 1px solid gray;
 }
 .search-box {
   display: flex;
@@ -57,7 +64,7 @@ export default {
   outline: none;
   float: left;
   padding: 0;
-  color: black;
+  color: rgb(113,128,150);
   font-size: 16px;
   transition: 0.4s;
   line-height: 40px;

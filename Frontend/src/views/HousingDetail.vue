@@ -75,6 +75,7 @@ export default {
   data() {
     return {
       rentalObject: null,
+      bookingReceipts: null,
       amenities: null,
     }
   },
