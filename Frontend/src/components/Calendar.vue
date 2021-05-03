@@ -98,7 +98,6 @@ export default {
   },
   props:[
     "rentalObject",
-    "disabledDates",
     "textOne",
     "searchBar"
   ],
@@ -112,7 +111,8 @@ export default {
         },
       masks: {
         input: 'YYYY-MM-DD',
-      }
+      },
+      disabledDates: [],
       
     };
   },
@@ -134,44 +134,41 @@ methods:{
     return arr;
 
     },
-    findAllDisabledDates(){
-    for(var arr=[],dt=new Date(this.range.start); dt<=this.range.end; dt.setDate(dt.getDate()+1)){
-      arr.push(new Date(dt));
+    findAllDisabledDates(receiptArray){
+      let disabled = []
+      for(let i=0; i<receiptArray.length; i++){
+        for(let dt=receiptArray[i].checkInDate; dt<=receiptArray[i].checkOutDate; dt.setDate(dt.getDate()+1)){
+      disabled.push(new Date(dt));
+      }
+      this.disabledDates = disabled
+      console.log(this.disabledDates)
     }
    },
    filterReceipts(){
-     let dates = []
-     let dateObject={}
      let testReceipts = [
        { 
          rentalObjectId : "1",
-         checkInDate: new Date("2021-06-02"), 
-         checkOutDate : new Date("2021-06-05")
-       },
-        { 
-          rentalObjectId: "2",
-         checkInDate: new Date("2021-06-07"), 
-         checkOutDate : new Date("2021-06-10")
+         checkInDate: new Date('2021-06-02'), 
+         checkOutDate : new Date('2021-06-07')
        },
         { 
          rentalObjectId: "2",
-         checkInDate: new Date("2021-06-13"), 
-         checkOutDate : new Date("2021-06-16")
+         checkInDate: new Date('2021-06-03'), 
+         checkOutDate : new Date('2021-06-09')
+       },
+        { 
+         rentalObjectId: "2",
+         checkInDate: new Date('2021-06-13'), 
+         checkOutDate : new Date('2021-06-16')
        },
      ]
       //this.$store.state.receipts instead of testReceipts
+      console.log('testReceipts[1]', testReceipts[1])
      let receipts = testReceipts.filter((rec) => 
         this.rentalObject.id == rec.rentalObjectId)
+
         console.log('receipts', receipts)
-        for(let receipt of receipts){
-          dateObject = {
-            from: receipt.checkInDate,
-            to: receipt.checkOutDate
-            }
-          dates.push(dateObject)
-        }
-        console.log("dates", dates)
-        return dates
+      this.findAllDisabledDates(receipts)
    }
   },
   created(){
