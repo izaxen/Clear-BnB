@@ -6,7 +6,6 @@ export default createStore({
   state: {
     receipts: [],
     rentalObjects: [],
-    amenities: [],
     user: null,
     failedLogIn: false,
   },
@@ -26,10 +25,6 @@ export default createStore({
     setUser(state, user) {
       state.user = user
       state.failedLogIn = false
-    },
-
-    setAmenities(state, amenities) {
-      state.amenities = amenities
     },
 
     setRentalObjects(state, rentalObjects) {
@@ -104,17 +99,6 @@ export default createStore({
       let rentalObjects = await res.json()
       console.log('fetchRentalObjects, rentalObjects:', rentalObjects)
       store.commit('setRentalObjects', rentalObjects)
-    },
-    async fetchAmenities(store) {
-      let res = await fetch('/rest/amenities')
-      let amenities = await res.json()
-      store.commit('setRentalObjects', amenities)
-    },
-
-    async fetRentalObjectAmenities(store, id) {
-      let res = await fetch(`rest/rental-objects/${id}/amenities`)
-      let amenities = await res.json()
-      store.commit('setAmenities', amenities)
     },
 
     async postRentalObject(store, rentalObject) {
