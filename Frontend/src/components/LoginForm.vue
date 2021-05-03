@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="loginUser">
     <input v-model="email" type="text" placeholder="Enter email">
-    <input v-model="password" required type="text" placeholder="Enter password">
+    <input v-model="password" type="text" placeholder="Enter password">
     <p v-if="wrongInput===true">Wrong username/password</p>
    <div>
     <button type="reset">clear</button>
