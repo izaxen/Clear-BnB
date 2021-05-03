@@ -1,20 +1,12 @@
 <template>
   <form @submit.prevent="addRentalObject">
     <div class="rental-info">
-    <div class="row">
-      <div class="column">
-        <p>Available from</p>
-        <input v-model="availableFrom" type="date"/>
-      </div>
-      <div class="column">
-        <p>Available to</p>
-        <input v-model="availableTo" type="date"/>
-        </div>
-      </div>
+      <Calendar />
+    
       <div class="input-boxes">
         <div class="input-holder">
         <p>Description</p>
-        <textarea class="description" v-model="description" rows="1" cols="17" type="text" placeholder="Description"/>
+        <textarea class="description" v-model="description" rows="1" cols="17" type="text" placeholder="Description....."/>
         </div>
         <div class="input-holder">
         <p>Freetext</p>
@@ -39,7 +31,15 @@
 </template>
 
 <script>
+
+import Calendar from '../components/Calendar.vue'
+
 export default {
+components:{
+Calendar,
+},
+
+
   data(){
     return{
       availableFrom : "",
@@ -74,6 +74,16 @@ export default {
   }
 
 }
+
+
+ /* <p>Available from</p> //Gamla kalender.
+        <input v-model="availableFrom" type="date"/>
+      </div>
+      <div class="column">
+        <p>Available to</p>
+        <input v-model="availableTo" type="date"/>
+        </div> */
+
 </script>
 
 <style scoped>

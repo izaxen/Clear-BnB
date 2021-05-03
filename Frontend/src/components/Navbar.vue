@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
       <router-link to="/add-housing">Add housing</router-link>
+      <router-link to="/test-page">Test Page</router-link>
     </div>
     <div class="Login-btn">
       <router-link to="" @click="showModalLogin" v-if="loggedIn === null"
@@ -17,8 +18,8 @@
 
     <div class="search-bar"><SearchBar /></div>
 
-    <router-link to="/test-page">Test Page</router-link>
     
+
   </nav>
 </template>
 
@@ -69,10 +70,10 @@ nav {
   padding: 10px;
   background-image: linear-gradient(#c8e4fd, #59deff);
   color: black;
-  font-weight: 800;
+  
   box-shadow: 0 0 5px 2px;
   align-items: center;
-  font-size: 20px;
+  
   border-bottom: 1px solid rgb(167, 167, 167);
 }
 .home-btns {

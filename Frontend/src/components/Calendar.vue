@@ -1,12 +1,15 @@
 <template>
 <div class="calendar">
-  
-  <form class="box-bg" @submit.prevent>
+    <form class="box-bg" @submit.prevent>
     <div class="mb-4">
-      <span class="select-date">Choose date</span >
-      <div class="text">
+            
+      <div v-if="searchBar" class="text">
         <span class="check-in-out-text">Check in</span >
-        <span class="check-in-out-text1">Check out</span >
+        <span class="check-in-out-text1">Check out</span>
+      </div>
+      <div v-else class="text">
+        <span class="check-in-out-text">Available from</span >
+        <span class="check-in-out-text1">Available to</span>
       </div>
       <DatePicker
         v-model="range"
@@ -95,7 +98,9 @@ export default {
   },
   props:[
     "rentalObject",
-    "disabledDates"
+    "disabledDates",
+    "textOne",
+    "searchBar"
   ],
 
   data() {
@@ -114,16 +119,15 @@ export default {
 
 watch:{
 range: function(){
-  console.log('this.rentalObject', this.rentalObject)
+    
     this.$emit('dates', this.range.start, this.range.end)
-    this.$emit('days-selected', this.addDaysToArray().length-1)
+    this.$emit('days-selected', this.findSelectedDays().length-1)
   },
 
 },
 
-
-  methods:{
-    addDaysToArray(){
+methods:{
+    findSelectedDays(){
       for(var arr=[],dt=new Date(this.range.start); dt<=this.range.end; dt.setDate(dt.getDate()+1)){
       arr.push(new Date(dt));
     }
@@ -134,13 +138,47 @@ range: function(){
     for(var arr=[],dt=new Date(this.range.start); dt<=this.range.end; dt.setDate(dt.getDate()+1)){
       arr.push(new Date(dt));
     }
+   },
+   filterReceipts(){
+     let dates = []
+     let dateObject={}
+     let testReceipts = [
+       { 
+         rentalObjectId : "1",
+         checkInDate: new Date("2021-06-02"), 
+         checkOutDate : new Date("2021-06-05")
+       },
+        { 
+          rentalObjectId: "2",
+         checkInDate: new Date("2021-06-07"), 
+         checkOutDate : new Date("2021-06-10")
+       },
+        { 
+         rentalObjectId: "2",
+         checkInDate: new Date("2021-06-13"), 
+         checkOutDate : new Date("2021-06-16")
+       },
+     ]
+      //this.$store.state.receipts instead of testReceipts
+     let receipts = testReceipts.filter((rec) => 
+        this.rentalObject.id == rec.rentalObjectId)
+        console.log('receipts', receipts)
+        for(let receipt of receipts){
+          dateObject = {
+            from: receipt.checkInDate,
+            to: receipt.checkOutDate
+            }
+          dates.push(dateObject)
+        }
+        console.log("dates", dates)
+        return dates
    }
   },
-
   created(){
-    this.$store.dispatch('fetchReceipts')
-    let receipts = this.$store.state.receipts.filter((rec) => 
-      this.rentalObject.id == rec.rentalObjectId)
+    console.log('This searchbar', this.searchBar)
+    //this.$store.dispatch('fetchReceipts')
+    
+  
         
     Date.prototype.addDays = function() {
       var date = new Date(this.valueOf());
@@ -148,49 +186,54 @@ range: function(){
       return date
     }
     //this.range.start = rentalObject.availableFrom
-  
+     console.log('this.rentalObject', this.rentalObject)
       if(this.rentalObject!=null){
+       
         this.range.start = this.rentalObject.availableFrom.valueOf() > new Date().valueOf() ? this.rentalObject.availableFrom : new Date()
         this.rentalObject.availableFrom = this.rentalObject.availableFrom.valueOf() < new Date().valueOf() ? new Date() : this.rentalObject.availableFrom  
       }
       this.range.end = this.range.start.addDays()
+  },
+  mounted(){
+    if(this.rentalObject != null){
+    console.log('this.rentalObject', this.rentalObject)
+    this.filterReceipts()
+    }
   }
   
 }
 </script>
 
 <style scoped>
+
 .calendar{
   display: flex;
   width: 100%;
   max-width: 21rem;
   flex-direction: column;
-  align-items: center;
+  align-items:flex-end;
   justify-content: center;
 }
 .box-bg{
-box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
-padding: 1.5rem;
-border-radius: .25rem;
+align-items:flex-end;
+padding: 0 0.5rem;
 background-color: rgb(255, 255, 255);
+}
 
-}
-.mb-4{
-  margin-bottom: 1rem;
-}
 .select-date{
   text-align: left;
-  margin-bottom: 0.5rem;
+  
   font-size: 0..875rem;
   font-weight: 700;
   display:block;
   }
 
 .date-range{
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
-  display: flex;
+  align-self:flex-end;
+
 }
 .single-date-box{
   position: relative;
@@ -203,6 +246,7 @@ width: 1rem;
 position: absolute;
 pointer-events: none;
 margin: 0 0.5rem;
+margin-bottom: 0.5rem;
 height: 100%;
 
 }
@@ -234,6 +278,8 @@ flex-shrink: 0;
 .text{
   display: flex;
   justify-content:space-around;
+  font-size: 12px;
+  color: #718096;
 }
 .check-in-out-text1{
   margin-left: 2rem;

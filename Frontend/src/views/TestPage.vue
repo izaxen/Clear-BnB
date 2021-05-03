@@ -1,5 +1,5 @@
 <template>
-<Calendar :disabledDates="disableObject"/>
+<Calendar :textOne="textOne" :disabledDates="disableObject" :rentalObject="rentalObject"/>
 
 </template>
 
@@ -18,7 +18,14 @@ export default {
       availableFrom : new Date('2021-06-01'),
       availableTo : new Date('2021-07-01')
       },*/
-    disableObject: new Date("2021-05-25")
+    disableObject: new Date("2021-05-25"),
+    rentalObject: {
+      id: "2",
+      availableFrom: new Date("2021-01-03"),
+      availableTo: new Date("2021-07-01")
+    }
+
+    
     }
   }
 
