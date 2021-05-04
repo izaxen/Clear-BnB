@@ -5,6 +5,7 @@
       <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
       <router-link to="/add-housing">Add housing</router-link>
       <router-link to="/test-page">Test Page</router-link>
+      <router-link to="/overview">Overview</router-link>
     </div>
     <div class="Login-btn">
       <router-link to="" @click="showModalLogin" v-if="loggedIn === null"
