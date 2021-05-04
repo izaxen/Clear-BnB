@@ -7,6 +7,7 @@ import Detail from './views/HousingDetail.vue'
 import Overview from './views/Overview.vue'
 import AddRentalObjectForm from './components/addRentalObjectForm.vue'
 import TestPage from './views/TestPage.vue'
+import Overview from './views/Overview.vue'
 
 // create routes with views
 export default createRouter({

@@ -4,7 +4,7 @@
     <div class="hero-picture">
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      />
+      alt=""/>
       <div class="picture-text">
         {{ rentalObject.description }}
       </div>
@@ -13,23 +13,23 @@
       <!-- Bilderna ska inte vara hårdkodade -->
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      />
+      alt=""/>
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      />
+      alt=""/>
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      />
+      alt=""/>
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      />
+      alt=""/>
     </div>
     <hr class="separator" />
 
     <div class="seller-info">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem asperiores ut
       ab, officiis dolore temporibus.
-      <img src="https://www.shankarainfra.com/img/avatar.png" />
+      <img src="https://www.shankarainfra.com/img/avatar.png" alt="" />
     </div>
 
     <hr class="separator" />
@@ -47,7 +47,7 @@
         {{ rentalObject.description }}
         {{ rentalObject.description }}
       </div>
-      <BookHousingForm />
+      <BookHousingForm :object="rentalObject" />
     </div>
 
     <hr class="separator" />
@@ -84,8 +84,6 @@ export default {
 
   async created() {
     let id = this.$route.params.id
-
-    //kolla detta
     let res = await fetch(`/rest/rental-objects/${id}`)
     this.rentalObject = await res.json()
     this.amenities = this.rentalObject.amenities
