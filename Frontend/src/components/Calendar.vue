@@ -186,7 +186,8 @@ methods:{
         this.range.start = this.rentalObject.availableFrom.valueOf() > new Date().valueOf() ? this.rentalObject.availableFrom : new Date()
         this.rentalObject.availableFrom = this.rentalObject.availableFrom.valueOf() < new Date().valueOf() ? new Date() : this.rentalObject.availableFrom  
       }
-      this.range.end = this.addDays(this.range.start, 2)//.addDays()
+      this.range.end = this.addDays(this.range.start, 2)
+      this.$emit('defaultDates', this.range.start, this.range.end)
   },
   mounted(){
     if(this.rentalObject != null){

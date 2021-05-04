@@ -1,16 +1,23 @@
 <template>
   <form class="search-box">
-    <select @click="showCityNames" v-model="cityName" class="box1">
-      <option value="" disabled selected hidden>--Citys--</option>
-      <option v-for="city in citys" :value="city"> {{city}} </option>
+    <select @click="showCityNames" class="box1" v-model="city">
+      <option :value="cityName" selected>--Citys--</option>
+      <option v-for="city in citys" :key="city" :value="city"> {{city}} </option>
     </select>
-      <Calendar :searchBar="searchBar" />
-    <div class="box4" type="text" name="" placeholder="ruta 4">
-      <p>Persons</p>
+      <Calendar @days-selected="receive" @dates="confirmDates" @defaultDates="confirmDates" :searchBar="searchBar" />
+    <div class="box4">
+      <p>Persons {{guests}}</p>
+      <div class="person-div">
+        <p>Guests: {{guests}}</p>
+        <div class="btns">
+          <button type="button" @click="addGuests">+</button>
+          <button type="button" @click="subtractGuest">-</button>
+        </div>
       </div>
-      <div class="person-div"></div>
+    </div>
+    
     <a class="search-btn" href="#">
-      <em class="fas fa-search"></em>
+      <em class="fas fa-search" @click="addSearch"></em>
     </a>
   </form>
 </template>
@@ -27,11 +34,30 @@ data(){
     searchBar: true,
     city: '',
     citys: [],
-    cityName: ''
+    cityName: '',
+    guests: 0,
+    days: '',
+    fromDate: '',
+    toDate: ''
   }
 },
 
 methods: {
+
+    cityChange() {
+
+    },
+
+    receive(data) {
+        this.days = data
+      },
+
+    confirmDates(from, to) {
+      console.log('from', from, 'to', to)
+      this.fromDate = from
+      this.toDate = to
+    },
+
   showCityNames(){
     let getCitys = this.$store.state.rentalObjects;
     for(let cityName of getCitys){
@@ -43,6 +69,28 @@ methods: {
       return this.citys.indexOf(value) === index
     })
     this.citys = removedDuplicates;
+  },
+
+  addGuests(){
+    this.guests++
+  },
+  subtractGuest(){
+    if(this.guests > 0)
+      this.guests--
+    if(this.guests === 0 )
+      this.guests = 0
+  },
+
+  addSearch(){
+    let search = {
+      city: this.city,
+      guests: this.guests,
+      startDate: this.fromDate,
+      endDate: this.toDate,
+    }
+    console.log(search);
+    this.$store.commit('setSearchObject', search)
+    console.log('store', this.$store.state.searchObject)
   }
 }
 
@@ -57,6 +105,42 @@ option {
   padding: 10px;
   font-size: 17px;
 
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-left: 20px;
+}
+
+button {
+  height: 20px;
+  width: 20px;
+  align-self: center;
+  margin-left: 5px;
+}
+
+.person-div {
+  display: flex;
+  position: absolute;
+  text-align: left;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 800;
+  width: 0;
+  height: 0;
+  background: white;
+  top: 100%;
+  left: 0;
+  border-radius: 10px;
+  z-index: 10;
+  transition: 0.4s;
+}
+
+.box4:hover > .person-div {
+  height: 100px;
+  width: 200px;
 }
 
 .box1 {
@@ -101,6 +185,7 @@ option {
 }
 
 .box4{
+  position: relative;
   display: grid;
   justify-content: center;
   align-content: center;

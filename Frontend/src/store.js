@@ -8,6 +8,7 @@ export default createStore({
     rentalObjects: [],
     user: null,
     failedLogIn: false,
+    searchObject: null
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -15,6 +16,12 @@ export default createStore({
   mutations: {
     setReceipts(state, receipts) {
       state.receipts = receipts
+    },
+    setSearchObject(state, object) {
+      state.searchObject = object
+    },
+    removeSearchObject(state) {
+      state.searchObject = null
     },
     addReceipt(state, receipt) {
       state.receipt.push(receipt)
