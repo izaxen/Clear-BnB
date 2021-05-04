@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="container">
     <div class="link" @click="isActive = !isActive">
       <div class="num-guest-text">Number of guests {{ totalCount }}</div>
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+
 export default {
   props: ['numOfDays'],
   emits: ['num-guest'],

@@ -122,11 +122,18 @@ range: function(){
     
     this.$emit('dates', this.range.start, this.range.end)
     this.$emit('days-selected', this.findSelectedDays().length-1)
+    this.$emit('dateArray', this.findAllNights())
   },
 
 },
 
 methods:{
+  findAllNights(){
+    let allDates = this.findSelectedDays()
+    allDates.pop()
+    return allDates
+
+  },
     findSelectedDays(){
       for(var arr=[],dt=new Date(this.range.start); dt<=this.range.end; dt.setDate(dt.getDate()+1)){
       arr.push(new Date(dt));
@@ -186,7 +193,9 @@ methods:{
         this.range.start = this.rentalObject.availableFrom.valueOf() > new Date().valueOf() ? this.rentalObject.availableFrom : new Date()
         this.rentalObject.availableFrom = this.rentalObject.availableFrom.valueOf() < new Date().valueOf() ? new Date() : this.rentalObject.availableFrom  
       }
-      this.range.end = this.addDays(this.range.start, 2)//.addDays()
+      this.range.end = this.addDays(this.range.start, 2)
+      this.$emit('defaultDates', this.range.start, this.range.end)
+      this.$emit('dateArray', this.findSelectedDays())
   },
   mounted(){
     if(this.rentalObject != null){
