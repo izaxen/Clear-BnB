@@ -63,7 +63,7 @@ export default {
     } else if (this.name == 'dishwasher') {
       this.url =
         'https://image.shutterstock.com/image-vector/working-dishwasher-icon-outline-vector-260nw-1776039650.jpg'
-      this.text = 'Your wife'
+      this.text = 'dishwasher'
     } else if (this.name == 'pool') {
       this.url =
         'https://cdn1.iconfinder.com/data/icons/real-estate-94/200/810-512.png'

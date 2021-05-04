@@ -76,9 +76,9 @@ export default {
 
   data() {
     return {
-      rentalObject: {},
-      bookingReceipts: {},
-      amenities: {},
+      rentalObject: '',
+      bookingReceipts: '',
+      amenities: '',
     }
   },
 
