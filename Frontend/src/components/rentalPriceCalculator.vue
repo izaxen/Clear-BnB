@@ -33,6 +33,7 @@
 <script>
 export default {
   props: ['numOfDays'],
+  emits: ['num-guest'],
 
   data() {
     let data = {
