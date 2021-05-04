@@ -4,15 +4,13 @@
       <option :value="cityName" selected>--Citys--</option>
       <option v-for="city in citys" :key="city" :value="city"> {{city}} </option>
     </select>
-      <Calendar @days-selected="receive" @dates="confirmDates" @defaultDates="confirmDates" :searchBar="searchBar" />
+      <Calendar @days-selected="receive" @dates="confirmDates" @defaultDates="confirmDates" @dateArray="getDateArray" :searchBar="searchBar" />
     <div class="box4">
-      <p>Persons {{guests}}</p>
+      <p>{{guests}} {{guestText}}</p>
       <div class="person-div">
-        <p>Guests: {{guests}}</p>
-        <div class="btns">
-          <button type="button" @click="addGuests">+</button>
-          <button type="button" @click="subtractGuest">-</button>
-        </div>
+        <!--<p>Guests: {{guests}}</p>-->
+        <button type="button" @click="addGuests">+</button>
+        <button type="button" @click="subtractGuest">-</button>
       </div>
     </div>
     
@@ -36,17 +34,15 @@ data(){
     citys: [],
     cityName: '',
     guests: 0,
+    guestText: 'Guests',
     days: '',
     fromDate: '',
-    toDate: ''
+    toDate: '',
+    dateArray: []
   }
 },
 
 methods: {
-
-    cityChange() {
-
-    },
 
     receive(data) {
         this.days = data
@@ -56,6 +52,10 @@ methods: {
       console.log('from', from, 'to', to)
       this.fromDate = from
       this.toDate = to
+    },
+    getDateArray(array){
+      this.dateArray = array
+      console.log('this.dateArray', this.dateArray)
     },
 
   showCityNames(){
@@ -71,14 +71,20 @@ methods: {
     this.citys = removedDuplicates;
   },
 
+  changeGuestText(){
+    this.guestText = this.guests === 1 ? 'Guest' : 'Guests'
+  },
   addGuests(){
     this.guests++
+    this.changeGuestText()
   },
   subtractGuest(){
-    if(this.guests > 0)
+    if(this.guests > 0){
       this.guests--
-    if(this.guests === 0 )
-      this.guests = 0
+      this.changeGuestText()
+      }
+   /* else if(this.guests === 0 )
+      this.guests = 0*/
   },
 
   addSearch(){
@@ -87,6 +93,7 @@ methods: {
       guests: this.guests,
       startDate: this.fromDate,
       endDate: this.toDate,
+      dateArray: this.dateArray
     }
     console.log(search);
     this.$store.commit('setSearchObject', search)
@@ -107,12 +114,6 @@ option {
 
 }
 
-.btns {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin-left: 20px;
-}
 
 button {
   height: 20px;
@@ -123,24 +124,26 @@ button {
 
 .person-div {
   display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-content: center;
   position: absolute;
   text-align: left;
-  padding: 10px;
   font-size: 15px;
   font-weight: 800;
   width: 0;
   height: 0;
   background: white;
   top: 100%;
-  left: 0;
+  left: 16%;
   border-radius: 10px;
   z-index: 10;
-  transition: 0.4s;
+  transition: height 0.4s;
 }
 
 .box4:hover > .person-div {
-  height: 100px;
-  width: 200px;
+  height: 70px;
+  width: 100px;
 }
 
 .box1 {
@@ -171,7 +174,6 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.4s;
 }
 .box1{
   border: none;
