@@ -1,12 +1,11 @@
 import { createStore } from 'vuex'
-
+//update?
 export default createStore({
   // state is where we store reactive variables
   // this.$store.state.nameOfVariable
   state: {
     receipts: [],
     rentalObjects: [],
-    amenities: [],
     user: null,
     failedLogIn: false,
   },
@@ -26,10 +25,6 @@ export default createStore({
     setUser(state, user) {
       state.user = user
       state.failedLogIn = false
-    },
-
-    setAmenities(state, amenities) {
-      state.amenities = amenities
     },
 
     setRentalObjects(state, rentalObjects) {
@@ -91,7 +86,6 @@ export default createStore({
       console.log('Registerd user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
-
     async deleteUser(store, user) {
       let res = await fetch('/rest/users/' + user.id, {
         method: 'DELETE',
@@ -104,17 +98,6 @@ export default createStore({
       let rentalObjects = await res.json()
       console.log('fetchRentalObjects, rentalObjects:', rentalObjects)
       store.commit('setRentalObjects', rentalObjects)
-    },
-    async fetchAmenities(store) {
-      let res = await fetch('/rest/amenities')
-      let amenities = await res.json()
-      store.commit('setRentalObjects', amenities)
-    },
-
-    async fetRentalObjectAmenities(store, id) {
-      let res = await fetch(`rest/rental-objects/${id}/amenities`)
-      let amenities = await res.json()
-      store.commit('setAmenities', amenities)
     },
 
     async postRentalObject(store, rentalObject) {

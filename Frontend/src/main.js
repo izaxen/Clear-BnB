@@ -4,6 +4,10 @@ import store from './store.js'
 import router from './router.js'
 import './style.css'
 
+
+//Calendar @popperjs/core och v-calendar
+
+
 // const app = createApp(App)
 // app.use(store)
 // app.mount('#app')
