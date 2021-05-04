@@ -1,6 +1,6 @@
 <template>
 <Calendar :textOne="textOne" :rentalObject="rentalObject"/>
-
+<add-rental-object-form />
 </template>
 
 
