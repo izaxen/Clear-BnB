@@ -1,8 +1,9 @@
 <template>
-<div>
-  <div class="container">
-    <div class="link" @click="isActive = !isActive">
-      <div class="num-guest-text">Number of guests {{ totalCount }}</div>
+  <div>
+    <div class="container">
+      <div class="link" @click="isActive = !isActive">
+        <div class="num-guest-text">Number of guests {{ totalCount }}</div>
+      </div>
     </div>
 
     <div class="expandable" :class="{ active: isActive }">
@@ -32,7 +33,6 @@
 </template>
 
 <script>
-
 export default {
   props: ['numOfDays'],
   emits: ['num-guest'],
