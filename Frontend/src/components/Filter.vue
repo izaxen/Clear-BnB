@@ -1,8 +1,17 @@
 <template>
-  <input v-model="textSearch" type="text" placeholder="search city..." />
+  <h3>Filter</h3>
+  <select v-model="city">
+    <option value="">All cities</option>
+    <option v-for="object in objects" :key="object.id" :value="object.city">
+      {{ object.city }}
+    </option>
+  </select>
+  <input type="text" v-model="text" placeholder="text" />
+  <label for="vol">Price {{ range }} kr</label>
+  <input type="range" v-model="range" min="0" max="1000" step="10" />
 
   <RentalObject
-    v-for="object of filterObjects"
+    v-for="object in filterObjects"
     :key="object.id"
     :object="object"
   />
@@ -17,17 +26,42 @@ export default {
 
   data() {
     return {
-      textSearch: '',
+      text: '',
+      city: '',
+      objects: [],
+      range: 500,
     }
   },
 
-  // -> filtreratobject från store
-  // -> filtreratobject från store eller store.state.rentalObjects?
+  async created() {
+    await this.$store.dispatch('fetchRentalObjects')
+    this.objects = await this.$store.state.rentalObjects
+    console.log(this.objects)
+  },
 
   computed: {
-    filterObjects() {
-      return this.$store.state.rentalObjects.filter(
-        (object) => !object.city.indexOf(this.name)
+    filterObjects: function () {
+      return this.filterObjectsByPrice(
+        this.filterObjectsByCity(this.filterObjectsByDescription(this.objects))
+      )
+    },
+  },
+
+  methods: {
+    filterObjectsByCity(objects) {
+      let aa = objects.filter((object) => object.city == this.city)
+      console.log(aa)
+      return aa
+    },
+
+    filterObjectsByDescription(objects) {
+      return objects.filter((object) => object.freeText.includes(this.text))
+    },
+
+    filterObjectsByPrice(objects) {
+      console.log(this.range)
+      return objects.filter((object) =>
+        object.price < this.range ? object : ''
       )
     },
   },
