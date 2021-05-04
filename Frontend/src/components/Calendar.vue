@@ -137,7 +137,7 @@ methods:{
     findAllDisabledDates(receiptArray){
       let disabled = []
       for(let i=0; i<receiptArray.length; i++){
-        for(let dt=receiptArray[i].checkInDate; dt<=receiptArray[i].checkOutDate; dt.setDate(dt.getDate()+1)){
+        for(let dt=receiptArray[i].checkInDate; dt<=this.addDays(receiptArray[i].checkOutDate, -1); dt.setDate(dt.getDate()+1)){
       disabled.push(new Date(dt));
       }
       this.disabledDates = disabled
@@ -169,27 +169,24 @@ methods:{
 
         console.log('receipts', receipts)
       this.findAllDisabledDates(receipts)
-   }
+   },
+   addDays(firstDate, daysToAdd) {
+      let secondDate = new Date(firstDate.valueOf())
+      secondDate.setDate(secondDate.getDate() + daysToAdd);
+      return secondDate
+    }
   },
   created(){
     console.log('This searchbar', this.searchBar)
     //this.$store.dispatch('fetchReceipts')
-    
   
-        
-    Date.prototype.addDays = function() {
-      var date = new Date(this.valueOf());
-      date.setDate(date.getDate() + 2);
-      return date
-    }
-    //this.range.start = rentalObject.availableFrom
      console.log('this.rentalObject', this.rentalObject)
       if(this.rentalObject!=null){
        
         this.range.start = this.rentalObject.availableFrom.valueOf() > new Date().valueOf() ? this.rentalObject.availableFrom : new Date()
         this.rentalObject.availableFrom = this.rentalObject.availableFrom.valueOf() < new Date().valueOf() ? new Date() : this.rentalObject.availableFrom  
       }
-      this.range.end = this.range.start.addDays()
+      this.range.end = this.addDays(this.range.start, 2)//.addDays()
   },
   mounted(){
     if(this.rentalObject != null){
