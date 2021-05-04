@@ -6,6 +6,7 @@ import Home from './views/Home.vue'
 import Detail from './views/HousingDetail.vue'
 import AddRentalObjectForm from './components/addRentalObjectForm.vue'
 import TestPage from './views/TestPage.vue'
+import Overview from './views/Overview.vue'
 
 // create routes with views
 export default createRouter({
@@ -26,6 +27,10 @@ export default createRouter({
     {
       path: '/test-page',
       component: TestPage,
+    },
+    {
+      path: '/overview',
+      component: Overview,
     }
   ],
 })
