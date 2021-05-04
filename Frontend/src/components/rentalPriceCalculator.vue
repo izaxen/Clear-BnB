@@ -1,8 +1,9 @@
 <template>
-<div>
-  <div class="container">
-    <div class="link" @click="isActive = !isActive">
-      <div class="num-guest-text">Number of guests {{ totalCount }}</div>
+  <div>
+    <div class="container">
+      <div class="link" @click="isActive = !isActive">
+        <div class="num-guest-text">Number of guests {{ totalCount }}</div>
+      </div>
     </div>
 
     <div class="expandable" :class="{ active: isActive }">
@@ -24,18 +25,17 @@
       </div>
     </div>
   </div>
-  
-    <div class="sum">
-      <div>Total:</div>
-      <div>{{ sum == 0 || isNaN(sum) ? 'Select all fields' : `${sum} kr` }}</div>
-    </div>
+
+  <div class="sum">
+    <div>Total:</div>
+    <div>{{ sum == 0 || isNaN(sum) ? 'Select all fields' : `${sum} kr` }}</div>
   </div>
 </template>
 
 <script>
-
 export default {
   props: ['numOfDays'],
+  emits: ['num-guest'],
 
   data() {
     let data = {

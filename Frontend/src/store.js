@@ -24,7 +24,7 @@ export default createStore({
       state.searchObject = null
     },
     addReceipt(state, receipt) {
-      state.receipt.push(receipt)
+      state.receipts.push(receipt)
     },
     removeReceipt(state, receipt) {
       state.receipts = state.receipts.filter((r) => r.id != receipt.id)

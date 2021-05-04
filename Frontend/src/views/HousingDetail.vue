@@ -47,7 +47,7 @@
         {{ rentalObject.description }}
         {{ rentalObject.description }}
       </div>
-      <BookHousingForm />
+      <BookHousingForm :object="rentalObject" />
     </div>
 
     <hr class="separator" />
@@ -84,8 +84,6 @@ export default {
 
   async created() {
     let id = this.$route.params.id
-
-    //kolla detta
     let res = await fetch(`/rest/rental-objects/${id}`)
     this.rentalObject = await res.json()
     this.amenities = this.rentalObject.amenities
