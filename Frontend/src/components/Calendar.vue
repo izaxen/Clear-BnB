@@ -98,7 +98,6 @@ export default {
   },
   props:[
     "rentalObject",
-    "disabledDates",
     "textOne",
     "searchBar"
   ],
@@ -112,7 +111,8 @@ export default {
         },
       masks: {
         input: 'YYYY-MM-DD',
-      }
+      },
+      disabledDates: [],
       
     };
   },
@@ -134,65 +134,59 @@ methods:{
     return arr;
 
     },
-    findAllDisabledDates(){
-    for(var arr=[],dt=new Date(this.range.start); dt<=this.range.end; dt.setDate(dt.getDate()+1)){
-      arr.push(new Date(dt));
+    findAllDisabledDates(receiptArray){
+      let disabled = []
+      for(let i=0; i<receiptArray.length; i++){
+        for(let dt=receiptArray[i].checkInDate; dt<=this.addDays(receiptArray[i].checkOutDate, -1); dt.setDate(dt.getDate()+1)){
+      disabled.push(new Date(dt));
+      }
+      this.disabledDates = disabled
+      console.log(this.disabledDates)
     }
    },
    filterReceipts(){
-     let dates = []
-     let dateObject={}
      let testReceipts = [
        { 
          rentalObjectId : "1",
-         checkInDate: new Date("2021-06-02"), 
-         checkOutDate : new Date("2021-06-05")
-       },
-        { 
-          rentalObjectId: "2",
-         checkInDate: new Date("2021-06-07"), 
-         checkOutDate : new Date("2021-06-10")
+         checkInDate: new Date('2021-06-02'), 
+         checkOutDate : new Date('2021-06-07')
        },
         { 
          rentalObjectId: "2",
-         checkInDate: new Date("2021-06-13"), 
-         checkOutDate : new Date("2021-06-16")
+         checkInDate: new Date('2021-06-03'), 
+         checkOutDate : new Date('2021-06-09')
+       },
+        { 
+         rentalObjectId: "2",
+         checkInDate: new Date('2021-06-13'), 
+         checkOutDate : new Date('2021-06-16')
        },
      ]
       //this.$store.state.receipts instead of testReceipts
+      console.log('testReceipts[1]', testReceipts[1])
      let receipts = testReceipts.filter((rec) => 
         this.rentalObject.id == rec.rentalObjectId)
+
         console.log('receipts', receipts)
-        for(let receipt of receipts){
-          dateObject = {
-            from: receipt.checkInDate,
-            to: receipt.checkOutDate
-            }
-          dates.push(dateObject)
-        }
-        console.log("dates", dates)
-        return dates
-   }
+      this.findAllDisabledDates(receipts)
+   },
+   addDays(firstDate, daysToAdd) {
+      let secondDate = new Date(firstDate.valueOf())
+      secondDate.setDate(secondDate.getDate() + daysToAdd);
+      return secondDate
+    }
   },
   created(){
     console.log('This searchbar', this.searchBar)
     //this.$store.dispatch('fetchReceipts')
-    
   
-        
-    Date.prototype.addDays = function() {
-      var date = new Date(this.valueOf());
-      date.setDate(date.getDate() + 2);
-      return date
-    }
-    //this.range.start = rentalObject.availableFrom
      console.log('this.rentalObject', this.rentalObject)
       if(this.rentalObject!=null){
        
         this.range.start = this.rentalObject.availableFrom.valueOf() > new Date().valueOf() ? this.rentalObject.availableFrom : new Date()
         this.rentalObject.availableFrom = this.rentalObject.availableFrom.valueOf() < new Date().valueOf() ? new Date() : this.rentalObject.availableFrom  
       }
-      this.range.end = this.range.start.addDays()
+      this.range.end = this.addDays(this.range.start, 2)//.addDays()
   },
   mounted(){
     if(this.rentalObject != null){
