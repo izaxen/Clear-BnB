@@ -213,7 +213,6 @@ align-items:flex-end;
 padding: 0 0.5rem;
 background-color: rgb(255, 255, 255);
 }
-
 .select-date{
   text-align: left;
   
@@ -239,8 +238,8 @@ background-color: rgb(255, 255, 255);
 width: 1rem;
 position: absolute;
 pointer-events: none;
-margin: 0 0.5rem;
-margin-bottom: 0.5rem;
+margin:  -0.15rem 0.5rem 0 0.5rem;
+
 height: 100%;
 
 }

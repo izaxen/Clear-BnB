@@ -1,9 +1,9 @@
 <template>
-<div>
-  <BookHousingForm />
-  <Amenity v-for="am of amenities" :key="am.id" :amenity="am" />
-  <Calendar :rentalObject="rentalObject"  :disableObject="disableObject"/>
-</div>
+  <div>
+    <BookHousingForm />
+    <Amenity v-for="(value, name) in amenities" :key="name" :amenity="value" />
+    {{ value }} {{ name }}
+  </div>
 </template>
 
 <script>
@@ -28,13 +28,11 @@ export default {
 
   async created() {
     let id = this.$route.params.id
-    this.rentalObject = await fetch(`/rest/rental-objects/${id}`).then((res) =>
-      res.json()
-    )
-    //this.$store.dispatch('fetchReceipts', id)
-    this.amenities = await fetch(
-      `/rest/rental-objects/${id}/amenities/`
-    ).then((res) => res.json())
+    this.rentalObject = await fetch(`/rest/rental-objects/${id}`)
+      .then((res) => res.json())
+      .then((this.amenities = res.amenities))
+
+    console.log(this.amenities)
   },
 }
 </script>
