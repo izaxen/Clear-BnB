@@ -2,7 +2,7 @@
   <input v-model="textSearch" type="text" placeholder="search city..." />
 
   <RentalObject
-    v-for="object of rentalObjects"
+    v-for="object of filterObjects"
     :key="object.id"
     :object="object"
   />
@@ -21,19 +21,14 @@ export default {
     }
   },
 
+  // -> filtreratobject från store
+  // -> filtreratobject från store eller store.state.rentalObjects?
+
   computed: {
-    rentalObjects() {
-      if (this.textSearch) {
-        return this.$store.state.rentalObjects.filter((object) => {
-          let city = object.city.toLowerCase()
-          let search = this.textSearch.toLowerCase()
-          if (city.includes(search)) {
-            return object
-          }
-        })
-      } else {
-        return this.$store.state.rentalObjects
-      }
+    filterObjects() {
+      return this.$store.state.rentalObjects.filter(
+        (object) => !object.city.indexOf(this.name)
+      )
     },
   },
 }
