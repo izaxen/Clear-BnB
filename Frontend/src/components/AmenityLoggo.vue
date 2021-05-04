@@ -16,6 +16,7 @@ export default {
     }
     data = Object.assign({}, data, this.value)
     data = Object.assign({}, data, this.name)
+
     return data
   },
 

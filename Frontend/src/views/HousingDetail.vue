@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <!-- Bilderna ska inte vara hårdkodade -->
     <div class="hero-picture">
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
@@ -9,6 +10,7 @@
       </div>
     </div>
     <div class="slider">
+      <!-- Bilderna ska inte vara hårdkodade -->
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
       />
@@ -82,11 +84,14 @@ export default {
 
   async created() {
     let id = this.$route.params.id
-    this.rentalObject = await fetch(`/rest/rental-objects/${id}`).then((res) =>
-      res.json()
-    )
+
+    //kolla detta
+    let res = await fetch(`/rest/rental-objects/${id}`)
+    this.rentalObject = await res.json()
     this.amenities = this.rentalObject.amenities
   },
+
+  async mounted() {},
 }
 </script>
 

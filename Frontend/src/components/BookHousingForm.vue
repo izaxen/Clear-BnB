@@ -60,7 +60,7 @@ export default {
 <style scoped>
 .container {
   padding: 10px;
-  width: 350px;
+  width: 140rem;
   border: 0.1px solid black;
   display: flex;
   flex-direction: column;
