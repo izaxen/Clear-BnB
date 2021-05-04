@@ -79,7 +79,6 @@ export default {
   font-size: 0.9rem;
 }
 .link {
-  background: rgb(137, 136, 136);
   width: 100%;
   display: block;
   height: 2rem;
@@ -88,6 +87,7 @@ export default {
   display: flex;
   align-items: center;
   border: 1px solid black;
+  border-radius: 5px;
 }
 .link:hover {
   cursor: pointer;
@@ -102,6 +102,11 @@ export default {
 button {
   width: 40px;
   height: 20px;
+  border-radius: 5px;
+}
+
+button:hoover {
+  cursor: pointer;
 }
 
 .expandable {
