@@ -1,8 +1,7 @@
 <template>
   <form @submit.prevent="addRentalObject">
     <div class="rental-info">
-      <Calendar />
-    
+          
       <div class="input-boxes">
         <div class="input-holder">
         <p>Description</p>
@@ -10,21 +9,30 @@
         </div>
         <div class="input-holder">
         <p>Freetext</p>
-        <textarea class="freetext  border-radius" v-model="freeText" rows="10" cols="17" placeholder="Freetext"/>
+        <textarea class="freetext  border-radius" v-model="freeText" rows="10" cols="17" placeholder="Freetext..."/>
         </div>
         <div class="input-holder ">
         <p>City</p>
-        <textarea class="city small-box  border-radius" v-model="city" rows="1" cols="17" placeholder="City"/>
+        <input class="small-box  border-radius" v-model="city" required type="text" placeholder="City..."/>
+        </div>
+        <div class="input-holder ">
+        <p>Adress</p>
+        <input class="small-box  border-radius" v-model="adress" required type="text" placeholder="Adress..."/>
+        </div>
+        <div class="input-holder ">
+        <p>Zip code</p>
+        <input class="small-box  border-radius" v-model="zip" required type="text" placeholder="Zip Code..."/>
         </div>
         <div class="input-holder">
         <p>Number of beds</p>
-        <input class="num-beds small-box  border-radius" v-model="availableBeds" type="number" min="1" placeholder="Number of beds"/>
+        <input class="num-beds small-box  border-radius" v-model="availableBeds" required type="number" min="1" placeholder="Number of beds"/>
         </div>
         <div class="input-holder">
         <p>Price per night</p>
-        <input class="price small-box" v-model="price" type="number" min="1" placeholder="Price per night"/>
+        <input class="price small-box" v-model="price" required type="number" min="400" placeholder="Price per night"/>
         </div>
       </div>
+      
     <button>Add house</button>
     </div>
     </form>
@@ -34,21 +42,27 @@
 
 import Calendar from '../components/Calendar.vue'
 
+
 export default {
 components:{
 Calendar,
+
 },
 
 
   data(){
     return{
-      availableFrom : "",
-      availableTo: "",
-      freeText : "",
-      description : "",
-      city : "",
-      availableBeds: "",
-      price : "",
+      availableFrom : '',
+      availableTo: '',
+      freeText : '',
+      description : '',
+      city : '',
+      availableBeds: '',
+      price : '',
+      amenities: {
+        wifi: true,
+
+      },
     }
   },
   methods: {
@@ -82,7 +96,7 @@ Calendar,
 }
 .rental-info{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 10px;
   width: 290px;
   
@@ -129,14 +143,20 @@ input[type=number]{
   margin: 0;
   padding: 0;
 }
-form button {
-  display: block;
-  margin-top: 10px;
-  width: 70px;
-  height: 25px;
-  color: rgb(7, 7, 7);
-  font-size: 12px;
+
+.button {
+  margin-top:1rem ;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
 }
+
 textarea{
   width: 100%;
   resize: none;
