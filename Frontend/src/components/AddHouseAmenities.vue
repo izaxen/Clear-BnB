@@ -1,6 +1,10 @@
 <template>
+<div>
+<h2>Accessable amenities</h2>
 <form class="addhouse" @submit.prevent>
+  
 <div class="box-amenities">
+  
     <div v-for="(key, value) in amenities" :key="key" class= "amenities">
     <div class="amen">
      
@@ -13,6 +17,7 @@
   </div>
 </div>
 </form>
+</div>
 </template>
 
 <script>
@@ -22,16 +27,21 @@ export default {
 
 watch:{
 selectedAmenities: function(){
-    let selected = Object.values(this.selectedAmenities)
-    let filterList = Object.keys(this.amenities)
-     
-    let newList ={}
-    let addToNewList
-    for(let amenity of filterList){
-       if(!selected.includes(amenity)){
-      addToNewList={
-      [amenity]:false
-    }
+  this.addAmenitiesToList()
+},
+},
+
+    methods:{
+    addAmenitiesToList(){
+      let selected = Object.values(this.selectedAmenities)
+      let filterList = Object.keys(this.amenities)
+      let newList ={}
+      let addToNewList
+      for(let amenity of filterList){
+        if(!selected.includes(amenity)){
+        addToNewList={
+        [amenity]:false
+        }
       }
       else{
         addToNewList={
@@ -40,19 +50,9 @@ selectedAmenities: function(){
       }
       newList = Object.assign({},newList,  addToNewList)
       }
-    
     console.log('newlist', newList)
-    } 
-
- },
-
- methods:{
-   addToObject(){
-     console.log('addToobjekt')
-     return 'hhh'
-   }
-
- },
+      }
+    },
 
   data(){
   return{
@@ -92,6 +92,14 @@ selectedAmenities: function(){
 
 <style scoped>
 
+h2{
+  display: flex;
+  justify-content: center;
+}
+.addhouse{
+  margin-top: 30px;
+}
+
 .amen{
   display: flex;
   justify-content: space-between;
@@ -102,7 +110,7 @@ selectedAmenities: function(){
   display: flex;
   float: left;
   width: 200px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   margin-left: 15px;
   }
 

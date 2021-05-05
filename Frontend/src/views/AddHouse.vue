@@ -1,8 +1,16 @@
 <template>
+<div class=shell>
 <div class="addhouse">
-<AddRentalObjectForm />
-<AddHouseAmenities />
   
+  <div class="objectform">
+<AddRentalObjectForm />
+  </div>
+  <div class="amenities">
+<AddHouseAmenities />
+  </div>
+  
+</div>
+<button @click="">Add house</button>
 </div>
 </template>
 
@@ -19,6 +27,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.addhouse{
+  display:flex;
+}
+.objectform{
+  margin-right: 60px;
+}
 
 </style>

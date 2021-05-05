@@ -33,8 +33,7 @@
         </div>
       </div>
       
-    <button>Add house</button>
-    </div>
+      </div>
     </form>
 </template>
 

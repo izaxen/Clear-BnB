@@ -108,6 +108,8 @@ export default {
 .flex-holder{
   display: flex;
   align-items:center;
+  font-size: 12px;
+  height:30px
 }
 img {
   margin-right: 10px;
