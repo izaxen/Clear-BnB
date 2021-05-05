@@ -3,14 +3,14 @@
 <div class="addhouse">
   
   <div class="objectform">
-<AddRentalObjectForm />
+<AddRentalObjectForm @fetchObject="houseForm" />
   </div>
   <div class="amenities">
-<AddHouseAmenities @amenitieslist ="aaa" />
+<AddHouseAmenities @amenitieslist ="amenitiesList" />
   </div>
   
 </div>
-<button @click="aaa">Add house</button>
+<button @click="combineFormAndList">Add house</button>
 </div>
 </template>
 
@@ -23,13 +23,41 @@ export default {
     AddHouseAmenities,
     AddRentalObjectForm
   },
+
+  data(){
+return{
+  rentalamenities:'',
+  rentalForm:'',
+  
+}
+  },
   methods:{
-    aaa(list){
-  console.log('aaa')
-  console.log(list)
+  amenitiesList(list){
+  this.rentalAmenities = list
+    },
+  houseForm(form){
+   this.rentalForm = form
+  },
+  combineFormAndList(){
+    let rentalObjects = {}
+      
+    let items  =  Object.entries(this.rentalForm)
+    console.log('this,rentalform', this.rentalForm)
+    for(let item of items){
+      let spliceRentalForm = {[item[0]]:item[1]}
+      rentalObjects = Object.assign({}, rentalObjects, spliceRentalForm)
     }
+    
+    let completeAmanities = {
+      amenities: this.rentalAmenities
+    }
+    rentalObjects = Object.assign({},rentalObjects, completeAmanities)
+    console.log('rentalobjects', rentalObjects)
+
   }
 
+  }
+  
 }
 </script>
 

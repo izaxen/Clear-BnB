@@ -141,7 +141,7 @@ methods:{
       disabled.push(new Date(dt));
       }
       this.disabledDates = disabled
-      console.log(this.disabledDates)
+      
     }
    },
    filterReceipts(){
@@ -163,11 +163,11 @@ methods:{
        },
      ]
       //this.$store.state.receipts instead of testReceipts
-      console.log('testReceipts[1]', testReceipts[1])
+      
      let receipts = testReceipts.filter((rec) => 
         this.rentalObject.id == rec.rentalObjectId)
 
-        console.log('receipts', receipts)
+        
       this.findAllDisabledDates(receipts)
    },
    addDays(firstDate, daysToAdd) {
@@ -177,11 +177,7 @@ methods:{
     }
   },
   created(){
-    console.log('This searchbar', this.searchBar)
-    //this.$store.dispatch('fetchReceipts')
-  
-     console.log('this.rentalObject', this.rentalObject)
-      if(this.rentalObject!=null){
+    if(this.rentalObject!=null){
        
         this.range.start = this.rentalObject.availableFrom.valueOf() > new Date().valueOf() ? this.rentalObject.availableFrom : new Date()
         this.rentalObject.availableFrom = this.rentalObject.availableFrom.valueOf() < new Date().valueOf() ? new Date() : this.rentalObject.availableFrom  
@@ -190,7 +186,7 @@ methods:{
   },
   mounted(){
     if(this.rentalObject != null){
-    console.log('this.rentalObject', this.rentalObject)
+    
     this.filterReceipts()
     }
   }

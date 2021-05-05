@@ -35,7 +35,7 @@ selectedAmenities: function(){
     addAmenitiesToList(){
       let selected = Object.values(this.selectedAmenities)
       let filterList = Object.keys(this.amenities)
-      let newList ={}
+      let newList={}
       let addToNewList
       for(let amenity of filterList){
         if(!selected.includes(amenity)){
@@ -50,7 +50,7 @@ selectedAmenities: function(){
       }
       newList = Object.assign({},newList,  addToNewList)
       }
-    console.log('newlist', newList)
+    
     this.$emit('amenitieslist', newList)
       }
     },

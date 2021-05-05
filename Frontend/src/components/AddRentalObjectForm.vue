@@ -9,7 +9,7 @@
         </div>
         <div class="input-holder">
         <p>Freetext</p>
-        <textarea class="freetext  border-radius" v-model="freetext" type="text" rows="10" cols="17" placeholder="Freetext..."/>
+        <textarea class="freetext  border-radius" v-model="freeText" type="text" rows="10" cols="17" placeholder="Freetext..."/>
         </div>
         <div class="input-holder ">
         <p>City</p>
@@ -52,7 +52,6 @@ watch:{
     this.addRentalObject()
   },
 
-
 },
 
   data(){
@@ -62,6 +61,8 @@ watch:{
       freeText : '',
       description : '',
       city : '',
+      adress:'',
+      zip:'',
       availableBeds: '',
       price : '',
       }
@@ -69,17 +70,21 @@ watch:{
 
   methods: {
     addRentalObject(){
+      
       let rentalObject ={
       availableFrom : this.availableFrom,
       availableTo: this.availableTo,
       freeText : this.freeText,
       description : this.description,
       city : this.city,
+      adress: this.adress,
+      zip: this.zip,
       availableBeds: this.availableBeds,
       price : this.price,
       }
+      this.$emit('fetchObject', rentalObject)
 
-      this.$store.dispatch('postRentalObject', rentalObject)
+     /*  this.$store.dispatch('postRentalObject', rentalObject)
       this.availableFrom = ""
       this.availableTo = ""
       this.freeText = ""
@@ -87,8 +92,8 @@ watch:{
       this.city = ""
       this.availableBeds = ""
       this.price = ""
-
-      console.log('this rental',this.rentalObject)
+ */
+      
     }
   }
 }
