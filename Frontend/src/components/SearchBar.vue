@@ -1,4 +1,5 @@
 <template>
+  <!-- v-if="$route.path !='/overview'" -->
   <form class="search-box">
     <select @click="showCityNames" class="box1" v-model="city">
       <option :value="cityName" selected>--Citys--</option>
@@ -41,7 +42,7 @@ export default {
       city: '',
       citys: [],
       cityName: '',
-      guests: 0,
+      guests: 1,
       guestText: 'Guests',
       days: '',
       fromDate: '',
@@ -56,13 +57,11 @@ export default {
     },
 
     confirmDates(from, to) {
-      console.log('from', from, 'to', to)
       this.fromDate = from
       this.toDate = to
     },
     getDateArray(array) {
       this.dateArray = array
-      console.log('this.dateArray', this.dateArray)
     },
 
     showCityNames() {

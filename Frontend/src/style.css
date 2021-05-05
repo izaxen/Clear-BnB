@@ -22,6 +22,4 @@ body {
 main {
   /*With flexbox take all speace*/
   flex: 1;
-  max-width: 65rem;
-  margin: auto;
 }

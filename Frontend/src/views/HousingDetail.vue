@@ -4,7 +4,8 @@
     <div class="hero-picture">
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      alt=""/>
+        alt=""
+      />
       <div class="picture-text">
         {{ rentalObject.description }}
       </div>
@@ -13,16 +14,20 @@
       <!-- Bilderna ska inte vara hårdkodade -->
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      alt=""/>
+        alt=""
+      />
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      alt=""/>
+        alt=""
+      />
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      alt=""/>
+        alt=""
+      />
       <img
         src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      alt=""/>
+        alt=""
+      />
     </div>
     <hr class="separator" />
 
@@ -94,6 +99,10 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  max-width: 65rem;
+  margin: auto;
+}
 .separator {
   width: 99%;
   height: 1px;

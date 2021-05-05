@@ -1,8 +1,10 @@
 <template>
   <div class="rental-card">
-    <img
-      src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-    />
+    <router-link :to="link">
+      <img
+        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
+      />
+    </router-link>
     <div class="wrapper">
       <div class="hero">
         <p>{{ object.city }}</p>
@@ -14,8 +16,8 @@
       <p>{{ object.freeText }}</p>
     </div>
     <div class="wrapper">
-      <img :src="wifiUrl" />
-      <img :src="petsUrl" />
+      <img class="icon" :src="wifiUrl" />
+      <img class="icon" :src="petsUrl" />
     </div>
   </div>
   <hr class="separator" />
@@ -33,11 +35,11 @@ export default {
       to: toDate,
       wifiUrl: '',
       petsUrl: '',
+      link: '/details/' + this.object.id,
     }
   },
 
   created() {
-    console.log(this.object.amenities.wifi)
     this.wifiUrl = this.object.amenities.wifi
       ? 'https://media.istockphoto.com/vectors/icon-in-flat-style-wireless-symbol-vector-id944860382'
       : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-wifi-1914404-1620362.png'
@@ -76,5 +78,13 @@ p {
   width: 100%;
   height: 0.001em;
   background-color: black;
+}
+.wrapper {
+  width: 50%;
+}
+
+.icon {
+  height: 32px;
+  width: 32px;
 }
 </style>
