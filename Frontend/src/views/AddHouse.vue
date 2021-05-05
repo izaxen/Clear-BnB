@@ -6,11 +6,11 @@
 <AddRentalObjectForm />
   </div>
   <div class="amenities">
-<AddHouseAmenities />
+<AddHouseAmenities @amenitieslist ="aaa" />
   </div>
   
 </div>
-<button @click="">Add house</button>
+<button @click="aaa">Add house</button>
 </div>
 </template>
 
@@ -22,6 +22,12 @@ export default {
   components:{
     AddHouseAmenities,
     AddRentalObjectForm
+  },
+  methods:{
+    aaa(list){
+  console.log('aaa')
+  console.log(list)
+    }
   }
 
 }

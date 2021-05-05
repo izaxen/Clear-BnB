@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="addRentalObject">
-    <div class="rental-info">
+    <div class="rental-info"  >
           
       <div class="input-boxes">
         <div class="input-holder">
@@ -58,11 +58,7 @@ Calendar,
       city : '',
       availableBeds: '',
       price : '',
-      amenities: {
-        wifi: true,
-
-      },
-    }
+      }
   },
   methods: {
     addRentalObject(){

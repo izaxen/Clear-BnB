@@ -51,6 +51,7 @@ selectedAmenities: function(){
       newList = Object.assign({},newList,  addToNewList)
       }
     console.log('newlist', newList)
+    this.$emit('amenitieslist', newList)
       }
     },
 
