@@ -51,13 +51,28 @@ watch:{
   description: function(){
     this.addRentalObject()
   },
-
+  freeText: function(){
+      this.addRentalObject()
+    },
+  city: function(){
+      this.addRentalObject()
+    },
+  address: function(){
+      this.addRentalObject()
+    },
+  zipCode: function(){
+      this.addRentalObject()
+    },
+  availableBeds: function(){
+      this.addRentalObject()
+    },
+  price: function(){
+      this.addRentalObject()
+    },
 },
 
   data(){
     return{
-      availableFrom : '',
-      availableTo: '',
       freeText : '',
       description : '',
       city : '',
@@ -72,8 +87,6 @@ watch:{
     addRentalObject(){
       
       let rentalObject ={
-      availableFrom : this.availableFrom,
-      availableTo: this.availableTo,
       freeText : this.freeText,
       description : this.description,
       city : this.city,

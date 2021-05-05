@@ -203,6 +203,7 @@ methods:{
   flex-direction: column;
   align-items:flex-end;
   justify-content: center;
+  width: fit-content;
 }
 .box-bg{
 align-items:flex-end;

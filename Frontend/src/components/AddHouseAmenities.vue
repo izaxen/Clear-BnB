@@ -44,9 +44,7 @@ selectedAmenities: function(){
         }
       }
       else{
-        addToNewList={
-          [amenity]:true
-        }
+        addToNewList={ [amenity]:true }
       }
       newList = Object.assign({},newList,  addToNewList)
       }

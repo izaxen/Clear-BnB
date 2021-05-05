@@ -4,7 +4,7 @@
   
   <div class="objectform">
     <Calendar @dates="inAndOutDate" />
-<AddRentalObjectForm @fetchObject="houseForm" />
+    <AddRentalObjectForm @fetchObject="houseForm" />
   </div>
   <div class="amenities">
 <AddHouseAmenities @amenitieslist ="amenitiesList" />
@@ -33,6 +33,7 @@ return{
   rentalForm:'',
   fromDate:'',
   toDate:'',  
+  user: null,
 }
   },
   methods:{
@@ -45,11 +46,10 @@ return{
   inAndOutDate(from,to){
     this.fromDate = from
     this.toDate = to
-
   },
   combineFormAndList(){
     let rentalObjects = {}
-      
+    this.user = this.$store.state.user
     let items  =  Object.entries(this.rentalForm)
     
     for(let item of items){
@@ -59,26 +59,15 @@ return{
       rentalObjects = Object.assign({}, rentalObjects, spliceRentalForm)
     }
     
-    let completeAmanities = {
-      amenities: this.rentalAmenities
-    }
-    let availableTo={
-      availableTo:this.toDate
-    }
-    let availableFrom ={
-      availableFrom:this.fromDate 
-    }
+    let completeAmanities = {amenities: this.rentalAmenities}
+    let availableTo = {availableTo:this.toDate}
+    let availableFrom = {availableFrom:this.fromDate}
+    let userId = {userId: this.user.id}
 
-    
-    rentalObjects = Object.assign({},rentalObjects, completeAmanities, availableTo,availableFrom)
-    
-
+    rentalObjects = Object.assign({},rentalObjects, completeAmanities, availableTo,availableFrom, userId)
     this.$store.dispatch('postRentalObject', rentalObjects)
-
   }
-
   }
-  
 }
 </script>
 
@@ -87,6 +76,7 @@ return{
   display:flex;
 }
 .objectform{
+  width: fit-content;
   margin-right: 60px;
 }
 
