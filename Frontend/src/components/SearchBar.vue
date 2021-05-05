@@ -2,18 +2,26 @@
   <form class="search-box">
     <select @click="showCityNames" class="box1" v-model="city">
       <option :value="cityName" selected>--Citys--</option>
-      <option v-for="city in citys" :key="city" :value="city"> {{city}} </option>
+      <option v-for="city in citys" :key="city" :value="city">
+        {{ city }}
+      </option>
     </select>
-      <Calendar @days-selected="receive" @dates="confirmDates" @defaultDates="confirmDates" @dateArray="getDateArray" :searchBar="searchBar" />
+    <Calendar
+      @days-selected="receive"
+      @dates="confirmDates"
+      @defaultDates="confirmDates"
+      @dateArray="getDateArray"
+      :searchBar="searchBar"
+    />
     <div class="box4">
-      <p>{{guests}} {{guestText}}</p>
+      <p>{{ guests }} {{ guestText }}</p>
       <div class="person-div">
         <!--<p>Guests: {{guests}}</p>-->
         <button type="button" @click="addGuests">+</button>
         <button type="button" @click="subtractGuest">-</button>
       </div>
     </div>
-    
+
     <a class="search-btn" href="#">
       <em class="fas fa-search" @click="addSearch"></em>
     </a>
@@ -24,83 +32,82 @@
 import Calendar from './Calendar.vue'
 
 export default {
-components:{
-  Calendar,
-},
-data(){
-  return{
-    searchBar: true,
-    city: '',
-    citys: [],
-    cityName: '',
-    guests: 0,
-    guestText: 'Guests',
-    days: '',
-    fromDate: '',
-    toDate: '',
-    dateArray: []
-  }
-},
+  components: {
+    Calendar,
+  },
+  data() {
+    return {
+      searchBar: true,
+      city: '',
+      citys: [],
+      cityName: '',
+      guests: 0,
+      guestText: 'Guests',
+      days: '',
+      fromDate: '',
+      toDate: '',
+      dateArray: [],
+    }
+  },
 
-methods: {
-
+  methods: {
     receive(data) {
-        this.days = data
-      },
+      this.days = data
+    },
 
     confirmDates(from, to) {
       console.log('from', from, 'to', to)
       this.fromDate = from
       this.toDate = to
     },
-    getDateArray(array){
+    getDateArray(array) {
       this.dateArray = array
       console.log('this.dateArray', this.dateArray)
     },
 
-  showCityNames(){
-    let getCitys = this.$store.state.rentalObjects;
-    for(let cityName of getCitys){
-
-      this.citys.push(cityName.city)
-    }
-
-    let removedDuplicates = this.citys.filter((value, index) => {
-      return this.citys.indexOf(value) === index
-    })
-    this.citys = removedDuplicates;
-  },
-
-  changeGuestText(){
-    this.guestText = this.guests === 1 ? 'Guest' : 'Guests'
-  },
-  addGuests(){
-    this.guests++
-    this.changeGuestText()
-  },
-  subtractGuest(){
-    if(this.guests > 0){
-      this.guests--
-      this.changeGuestText()
+    showCityNames() {
+      let getCitys = this.$store.state.rentalObjects
+      for (let cityName of getCitys) {
+        this.citys.push(cityName.city)
       }
-   /* else if(this.guests === 0 )
+
+      let removedDuplicates = this.citys.filter((value, index) => {
+        return this.citys.indexOf(value) === index
+      })
+      this.citys = removedDuplicates
+    },
+
+    changeGuestText() {
+      this.guestText = this.guests === 1 ? 'Guest' : 'Guests'
+    },
+    addGuests() {
+      this.guests++
+      this.changeGuestText()
+    },
+    subtractGuest() {
+      if (this.guests > 0) {
+        this.guests--
+        this.changeGuestText()
+      }
+      /* else if(this.guests === 0 )
       this.guests = 0*/
+    },
+
+    addSearch(event) {
+      let search = {
+        city: this.city,
+        guests: this.guests,
+        startDate: this.fromDate,
+        endDate: this.toDate,
+        dateArray: this.dateArray,
+      }
+
+      this.$store.commit('setSearchObject', search)
+      //här vill jag att vi resettar hela formen, får inte rätt på det - A
+      event.toElement.parentElement.parentElement.reset()
+      this.$router.push('/overview')
+    },
   },
-
-  addSearch(){
-    let search = {
-      city: this.city,
-      guests: this.guests,
-      startDate: this.fromDate,
-      endDate: this.toDate,
-      dateArray: this.dateArray
-    }
-    console.log(search);
-    this.$store.commit('setSearchObject', search)
-    console.log('store', this.$store.state.searchObject)
-  }
-}
-
 }
 </script>
 
@@ -108,12 +115,10 @@ methods: {
 option {
   color: rgb(0, 0, 0);
   font-weight: 600;
-  background:#59deff93;
+  background: #59deff93;
   padding: 10px;
   font-size: 17px;
-
 }
-
 
 button {
   height: 20px;
@@ -175,24 +180,24 @@ button {
   justify-content: center;
   align-items: center;
 }
-.box1{
+.box1 {
   border: none;
   background: none;
   outline: none;
   padding: 2px;
-  color: rgb(113,128,150);
+  color: rgb(113, 128, 150);
   font-size: 15px;
   transition: 0.4s;
   width: 150px;
 }
 
-.box4{
+.box4 {
   position: relative;
   display: grid;
   justify-content: center;
   align-content: center;
   padding: 2px;
-  color: rgb(113,128,150);
+  color: rgb(113, 128, 150);
   font-size: 20px;
   transition: 0.4s;
   line-height: 40px;

@@ -1,4 +1,4 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 
 * {
   box-sizing: border-box;
@@ -22,6 +22,6 @@ body {
 main {
   /*With flexbox take all speace*/
   flex: 1;
-  width: 100%;
+  max-width: 65rem;
   margin: auto;
 }
