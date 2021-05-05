@@ -1,5 +1,7 @@
 <template>
-  <Filter />
+  <div>
+    <Filter />
+  </div>
 </template>
 
 <script>
@@ -11,4 +13,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+div {
+  max-width: 65rem;
+  margin: auto;
+}
+</style>

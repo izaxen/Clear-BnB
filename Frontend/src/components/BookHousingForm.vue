@@ -56,7 +56,6 @@ export default {
         userId: '-PNU45UnVwW-HWRbJWe_H',
       }
 
-      console.log(receipt)
       this.$store.dispatch('postReceipt', receipt)
     },
   },
