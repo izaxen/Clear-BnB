@@ -1,15 +1,15 @@
 <template>
   <form @submit.prevent="addRentalObject">
-    <div class="rental-info"  >
+    <div class="rental-info">
           
       <div class="input-boxes">
         <div class="input-holder">
         <p>Description</p>
-        <textarea class="description border-radius" v-model="description" rows="1" cols="17" type="text" placeholder="Description..."/>
+        <textarea class="description border-radius" v-model="description" type="text"  rows="1" cols="17" placeholder="Description..."/>
         </div>
         <div class="input-holder">
         <p>Freetext</p>
-        <textarea class="freetext  border-radius" v-model="freeText" rows="10" cols="17" placeholder="Freetext..."/>
+        <textarea class="freetext  border-radius" v-model="freetext" type="text" rows="10" cols="17" placeholder="Freetext..."/>
         </div>
         <div class="input-holder ">
         <p>City</p>
@@ -47,7 +47,13 @@ components:{
 Calendar,
 
 },
+watch:{
+  description: function(){
+    this.addRentalObject()
+  },
 
+
+},
 
   data(){
     return{
@@ -60,6 +66,7 @@ Calendar,
       price : '',
       }
   },
+
   methods: {
     addRentalObject(){
       let rentalObject ={
@@ -71,6 +78,7 @@ Calendar,
       availableBeds: this.availableBeds,
       price : this.price,
       }
+
       this.$store.dispatch('postRentalObject', rentalObject)
       this.availableFrom = ""
       this.availableTo = ""
@@ -79,6 +87,8 @@ Calendar,
       this.city = ""
       this.availableBeds = ""
       this.price = ""
+
+      console.log('this rental',this.rentalObject)
     }
   }
 }
