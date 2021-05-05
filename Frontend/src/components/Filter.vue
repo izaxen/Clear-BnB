@@ -1,18 +1,16 @@
 <template>
-  <div class="wrapper">
-    <h3>Filter</h3>
-    <select v-model="city">
-      <option value="">All cities</option>
-      <option v-for="object in objects" :key="object.id" :value="object.city">
-        {{ object.city }}
-      </option>
-    </select>
-    <input type="text" v-model="text" placeholder="text" />
-    <label for="vol">Price {{ range }} kr</label>
-    <input type="range" v-model="range" min="300" max="1500" step="10" />
+  <h3>Filter</h3>
+  <select v-model="city">
+    <option value="">All cities</option>
+    <option v-for="object in objects" :key="object.id" :value="object.city">
+      {{ object.city }}
+    </option>
+  </select>
+  <input type="text" v-model="text" placeholder="text" />
+  <label for="vol">Price {{ range }} kr</label>
+  <input type="range" v-model="range" min="300" max="1000" step="10" />
 
-    <input type="number" v-model="beds" min="1" placeholder="Number of beds" />
-  </div>
+  <input type="number" v-model="beds" min="1" placeholder="Number of beds" />
   <RentalObject
     v-for="object in filterObjects"
     :key="object.id"
@@ -33,7 +31,7 @@ export default {
       text: '',
       city: '',
       objects: [],
-      range: 900,
+      range: 600,
       beds: '',
     }
   },
@@ -65,7 +63,8 @@ export default {
       if (!this.city) {
         return objects
       }
-      return objects.filter((object) => object.city == this.city)
+      let aa = objects.filter((object) => object.city == this.city)
+      return aa
     },
 
     filterObjectsByDescription(objects) {
@@ -87,14 +86,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-input,
-select {
-  height: 32px;
-}
-</style>
+<style scoped></style>
