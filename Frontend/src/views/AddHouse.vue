@@ -3,7 +3,7 @@
 <div class="addhouse">
   
   <div class="objectform">
-    <Calendar />
+    <Calendar @dates="inAndOutDate" />
 <AddRentalObjectForm @fetchObject="houseForm" />
   </div>
   <div class="amenities">
@@ -23,14 +23,16 @@ import Calendar from '../components/Calendar.vue'
 export default {
   components:{
     AddHouseAmenities,
-    AddRentalObjectForm
+    AddRentalObjectForm,
+    Calendar
   },
 
   data(){
 return{
   rentalamenities:'',
   rentalForm:'',
-  
+  fromDate:'',
+  toDate:'',  
 }
   },
   methods:{
@@ -39,6 +41,11 @@ return{
     },
   houseForm(form){
    this.rentalForm = form
+  },
+  inAndOutDate(from,to){
+    this.fromDate = from
+    this.toDate = to
+
   },
   combineFormAndList(){
     let rentalObjects = {}
@@ -55,7 +62,15 @@ return{
     let completeAmanities = {
       amenities: this.rentalAmenities
     }
-    rentalObjects = Object.assign({},rentalObjects, completeAmanities)
+    let availableTo={
+      availableTo:this.toDate
+    }
+    let availableFrom ={
+      availableFrom:this.fromDate 
+    }
+
+    
+    rentalObjects = Object.assign({},rentalObjects, completeAmanities, availableTo,availableFrom)
     
 
     this.$store.dispatch('postRentalObject', rentalObjects)
