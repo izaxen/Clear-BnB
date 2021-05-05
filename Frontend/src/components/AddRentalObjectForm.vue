@@ -17,11 +17,11 @@
         </div>
         <div class="input-holder ">
         <p>Adress</p>
-        <input class="small-box  border-radius" v-model="adress" required type="text" placeholder="Adress..."/>
+        <input class="small-box  border-radius" v-model="address" required type="text" placeholder="Address..."/>
         </div>
         <div class="input-holder ">
         <p>Zip code</p>
-        <input class="small-box  border-radius" v-model="zip" required type="text" placeholder="Zip Code..."/>
+        <input class="small-box  border-radius" v-model="zipCode" required type="text" placeholder="Zip Code..."/>
         </div>
         <div class="input-holder">
         <p>Number of beds</p>
@@ -61,8 +61,8 @@ watch:{
       freeText : '',
       description : '',
       city : '',
-      adress:'',
-      zip:'',
+      address:'',
+      zipCode:'',
       availableBeds: '',
       price : '',
       }
@@ -77,8 +77,8 @@ watch:{
       freeText : this.freeText,
       description : this.description,
       city : this.city,
-      adress: this.adress,
-      zip: this.zip,
+      address: this.address,
+      zipCode: this.zipCode,
       availableBeds: this.availableBeds,
       price : this.price,
       }

@@ -3,6 +3,7 @@
 <div class="addhouse">
   
   <div class="objectform">
+    <Calendar />
 <AddRentalObjectForm @fetchObject="houseForm" />
   </div>
   <div class="amenities">
@@ -17,6 +18,7 @@
 <script>
 import AddHouseAmenities from '../components/AddHouseAmenities.vue';
 import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
+import Calendar from '../components/Calendar.vue'
 
 export default {
   components:{
@@ -42,9 +44,11 @@ return{
     let rentalObjects = {}
       
     let items  =  Object.entries(this.rentalForm)
-    console.log('this,rentalform', this.rentalForm)
+    
     for(let item of items){
-      let spliceRentalForm = {[item[0]]:item[1]}
+      let spliceRentalForm = {
+        [item[0]]:item[1]
+        }
       rentalObjects = Object.assign({}, rentalObjects, spliceRentalForm)
     }
     
@@ -52,7 +56,9 @@ return{
       amenities: this.rentalAmenities
     }
     rentalObjects = Object.assign({},rentalObjects, completeAmanities)
-    console.log('rentalobjects', rentalObjects)
+    
+
+    this.$store.dispatch('postRentalObject', rentalObjects)
 
   }
 
