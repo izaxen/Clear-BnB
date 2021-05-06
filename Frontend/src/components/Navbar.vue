@@ -5,6 +5,7 @@
       <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
       <router-link to="/my-page/add-house">Add housing</router-link>
       <router-link to="/test-page">Test Page</router-link>
+      <router-link to="/overview">Overview</router-link>
     </div>
     <div class="Login-btn">
       <router-link to="" @click="showModalLogin" v-if="loggedIn === null"
@@ -17,15 +18,12 @@
     </div>
 
     <div class="search-bar"><SearchBar /></div>
-
-    
-
   </nav>
 </template>
 
 <script>
-import LoginModal from "../views/LoginModal.vue";
-import SearchBar from "./SearchBar.vue";
+import LoginModal from '../views/LoginModal.vue'
+import SearchBar from './SearchBar.vue'
 export default {
   components: {
     LoginModal,
@@ -34,28 +32,26 @@ export default {
   data() {
     return {
       isModalVisible: false,
-    };
+    }
   },
   computed: {
     loggedIn() {
-      if (this.$store.state.user !== null) 
-        return (this.isModalVisible = false);
-      return this.$store.state.user;
+      if (this.$store.state.user !== null) return (this.isModalVisible = false)
+      return this.$store.state.user
     },
   },
   methods: {
     showModalLogin() {
-      this.isModalVisible = true;
+      this.isModalVisible = true
     },
     closeModal() {
-      console.log("inside close modal");
-      this.isModalVisible = false;
+      this.isModalVisible = false
     },
     logout() {
-      this.$store.dispatch("logout");
+      this.$store.dispatch('logout')
     },
   },
-};
+}
 </script>
 
 <style scoped>
@@ -66,14 +62,14 @@ export default {
 nav {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-areas: "Home Search Login";
+  grid-template-areas: 'Home Search Login';
   padding: 10px;
   background-image: linear-gradient(#c8e4fd, #59deff);
   color: black;
-  
+
   box-shadow: 0 0 5px 2px;
   align-items: center;
-  
+
   border-bottom: 1px solid rgb(167, 167, 167);
 }
 .home-btns {
