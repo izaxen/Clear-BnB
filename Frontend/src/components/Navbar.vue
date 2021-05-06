@@ -3,7 +3,6 @@
     <div class="home-btns">
       <router-link to="/">Home</router-link>
       <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
-      <router-link to="/my-page/add-house" v-if="loggedIn !== null ">Add housing</router-link>
       <router-link to="/test-page">Test Page</router-link>
       <router-link to="/overview">Overview</router-link>
     </div>
@@ -49,6 +48,7 @@ export default {
     },
     logout() {
       this.$store.dispatch('logout')
+      this.$router.push('/');
     },
   },
 }

@@ -7,6 +7,7 @@ import Detail from './views/HousingDetail.vue'
 import Overview from './views/Overview.vue'
 import AddHouse from './views/AddHouse.vue'
 import TestPage from './views/TestPage.vue'
+import MyPage from './views/MyPage.vue'
 
 // create routes with views
 export default createRouter({
@@ -15,6 +16,7 @@ export default createRouter({
     {
       path: '/',
       component: Home,
+      name: Home,
     },
     {
       path: '/details/:id',
@@ -31,6 +33,10 @@ export default createRouter({
     {
       path: '/test-page',
       component: TestPage,
+    },
+    {
+      path: '/my-page',
+      component: MyPage,
     },
   ],
 })
