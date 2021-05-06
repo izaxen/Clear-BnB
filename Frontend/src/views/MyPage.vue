@@ -43,7 +43,7 @@ export default {
 
 .mypage-container {
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 15% 85%;
     height: 100%;
     align-content: center;
 }
@@ -82,6 +82,8 @@ export default {
 nav {
     display: flex;
     flex-direction: column;
+    text-align: start;
+    margin-left: 30px;
     font-size: 28px;
 }
 
