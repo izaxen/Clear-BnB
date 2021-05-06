@@ -43,7 +43,7 @@ export default {
       citys: [],
       cityName: '',
       guests: 1,
-      guestText: 'Guests',
+      guestText: 'Guest',
       days: '',
       fromDate: '',
       toDate: '',
