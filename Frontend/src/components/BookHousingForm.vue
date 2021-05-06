@@ -11,6 +11,8 @@ import NumberOfGuests from './rentalPriceCalculator.vue'
 import Calendar from './Calendar.vue'
 
 export default {
+  props: ['object'],
+
   components: {
     NumberOfGuests,
     Calendar,
@@ -21,9 +23,9 @@ export default {
       days: '',
       fromDate: '',
       toDate: '',
-      numAdults: '',
-      numChildren: '',
-      totalPrice: '',
+      numAdults: 0,
+      numChildren: 0,
+      totalPrice: 0,
     }
   },
 
@@ -44,14 +46,18 @@ export default {
     },
 
     book() {
-      let object = {
+      let receipt = {
         startDate: this.fromDate,
         endDate: this.toDate,
-        numAdult: this.numAdult,
+        numAdult: this.numAdults,
         numChild: this.numChildren,
         totalPrice: this.totalPrice,
+        rentalObjectId: this.object.id,
+        userId: '-PNU45UnVwW-HWRbJWe_H',
       }
-      this.$store.dispatch('postReceipt', object)
+
+      console.log(receipt)
+      this.$store.dispatch('postReceipt', receipt)
     },
   },
 }
@@ -60,12 +66,12 @@ export default {
 <style scoped>
 .container {
   padding: 10px;
-  width: 300px;
-  background: rgb(216, 216, 216);
+  width: 140rem;
+  border: 0.1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 250px;
-  border-radius: 2px;
+  height: 290px;
+  border-radius: 5px;
 }
 </style>

@@ -1,10 +1,11 @@
 import express.Express;
 import models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static nosqlite.Database.collection;
-
+import static nosqlite.utilities.Filter.eq;
 
 public class Main {
 
@@ -46,7 +47,6 @@ public class Main {
            res.json(rentalObjects);
         });
 
-
         app.get("/rest/rental-objects/:id", (req, res) -> {
             String id = req.params("id");
             RentalObject rentalObject = collection("RentalObject").findById(id);
@@ -64,6 +64,7 @@ public class Main {
             collection("RentalObject").deleteById(id);
             res.send("OK");
         });
+
 
         //BookingReceipt
 
@@ -116,30 +117,6 @@ public class Main {
             res.send("OK");
         });
 
-        //RentalAmenity
-
-        app.get("/rest/rental-amenities", (req, res) -> {
-            List<RentalAmenity>rentalAmenities = collection("RentalAmenity").find();
-            res.json(rentalAmenities);
-        });
-
-        app.get("/rest/rental-amenities/:id", (req, res) -> {
-            String id = req.params("id");
-            RentalAmenity rentalAmenity = collection("RentalAmenity").findById(id);
-            res.json(rentalAmenity);
-        });
-
-        app.post("/rest/rental-amenities", (req,res) -> {
-            RentalAmenity rentalAmenity = req.body(RentalAmenity.class);
-            collection("RentalAmenity").save(rentalAmenity);
-            res.json(rentalAmenity);
-        });
-
-        app.delete("/rest/rental-amenities/:id", (req,res) -> {
-            String id = req.params("id");
-            collection("RentalAmenity").deleteById(id);
-            res.send("OK");
-        });
 
 
 

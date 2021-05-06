@@ -1,14 +1,14 @@
 import { createStore } from 'vuex'
-
+//update?
 export default createStore({
   // state is where we store reactive variables
   // this.$store.state.nameOfVariable
   state: {
     receipts: [],
-    users: [],
     rentalObjects: [],
     user: null,
-    failedLogIn: true
+    failedLogIn: false,
+    searchObject: null
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -17,16 +17,23 @@ export default createStore({
     setReceipts(state, receipts) {
       state.receipts = receipts
     },
+    setSearchObject(state, object) {
+      state.searchObject = object
+    },
+    removeSearchObject(state) {
+      state.searchObject = null
+    },
     addReceipt(state, receipt) {
-      state.receipt.push(receipt)
+      state.receipts.push(receipt)
     },
     removeReceipt(state, receipt) {
-      state.receipts  = state.receipts.filter((r) => r.id != receipt.id)
+      state.receipts = state.receipts.filter((r) => r.id != receipt.id)
     },
     setUser(state, user) {
       state.user = user
       state.failedLogIn = false
     },
+
     setRentalObjects(state, rentalObjects) {
       state.rentalObjects = rentalObjects
     },
@@ -71,7 +78,7 @@ export default createStore({
         method: 'POST',
         body: JSON.stringify(user),
       })
-        let userFromServer = await res.json()
+      let userFromServer = await res.json()
       console.log('postUser, userFromServer:', userFromServer)
       store.commit('setUser', userFromServer)
     },
@@ -79,15 +86,13 @@ export default createStore({
     async registerUser(store, user) {
       let res = await fetch('/api/registerUser', {
         method: 'POST',
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
       })
 
       let loggedInUser = await res.json()
-      console.log('Registerd user', loggedInUser);
+      console.log('Registerd user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
-
-    
     async deleteUser(store, user) {
       let res = await fetch('/rest/users/' + user.id, {
         method: 'DELETE',
@@ -98,9 +103,10 @@ export default createStore({
     async fetchRentalObjects(store) {
       let res = await fetch('/rest/rental-objects')
       let rentalObjects = await res.json()
-      console.log('fetchRentalObjects, rentalObjects:', rentalObjects)
+      
       store.commit('setRentalObjects', rentalObjects)
     },
+
     async postRentalObject(store, rentalObject) {
       let res = await fetch('/rest/rental-objects', {
         method: 'POST',
@@ -124,22 +130,21 @@ export default createStore({
     async login(store, credentials) {
       let res = await fetch('/api/login', {
         method: 'POST',
-        body: JSON.stringify(credentials)
+        body: JSON.stringify(credentials),
       })
       let loggedInUser = await res.json()
       if ('error' in loggedInUser) {
         console.log('Failed to login', loggedInUser)
         this.state.failedLogIn = true
-        return;
+        return
       }
-     
       console.log('logged in user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
     async whoAmI(store) {
       let res = await fetch('/api/whoami')
       let user = await res.json()
-      console.log(user);
+      
 
       store.commit('setUser', user)
     },

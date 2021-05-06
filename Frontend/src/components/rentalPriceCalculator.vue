@@ -1,7 +1,9 @@
 <template>
-  <div class="container">
-    <div class="link" @click="isActive = !isActive">
-      <div class="num-guest-text">Number of guests {{ totalCount }}</div>
+  <div>
+    <div class="container">
+      <div class="link" @click="isActive = !isActive">
+        <div class="num-guest-text">Number of guests {{ totalCount }}</div>
+      </div>
     </div>
 
     <div class="expandable" :class="{ active: isActive }">
@@ -23,6 +25,7 @@
       </div>
     </div>
   </div>
+
   <div class="sum">
     <div>Total:</div>
     <div>{{ sum == 0 || isNaN(sum) ? 'Select all fields' : `${sum} kr` }}</div>
@@ -32,6 +35,7 @@
 <script>
 export default {
   props: ['numOfDays'],
+  emits: ['num-guest'],
 
   data() {
     let data = {
@@ -78,7 +82,6 @@ export default {
   font-size: 0.9rem;
 }
 .link {
-  background: rgb(137, 136, 136);
   width: 100%;
   display: block;
   height: 2rem;
@@ -87,6 +90,7 @@ export default {
   display: flex;
   align-items: center;
   border: 1px solid black;
+  border-radius: 5px;
 }
 .link:hover {
   cursor: pointer;
@@ -101,6 +105,11 @@ export default {
 button {
   width: 40px;
   height: 20px;
+  border-radius: 5px;
+}
+
+button:hoover {
+  cursor: pointer;
 }
 
 .expandable {

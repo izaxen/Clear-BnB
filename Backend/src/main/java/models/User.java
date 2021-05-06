@@ -3,8 +3,8 @@ package models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 @Document
 public class User {
 
@@ -18,14 +18,14 @@ public class User {
     private String address;
     private String imageUrl;
     private String password;
-    private String userInfo;
 
     public User() {
+
     }
 
     public User(String id, String firstName, String lastName,
-            String email, String phoneNumber, String city,
-            String address, String imageUrl, String passWord) {
+                String email, String phoneNumber, String city,
+                String address, String imageUrl, String passWord) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,25 +40,16 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-               "id='" + id + '\'' +
-               ", firstName='" + firstName + '\'' +
-               ", lastName='" + lastName + '\'' +
-               ", email='" + email + '\'' +
-               ", phoneNumber='" + phoneNumber + '\'' +
-               ", city='" + city + '\'' +
-               ", address='" + address + '\'' +
-               ", imageUrl='" + imageUrl + '\'' +
-               ", password='" + password + '\'' +
-               ", userInfo='" + userInfo + '\'' +
-               '}';
-    }
-
-    public String getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(String userInfo) {
-        this.userInfo = userInfo;
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     public String getAddress() {
@@ -132,6 +123,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
 

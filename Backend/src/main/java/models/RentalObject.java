@@ -18,6 +18,7 @@ public class RentalObject {
     private String city;
     private String address;
     private String zipCode;
+    private Amenity amenities;
     private int availableBeds;
     private int price;
 
@@ -36,9 +37,34 @@ public class RentalObject {
                ", city='" + city + '\'' +
                ", address='" + address + '\'' +
                ", zipCode='" + zipCode + '\'' +
+               ", amenities=" + amenities +
                ", availableBeds=" + availableBeds +
                ", price=" + price +
                '}';
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public Amenity getAmenities() {
+        return amenities;
+    }
+
+    public void setAmenities(Amenity amenities) {
+        this.amenities = amenities;
     }
 
     public String getId() {
@@ -95,22 +121,6 @@ public class RentalObject {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
     }
 
     public int getAvailableBeds() {

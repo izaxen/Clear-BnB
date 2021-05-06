@@ -1,68 +1,103 @@
 <template>
   <form @submit.prevent="addRentalObject">
     <div class="rental-info">
-    <div class="row">
-      <div class="column">
-        <p>Available from</p>
-        <input v-model="availableFrom" type="date"/>
-      </div>
-      <div class="column">
-        <p>Available to</p>
-        <input v-model="availableTo" type="date"/>
-        </div>
-      </div>
+          
       <div class="input-boxes">
         <div class="input-holder">
         <p>Description</p>
-        <textarea class="description" v-model="description" rows="1" cols="17" type="text" placeholder="Description"/>
+        <textarea class="description border-radius" v-model="description" type="text"  rows="1" cols="17" placeholder="Description..."/>
         </div>
         <div class="input-holder">
         <p>Freetext</p>
-        <textarea class="freetext" v-model="freeText" rows="10" cols="17" placeholder="Freetext"/>
+        <textarea class="freetext  border-radius" v-model="freeText" type="text" rows="10" cols="17" placeholder="Freetext..."/>
         </div>
-        <div class="input-holder">
+        <div class="input-holder ">
         <p>City</p>
-        <textarea class="city small-box" v-model="city" rows="1" cols="17" placeholder="City"/>
+        <input class="small-box  border-radius" v-model="city" required type="text" placeholder="City..."/>
+        </div>
+        <div class="input-holder ">
+        <p>Adress</p>
+        <input class="small-box  border-radius" v-model="address" required type="text" placeholder="Address..."/>
+        </div>
+        <div class="input-holder ">
+        <p>Zip code</p>
+        <input class="small-box  border-radius" v-model="zipCode" required type="text" placeholder="Zip Code..."/>
         </div>
         <div class="input-holder">
         <p>Number of beds</p>
-        <input class="num-beds small-box" v-model="availableBeds" type="number" min="1" placeholder="Number of beds"/>
+        <input class="num-beds small-box  border-radius" v-model="availableBeds" required type="number" min="1" placeholder="Number of beds"/>
         </div>
         <div class="input-holder">
         <p>Price per night</p>
-        <input class="price small-box" v-model="price" type="number" min="1" placeholder="Price per night"/>
+        <input class="price small-box" v-model="price" required type="number" min="400" placeholder="Price per night"/>
         </div>
       </div>
-    <button>Add house</button>
-    </div>
+      
+      </div>
     </form>
 </template>
 
 <script>
+
+import Calendar from '../components/Calendar.vue'
+
+
 export default {
+components:{
+Calendar,
+
+},
+watch:{
+  description: function(){
+    this.addRentalObject()
+  },
+  freeText: function(){
+      this.addRentalObject()
+    },
+  city: function(){
+      this.addRentalObject()
+    },
+  address: function(){
+      this.addRentalObject()
+    },
+  zipCode: function(){
+      this.addRentalObject()
+    },
+  availableBeds: function(){
+      this.addRentalObject()
+    },
+  price: function(){
+      this.addRentalObject()
+    },
+},
+
   data(){
     return{
-      availableFrom : "",
-      availableTo: "",
-      freeText : "",
-      description : "",
-      city : "",
-      availableBeds: "",
-      price : "",
-    }
+      freeText : '',
+      description : '',
+      city : '',
+      address:'',
+      zipCode:'',
+      availableBeds: '',
+      price : '',
+      }
   },
+
   methods: {
     addRentalObject(){
+      
       let rentalObject ={
-      availableFrom : this.availableFrom,
-      availableTo: this.availableTo,
       freeText : this.freeText,
       description : this.description,
       city : this.city,
+      address: this.address,
+      zipCode: this.zipCode,
       availableBeds: this.availableBeds,
       price : this.price,
       }
-      this.$store.dispatch('postRentalObject', rentalObject)
+      this.$emit('fetchObject', rentalObject)
+
+     /*  this.$store.dispatch('postRentalObject', rentalObject)
       this.availableFrom = ""
       this.availableTo = ""
       this.freeText = ""
@@ -70,19 +105,24 @@ export default {
       this.city = ""
       this.availableBeds = ""
       this.price = ""
+ */
+      
     }
   }
-
 }
 </script>
 
 <style scoped>
+
+.border-radius{
+  border-radius: 0.15rem;
+}
 .rental-info{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 10px;
   width: 290px;
-  border: 1px solid rgb(34, 32, 32);
+  
   font-family: 'Times New Roman', Times, serif;
   font-size: 13px;
 }
@@ -126,14 +166,20 @@ input[type=number]{
   margin: 0;
   padding: 0;
 }
-form button {
-  display: block;
-  margin-top: 10px;
-  width: 70px;
-  height: 25px;
-  color: rgb(7, 7, 7);
-  font-size: 12px;
+
+.button {
+  margin-top:1rem ;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
 }
+
 textarea{
   width: 100%;
   resize: none;
