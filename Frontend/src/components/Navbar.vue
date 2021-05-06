@@ -71,10 +71,8 @@ nav {
   padding: 10px;
   background-image: linear-gradient(#c8e4fd, #59deff);
   color: black;
-  
   box-shadow: 0 0 5px 2px;
   align-items: center;
-  
   border-bottom: 1px solid rgb(167, 167, 167);
 }
 .home-btns {
