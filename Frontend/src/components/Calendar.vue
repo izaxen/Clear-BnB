@@ -142,33 +142,30 @@ export default {
         }
         this.disabledDates = disabled
       }
-      this.disabledDates = disabled
-
-    }
-   },
-   filterReceipts(){
-     let testReceipts = [
-       {
-         rentalObjectId : "1",
-         checkInDate: new Date('2021-06-02'),
-         checkOutDate : new Date('2021-06-07')
-       },
+    },
+    filterReceipts() {
+      let testReceipts = [
         {
-         rentalObjectId: "2",
-         checkInDate: new Date('2021-06-03'),
-         checkOutDate : new Date('2021-06-09')
-       },
+          rentalObjectId: '1',
+          checkInDate: new Date('2021-06-02'),
+          checkOutDate: new Date('2021-06-07'),
+        },
         {
-         rentalObjectId: "2",
-         checkInDate: new Date('2021-06-13'),
-         checkOutDate : new Date('2021-06-16')
-       },
-     ]
+          rentalObjectId: '2',
+          checkInDate: new Date('2021-06-03'),
+          checkOutDate: new Date('2021-06-09'),
+        },
+        {
+          rentalObjectId: '2',
+          checkInDate: new Date('2021-06-13'),
+          checkOutDate: new Date('2021-06-16'),
+        },
+      ]
       //this.$store.state.receipts instead of testReceipts
 
-     let receipts = testReceipts.filter((rec) =>
-        this.rentalObject.id == rec.rentalObjectId)
-
+      let receipts = testReceipts.filter(
+        (rec) => this.rentalObject.id == rec.rentalObjectId
+      )
 
       this.findAllDisabledDates(receipts)
     },
@@ -178,20 +175,24 @@ export default {
       return secondDate
     },
   },
-  created(){
-    if(this.rentalObject!=null){
-
-        this.range.start = this.rentalObject.availableFrom.valueOf() > new Date().valueOf() ? this.rentalObject.availableFrom : new Date()
-        this.rentalObject.availableFrom = this.rentalObject.availableFrom.valueOf() < new Date().valueOf() ? new Date() : this.rentalObject.availableFrom
-      }
-      this.range.end = this.addDays(this.range.start, 2)
-      this.$emit('defaultDates', this.range.start, this.range.end)
-      this.$emit('dateArray', this.findSelectedDays())
+  created() {
+    if (this.rentalObject != null) {
+      this.range.start =
+        this.rentalObject.availableFrom.valueOf() > new Date().valueOf()
+          ? this.rentalObject.availableFrom
+          : new Date()
+      this.rentalObject.availableFrom =
+        this.rentalObject.availableFrom.valueOf() < new Date().valueOf()
+          ? new Date()
+          : this.rentalObject.availableFrom
+    }
+    this.range.end = this.addDays(this.range.start, 2)
+    this.$emit('defaultDates', this.range.start, this.range.end)
+    this.$emit('dateArray', this.findSelectedDays())
   },
-  mounted(){
-    if(this.rentalObject != null){
-
-    this.filterReceipts()
+  mounted() {
+    if (this.rentalObject != null) {
+      this.filterReceipts()
     }
   },
 }
