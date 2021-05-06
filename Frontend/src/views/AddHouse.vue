@@ -34,6 +34,7 @@ return{
   fromDate:'',
   toDate:'',  
   user: null,
+  
 }
   },
   methods:{
@@ -48,17 +49,9 @@ return{
     this.toDate = to
   },
   combineFormAndList(){
-    let rentalObjects = {}
+    let rentalObjects = this.rentalForm
     this.user = this.$store.state.user
-    let items  =  Object.entries(this.rentalForm)
-    
-    for(let item of items){
-      let spliceRentalForm = {
-        [item[0]]:item[1]
-        }
-      rentalObjects = Object.assign({}, rentalObjects, spliceRentalForm)
-    }
-    
+ 
     let completeAmanities = {amenities: this.rentalAmenities}
     let availableTo = {availableTo:this.toDate}
     let availableFrom = {availableFrom:this.fromDate}
@@ -74,10 +67,32 @@ return{
 <style scoped>
 .addhouse{
   display:flex;
+  
+  
+  
+  
+  
 }
 .objectform{
-  width: fit-content;
+  width: 290px;
   margin-right: 60px;
+}
+.amenties{
+  flex-shrink: 2;
+}
+
+@media only screen and (max-width: 575px){
+  .addhouse{
+    display: flex;
+    flex-wrap:wrap;
+  }
+
+  .objectform{
+    width: 100%;
+    margin: 0;
+    
+  }
+
 }
 
 </style>
