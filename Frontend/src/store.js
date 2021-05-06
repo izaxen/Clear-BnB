@@ -103,7 +103,7 @@ export default createStore({
     async fetchRentalObjects(store) {
       let res = await fetch('/rest/rental-objects')
       let rentalObjects = await res.json()
-      console.log('fetchRentalObjects, rentalObjects:', rentalObjects)
+      
       store.commit('setRentalObjects', rentalObjects)
     },
 
@@ -144,7 +144,7 @@ export default createStore({
     async whoAmI(store) {
       let res = await fetch('/api/whoami')
       let user = await res.json()
-      console.log(user)
+      
 
       store.commit('setUser', user)
     },
