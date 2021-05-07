@@ -122,27 +122,14 @@ public class Main {
             res.send("OK");
         });
 
-        app.post("/api/uploads/", (req, res) -> { //Uploading files
+        app.post("/api/uploads/:id", (req, res) -> { //Uploading files
+            String id = req.params("id");
 
-
-            List<UploadedFile> files = req.formDataFiles("files");  // get files as list
-            //UploadedFile file = req.formDataFile("files");          // get a single file
-
-
-            //files.getFilename()
-            // with FileOutputStream
+            List<UploadedFile> files = req.formDataFiles("files");
 
             for(UploadedFile file : files){
-                FileUtil.streamToFile(file.getContent(), "src/Static/uploads/" + file.getFilename());
+                FileUtil.streamToFile(file.getContent(), "src/Static/uploads/"+id+"/" + file.getFilename());}
 
-            //    Path path = Paths.get("src/Static/uploads/rental-objects/" + file.getFilename());
-            //try (FileOutputStream os = new FileOutputStream(path.toString())) {
-            //    os.write(file.getContent().readAllBytes()); // write to file
-            };
-
-
-            // with FileUtil (creates dirs if necessary)
-          // FileUtil.streamToFile(file.getContent(), "src/uploads/" + file.getFilename());
             res.send("OK");
 
         });

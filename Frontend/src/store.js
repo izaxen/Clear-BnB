@@ -167,7 +167,7 @@ export default createStore({
     },
     
     async uploadFiles(store, object) {
-      let savePath = '/api/uploads'
+      let savePath = '/api/uploads/' + object.rentalId
       await fetch(savePath, {
         method: 'POST',
         body: object.formData,
