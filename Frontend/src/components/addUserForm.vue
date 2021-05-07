@@ -1,3 +1,4 @@
+
 <template>
   <form @submit.prevent="addUser">
     <input v-model ="firstName" required type="text" placeholder="Enter firstname">
@@ -6,7 +7,7 @@
     <input v-model ="phoneNumber" required type="text" placeholder="Enter phonenumber">
     <input v-model ="password" required type="text" placeholder="Enter password">
     <input v-model ="rePassword" required type="text" placeholder="Re-enter password">
-
+    <p v-if="userTaken === true">User already exists</p>
   <div class="register-btn">
     <button type="reset">clear</button>
     <div v-if="validatePassword">  <!-- Kan vara att detta inte funkar-->
@@ -19,13 +20,17 @@
 </template>
 
 
-
 <script>
+import store from '../store.js'
 export default {
+  
   computed:{
     validatePassword(){
       console.log('Valiedate', this.password, this.rePassword)
       return (this.rePassword === this.password)
+    },
+    userTaken(){
+      return this.userExists = this.$store.state.failedLogIn
     }
   },
   data(){
@@ -35,7 +40,8 @@ export default {
       email:'',
       phoneNumber:'',
       password:'',
-      rePassword:''
+      rePassword:'',
+      userExists: false,
     }
   },
   methods:{
@@ -47,8 +53,18 @@ export default {
         phoneNumber: this.phoneNumber,
         password: this.password
       }
-      console.log('User', user)
-    this.$store.dispatch('registerUser', user)
+
+      this.$store.dispatch('registerUser', user)
+      if(this.userExists === true){
+        console.log('inside test');
+        return
+      }else {
+        console.log('User', user)
+        store.commit('setFailedLogin', false)
+        //this.$emit('close');
+
+      }
+      
     }
   }
 }
@@ -81,5 +97,11 @@ input:focus{
 .register-btn {
   display: flex;
   justify-content: center;
+}
+
+p {
+  color: red;
+  font-weight: 800;
+  text-decoration: underline;
 }
 </style>

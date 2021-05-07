@@ -34,7 +34,9 @@ export default createStore({
       state.user = user
       state.failedLogIn = false
     },
-
+    setFailedLogin(state, value){
+      state.failedLogIn = value
+    },
     setRentalObjects(state, rentalObjects) {
       state.rentalObjects = rentalObjects
     },
@@ -99,6 +101,11 @@ export default createStore({
       })
 
       let loggedInUser = await res.json()
+      if ('error' in loggedInUser) {
+        console.log('Failed to register', loggedInUser)
+        this.state.failedLogIn = true
+        return
+      }
       console.log('Registerd user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
@@ -138,6 +145,7 @@ export default createStore({
       let deletedRentalObject = await res.json()
       store.commit('removeRentalObject', deletedRentalObject)
     },
+
     async login(store, credentials) {
       let res = await fetch('/api/login', {
         method: 'POST',
@@ -152,13 +160,14 @@ export default createStore({
       console.log('logged in user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
+
     async whoAmI(store) {
       let res = await fetch('/api/whoami')
       let user = await res.json()
-      
 
       store.commit('setUser', user)
     },
+
     async logout(store) {
       let res = await fetch('/api/logout')
 

@@ -134,6 +134,7 @@ export default {
   img {
     width: 100%;
     height: 600px;
+    margin: 0;
   }
 
   h1 {

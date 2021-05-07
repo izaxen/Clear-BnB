@@ -12,7 +12,7 @@
       <section class="modal-body">
         <slot name="body">
           <LoginForm v-if="!isVisibility"/>
-          <AddUserForm v-if="isVisibility" />
+          <AddUserForm v-if="isVisibility" @close="close" />
         </slot>
       </section>
 
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import store from '../store.js'
 import AddUserForm from '../components/addUserForm.vue'
 import LoginForm from '../components/LoginForm.vue'
 export default {
@@ -48,14 +49,13 @@ export default {
       close() {
         this.$emit('close');
         this.isVisibility = false;
+        store.commit('setFailedLogin', false)
       },
       
     registerForm(){
        this.isVisibility = !this.isVisibility;
+      store.commit('setFailedLogin', false)
     },
-    loginForm(){
-      this.isVisibility = true
-    }
   },
 }
 </script>
