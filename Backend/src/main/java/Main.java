@@ -122,7 +122,7 @@ public class Main {
             res.send("OK");
         });
 
-        app.post("/api/upload", (req, res) -> { //Uploading files
+        app.post("/api/uploads/", (req, res) -> { //Uploading files
 
 
             List<UploadedFile> files = req.formDataFiles("files");  // get files as list
@@ -133,14 +133,16 @@ public class Main {
             // with FileOutputStream
 
             for(UploadedFile file : files){
-            Path path = Paths.get("src/Static/uploads/" + file.getFilename());
-            try (FileOutputStream os = new FileOutputStream(path.toString())) {
-                os.write(file.getContent().readAllBytes()); // write to file
-            }};
+                FileUtil.streamToFile(file.getContent(), "src/Static/uploads/" + file.getFilename());
+
+            //    Path path = Paths.get("src/Static/uploads/rental-objects/" + file.getFilename());
+            //try (FileOutputStream os = new FileOutputStream(path.toString())) {
+            //    os.write(file.getContent().readAllBytes()); // write to file
+            };
 
 
             // with FileUtil (creates dirs if necessary)
-           // FileUtil.streamToFile(file.getContent(), "src/uploads/" + file.getFilename());
+          // FileUtil.streamToFile(file.getContent(), "src/uploads/" + file.getFilename());
             res.send("OK");
 
         });

@@ -128,6 +128,8 @@ export default createStore({
         rentalObjectFromServer
       )
       store.commit('addRentalObject', rentalObjectFromServer)
+      console.log('rentalObjectFromServer.id', rentalObjectFromServer.id)
+      return rentalObjectFromServer.id
     },
     async deleteRentalObject(store, rentalObject) {
       let res = await fetch('/rest/rental-objects/' + rentalObject.id, {
@@ -163,16 +165,15 @@ export default createStore({
       // remove user from state
       store.commit('setUser', null)
     },
-    async uploadFiles(store, formData) {
-      
-      await fetch('/api/upload', {
+    
+    async uploadFiles(store, object) {
+      let savePath = '/api/uploads'
+      await fetch(savePath, {
         method: 'POST',
-        body: formData
-      });
+        body: object.formData,
+      })
 
     }
   },
-
-
   
 })

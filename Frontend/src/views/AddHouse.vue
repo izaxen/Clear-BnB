@@ -11,6 +11,9 @@
   </div>
   
 </div>
+
+<AddImageForm @formData="LoadFormData"/>
+
 <button @click="combineFormAndList">Add house</button>
 </div>
 </template>
@@ -19,12 +22,14 @@
 import AddHouseAmenities from '../components/AddHouseAmenities.vue';
 import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
 import Calendar from '../components/Calendar.vue'
+import AddImageForm from '../components/AddImageForm.vue'
 
 export default {
   components:{
     AddHouseAmenities,
     AddRentalObjectForm,
-    Calendar
+    Calendar,
+    AddImageForm
   },
 
   data(){
@@ -34,10 +39,15 @@ return{
   fromDate:'',
   toDate:'',  
   user: null,
+  formData: '',
   
 }
   },
   methods:{
+LoadFormData(formData){
+  this.formData= formData
+  },
+
   amenitiesList(list){
   this.rentalAmenities = list
     },
@@ -48,7 +58,7 @@ return{
     this.fromDate = from
     this.toDate = to
   },
-  combineFormAndList(){
+  async combineFormAndList(){
     let rentalObjects = this.rentalForm
     this.user = this.$store.state.user
  
@@ -58,7 +68,14 @@ return{
     let userId = {userId: this.user.id}
 
     rentalObjects = Object.assign({},rentalObjects, completeAmanities, availableTo,availableFrom, userId)
-    this.$store.dispatch('postRentalObject', rentalObjects)
+    let rentalId = await this.$store.dispatch('postRentalObject', rentalObjects)
+    
+    let object = {
+      formData: this.formData,
+      rentalId: rentalId
+    }
+    
+    this.$store.dispatch('uploadFiles', object )
   }
   }
 }
