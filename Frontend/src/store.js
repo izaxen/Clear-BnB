@@ -8,7 +8,8 @@ export default createStore({
     rentalObjects: [],
     user: null,
     failedLogIn: false,
-    searchObject: null
+    searchObject: null,
+    isConfirmation: false
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -46,6 +47,9 @@ export default createStore({
       state.rentalObjects = state.rentalObjects.filter(
         (r) => r.id != rentalObjects.id
       )
+    },
+    setIsConfirmation(state, isConfirmation) {
+      state.isConfirmation = isConfirmation
     },
   },
 

@@ -7,7 +7,7 @@ import Detail from './views/HousingDetail.vue'
 import Overview from './views/Overview.vue'
 import AddHouse from './views/AddHouse.vue'
 import TestPage from './views/TestPage.vue'
-import ConfirmationModal from './views/ConfirmationModal.vue'
+import BookingConfirmation from './views/BookingConfirmation.vue'
 // create routes with views
 export default createRouter({
   history: createWebHistory(),
@@ -34,7 +34,7 @@ export default createRouter({
     },
     {
       path: '/confirm-booking',
-      component: ConfirmationModal
+      component: BookingConfirmation,
     }
   ],
 })

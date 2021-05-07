@@ -66,17 +66,22 @@
         />
       </div>
     </div>
+   
   </div>
+  <BookingConfirmation/>
 </template>
 
 <script>
 import BookHousingForm from '../components/BookHousingForm.vue'
 import AmenityLoggo from '../components/AmenityLoggo.vue'
+import BookingConfirmation from './BookingConfirmation.vue'
+
 
 export default {
   components: {
     BookHousingForm,
     AmenityLoggo,
+    BookingConfirmation,
   },
 
   data() {
