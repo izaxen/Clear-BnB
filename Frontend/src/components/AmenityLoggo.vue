@@ -103,7 +103,7 @@ export default {
 }
 </script>
 
-<style scooped>
+<style scoped>
 
 .flex-holder{
   display: flex;

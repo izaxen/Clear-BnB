@@ -195,4 +195,14 @@ min-height: 150px;
   min-height: 20px;
   width: 60%;
 }
+
+
+@media only screen and (max-width: 575px){
+.rental-info{
+  justify-content: center;
+  align-items: center;
+}
+
+
+} 
 </style>

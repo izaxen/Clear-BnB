@@ -11,6 +11,9 @@
   </div>
   
 </div>
+
+<AddImageForm @formData="LoadFormData"/>
+
 <button @click="combineFormAndList">Add house</button>
 </div>
 </template>
@@ -19,12 +22,14 @@
 import AddHouseAmenities from '../components/AddHouseAmenities.vue';
 import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
 import Calendar from '../components/Calendar.vue'
+import AddImageForm from '../components/AddImageForm.vue'
 
 export default {
   components:{
     AddHouseAmenities,
     AddRentalObjectForm,
-    Calendar
+    Calendar,
+    AddImageForm
   },
 
   data(){
@@ -34,9 +39,15 @@ return{
   fromDate:'',
   toDate:'',  
   user: null,
+  formData: '',
+  
 }
   },
   methods:{
+LoadFormData(formData){
+  this.formData= formData
+  },
+
   amenitiesList(list){
   this.rentalAmenities = list
     },
@@ -47,25 +58,24 @@ return{
     this.fromDate = from
     this.toDate = to
   },
-  combineFormAndList(){
-    let rentalObjects = {}
+  async combineFormAndList(){
+    let rentalObjects = this.rentalForm
     this.user = this.$store.state.user
-    let items  =  Object.entries(this.rentalForm)
-    
-    for(let item of items){
-      let spliceRentalForm = {
-        [item[0]]:item[1]
-        }
-      rentalObjects = Object.assign({}, rentalObjects, spliceRentalForm)
-    }
-    
+ 
     let completeAmanities = {amenities: this.rentalAmenities}
     let availableTo = {availableTo:this.toDate}
     let availableFrom = {availableFrom:this.fromDate}
     let userId = {userId: this.user.id}
 
     rentalObjects = Object.assign({},rentalObjects, completeAmanities, availableTo,availableFrom, userId)
-    this.$store.dispatch('postRentalObject', rentalObjects)
+    let rentalId = await this.$store.dispatch('postRentalObject', rentalObjects)
+    
+    let object = {
+      formData: this.formData,
+      rentalId: rentalId
+    }
+    
+    this.$store.dispatch('uploadFiles', object )
   }
   }
 }
@@ -74,10 +84,35 @@ return{
 <style scoped>
 .addhouse{
   display:flex;
+  
+  
+  
+  
+  
 }
 .objectform{
-  width: fit-content;
+  width: 290px;
   margin-right: 60px;
+  margin-top:15px;
+}
+.amenties{
+  flex-shrink: 2;
+}
+
+@media only screen and (max-width: 575px){
+  .addhouse{
+    display: flex;
+    flex-wrap:wrap;
+    margin-right: 0;
+    justify-content: center;
+  }
+
+  .objectform{
+    width: 100%;
+    
+    
+  }
+
 }
 
 </style>
