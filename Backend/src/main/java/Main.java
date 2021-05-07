@@ -1,6 +1,11 @@
 import express.Express;
+import io.javalin.core.util.FileUtil;
+import io.javalin.http.UploadedFile;
 import models.*;
 
+import java.io.FileOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,7 +122,30 @@ public class Main {
             res.send("OK");
         });
 
+        app.post("/api/upload", (req, res) -> { //Uploading files
 
+
+            List<UploadedFile> files = req.formDataFiles("files");  // get files as list
+            //UploadedFile file = req.formDataFile("files");          // get a single file
+
+
+            //files.getFilename()
+            // with FileOutputStream
+
+            for(UploadedFile file : files){
+            Path path = Paths.get("src/Static/uploads/" + file.getFilename());
+            try (FileOutputStream os = new FileOutputStream(path.toString())) {
+                os.write(file.getContent().readAllBytes()); // write to file
+            }};
+
+
+            // with FileUtil (creates dirs if necessary)
+           // FileUtil.streamToFile(file.getContent(), "src/uploads/" + file.getFilename());
+            res.send("OK");
+
+        });
+
+        app.useStatic(Paths.get("src/Static"));
 
 
 

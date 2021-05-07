@@ -7,7 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/rest': 'http://localhost:4000', // same port as backend
-      '/api': 'http://localhost:4000'
+      '/api': 'http://localhost:4000',
+      '/uploads': 'http://localhost:4000',
+
     }
   }
 })

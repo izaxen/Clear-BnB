@@ -1,38 +1,52 @@
 <template>
-<Calendar :textOne="textOne" :rentalObject="rentalObject"/>
-<add-rental-object-form />
+    <div class=form>
+    <input @change="addPictures" type="file" name="files" multiple>
+    
+  <div class="rendered-images" v-if="$store.state.uploadedImages.length>0">
+    
+  <div v-for="(file, i) of $store.state.uploadedImages" :key="file.name" class="image">
+  <div class="images">
+  <img :src="url[i]" alt="">
+  </div>
+  </div>
+  </div>
+    </div>
 </template>
 
-
-
 <script>
-import Calendar from '../components/Calendar.vue'
-import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
-
 export default {
-  components:{
-  Calendar,
-  AddRentalObjectForm,
-  },
+
   data(){
     return{
-    /*rentalObject : {
-      availableFrom : new Date('2021-06-01'),
-      availableTo : new Date('2021-07-01')
-      },*/
-    rentalObject: {
-      id: "2",
-      availableFrom: new Date("2021-01-03"),
-      availableTo: new Date("2021-07-01")
+      files: [],
+      uploadedImages: this.$store.state.uploadedImages,
+      url:[]
     }
+  },
 
-    
-    }
+methods:{
+  addPictures(){
+  this.files = document.querySelector('input[type=file]').files;
+  console.log('files', this.files)
+  let formData = new FormData();
+
+  for(let file of this.files) {
+  formData.append('files', file, file.name);
+  this.url.push(URL.createObjectURL(file))
   }
-
+console.log('Formdata', formData.getAll('files'))
+this.$store.dispatch('uploadFiles', formData)
+this.$store.commit('addUploadedImages', this.files) 
+}
+}
 }
 </script>
 
-<style>
+<style scoped>
+
+.images{
+  height:200px;
+  width: 200px;
+}
 
 </style>

@@ -76,6 +76,7 @@ return{
 .objectform{
   width: 290px;
   margin-right: 60px;
+  margin-top:15px;
 }
 .amenties{
   flex-shrink: 2;
@@ -85,11 +86,13 @@ return{
   .addhouse{
     display: flex;
     flex-wrap:wrap;
+    margin-right: 0;
+    justify-content: center;
   }
 
   .objectform{
     width: 100%;
-    margin: 0;
+    
     
   }
 
