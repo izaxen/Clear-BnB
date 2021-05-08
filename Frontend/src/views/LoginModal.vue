@@ -3,8 +3,8 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          <h1 v-if="!isVisibility">Login here!</h1>
-          <h1 v-if="isVisibility">Register here!</h1> 
+          <h1 v-if="!isVisibility">Login here</h1>
+          <h1 v-if="isVisibility">Register here</h1> 
           </slot>
         <button type="button" class="btn-close" @click="close">x</button>
       </header>
@@ -18,8 +18,8 @@
 
       <footer class="modal-footer">
         <slot name="footer"></slot>
-        <button v-if="!isVisibility" type="button" class="btn-modal" @click="registerForm">register</button>
-        <button v-if="isVisibility" type="button" class="btn-modal" @click="registerForm">login</button>
+        <button v-if="!isVisibility" type="button" class="btn-modal" @click="registerForm">Register</button>
+        <button v-if="isVisibility" type="button" class="btn-modal" @click="registerForm">Login</button>
       </footer>
     </div>
   </div>

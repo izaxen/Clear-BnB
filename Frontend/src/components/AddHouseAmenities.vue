@@ -113,7 +113,7 @@ h2{
   margin-left: 15px;
   }
 
-.amenities:nth-child(3n+1){
+.amenities:nth-child1(3n+1){
 clear: both;
 }
 
