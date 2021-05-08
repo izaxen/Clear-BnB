@@ -54,6 +54,7 @@ export default {
 
       this.$store.dispatch('postReceipt', this.receipt)
       this.$store.commit('setIsConfirmation', true)
+      this.$emit('receipt', this.receipt)
 
     },
   },

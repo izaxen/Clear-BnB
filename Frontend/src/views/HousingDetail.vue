@@ -52,7 +52,7 @@
         {{ rentalObject.description }}
         {{ rentalObject.description }}
       </div>
-      <BookHousingForm :object="rentalObject" />
+      <BookHousingForm :object="rentalObject" @receipt="saveTempReceipt" />
     </div>
 
     <hr class="separator" />
@@ -68,7 +68,7 @@
     </div>
    
   </div>
-  <BookingConfirmation/>
+    <BookingConfirmation :receipt="tempReceipt"/>
 </template>
 
 <script>
@@ -86,9 +86,16 @@ export default {
 
   data() {
     return {
-      rentalObject: '',
-      bookingReceipts: '',
-      amenities: '',
+      rentalObject: {},
+      bookingReceipts: {},
+      amenities: {},
+      tempReceipt: {},
+    }
+  },
+
+    methods: {
+    saveTempReceipt(receipt){
+      this.tempReceipt = receipt
     }
   },
 
