@@ -44,12 +44,6 @@ components:{
   ConfirmationModal,
 },
 
-data(){
-  return{
-    rentalObject: {},
-    user: {},
-  }
-},
 }
 
 </script>

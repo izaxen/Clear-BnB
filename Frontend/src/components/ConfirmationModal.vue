@@ -3,13 +3,20 @@
 <div class="modal-frame" v-if="$store.state.user" v-show="$store.state.isConfirmation">
   <slot name = "header">Oops, something went wrong!</slot>
   <slot name = "user">Name: {{$store.state.user.firstName}} {{$store.state.user.lastName}}</slot>
-  <slot name = "startDate" :startDate="startDate">{{startDate}}</slot>
+
+  <div class="dates">
+  <slot name = "startDate"></slot>
   <slot name = "startTime"></slot>
   <slot name = "endDate"></slot>
   <slot name = "endTime"></slot>
-  <slot name= "address"></slot>
-  <slot name = "zip"></slot>
-  <slot name = "city"></slot>
+  </div>
+
+  <div class="rentalInfo" v-if="rentalObject != undefined">
+  <slot name= "address" >Adress: {{rentalObject.address}}</slot>
+  <slot name = "zip">Zip-code: {{rentalObject.zipcode}}</slot>
+  <slot name = "city">City: {{rentalObject.city}}</slot>
+  </div>
+
   <slot name = "beds"></slot>
   <slot name = "price"></slot>
   <button @click="closeModal">Ok</button>
@@ -22,10 +29,19 @@
 export default {
   props:["startDate", "endDate"],
 
+  data(){
+    return{
+      rentalId: null,
+      rentalObject: {}
+    }
+  },
+
   watch:{
     '$route'(){
       this.$store.state.isConfirmation = false
-      console.log('watch', this.$store.state.isConfirmation)
+    },
+    '$store.state.rentalObjects'(){
+      this.setRentalObject()
     }
 
   },
@@ -33,7 +49,16 @@ export default {
   methods: {
     closeModal(){
       this.$store.commit('setIsConfirmation', false)
+    },
+    setRentalObject(){
+      let rentalId = this.$route.params.id
+      this.rentalObject = this.$store.state.rentalObjects.find((r) => r.id == rentalId)
     }
+   
+  },
+
+  created(){
+    this.$store.dispatch('fetchRentalObjects')
   }
 
 }
