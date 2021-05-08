@@ -9,7 +9,7 @@
       
     </template>
     <template v-slot:endDate>
-}
+
     </template>
     <template v-slot:endTime>
 
@@ -48,9 +48,9 @@ data(){
   return{
     rentalObject: {},
     user: {},
-    receipt: this.receipt,
   }
 },
+}
 
 </script>
 

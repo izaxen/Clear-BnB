@@ -1,6 +1,6 @@
 <template>
 <div class="center">
-<div class="modal-frame" v-show="$store.state.isConfirmation">
+<div class="modal-frame" v-if="$store.state.user" v-show="$store.state.isConfirmation">
   <slot name = "header">Oops, something went wrong!</slot>
   <slot name = "user">Name: {{$store.state.user.firstName}} {{$store.state.user.lastName}}</slot>
   <slot name = "startDate" :startDate="startDate">{{startDate}}</slot>
@@ -21,6 +21,14 @@
 <script>
 export default {
   props:["startDate", "endDate"],
+
+  watch:{
+    '$route'(){
+      this.$store.state.isConfirmation = false
+      console.log('watch', this.$store.state.isConfirmation)
+    }
+
+  },
 
   methods: {
     closeModal(){
