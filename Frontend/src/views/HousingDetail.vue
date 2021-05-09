@@ -7,8 +7,9 @@
         alt=""
       />
       <div class="picture-text">
-        {{ rentalObject.description }}
+        {{ rentalObject.freeText }}
       </div>
+      <div class="pic-city">{{ rentalObject.city }}</div>
     </div>
     <div class="slider">
       <!-- Bilderna ska inte vara hårdkodade -->
@@ -32,9 +33,14 @@
     <hr class="separator" />
 
     <div class="seller-info">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem asperiores ut
-      ab, officiis dolore temporibus.
-      <img src="https://www.shankarainfra.com/img/avatar.png" alt="" />
+      <ul>
+        <li>{{ rentalObject.availableBeds }} Beds</li>
+        <li>{{ rentalObject.price }} kr /night</li>
+      </ul>
+      <div class="avatar">
+        Seller
+        <img src="https://www.shankarainfra.com/img/avatar.png" alt="" />
+      </div>
     </div>
 
     <hr class="separator" />
@@ -42,14 +48,7 @@
       <div class="amenity-focus"></div>
 
       <div class="hero-text">
-        {{ rentalObject.description }}
-        {{ rentalObject.description }}
-        {{ rentalObject.description }}
-        {{ rentalObject.description }}
-        {{ rentalObject.description }}
-        {{ rentalObject.description }}
-        {{ rentalObject.description }}
-        {{ rentalObject.description }}
+        <DisplayHotAmenity :amenities="amenities" />
         {{ rentalObject.description }}
       </div>
       <BookHousingForm :object="rentalObject" />
@@ -70,6 +69,7 @@
 </template>
 
 <script>
+import DisplayHotAmenity from '../components/DisplayHotAmenity.vue'
 import BookHousingForm from '../components/BookHousingForm.vue'
 import AmenityLoggo from '../components/AmenityLoggo.vue'
 
@@ -77,6 +77,7 @@ export default {
   components: {
     BookHousingForm,
     AmenityLoggo,
+    DisplayHotAmenity,
   },
 
   data() {
@@ -99,12 +100,28 @@ export default {
 </script>
 
 <style scoped>
+.avatar {
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+li {
+  margin-right: 2rem;
+  font-size: 1rem;
+}
 .wrapper {
   max-width: 65rem;
   margin: auto;
+  padding: 1rem;
 }
 .separator {
-  width: 99%;
+  width: 100%;
   height: 1px;
   background-color: black;
 }
@@ -116,6 +133,18 @@ export default {
   transform: translate(-50%, -75%);
   color: whitesmoke;
   font-weight: 700;
+  font-size: 2rem;
+  min-width: 100%;
+  text-align: center;
+}
+
+.pic-city {
+  position: absolute;
+  color: whitesmoke;
+  font-weight: 700;
+  top: 20px;
+  left: 16px;
+  font-size: 2rem;
 }
 
 .hej {
@@ -140,6 +169,10 @@ export default {
   height: 50vh;
   position: relative;
 }
+.hero-picture img {
+  filter: brightness(50%);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+}
 
 .slider {
   display: flex;
@@ -151,6 +184,11 @@ export default {
   width: 80px;
   border-radius: 5px;
   margin: 1rem 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.5s ease;
+}
+.slider img:hover {
+  opacity: 0.3;
 }
 
 .hero {
@@ -164,10 +202,10 @@ export default {
 
 .seller-info {
   margin: 1.5rem 0;
-
+  padding-left: 1rem;
   display: flex;
 
-  width: 50%;
+  width: 60%;
   font-size: 0.8rem;
 }
 
@@ -175,9 +213,11 @@ export default {
   height: 32px;
   width: 32px;
   border-radius: 50%;
+  margin-left: 1rem;
 }
 
 .amenities {
+  padding: 1rem;
   height: 30vh;
   display: flex;
   flex-direction: column;
@@ -190,5 +230,29 @@ img {
   width: 100%;
   height: 100%;
   display: block; /* remove extra space below image */
+}
+
+@media screen and (max-width: 600px) {
+  .seller-info {
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+  }
+  ul {
+    padding: 1rem 0 1rem 1rem;
+  }
+  li {
+    font-size: 0.9rem;
+    margin-left: 0;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+
+  .hero-text {
+    margin-bottom: 2rem;
+  }
 }
 </style>
