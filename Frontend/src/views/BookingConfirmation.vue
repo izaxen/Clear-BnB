@@ -1,33 +1,16 @@
 <template>
-  <ConfirmationModal>
+  <ConfirmationModal :startDate="receipt.startDate" :endDate="receipt.endDate">
    <template v-slot:header>
       <h2>Your booking has been confirmed!</h2>
     </template>
-    <template v-slot:startDate>
-    </template>
-    <template v-slot:startTime>
-      
-    </template>
-    <template v-slot:endDate>
-
-    </template>
-    <template v-slot:endTime>
-
-    </template>
-    <template v-slot:address>
-      
-    </template>
-    <template v-slot:zip>
-
-    </template>
-    <template v-slot:city>
-
-    </template>
+    <template v-slot:start-date-text>Check-in:</template>
+    <template v-slot:end-date-text>Check-out:</template>
     <template v-slot:beds>
-
+      Adult guests: {{receipt.numAdult}}
+      Children: {{receipt.numChild}}
     </template>
     <template v-slot:price>
-
+      Total price: {{receipt.totalPrice}}
     </template>
 
   </ConfirmationModal>
@@ -43,11 +26,6 @@ props: ["receipt"],
 components:{
   ConfirmationModal,
 },
-
 }
 
 </script>
-
-<style>
-
-</style>

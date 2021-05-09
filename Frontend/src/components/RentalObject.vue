@@ -40,12 +40,14 @@ export default {
   },
 
   created() {
+    if(this.object.amenities != undefined){
     this.wifiUrl = this.object.amenities.wifi
       ? 'https://media.istockphoto.com/vectors/icon-in-flat-style-wireless-symbol-vector-id944860382'
       : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-wifi-1914404-1620362.png'
     this.petsUrl = this.object.amenities.petsAllowed
       ? 'https://image.flaticon.com/icons/png/512/2262/2262533.png'
       : 'https://image.flaticon.com/icons/png/512/34/34704.png'
+      }
   },
 }
 </script>
