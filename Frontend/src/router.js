@@ -8,6 +8,7 @@ import Overview from './views/Overview.vue'
 import AddHouse from './views/AddHouse.vue'
 import TestPage from './views/TestPage.vue'
 import MyPage from './views/MyPage.vue'
+import MyBookings from './views/MyBookings.vue'
 
 // create routes with views
 export default createRouter({
@@ -37,6 +38,10 @@ export default createRouter({
     {
       path: '/my-page',
       component: MyPage,
+    },
+    {
+      path: '/my-page/my-bookings',
+      component: MyBookings,
     },
   ],
 })
