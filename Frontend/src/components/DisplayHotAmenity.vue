@@ -1,16 +1,23 @@
 <template>
   <div class="wrapper">
-    <img class="icon" :src="wifiUrl" />
-
-    <h2>{{ amenities.wifi ? 'Got wifi' : 'No wifi' }}</h2>
-    <img class="icon" :src="petsUrl" />
-    <h2>{{ amenities.petsAllowed ? 'Pets allowed' : 'No pets' }}</h2>
-    <img class="icon" :src="poolUrl" />
-    <h2>{{ amenities.pool ? 'Got pool' : 'No pool' }}</h2>
-    <img class="icon" :src="airUrl" />
-    <h2>
-      {{ amenities.airCondition ? 'Got air condition' : 'No air condition' }}
-    </h2>
+    <div class="card">
+      <img class="icon" :src="wifiUrl" />
+      <h2>{{ amenities.wifi ? 'Got wifi' : 'No wifi' }}</h2>
+    </div>
+    <div class="card">
+      <img class="icon" :src="petsUrl" />
+      <h2>{{ amenities.petsAllowed ? 'Pets allowed' : 'No pets' }}</h2>
+    </div>
+    <div class="card">
+      <img class="icon" :src="poolUrl" />
+      <h2>{{ amenities.pool ? 'Got pool' : 'No pool' }}</h2>
+    </div>
+    <div class="card">
+      <img class="icon" :src="airUrl" />
+      <h2>
+        {{ amenities.airCondition ? 'Got air condition' : 'No air condition' }}
+      </h2>
+    </div>
   </div>
 </template>
 
@@ -46,6 +53,18 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  margin: 0;
+  margin-bottom: 2rem;
+}
+.card {
+  display: flex;
+}
+
+h2 {
+  margin-left: 4rem;
+}
+
 img {
   width: 64px;
   height: 64px;
