@@ -134,7 +134,7 @@ public class Main {
 
         });
 
-        //app.useStatic(Paths.get("src/Static"));
+        app.useStatic(Paths.get("src/Static"));
 
 
 
