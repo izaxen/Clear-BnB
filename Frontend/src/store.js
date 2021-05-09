@@ -8,7 +8,8 @@ export default createStore({
     rentalObjects: [],
     user: null,
     failedLogIn: false,
-    searchObject: null
+    searchObject: null,
+    uploadedImages: []
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -47,6 +48,14 @@ export default createStore({
         (r) => r.id != rentalObjects.id
       )
     },
+    addUploadedImages(state, images) {
+      for (let image of images) {
+        state.uploadedImages.push(image)
+      }
+    },
+    removeUploadedImages(state) {
+      state.uploadedImages = []
+    }
   },
 
   // async methods that will trigger a mutation
@@ -126,6 +135,8 @@ export default createStore({
         rentalObjectFromServer
       )
       store.commit('addRentalObject', rentalObjectFromServer)
+      console.log('rentalObjectFromServer.id', rentalObjectFromServer.id)
+      return rentalObjectFromServer.id
     },
     async deleteRentalObject(store, rentalObject) {
       let res = await fetch('/rest/rental-objects/' + rentalObject.id, {
@@ -163,5 +174,15 @@ export default createStore({
       // remove user from state
       store.commit('setUser', null)
     },
+    
+    async uploadFiles(store, object) {
+      let savePath = '/api/uploads/' + object.rentalId
+      await fetch(savePath, {
+        method: 'POST',
+        body: object.formData,
+      })
+
+    }
   },
+  
 })
