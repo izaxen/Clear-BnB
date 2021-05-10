@@ -3,12 +3,12 @@
     <Calendar
       :rentalObject="object"
       :booking="true"
-      @days-selected="recive"
+      @days-selected="receive"
       @dates="confirmDates"
     />
     <NumberOfGuests @num-guest="confirmGuest" :numOfDays="days" />
 
-    <button @click="book" :disabled="totalPrice == 0 ? '' : disabled">
+    <button @click="book" :disabled="receipt.totalPrice == 0 ? '' : disabled">
       Book
     </button>
 
