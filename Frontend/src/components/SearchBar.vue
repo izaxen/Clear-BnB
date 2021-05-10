@@ -1,12 +1,15 @@
 <template>
   <!-- v-if="$route.path !='/overview'" -->
   <form class="search-box">
-    <select @click="showCityNames" class="box1" v-model="city">
-      <option :value="cityName" selected>--Citys--</option>
-      <option v-for="city in citys" :key="city" :value="city">
-        {{ city }}
-      </option>
-    </select>
+    <div class="card">
+      <p class="city-name">City</p>
+      <select @click="showCityNames" class="box1" v-model="city">
+        <option :value="cityName" selected>--Citys--</option>
+        <option v-for="city in citys" :key="city" :value="city">
+          {{ city }}
+        </option>
+      </select>
+    </div>
     <Calendar
       @days-selected="receive"
       @dates="confirmDates"
@@ -119,11 +122,30 @@ option {
   font-size: 17px;
 }
 
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
 button {
   height: 20px;
   width: 20px;
   align-self: center;
   margin-left: 5px;
+}
+
+.city-name {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  color: gray;
+}
+
+p {
+  font-size: 1rem;
 }
 
 .person-div {
@@ -152,6 +174,7 @@ button {
 
 .box1 {
   border-right: 1px solid gray;
+  cursor: pointer;
 }
 .box4 {
   border-left: 1px solid gray;
@@ -163,6 +186,8 @@ button {
   border-radius: 40px;
   padding: 10px;
   width: fit-content;
+  align-items: center;
+  height: 5rem;
 }
 
 .box1:hover > .search-btn {
@@ -180,14 +205,20 @@ button {
   align-items: center;
 }
 .box1 {
+  margin-left: 1rem;
   border: none;
   background: none;
   outline: none;
   padding: 2px;
   color: rgb(113, 128, 150);
+  height: 28px;
   font-size: 15px;
   transition: 0.4s;
-  width: 150px;
+  width: 6rem;
+
+  border: 1px solid black;
+  border-radius: 5px;
+  background: #e9e9e9;
 }
 
 .box4 {
@@ -200,7 +231,7 @@ button {
   font-size: 20px;
   transition: 0.4s;
   line-height: 40px;
-  width: 150px;
+  width: 6rem;
 }
 
 .box4:hover {
