@@ -19,7 +19,7 @@ export default {
   flex-direction: column;
   width: 100%;
   font-size: 20px;
-  background: rgb(110, 110, 250);
+  background: #6497b1;
   height: 50%;
   padding: 20px;
   font-size: 25px;

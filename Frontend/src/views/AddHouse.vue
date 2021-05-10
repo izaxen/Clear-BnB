@@ -1,7 +1,9 @@
 <template>
+<div class="house-view">
+  <div class="house-view2">
+  <div class="sidebar"><SideBar /></div>
 <div class=shell>
 <div class="addhouse">
-
   <div class="row1">
   <div class="objectform">
     <Calendar @dates="inAndOutDate" />
@@ -24,6 +26,8 @@
 
 <button @click="combineFormAndList">Add rental object</button>
 </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -31,13 +35,15 @@ import AddHouseAmenities from '../components/AddHouseAmenities.vue';
 import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
 import Calendar from '../components/Calendar.vue'
 import AddImageForm from '../components/AddImageForm.vue'
+import SideBar from '../components/Sidebar.vue'
 
 export default {
   components:{
     AddHouseAmenities,
     AddRentalObjectForm,
     Calendar,
-    AddImageForm
+    AddImageForm,
+    SideBar
   },
 
   data(){
@@ -90,6 +96,19 @@ LoadFormData(formData){
 </script>
 
 <style scoped>
+.house-view {
+  width: 100%;
+
+}
+
+.house-view2{
+  position: relative;
+}
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
 .shell{
   max-width: 65rem;
@@ -102,16 +121,12 @@ LoadFormData(formData){
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 
   "lhTop rhTop";
-  
   }
 
 .add-images{
   margin-top:15px;
   grid-area: rhTop;
-  
 }
-
-
 .objectform{
   width: 290px;
   margin-right: 60px;
@@ -120,7 +135,6 @@ LoadFormData(formData){
 }
 .amenties{
   grid-area: bottom;
-  
   width: 100%;
 }
 
@@ -134,8 +148,6 @@ LoadFormData(formData){
 
   .objectform{
     width: 100%;
-    
-    
   }
 
 }

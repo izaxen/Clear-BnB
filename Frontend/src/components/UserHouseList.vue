@@ -1,5 +1,6 @@
 <template>
   <div v-if="userLoggedIn !== null">
+    <h1>Your rentals!</h1>
     <UserHouse 
     v-for="house of userHouses"
     :key="house.id"
@@ -37,6 +38,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+h1 {
+  text-align: center;
+  font-size: 40px;
+}
+
 
 </style>

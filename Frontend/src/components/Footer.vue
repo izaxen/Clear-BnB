@@ -4,7 +4,7 @@
 
 <style scoped>
 footer {
-  background-image: linear-gradient(#c8e4fd, #59deff);
+  background: #6497b1;
   padding: 20px;
   box-shadow: 0 0 5px 2px;
   color: black;

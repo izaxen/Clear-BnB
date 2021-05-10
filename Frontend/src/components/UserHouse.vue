@@ -1,26 +1,23 @@
 <template>
 <div class="view">
   <div class="receipt-card">
-    <div class="header">
-      <div class="left-header"><h1></h1></div>
-      <div class="right-header">
-        <p>Date: 2022-01-01</p>
-        <p>People: 4</p>
-        <p>Price: 2400$</p>
-        </div>
-    </div>
     <div class="col-1">
       <div class="img">
         <img src="https://thumbs.dreamstime.com/b/nice-brick-house-red-door-11568682.jpg" alt="">
       </div>
     </div>
     <div class="col-2">
-      <h2>Hela Lägenheten</h2>
-      <p>lorem lorem lorem lorem lorem</p>
+      <h2>{{house.city}}</h2>
+      <p>{{house.description}}</p>
 
       <h4>Booking id: {{house.id}}</h4>
     </div>
     <div class="col-3">
+      <div class="text">
+        <p>Available from: {{house.availableFrom}}</p>
+        <p>People: 4</p>
+        <p>Price: 2400$</p> 
+      </div>
       <button class="btn-link" @click="goToHouse">Go to house</button>
       <button class="btn-remove">Remove</button>
     </div>
@@ -36,7 +33,7 @@ export default {
 
   methods: {
     goToHouse(){
-      this.$router.push('/details/' + this.receipt.id)
+      this.$router.push('/details/' + this.house.id)
     }
   }
 
@@ -48,16 +45,20 @@ export default {
     width: 100%;
   }
 
+  .text {
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+
   button{
-    position: absolute;
-    justify-self: center;
     height: 40px;
-    width: 200px;
+    width: 80%;
     border: none;
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.287);
+    background: #6497b1;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 15px;
+    margin: 5px;
   }
 
   .btn-remove {
@@ -70,24 +71,8 @@ export default {
   }
 
   button:hover {
-    background: rgba(124, 124, 124, 0.287);
+    background: #c4eafd;
     cursor: pointer;
-  }
-
-  .right-header{
-    align-self: center;
-    font-size: 20px;
-    font-weight: 700;
-    grid-area: head2;
-  
-  }
-
-  .right-header p {
-    margin: 0;
-  }
-
-  .left-header{
-   grid-area: head1;
   }
   .view {
     display: grid;
@@ -97,13 +82,11 @@ export default {
   .receipt-card {
     display: grid;
     grid-template-columns: 25% 55% 20%;
-    grid-template-rows: 20% 80%;
     grid-template-areas:
-    "header header header"
     "box1 box2 box3";
     border: 2px solid black;
     border-radius: 10px;
-    height: 400px;
+    height: 240px;
     width: 80%;
     justify-self: center;
     margin: 30px 0;
@@ -121,7 +104,6 @@ export default {
 
   .col-1 {
     display: grid;
-    align-content: center;
     justify-items: center;
     grid-area: box1;
     width: 100%;
@@ -129,20 +111,24 @@ export default {
 
   .col-2 {
     grid-area: box2;
-    padding: 30px;
+    padding: 5px;
   }
 
   .col-3 {
     position: relative;
-    display: grid;
-    justify-items: center;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     grid-area: box3;
+  }
+
+  .col-3 p {
+    margin: 5px;
   }
 
   img {
     width: 80%;
     min-height: 200px;
-    margin-left: 25px;
+    margin-left: 15px;
+    margin-top: 15px;
   }
 </style>

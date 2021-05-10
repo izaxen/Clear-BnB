@@ -1,5 +1,6 @@
 <template>
   <div v-if="userLoggedIn !== null">
+    <h1>Your bookings!</h1>
     <Receipt 
     v-for="receipt of userReceipts"
     :key="receipt.id"
@@ -42,6 +43,12 @@ export default {
 </script>
 
 <style scoped>
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+}
+
 .wrapper {
   display: flex;
   justify-content: space-between;
