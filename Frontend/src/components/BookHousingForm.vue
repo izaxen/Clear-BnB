@@ -1,14 +1,29 @@
 <template>
   <div class="container">
-    <Calendar :booking="true" @days-selected="recive" @dates="confirmDates" />
+    <Calendar
+      :rentalObject="object"
+      :booking="true"
+      @days-selected="recive"
+      @dates="confirmDates"
+    />
     <NumberOfGuests @num-guest="confirmGuest" :numOfDays="days" />
-    <button @click="book">Book</button>
+
+    <button @click="book" :disabled="totalPrice == 0 ? '' : disabled">
+      Book
+    </button>
+
+    <LoginModal
+      v-show="isModalVisible"
+      @close="closeModal"
+      @login="checkLogin"
+    />
   </div>
 </template>
 
 <script>
 import NumberOfGuests from './rentalPriceCalculator.vue'
 import Calendar from './Calendar.vue'
+import LoginModal from '../views/LoginModal.vue'
 
 export default {
   props: ['object'],
@@ -16,6 +31,7 @@ export default {
   components: {
     NumberOfGuests,
     Calendar,
+    LoginModal,
   },
 
   data() {
@@ -26,6 +42,7 @@ export default {
       numAdults: 0,
       numChildren: 0,
       totalPrice: 0,
+      isModalVisible: false,
     }
   },
 
@@ -45,7 +62,26 @@ export default {
       this.totalPrice = sum
     },
 
+    closeModal() {
+      this.isModalVisible = false
+    },
+
+    checkLogin() {
+      console.log('here')
+      console.log(this.$store.state.user == null)
+      console.log('here')
+      if (!this.$store.state.user) {
+        return
+      } else {
+        this.isModalVisible = false
+      }
+    },
+
     book() {
+      if (!this.$store.state.user) {
+        this.isModalVisible = true
+        return
+      }
       let receipt = {
         startDate: this.fromDate,
         endDate: this.toDate,
@@ -93,5 +129,10 @@ button {
   cursor: pointer;
 
   text-align: center;
+}
+
+button:disabled {
+  background-image: linear-gradient(147deg, #979a9c 1%, #889195 99%);
+  cursor: not-allowed;
 }
 </style>

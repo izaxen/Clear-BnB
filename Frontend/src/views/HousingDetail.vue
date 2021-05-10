@@ -98,8 +98,6 @@ export default {
 
     this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
   },
-
-  async mounted() {},
 }
 </script>
 
