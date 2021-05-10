@@ -1,20 +1,28 @@
 <template>
 <div class=shell>
 <div class="addhouse">
-  
+
+  <div class="row1">
   <div class="objectform">
     <Calendar @dates="inAndOutDate" />
     <AddRentalObjectForm @fetchObject="houseForm" />
   </div>
+
+<div class="add-images">
+
+<AddImageForm @formData="LoadFormData"/>
+</div></div>
+
+<div class="row2">
   <div class="amenities">
 <AddHouseAmenities @amenitieslist ="amenitiesList" />
-  </div>
+  </div></div>
   
 </div>
 
-<AddImageForm @formData="LoadFormData"/>
 
-<button @click="combineFormAndList">Add house</button>
+
+<button @click="combineFormAndList">Add rental object</button>
 </div>
 </template>
 
@@ -82,21 +90,38 @@ LoadFormData(formData){
 </script>
 
 <style scoped>
-.addhouse{
-  display:flex;
+
+.shell{
+  max-width: 65rem;
+  margin: auto;
+  padding: 1px;
+}
+
+.row1{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+  "lhTop rhTop";
   
-  
-  
-  
+  }
+
+.add-images{
+  margin-top:15px;
+  grid-area: rhTop;
   
 }
+
+
 .objectform{
   width: 290px;
   margin-right: 60px;
   margin-top:15px;
+  grid-area: lhTop;
 }
 .amenties{
-  flex-shrink: 2;
+  grid-area: bottom;
+  
+  width: 100%;
 }
 
 @media only screen and (max-width: 575px){

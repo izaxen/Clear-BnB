@@ -64,7 +64,7 @@ nav {
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas: 'Home Search Login';
   padding: 10px;
-  background-image: linear-gradient(#c8e4fd, #59deff);
+  background: #6497b1;
   color: black;
 
   box-shadow: 0 0 5px 2px;

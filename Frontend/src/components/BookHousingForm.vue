@@ -1,14 +1,29 @@
 <template>
   <div class="container">
-    <Calendar @days-selected="recive" @dates="confirmDates" />
+    <Calendar
+      :rentalObject="object"
+      :booking="true"
+      @days-selected="recive"
+      @dates="confirmDates"
+    />
     <NumberOfGuests @num-guest="confirmGuest" :numOfDays="days" />
-    <button @click="book">Book</button>
+
+    <button @click="book" :disabled="totalPrice == 0 ? '' : disabled">
+      Book
+    </button>
+
+    <LoginModal
+      v-show="isModalVisible"
+      @close="closeModal"
+      @login="checkLogin"
+    />
   </div>
 </template>
 
 <script>
 import NumberOfGuests from './rentalPriceCalculator.vue'
 import Calendar from './Calendar.vue'
+import LoginModal from '../views/LoginModal.vue'
 
 export default {
   props: ['object'],
@@ -16,6 +31,7 @@ export default {
   components: {
     NumberOfGuests,
     Calendar,
+    LoginModal,
   },
 
   data() {
@@ -26,6 +42,7 @@ export default {
       numAdults: 0,
       numChildren: 0,
       totalPrice: 0,
+      isModalVisible: false,
     }
   },
 
@@ -45,7 +62,26 @@ export default {
       this.totalPrice = sum
     },
 
+    closeModal() {
+      this.isModalVisible = false
+    },
+
+    checkLogin() {
+      console.log('here')
+      console.log(this.$store.state.user == null)
+      console.log('here')
+      if (!this.$store.state.user) {
+        return
+      } else {
+        this.isModalVisible = false
+      }
+    },
+
     book() {
+      if (!this.$store.state.user) {
+        this.isModalVisible = true
+        return
+      }
       let receipt = {
         startDate: this.fromDate,
         endDate: this.toDate,
@@ -65,12 +101,38 @@ export default {
 <style scoped>
 .container {
   padding: 10px;
-  width: 140rem;
+  min-width: 20rem;
   border: 0.1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 290px;
   border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 340px) {
+  .container {
+    min-width: 12rem;
+  }
+}
+
+button {
+  background-image: linear-gradient(147deg, #b3cde0 1%, #6497b1 99%);
+  width: 50%;
+  max-width: 300px;
+  color: white;
+  border: none;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  cursor: pointer;
+
+  text-align: center;
+}
+
+button:disabled {
+  background-image: linear-gradient(147deg, #979a9c 1%, #889195 99%);
+  cursor: not-allowed;
 }
 </style>
