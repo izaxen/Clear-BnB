@@ -36,9 +36,10 @@
       <ul>
         <li>{{ rentalObject.availableBeds }} Beds</li>
         <li>{{ rentalObject.price }} kr /night</li>
+        <li>{{ rentalObject.address }}</li>
       </ul>
       <div class="avatar">
-        {{ user.name }}
+        {{ user.firstName }}{{ user.lastName }}
         <img src="https://www.shankarainfra.com/img/avatar.png" alt="" />
       </div>
     </div>
