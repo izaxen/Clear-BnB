@@ -2,7 +2,7 @@
 <div class="center">
 <div class="modal-frame" v-if="$store.state.user" v-show="$store.state.isConfirmation">
   <slot name = "header">Oops, something went wrong!</slot>
-  <slot name = "user">Name: {{$store.state.user.firstName}} {{$store.state.user.lastName}}</slot>
+  <slot name = "user"><h4>Name: </h4>{{$store.state.user.firstName}} {{$store.state.user.lastName}}</slot>
 
   <div class="dates">
   <div class="start-date"><slot name = "start-date-text"></slot>
@@ -18,9 +18,9 @@
   <slot name = "price"></slot>
 
   <div class="rental-info" v-if="rentalObject != undefined">
-  <slot name= "address" >Adress: {{rentalObject.address}}</slot>
-  <slot name = "city">City: {{rentalObject.city}}</slot>
-  <slot name = "zip">Zip-code: {{rentalObject.zipCode}}</slot>
+  <slot name= "address" ><h4>Adress:</h4><p> {{rentalObject.address}}<p></slot>
+  <slot name = "city"><h4>City:</h4><p> {{rentalObject.city}}</p></slot>
+  <slot name = "zip"><h4>Zip-code:</h4><p> {{rentalObject.zipCode}}</p></slot>
   </div>
 
   
@@ -94,14 +94,12 @@ export default {
 
 
 .modal-frame{
-  display: flex;
-  flex-direction: column;
   border: 3px solid black;
   width: 60%;
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 30%;
+  top: 0;
   background-color: whitesmoke;
   }
 
@@ -113,15 +111,16 @@ export default {
 }
 
 div{
-  display: flex;
-  flex-direction: column;
+  margin: 10px;
 }
 
 .rental-info{
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
+
+
 
 </style>
