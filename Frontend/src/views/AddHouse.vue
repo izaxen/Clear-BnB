@@ -25,6 +25,7 @@
 <label @click="combineFormAndList">Add rental object</label>
 </div>
 </div>
+
 </template>
 
 <script>
@@ -32,6 +33,7 @@ import AddHouseAmenities from '../components/AddHouseAmenities.vue';
 import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
 import Calendar from '../components/Calendar.vue'
 import AddImageForm from '../components/AddImageForm.vue'
+
 
 export default {
   components:{

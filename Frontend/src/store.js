@@ -9,6 +9,7 @@ export default createStore({
     user: null,
     failedLogIn: false,
     searchObject: null,
+    isConfirmation: false,
     uploadedImages: []
   },
 
@@ -34,7 +35,7 @@ export default createStore({
       state.user = user
       state.failedLogIn = false
     },
-    setFailedLogin(state, value){
+    setFailedLogin(state, value) {
       state.failedLogIn = value
     },
     setRentalObjects(state, rentalObjects) {
@@ -47,6 +48,9 @@ export default createStore({
       state.rentalObjects = state.rentalObjects.filter(
         (r) => r.id != rentalObjects.id
       )
+    },
+    setIsConfirmation(state, isConfirmation) {
+      state.isConfirmation = isConfirmation
     },
     addUploadedImages(state, images) {
       for (let image of images) {
@@ -123,7 +127,7 @@ export default createStore({
     async fetchRentalObjects(store) {
       let res = await fetch('/rest/rental-objects')
       let rentalObjects = await res.json()
-      
+
       store.commit('setRentalObjects', rentalObjects)
     },
 
@@ -178,7 +182,7 @@ export default createStore({
       // remove user from state
       store.commit('setUser', null)
     },
-    
+
     async uploadFiles(store, object) {
       let savePath = '/api/uploads/' + object.rentalId
       await fetch(savePath, {
@@ -188,5 +192,5 @@ export default createStore({
 
     }
   },
-  
+
 })

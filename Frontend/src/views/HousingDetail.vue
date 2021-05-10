@@ -52,7 +52,7 @@
         <DisplayHotAmenity :amenities="amenities" />
         {{ rentalObject.description }}
       </div>
-      <BookHousingForm :object="rentalObject" />
+      <BookHousingForm :object="rentalObject" @receipt="saveTempReceipt" />
     </div>
 
     <hr class="separator" />
@@ -66,27 +66,39 @@
         />
       </div>
     </div>
+   
   </div>
+    <BookingConfirmation :receipt="tempReceipt"/>
 </template>
 
 <script>
 import DisplayHotAmenity from '../components/DisplayHotAmenity.vue'
 import BookHousingForm from '../components/BookHousingForm.vue'
 import AmenityLoggo from '../components/AmenityLoggo.vue'
+import BookingConfirmation from './BookingConfirmation.vue'
+
 
 export default {
   components: {
     BookHousingForm,
     AmenityLoggo,
+    BookingConfirmation,
     DisplayHotAmenity,
   },
 
   data() {
     return {
-      rentalObject: '',
-      bookingReceipts: '',
-      amenities: '',
+      rentalObject: {},
+      bookingReceipts: {},
+      amenities: {},
+      tempReceipt: {},
       user: '',
+    }
+  },
+
+    methods: {
+    saveTempReceipt(receipt){
+      this.tempReceipt = receipt
     }
   },
 
