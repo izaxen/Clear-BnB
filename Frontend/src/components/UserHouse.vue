@@ -2,7 +2,7 @@
 <div class="view">
   <div class="receipt-card">
     <div class="header">
-      <div class="left-header"><h1>Booking Details</h1></div>
+      <div class="left-header"><h1></h1></div>
       <div class="right-header">
         <p>Date: 2022-01-01</p>
         <p>People: 4</p>
@@ -18,7 +18,7 @@
       <h2>Hela Lägenheten</h2>
       <p>lorem lorem lorem lorem lorem</p>
 
-      <h4>Booking id: {{receipt.id}}</h4>
+      <h4>Booking id: {{house.id}}</h4>
     </div>
     <div class="col-3">
       <button class="btn-link" @click="goToHouse">Go to house</button>
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  props:["receipt"],
+  props:["house"],
 
   methods: {
     goToHouse(){
@@ -106,7 +106,7 @@ export default {
     height: 400px;
     width: 80%;
     justify-self: center;
-    margin-top: 30px;
+    margin: 30px 0;
     color: black;
   }
 

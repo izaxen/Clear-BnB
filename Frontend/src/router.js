@@ -9,6 +9,7 @@ import AddHouse from './views/AddHouse.vue'
 import TestPage from './views/TestPage.vue'
 import MyPage from './views/MyPage.vue'
 import MyBookings from './views/MyBookings.vue'
+import MyHouses from './views/MyHouses.vue'
 
 // create routes with views
 export default createRouter({
@@ -42,6 +43,10 @@ export default createRouter({
     {
       path: '/my-page/my-bookings',
       component: MyBookings,
+    },
+    {
+      path: '/my-page/my-houses',
+      component: MyHouses,
     },
   ],
 })

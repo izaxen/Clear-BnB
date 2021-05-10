@@ -1,12 +1,7 @@
 <template>
   <div class="mypage-container">
-      <div class="side-bar">
-          <nav>
-              <router-link to="/my-page/add-house">Add housing</router-link>
-              <router-link to="/my-page/my-bookings">My Bookings</router-link>
-              <router-link to="/my-page/my-houses">My houses</router-link>
-          </nav>
-        </div>
+      <div class="sidebar"><SideBar /></div>
+
       <div class="info">
           <div class="user-box">
               <h1>My Info</h1>
@@ -24,7 +19,9 @@
 </template>
 
 <script>
+import SideBar from '../components/Sidebar.vue'
 export default {
+    components: {SideBar},
     data(){
         return {
             user: null
@@ -43,61 +40,42 @@ export default {
 
 .mypage-container {
     display: grid;
-    grid-template-columns: 15% 85%;
-    height: 100%;
+    position: relative;
     align-content: center;
 }
 
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .user-info{
     display: flex;
     flex-direction: column;
-    font-size: 25px;
-    margin-top: 80px;
-    border: 2px solid black;
-    height: 600px;
+    font-size: 20px;
+    margin-top: 30px;
+    height: 100%;
     text-align: start;
     align-content: center;
-    padding-left: 50px;
+    padding: 30px;
 
 }
 
 .info {
-    background: rgb(146, 243, 146);
+    background: rgb(255, 255, 255);
     border: 2px solid black;
-    height: 1000px;
+    height: 100%;
     color: black;
     text-align: center;
-    margin-top: 50px;
-    width: 40%;
+    margin-top: 30px;
+    width: 50%;
     justify-self: center;
     padding: 40px;
+    border-radius: 10px;
 }
 
-.side-bar {
-    margin-top: 20px;
-    height: 300px;
-    text-align: center;
+.user-box {
+    height: 60%;
 }
-
-nav {
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-    margin-left: 30px;
-    font-size: 28px;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-    font-weight: 900;
-    margin-top: 10px;
-}
-
-a:hover {
-    color: rgb(29, 28, 28);
-    transform: scale(1.05);
-}
-
 
 </style>

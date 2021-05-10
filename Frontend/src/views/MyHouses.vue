@@ -1,25 +1,23 @@
 <template>
-  <div class="Bookings-page">
-    <div class="sidebar">
-      <SideBar />
-    </div>
-    <div class="list"><ReceiptList /></div>
-  </div>
+<div class="main">
+  <div class="sidebar"><SideBar /></div>
+  <div class="list"><UserHouseList /></div>
+</div>
 </template>
 
 <script>
+import UserHouseList from '../components/UserHouseList.vue'
 import SideBar from '../components/Sidebar.vue'
-import ReceiptList from '../components/ReceiptList.vue'
 export default {
   components: {
-    ReceiptList, SideBar
-  }
+    SideBar, UserHouseList
+  },
 }
 </script>
 
 <style scoped>
-
-.Bookings-page {
+  
+.main {
   display: grid;
   position: relative;
 }
@@ -34,6 +32,4 @@ export default {
   justify-self: center;
   width: 70%;
 }
-
-
 </style>
