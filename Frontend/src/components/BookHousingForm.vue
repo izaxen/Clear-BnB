@@ -50,8 +50,6 @@ export default {
     },
 
     book() {
-      console.log(this.receipt)
-
       this.$store.dispatch('postReceipt', this.receipt)
       this.$store.commit('setIsConfirmation', true)
       this.$emit('receipt', this.receipt)
