@@ -7,7 +7,8 @@
     </router-link>
     <div class="wrapper">
       <div class="hero">
-        <p>{{ object.city }}</p>
+        <h3>{{ object.city }}</h3>
+        <h5>{{ object.address }}</h5>
         <span>From {{ from }}, to {{ to }}</span>
         <div class="small-text">Price: {{ object.price }}</div>
 
@@ -18,6 +19,8 @@
     <div class="wrapper">
       <img class="icon" :src="wifiUrl" />
       <img class="icon" :src="petsUrl" />
+      <img class="icon" :src="poolUrl" />
+      <img class="icon" :src="airUrl" />
     </div>
   </div>
   <hr class="separator" />
@@ -35,6 +38,8 @@ export default {
       to: toDate,
       wifiUrl: '',
       petsUrl: '',
+      poolUrl: '',
+      airUrl: '',
       link: '/details/' + this.object.id,
     }
   },
@@ -47,12 +52,27 @@ export default {
     this.petsUrl = this.object.amenities.petsAllowed
       ? 'https://image.flaticon.com/icons/png/512/2262/2262533.png'
       : 'https://image.flaticon.com/icons/png/512/34/34704.png'
-      }
+    this.poolUrl = this.object.amenities.pool
+      ? 'https://cdn1.iconfinder.com/data/icons/real-estate-94/200/810-512.png'
+      : 'https://thumbs.dreamstime.com/z/no-pool-icon-simple-thin-line-outline-vector-hotel-service-ban-prohibition-forbiddance-icons-ui-ux-website-mobile-172950965.jpg'
+    this.airUrl = this.object.amenities.airCondition
+      ? 'https://image.flaticon.com/icons/png/512/114/114735.png'
+      : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-air-conditioner-2184221-1828706.png'
+    }
   },
 }
 </script>
 
 <style scoped>
+h3,
+h5 {
+  margin: 0;
+  padding: 0;
+}
+
+h5 {
+  margin-bottom: 0.3rem;
+}
 .small-text {
   font-size: 0.9rem;
 }

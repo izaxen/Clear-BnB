@@ -3,7 +3,9 @@
     <div class="home-btns">
       <router-link to="/">Home</router-link>
       <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
-      <router-link to="/my-page/add-house" v-if="loggedIn !== null ">Add housing</router-link>
+      <router-link to="/my-page/add-house" v-if="loggedIn !== null"
+        >Add housing</router-link
+      >
       <router-link to="/test-page">Test Page</router-link>
       <router-link to="/overview">Overview</router-link>
       <router-link to="/confirm-booking">Booking Confirmation</router-link>
@@ -65,7 +67,7 @@ nav {
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas: 'Home Search Login';
   padding: 10px;
-  background-image: linear-gradient(#c8e4fd, #59deff);
+  background: #6497b1;
   color: black;
 
   box-shadow: 0 0 5px 2px;

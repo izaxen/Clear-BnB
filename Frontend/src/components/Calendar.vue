@@ -39,7 +39,10 @@
                 </svg>
                 <input
                   class="chosen-date-box text-gray-900"
-                  :class="isDragging ? 'text-gray-600' : 'text-gray-900'"
+                  :class="[
+                    isDragging ? 'text-gray-600' : 'text-gray-900',
+                    booking ? 'booking' : '',
+                  ]"
                   :value="inputValue.start"
                   v-on="inputEvents.start"
                 />
@@ -70,7 +73,10 @@
                 </svg>
                 <input
                   class="chosen-date-box co"
-                  :class="isDragging ? 'text-gray-600' : 'text-gray-900'"
+                  :class="[
+                    isDragging ? 'text-gray-600' : 'text-gray-900',
+                    booking ? 'booking' : '',
+                  ]"
                   :value="inputValue.end"
                   v-on="inputEvents.end"
                 />
@@ -91,7 +97,7 @@ export default {
     Calendar,
     DatePicker,
   },
-  props: ['rentalObject', 'textOne', 'searchBar'],
+  props: ['rentalObject', 'textOne', 'searchBar', 'booking'],
 
   data() {
     return {
@@ -207,6 +213,11 @@ export default {
   align-items: flex-end;
   justify-content: center;
   width: fit-content;
+}
+
+.booking {
+  background-color: #b3cde0 !important;
+  height: 2rem;
 }
 .box-bg {
   align-items: flex-end;

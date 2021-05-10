@@ -54,11 +54,15 @@ export default createStore({
     },
     addUploadedImages(state, images) {
       for (let image of images) {
-        state.uploadedImages.push(image)
+        if (state.uploadedImages.length < 5) {
+          state.uploadedImages.push(image)
+        }
       }
+      
     },
     removeUploadedImages(state) {
       state.uploadedImages = []
+      
     }
   },
 
