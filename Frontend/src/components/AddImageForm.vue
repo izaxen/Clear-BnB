@@ -5,8 +5,8 @@
     </div>
     
     <div v-show="$store.state.uploadedImages.length < 4">
-      <div class="image-upload">
-      <label for="file-input">Browse files</label>
+      <div class="upload-button">
+      <label for="file-input" id="upload-button">Browse files</label>
       <input @change="addPictures" id="file-input" type="file" name="files" multiple>
       
     </div>
@@ -54,6 +54,8 @@ deleteImages(){
 
 <style scoped>
 
+
+
   .rendered-images{
     display: flex;
     flex-wrap: wrap;
@@ -61,42 +63,37 @@ deleteImages(){
     align-items: flex-start;
   }
   
-  .delete-button{
-    margin: 10px;
-    
-  }
-
-.image{
-
-}
 img{
 width: 150px;
 max-height: 120px;
 margin: 15px;
-
-
 }
 
-.image-upload{
-  margin: 20px;
+.upload-button{
+  margin: 15px;
+}
+
+.upload-button>input{
+  display: none;
+}
+
+.delete-button{
+  margin-left: 15px;
 }
 
 #file-input{
   float: left;
 }
 
-.image-upload>input{
-  display: none;
-}
+
 
 label{
-  margin-left: 25px;
+  
   padding:3px;
   border:1px solid black;
   border-radius: 10px;
   font-size: 80%;
   background-color: rgb(233, 233, 233);
-  
   
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div>
-<h2>Accessable amenities</h2>
+<h3>Accessable amenities</h3>
 <form class="addhouse" @submit.prevent>
   
 <div class="box-amenities">
@@ -91,7 +91,7 @@ selectedAmenities: function(){
 
 <style scoped>
 
-h2{
+h3{
   display: flex;
   justify-content: center;
 }
@@ -111,10 +111,14 @@ h2{
   width: 200px;
   margin-bottom: 15px;
   margin-left: 15px;
+  background-color: rgba(240, 240, 240, 0.548);
   }
 
-.amenities:nth-child1(3n+1){
-clear: both;
+@media only screen and (max-width: 575px){
+  h3{
+    margin: 15px;
+    justify-content: flex-start;
+  }
 }
 
 </style>

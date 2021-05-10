@@ -22,7 +22,7 @@
 </div>
 
 <div class="row3">
-<button @click="combineFormAndList">Add rental object</button>
+<label @click="combineFormAndList">Add rental object</label>
 </div>
 </div>
 </template>
@@ -120,32 +120,57 @@ LoadFormData(formData){
   }
   .row2{
     grid-area: mid;
+    display: flex;
+    justify-content: center;
   }
 
   .row3{
     grid-area: bottom;
+    margin: 20px;
+    background-color: rgba(240, 240, 240, 0.548);
+
+
   }
 
 .add-images{
   grid-area: rhTop;
-  
-}
-
+  background-color: rgba(240, 240, 240, 0.548);
+  }
 
 .objectform{
   width: 290px;
   margin-right: 60px;
   margin-top:15px;
   grid-area: lhTop;
+  background-color: rgba(240, 240, 240, 0.548);
 }
 .amenties{
   grid-area: bottom;
   width: 100%;
+  background-color: rgba(240, 240, 240, 0.548);
 }
 
 h3{
-  margin-left:25px;
+  display: flex;
+  justify-content: flex-start;
+  margin:15px;
 }
+
+label{
+  padding: 3px;
+  border:1px solid black;
+  border-radius: 10px;
+  font-size: 90%;
+  background-color: rgb(233, 233, 233);
+ }
+
+ h1{
+   margin: 10px;
+   display: flex;
+   
+ }
+
+
 
 @media only screen and (max-width: 575px){
   .addhouse{
@@ -157,8 +182,15 @@ h3{
 
   .objectform{
     width: 100%;
-    
-    
+  }
+
+  .row1{
+  grid-area: top;
+  display:grid;
+  grid-template-rows: auto auto;
+  grid-template-areas: 
+  "lhTop"
+  "rhTop";
   }
 
 }
