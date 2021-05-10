@@ -97,7 +97,7 @@ export default {
   align-items: center;
   border: 1px solid black;
   border-radius: 5px;
-  background: #42b883;
+  background: #b3cde0;
 }
 .close {
   display: flex;
@@ -129,7 +129,7 @@ button {
   width: 30px;
   height: 20px;
   border-radius: 6px;
-  border: 1px solid #249763;
+  border: 1px solid #005b96;
 }
 
 button:hoover {
@@ -166,7 +166,7 @@ button:hoover {
   display: flex;
   flex-direction: column;
   width: 20rem;
-  background: #42b883;
+  background: #b3cde0;
 
   border-radius: 0 0 4px 4px;
 }

@@ -82,7 +82,7 @@ export default {
 }
 
 button {
-  background-image: linear-gradient(147deg, #42b883 0%, #15975c 84%);
+  background-image: linear-gradient(147deg, #b3cde0 1%, #6497b1 99%);
   width: 50%;
   max-width: 300px;
   color: white;

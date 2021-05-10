@@ -216,7 +216,7 @@ export default {
 }
 
 .booking {
-  background-color: #42b883 !important;
+  background-color: #b3cde0 !important;
   height: 2rem;
 }
 .box-bg {

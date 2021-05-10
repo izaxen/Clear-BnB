@@ -163,7 +163,7 @@ li {
 }
 
 .hero-text {
-  padding: 1rem;
+  padding: 0 1rem;
 }
 .hero-picture {
   height: 50vh;

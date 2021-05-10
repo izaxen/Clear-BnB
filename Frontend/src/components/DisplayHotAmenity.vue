@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="container">
     <div class="card">
       <img class="icon" :src="wifiUrl" />
       <h2>{{ amenities.wifi ? 'Got wifi' : 'No wifi' }}</h2>
@@ -31,11 +31,12 @@ export default {
       petsUrl: '',
       poolUrl: '',
       airUrl: '',
+      amenities: this.amenities,
     }
   },
 
-  created() {
-    console.log('here')
+  mounted() {
+    console.log(this.amenities)
     this.wifiUrl = this.amenities.wifi
       ? 'https://media.istockphoto.com/vectors/icon-in-flat-style-wireless-symbol-vector-id944860382'
       : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-wifi-1914404-1620362.png'
@@ -53,9 +54,7 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-  margin: 0;
-  margin-bottom: 2rem;
+.container {
 }
 .card {
   display: flex;
