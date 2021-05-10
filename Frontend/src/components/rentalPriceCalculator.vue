@@ -23,6 +23,10 @@
           <button @click="subtractChildren">-</button>
         </div>
       </div>
+      <div class="close">
+        <span>Close</span>
+        <button @click="isActive = !isActive">X</button>
+      </div>
     </div>
   </div>
 
@@ -72,6 +76,7 @@ export default {
         ? (this.childrenCount = 0)
         : (this.childrenCount--, this.totalCount--)
     },
+    close() {},
   },
 }
 </script>
@@ -82,7 +87,8 @@ export default {
   font-size: 0.9rem;
 }
 .link {
-  width: 100%;
+  margin: 0 0.5rem 0 0.5rem;
+
   display: block;
   height: 2rem;
   border-radius: 1px;
@@ -91,21 +97,39 @@ export default {
   align-items: center;
   border: 1px solid black;
   border-radius: 5px;
+  background: #b3cde0;
 }
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 1rem 0 1rem 1rem;
+}
+
 .link:hover {
   cursor: pointer;
   color: red;
 }
 
+.num-guest-text {
+  margin-left: 1rem;
+}
+
 .sum {
+  margin: 0 0.5rem;
   display: flex;
   justify-content: space-between;
 }
 
+.sum > div {
+  font-size: 1.4rem;
+}
+
 button {
-  width: 40px;
+  width: 30px;
   height: 20px;
-  border-radius: 5px;
+  border-radius: 6px;
+  border: 1px solid #005b96;
 }
 
 button:hoover {
@@ -114,10 +138,17 @@ button:hoover {
 
 .expandable {
   display: none;
+  opacity: 0;
+  transition: opacity 300ms;
 }
 
 .type {
   width: 14px;
+  font-size: 1.1rem;
+}
+
+div {
+  font-size: 1.1rem;
 }
 
 .guest-counter {
@@ -133,16 +164,22 @@ button:hoover {
 
 .active {
   padding: 10px 5px 10px 5px;
+  opacity: 1;
   justify-content: space-between;
   position: absolute;
-
   z-index: 100;
   display: flex;
   flex-direction: column;
-
-  width: 280px;
-  background: rgb(137, 136, 136);
-
+  width: 17.5rem;
+  background: #b3cde0;
+  margin-left: 0.5rem;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
   border-radius: 0 0 4px 4px;
+}
+
+.close button {
+  cursor: pointer;
 }
 </style>
