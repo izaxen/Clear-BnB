@@ -38,7 +38,7 @@
         <li>{{ rentalObject.price }} kr /night</li>
       </ul>
       <div class="avatar">
-        Seller
+        {{ user.name }}
         <img src="https://www.shankarainfra.com/img/avatar.png" alt="" />
       </div>
     </div>
@@ -85,6 +85,7 @@ export default {
       rentalObject: '',
       bookingReceipts: '',
       amenities: '',
+      user: '',
     }
   },
 
@@ -93,6 +94,8 @@ export default {
     let res = await fetch(`/rest/rental-objects/${id}`)
     this.rentalObject = await res.json()
     this.amenities = this.rentalObject.amenities
+
+    this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
   },
 
   async mounted() {},

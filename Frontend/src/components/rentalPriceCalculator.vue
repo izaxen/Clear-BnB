@@ -165,9 +165,16 @@ button:hoover {
   z-index: 100;
   display: flex;
   flex-direction: column;
-  width: 20rem;
+  width: 17.5rem;
   background: #b3cde0;
-
+  margin-left: 0.5rem;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
   border-radius: 0 0 4px 4px;
+}
+
+.close button {
+  cursor: pointer;
 }
 </style>
