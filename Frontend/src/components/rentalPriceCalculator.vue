@@ -144,6 +144,11 @@ button:hoover {
 
 .type {
   width: 14px;
+  font-size: 1.1rem;
+}
+
+div {
+  font-size: 1.1rem;
 }
 
 .guest-counter {
