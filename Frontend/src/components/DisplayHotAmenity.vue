@@ -55,6 +55,7 @@ export default {
 
 <style scoped>
 .container {
+  margin-bottom: 2rem;
 }
 .card {
   display: flex;

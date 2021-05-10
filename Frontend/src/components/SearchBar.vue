@@ -145,7 +145,7 @@ button {
 }
 
 p {
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .person-div {
