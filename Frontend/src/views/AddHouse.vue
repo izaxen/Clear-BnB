@@ -1,28 +1,29 @@
 <template>
 <div class=shell>
-<div class="addhouse">
-
-  <div class="row1">
-  <div class="objectform">
-    <Calendar @dates="inAndOutDate" />
-    <AddRentalObjectForm @fetchObject="houseForm" />
-  </div>
+  <h1>Add rental object</h1>
+  <div class="addhouse">
+    <div class="row1">
+      <div class="objectform">
+      <Calendar @dates="inAndOutDate" />
+      <AddRentalObjectForm @fetchObject="houseForm" />
+      </div>
 
 <div class="add-images">
-
+<h3>Add pictures</h3>
 <AddImageForm @formData="LoadFormData"/>
 </div></div>
 
 <div class="row2">
   <div class="amenities">
-<AddHouseAmenities @amenitieslist ="amenitiesList" />
-  </div></div>
+  <AddHouseAmenities @amenitieslist ="amenitiesList" />
+  </div>  
+  </div>
   
 </div>
 
-
-
+<div class="row3">
 <button @click="combineFormAndList">Add rental object</button>
+</div>
 </div>
 </template>
 
@@ -91,22 +92,41 @@ LoadFormData(formData){
 
 <style scoped>
 
+.addhouse{
+  display: grid;
+  grid-template-rows:auto auto auto;
+  grid-template-areas: 
+  "top"
+  "mid"
+  "bottom";
+
+
+}
+
 .shell{
   max-width: 65rem;
   margin: auto;
   padding: 1px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .row1{
+  grid-area: top;
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 
   "lhTop rhTop";
   
   }
+  .row2{
+    grid-area: mid;
+  }
+
+  .row3{
+    grid-area: bottom;
+  }
 
 .add-images{
-  margin-top:15px;
   grid-area: rhTop;
   
 }
@@ -120,8 +140,11 @@ LoadFormData(formData){
 }
 .amenties{
   grid-area: bottom;
-  
   width: 100%;
+}
+
+h3{
+  margin-left:25px;
 }
 
 @media only screen and (max-width: 575px){

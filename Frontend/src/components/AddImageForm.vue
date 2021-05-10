@@ -81,15 +81,22 @@ margin: 15px;
   margin: 20px;
 }
 
+#file-input{
+  float: left;
+}
+
 .image-upload>input{
   display: none;
 }
 
 label{
-  padding:5px;
+  margin-left: 25px;
+  padding:3px;
   border:1px solid black;
   border-radius: 10px;
-  margin-left: 5px;
+  font-size: 80%;
+  background-color: rgb(233, 233, 233);
+  
   
 }
 </style>
