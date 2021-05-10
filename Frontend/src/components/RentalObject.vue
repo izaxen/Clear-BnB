@@ -13,17 +13,18 @@
         <div class="small-text">Price: {{ object.price }}</div>
 
         <hr class="separator" />
+        <p>{{ object.freeText }}</p>
       </div>
-      <p>{{ object.freeText }}</p>
     </div>
-    <div class="wrapper">
-      <img class="icon" :src="wifiUrl" />
-      <img class="icon" :src="petsUrl" />
-      <img class="icon" :src="poolUrl" />
-      <img class="icon" :src="airUrl" />
+    <div class="icons-wrapper">
+      <div class="icons">
+        <img class="icon" :src="wifiUrl" />
+        <img class="icon" :src="petsUrl" />
+        <img class="icon" :src="poolUrl" />
+        <img class="icon" :src="airUrl" />
+      </div>
     </div>
   </div>
-  <hr class="separator" />
 </template>
 
 <script>
@@ -75,23 +76,33 @@ h5 {
   font-size: 0.9rem;
 }
 .rental-card {
-  margin-top: 5rem;
+  margin: 1rem 2rem 0;
+
   display: flex;
   flex-direction: row;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(0, 0, 0, 0.3);
+
+  border-radius: 10px;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  margin-right: 1rem;
 }
 img {
-  height: 90px;
-  width: 90px;
+  height: 100px;
+  width: 100px;
   margin-right: 1rem;
+  border-radius: 10px;
 }
 p {
   margin-top: 0;
+}
+.icons {
+  display: flex;
+  justify-content: space-around;
 }
 
 .separator {
@@ -106,5 +117,20 @@ p {
 .icon {
   height: 32px;
   width: 32px;
+}
+
+@media screen and (max-width: 840px) {
+  .rental-card > * {
+  }
+  .icons-wrapper {
+    width: 168px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .rental-card {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>
