@@ -22,7 +22,7 @@
 </div>
 
 <div class="row3">
-<label id="add-rental" @click="combineFormAndList; $refs.formClearFields.clearFields()">Add rental object</label>
+<label id="add-rental" @click="combineFormAndList(); $refs.formClearFields.clearFields()">Add rental object</label>
 </div>
 </div>
 
@@ -88,6 +88,8 @@ LoadFormData(formData){
     }
     
     this.$store.dispatch('uploadFiles', object )
+    console.log('körs innan push')
+    this.$router.push('/test-page')
   }
   }
 }

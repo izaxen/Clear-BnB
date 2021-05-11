@@ -75,8 +75,14 @@ export default {
     closeModal(){
       this.$store.commit('setIsConfirmation', false)
     },
-    setRentalObject(){
-      let rentalId = this.$route.params.id
+    setRentalObject(id){
+      let rentalId
+      if(!id){
+      rentalId = this.$route.params.id}
+      else{
+        rentalId = id
+      }
+
       this.rentalObject = this.$store.state.rentalObjects.find((r) => r.id == rentalId)
     },
     getDateAsString(date){
