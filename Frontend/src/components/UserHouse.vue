@@ -9,17 +9,16 @@
     <div class="col-2">
       <h2>{{house.city}}</h2>
       <p>{{house.description}}</p>
+      <p>Beds: {{house.availableBeds}}</p>
+      <p>Price/night: {{house.price}}$</p>
 
-      <h4>Booking id: {{house.id}}</h4>
+      <h4>House id: {{house.id}}</h4>
     </div>
     <div class="col-3">
       <div class="text">
-        <p>Available from: {{house.availableFrom}}</p>
-        <p>People: 4</p>
-        <p>Price: 2400$</p> 
       </div>
       <button class="btn-link" @click="goToHouse">Go to house</button>
-      <button class="btn-remove">Remove</button>
+      <button class="btn-remove">Edit</button>
     </div>
     
   </div>
@@ -91,6 +90,7 @@ export default {
     justify-self: center;
     margin: 30px 0;
     color: black;
+    box-shadow: 10px 10px 15px 10px rgb(75, 75, 75);
   }
 
   .header {

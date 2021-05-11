@@ -39,15 +39,14 @@ export default {
 <style scoped>
 
 .mypage-container {
-    display: grid;
-    position: relative;
-    align-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar {
-    position: absolute;
-    top: 0;
-    left: 0;
+  height: 10%;
+  min-top: 10%;
+  min-left: 1%;
 }
 .user-info{
     display: flex;
@@ -67,7 +66,7 @@ export default {
     height: 100%;
     color: black;
     text-align: center;
-    margin-top: 30px;
+    margin: 20px auto auto auto;
     width: 50%;
     justify-self: center;
     padding: 40px;

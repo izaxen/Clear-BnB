@@ -3,7 +3,6 @@
     <div class="home-btns">
       <router-link to="/">Home</router-link>
       <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
-      <router-link to="/test-page">Test Page</router-link>
       <router-link to="/overview">Overview</router-link>
     </div>
     <div class="Login-btn">

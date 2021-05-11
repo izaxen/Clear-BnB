@@ -1,5 +1,5 @@
 <template>
-<div class="main">
+<div class="main1">
   <div class="sidebar"><SideBar /></div>
   <div class="list"><UserHouseList /></div>
 </div>
@@ -17,19 +17,21 @@ export default {
 
 <style scoped>
   
-.main {
-  display: grid;
-  position: relative;
+.main1 {
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar {
-  position: absolute;
-  top: 0;
-  left: 0;
+  height: 10%;
+  min-top: 10%;
+  min-left: 1%;
 }
 
 .list {
   justify-self: center;
   width: 70%;
+  margin: auto;
 }
+
 </style>

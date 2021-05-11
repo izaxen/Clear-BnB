@@ -19,7 +19,7 @@
         <p>Price: 2400$</p> 
       </div>
       <button class="btn-link" @click="goToHouse">Go to house</button>
-      <button class="btn-remove">Remove</button>
+      <button class="btn-remove" @click="deleteReceipt">Remove</button>
     </div>
     
   </div>
@@ -34,6 +34,9 @@ export default {
   methods: {
     goToHouse(){
       this.$router.push('/details/' + this.receipt.id)
+    },
+    deleteReceipt(){
+      this.$store.dispatch('deleteReceipt', this.receipt);
     }
   }
 
@@ -91,6 +94,7 @@ export default {
     justify-self: center;
     margin: 30px 0;
     color: black;
+    box-shadow: 10px 10px 15px 10px rgb(75, 75, 75);
   }
 
   .col-1 {

@@ -25,19 +25,22 @@ export default {
   },
 
   async created() { 
-    await this.$store.dispatch('fetchReceipts')
-    this.receipts = await this.$store.state.receipts
-    
-    this.userReceipts = this.receipts.filter((receipt) => receipt.userId === this.user.id )
+    this.getReceipts();
   },
 
   computed: {
     userLoggedIn(){
       this.user = this.$store.state.user
-    }
+    },
   },
 
   methods: {
+    async getReceipts(){
+      await this.$store.dispatch('fetchReceipts')
+      this.receipts = await this.$store.state.receipts
+      
+      this.userReceipts = this.receipts.filter((receipt) => receipt.userId === this.user.id )
+    }
   } 
 }
 </script>

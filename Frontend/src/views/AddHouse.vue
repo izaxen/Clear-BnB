@@ -98,16 +98,17 @@ LoadFormData(formData){
 <style scoped>
 .house-view {
   width: 100%;
-
 }
 
 .house-view2{
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
+
 .sidebar {
-  position: absolute;
-  top: 0;
-  left: 0;
+  height: 10%;
+  min-top: 10%;
+  min-left: 1%;
 }
 
 .shell{

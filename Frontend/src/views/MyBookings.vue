@@ -3,7 +3,8 @@
     <div class="sidebar">
       <SideBar />
     </div>
-    <div class="list"><ReceiptList /></div>
+    <div class="list">
+      <ReceiptList /></div>
   </div>
 </template>
 
@@ -20,20 +21,22 @@ export default {
 <style scoped>
 
 .Bookings-page {
-  display: grid;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar {
-  position: absolute;
-  top: 0;
-  left: 0;
+  height: 10%;
+  min-top: 10%;
+  min-left: 1%;
 }
 
 .list {
   justify-self: center;
   width: 70%;
+  margin: auto;
 }
+
 
 
 </style>
