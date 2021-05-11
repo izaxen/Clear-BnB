@@ -88,8 +88,7 @@ LoadFormData(formData){
     this.rentalObjects = Object.assign({},this.rentalObjects, completeAmanities, availableTo,availableFrom, userId)
     let rentalId = await this.$store.dispatch('postRentalObject', this.rentalObjects)
     this.$store.commit('setRentalObject', this.rentalObjects)
-    console.log('store rentalObject:', this.$store.state.rentalObject)
-    console.log('rentalObjects', this.rentalObjects)
+    
     
     let object = {
       formData: this.formData,
@@ -97,8 +96,6 @@ LoadFormData(formData){
     }
     
     this.$store.dispatch('uploadFiles', object )
-    console.log('körs innan push')
-    //this.$router.push('/test-page')
     this.$store.commit('setIsConfirmation', true)
   }
   }

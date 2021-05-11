@@ -138,7 +138,6 @@ export default {
       return arr
     },
     findAllDisabledDates(receiptArray) {
-      console.log('kvitto: ', receiptArray)
       let disabled = []
       for (let i = 0; i < receiptArray.length; i++) {
         for (
@@ -167,7 +166,6 @@ export default {
   },
   created() {
     this.rentalObject = this.$store.state.rentalObject
-    console.log(this.rentalObject)
     if (this.rentalObject != undefined) {
       this.range.start =
         this.rentalObject.availableFrom.valueOf() > new Date().valueOf()
