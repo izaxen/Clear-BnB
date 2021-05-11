@@ -143,17 +143,18 @@ export default {
       for (let i = 0; i < this.receipts.length; i++) {
         for (
           let dt = new Date(this.receipts[i].startDate);
-          dt <= this.addDays(new Date(this.receipts[i].endDate), -1);
+          dt <= this.addDays(new Date(this.receipts[i].endDate), -1); //-1 to avoid disabling the check-out date
           dt.setDate(dt.getDate() + 1)
         ) {
           disabled.push(new Date(dt))
         }
         this.disabledDates = disabled
       }
+      this.findFirstAvailable()
     },
     async filterReceipts() {
 
-      this.receipts = this.$store.state.receipts.filter(
+      this.receipts = await this.$store.state.receipts.filter(
         (rec) => this.rentalObject.id == rec.rentalObjectId
       )
 
@@ -164,6 +165,30 @@ export default {
       secondDate.setDate(secondDate.getDate() + daysToAdd)
       return secondDate
     },
+    findFirstAvailable(){
+      let startDate = new Date(this.range.start)
+      console.log('startDate', startDate)
+      let endDate = this.addDays(startDate, 1)
+      console.log('endDate', endDate)
+      console.log('disabled', this.disabledDates[1])
+      console.log('disabled length', this.disabledDates.length)
+        for(let j=0; j<this.disabledDates.length;j++){
+          if(startDate.getDate() === this.disabledDates[j].getDate() && startDate.getMonth() === this.disabledDates[j].getMonth()  || endDate.getDate() === this.disabledDates[j].getDate() && endDate.getMonth() === this.disabledDates[j].getMonth()){
+             console.log('disabled j', this.disabledDates[j])
+             startDate = this.addDays(this.disabledDates[j], 1)
+             console.log('startDate after add', startDate)
+             endDate = this.addDays(this.disabledDates[j], 2)
+             console.log('endDate after', endDate)
+             j=0
+            }
+        }
+        this.range.start = startDate
+        this.range.end = endDate
+
+    },
+    checkDateEquality(firstDate, secondDate){
+      return firstDate.valueOf() == secondDate.valueOf()
+    }
   },
   created() {
     this.rentalObject = this.$store.state.rentalObject
@@ -176,34 +201,18 @@ export default {
         this.rentalObject.availableFrom.valueOf() < new Date().valueOf()
           ? new Date()
           : this.rentalObject.availableFrom
+
+      this.filterReceipts()
     }
 
     // iterate disabledDates and compare this and next day with this.range.start and this.range.start + 1 day.
-    findFirstAvailable(){
-      let unavailable = true
-      while(unavailable){
-        for(let i=0; i<=this.disabledDates.length-1; i++){
-           if(this.range.start.valueOf() == this.disabledDates[i]){
-             this.range.start = this.addDays(this.range.start, 1)
-             break;
-            }
-           else{
-             unavailable = false
-            }
-        }
-      }
-    }
+
     
     // If either is equal to the other, iterate the next two days
   
     this.range.end = this.addDays(this.range.start, 2)
     this.$emit('defaultDates', this.range.start, this.range.end)
     this.$emit('dateArray', this.findSelectedDays())
-  },
-  mounted() {
-    if (this.rentalObject != undefined) {
-      this.filterReceipts()
-    }
   },
 }
 </script>
