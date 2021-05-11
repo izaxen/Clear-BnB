@@ -1,14 +1,9 @@
 <template>
   <div class="container">
-    <Calendar
-      :rentalObject="object"
-      :booking="true"
-      @days-selected="recive"
-      @dates="confirmDates"
-    />
+    <Calendar :booking="true" @days-selected="receive" @dates="confirmDates" />
     <NumberOfGuests @num-guest="confirmGuest" :numOfDays="days" />
 
-    <button @click="book" :disabled="totalPrice == 0 ? '' : disabled">
+    <button @click="book" :disabled="receipt.totalPrice == 0 ? '' : disabled">
       Book
     </button>
 
@@ -37,29 +32,33 @@ export default {
   data() {
     return {
       days: '',
-      fromDate: '',
-      toDate: '',
-      numAdults: 0,
-      numChildren: 0,
-      totalPrice: 0,
       isModalVisible: false,
+      receipt: {
+        startDate: '',
+        endDate: '',
+        numAdult: 0,
+        numChild: 0,
+        totalPrice: 0,
+        rentalObjectId: this.$route.params.id,
+        userId: '-PNU45UnVwW-HWRbJWe_H',
+      },
     }
   },
 
   methods: {
-    recive(data) {
+    receive(data) {
       this.days = data
     },
 
     confirmDates(from, to) {
-      this.fromDate = from
-      this.toDate = to
+      this.receipt.startDate = from
+      this.receipt.endDate = to
     },
 
     confirmGuest(adults, children, sum) {
-      this.numAdults = adults
-      this.numChildren = children
-      this.totalPrice = sum
+      this.receipt.numAdult = adults
+      this.receipt.numChild = children
+      this.receipt.totalPrice = sum
     },
 
     closeModal() {
@@ -78,21 +77,13 @@ export default {
     },
 
     book() {
+      this.$store.dispatch('postReceipt', this.receipt)
+      this.$store.commit('setIsConfirmation', true)
+      this.$emit('receipt', this.receipt)
       if (!this.$store.state.user) {
         this.isModalVisible = true
         return
       }
-      let receipt = {
-        startDate: this.fromDate,
-        endDate: this.toDate,
-        numAdult: this.numAdults,
-        numChild: this.numChildren,
-        totalPrice: this.totalPrice,
-        rentalObjectId: this.object.id,
-        userId: '-PNU45UnVwW-HWRbJWe_H',
-      }
-
-      this.$store.dispatch('postReceipt', receipt)
     },
   },
 }

@@ -11,6 +11,7 @@ import MyPage from './views/MyPage.vue'
 import MyBookings from './views/MyBookings.vue'
 import MyHouses from './views/MyHouses.vue'
 
+import BookingConfirmation from './views/BookingConfirmation.vue'
 // create routes with views
 export default createRouter({
   history: createWebHistory(),
@@ -48,5 +49,9 @@ export default createRouter({
       path: '/my-page/my-houses',
       component: MyHouses,
     },
-  ],
+    {
+      path: '/confirm-booking',
+      component: BookingConfirmation,
+    }
+  ]
 })

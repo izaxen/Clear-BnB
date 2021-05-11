@@ -1,12 +1,12 @@
 <template>
-<div id="app">
-  <header>
-    <Navbar />
-  </header>
-  <main>
-    <router-view />
-  </main>
-  <Footer />
+  <div id="app">
+    <header>
+      <Navbar />
+    </header>
+    <main>
+      <router-view />
+    </main>
+    <Footer />
   </div>
 </template>
 
@@ -18,9 +18,10 @@ export default {
     Navbar,
     Footer,
   },
-  created() {
-    this.$store.dispatch('fetchRentalObjects')
-    this.$store.dispatch('whoAmI')
+  async created() {
+    await this.$store.dispatch('fetchRentalObjects')
+    await this.$store.dispatch('whoAmI')
+    await this.$store.dispatch('fetchReceipts')
   },
 }
 </script>

@@ -37,6 +37,7 @@ import Calendar from '../components/Calendar.vue'
 import AddImageForm from '../components/AddImageForm.vue'
 import SideBar from '../components/Sidebar.vue'
 
+
 export default {
   components:{
     AddHouseAmenities,

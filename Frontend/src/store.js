@@ -9,7 +9,9 @@ export default createStore({
     user: null,
     failedLogIn: false,
     searchObject: null,
-    uploadedImages: []
+    isConfirmation: false,
+    uploadedImages: [],
+    rentalObject: null,
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -34,19 +36,22 @@ export default createStore({
       state.user = user
       state.failedLogIn = false
     },
-    setFailedLogin(state, value){
+    setFailedLogin(state, value) {
       state.failedLogIn = value
     },
     setRentalObjects(state, rentalObjects) {
       state.rentalObjects = rentalObjects
     },
     addRentalObject(state, rentalObject) {
-      state.rentalObject = rentalObject
+      state.rentalObjects = rentalObject
     },
     removeRentalObject(state, rentalObjects) {
       state.rentalObjects = state.rentalObjects.filter(
         (r) => r.id != rentalObjects.id
       )
+    },
+    setIsConfirmation(state, isConfirmation) {
+      state.isConfirmation = isConfirmation
     },
     addUploadedImages(state, images) {
       for (let image of images) {
@@ -54,12 +59,13 @@ export default createStore({
           state.uploadedImages.push(image)
         }
       }
-      
     },
     removeUploadedImages(state) {
       state.uploadedImages = []
-      
-    }
+    },
+    setRentalObject(state, object) {
+      state.rentalObject = object
+    },
   },
 
   // async methods that will trigger a mutation
@@ -123,7 +129,7 @@ export default createStore({
     async fetchRentalObjects(store) {
       let res = await fetch('/rest/rental-objects')
       let rentalObjects = await res.json()
-      
+
       store.commit('setRentalObjects', rentalObjects)
     },
 
@@ -178,15 +184,19 @@ export default createStore({
       // remove user from state
       store.commit('setUser', null)
     },
-    
+
     async uploadFiles(store, object) {
       let savePath = '/api/uploads/' + object.rentalId
       await fetch(savePath, {
         method: 'POST',
         body: object.formData,
       })
+    },
 
-    }
+    async fetchRentalObjectById(store, id) {
+      let res = await fetch(`/rest/rental-objects/${id}`)
+      let object = await res.json()
+      store.commit('setRentalObject', object)
+    },
   },
-  
 })
