@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div v-if="!fetching" class="wrapper">
     <!-- Bilderna ska inte vara hårdkodade -->
     <div class="hero-picture">
       <img
@@ -66,9 +66,8 @@
         />
       </div>
     </div>
-   
   </div>
-    <BookingConfirmation :receipt="tempReceipt"/>
+  <BookingConfirmation :receipt="tempReceipt" />
 </template>
 
 <script>
@@ -77,7 +76,7 @@ import BookHousingForm from '../components/BookHousingForm.vue'
 import AmenityLoggo from '../components/AmenityLoggo.vue'
 import BookingConfirmation from './BookingConfirmation.vue'
 
-
+import store from '../store.js'
 export default {
   components: {
     BookHousingForm,
@@ -88,6 +87,7 @@ export default {
 
   data() {
     return {
+      fetching: true,
       rentalObject: {},
       bookingReceipts: {},
       amenities: {},
@@ -96,19 +96,34 @@ export default {
     }
   },
 
-    methods: {
-    saveTempReceipt(receipt){
+  async beforeRouteEnter(to, from, next) {
+    await store.dispatch('fetchReceipts')
+
+    await store.dispatch('fetchRentalObjectById', to.params.id)
+
+    next()
+  },
+
+  methods: {
+    saveTempReceipt(receipt) {
       this.tempReceipt = receipt
-    }
+      console.log('körd')
+    },
+
+    async fetch() {
+      let id = this.$route.params.id
+      let res = await fetch(`/rest/rental-objects/${id}`)
+      this.rentalObject = await res.json()
+      this.amenities = this.rentalObject.amenities
+
+      this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
+    },
   },
 
   async created() {
-    let id = this.$route.params.id
-    let res = await fetch(`/rest/rental-objects/${id}`)
-    this.rentalObject = await res.json()
+    this.rentalObject = this.$store.state.rentalObject
     this.amenities = this.rentalObject.amenities
-    console.log('this rental i detal', this.rentalObject)
-    this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
+    this.fetching = false
   },
 }
 </script>
