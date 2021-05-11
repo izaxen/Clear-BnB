@@ -37,6 +37,7 @@ export default {
     },
     deleteReceipt(){
       this.$store.dispatch('deleteReceipt', this.receipt);
+      this.$emit('deleteBooking', this.receipt)
     }
   }
 

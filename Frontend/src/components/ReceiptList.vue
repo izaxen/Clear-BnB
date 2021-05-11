@@ -5,6 +5,7 @@
     v-for="receipt of userReceipts"
     :key="receipt.id"
     :receipt="receipt"
+    @deleteBooking="deleteBooking"
     />
     
   </div>
@@ -40,6 +41,10 @@ export default {
       this.receipts = await this.$store.state.receipts
       
       this.userReceipts = this.receipts.filter((receipt) => receipt.userId === this.user.id )
+    },
+    
+    deleteBooking(deleteReceipt){
+      this.userReceipts = this.userReceipts.filter((receipt) => receipt !== deleteReceipt)
     }
   } 
 }
