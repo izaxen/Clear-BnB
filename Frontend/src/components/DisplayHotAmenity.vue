@@ -31,12 +31,10 @@ export default {
       petsUrl: '',
       poolUrl: '',
       airUrl: '',
-      amenities: this.amenities,
     }
   },
 
   mounted() {
-    console.log(this.amenities)
     this.wifiUrl = this.amenities.wifi
       ? 'https://media.istockphoto.com/vectors/icon-in-flat-style-wireless-symbol-vector-id944860382'
       : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-wifi-1914404-1620362.png'

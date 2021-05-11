@@ -1,11 +1,6 @@
 <template>
   <div class="container">
-    <Calendar
-      :rentalObject="object"
-      :booking="true"
-      @days-selected="receive"
-      @dates="confirmDates"
-    />
+    <Calendar :booking="true" @days-selected="receive" @dates="confirmDates" />
     <NumberOfGuests @num-guest="confirmGuest" :numOfDays="days" />
 
     <button @click="book" :disabled="receipt.totalPrice == 0 ? '' : disabled">
@@ -45,7 +40,7 @@ export default {
         numChild: 0,
         totalPrice: 0,
         rentalObjectId: this.$route.params.id,
-        userId: '-PNU45UnVwW-HWRbJWe_H'
+        userId: '-PNU45UnVwW-HWRbJWe_H',
       },
     }
   },
