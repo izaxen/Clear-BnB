@@ -28,6 +28,9 @@
 <label id="add-rental" @click="combineFormAndList(); $refs.formClearFields.clearFields()">Add rental object</label>
 </div>
 </div>
+</div>
+</div>
+
 
 <AddRentalObjectConfirmation/>
 
@@ -127,8 +130,6 @@ LoadFormData(formData){
   "top"
   "mid"
   "bottom";
-
-
 }
 
 .shell{
