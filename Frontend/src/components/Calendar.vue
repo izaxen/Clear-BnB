@@ -101,6 +101,7 @@ export default {
 
   data() {
     return {
+      receipts: null,
       rentalObject: '',
       range: {
         start: new Date(),
@@ -137,12 +138,12 @@ export default {
       }
       return arr
     },
-    findAllDisabledDates(receiptArray) {
+    findAllDisabledDates() {
       let disabled = []
-      for (let i = 0; i < receiptArray.length; i++) {
+      for (let i = 0; i < this.receipts.length; i++) {
         for (
-          let dt = new Date(receiptArray[i].startDate);
-          dt <= this.addDays(new Date(receiptArray[i].endDate), -1);
+          let dt = new Date(this.receipts[i].startDate);
+          dt <= this.addDays(new Date(this.receipts[i].endDate), -1);
           dt.setDate(dt.getDate() + 1)
         ) {
           disabled.push(new Date(dt))
@@ -152,11 +153,11 @@ export default {
     },
     async filterReceipts() {
 
-      let receipts = this.$store.state.receipts.filter(
+      this.receipts = this.$store.state.receipts.filter(
         (rec) => this.rentalObject.id == rec.rentalObjectId
       )
 
-      this.findAllDisabledDates(receipts)
+      this.findAllDisabledDates()
     },
     addDays(firstDate, daysToAdd) {
       let secondDate = new Date(firstDate.valueOf())
@@ -176,6 +177,25 @@ export default {
           ? new Date()
           : this.rentalObject.availableFrom
     }
+
+    // iterate disabledDates and compare this and next day with this.range.start and this.range.start + 1 day.
+    findFirstAvailable(){
+      let unavailable = true
+      while(unavailable){
+        for(let i=0; i<=this.disabledDates.length-1; i++){
+           if(this.range.start.valueOf() == this.disabledDates[i]){
+             this.range.start = this.addDays(this.range.start, 1)
+             break;
+            }
+           else{
+             unavailable = false
+            }
+        }
+      }
+    }
+    
+    // If either is equal to the other, iterate the next two days
+  
     this.range.end = this.addDays(this.range.start, 2)
     this.$emit('defaultDates', this.range.start, this.range.end)
     this.$emit('dateArray', this.findSelectedDays())
