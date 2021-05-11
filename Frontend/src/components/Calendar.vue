@@ -138,7 +138,6 @@ export default {
       return arr
     },
     findAllDisabledDates(receiptArray) {
-      console.log('kvitto: ', receiptArray)
       let disabled = []
       for (let i = 0; i < receiptArray.length; i++) {
         for (
@@ -151,25 +150,7 @@ export default {
         this.disabledDates = disabled
       }
     },
-    filterReceipts() {
-      let testReceipts = [
-        {
-          rentalObjectId: '1',
-          checkInDate: new Date('2021-06-02'),
-          checkOutDate: new Date('2021-06-07'),
-        },
-        {
-          rentalObjectId: '2',
-          checkInDate: new Date('2021-06-03'),
-          checkOutDate: new Date('2021-06-09'),
-        },
-        {
-          rentalObjectId: '2',
-          checkInDate: new Date('2021-06-13'),
-          checkOutDate: new Date('2021-06-16'),
-        },
-      ]
-      //this.$store.state.receipts instead of testReceipts
+    async filterReceipts() {
 
       let receipts = this.$store.state.receipts.filter(
         (rec) => this.rentalObject.id == rec.rentalObjectId
@@ -185,7 +166,6 @@ export default {
   },
   created() {
     this.rentalObject = this.$store.state.rentalObject
-    console.log(this.rentalObject)
     if (this.rentalObject != undefined) {
       this.range.start =
         this.rentalObject.availableFrom.valueOf() > new Date().valueOf()
@@ -297,11 +277,13 @@ export default {
   --text-opacity: 1;
   color: #718096;
   color: rgba(113, 128, 150, var(--text-opacity));
+  font-size: 99%;
 }
 
 .text-gray-900 {
   --text-opacity: 1;
   color: #1a202c;
   color: rgba(26, 32, 44, var(--text-opacity));
+  font-size: 99%;
 }
 </style>
