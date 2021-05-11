@@ -4,7 +4,6 @@
       <router-link to="/">Home</router-link>
       <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
       <router-link to="/overview">Overview</router-link>
-      <router-link to="/confirm-booking">Booking Confirmation</router-link>
     </div>
     <div class="Login-btn">
       <router-link to="" @click="showModalLogin" v-if="loggedIn === null"

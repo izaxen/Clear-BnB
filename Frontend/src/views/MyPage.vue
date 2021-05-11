@@ -15,7 +15,7 @@
               </div>
           </div>
       </div>
-  </div>
+   </div>
 </template>
 
 <script>
@@ -39,8 +39,10 @@ export default {
 <style scoped>
 
 .mypage-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  max-width: 65rem;
+  margin: auto;
 }
 
 .sidebar {
@@ -48,6 +50,7 @@ export default {
   min-top: 10%;
   min-left: 1%;
 }
+
 .user-info{
     display: flex;
     flex-direction: column;
@@ -55,9 +58,7 @@ export default {
     margin-top: 30px;
     height: 100%;
     text-align: start;
-    align-content: center;
     padding: 30px;
-
 }
 
 .info {
@@ -66,9 +67,8 @@ export default {
     height: 100%;
     color: black;
     text-align: center;
-    margin: 20px auto auto auto;
+    margin: 20px auto 20px auto;
     width: 50%;
-    justify-self: center;
     padding: 40px;
     border-radius: 10px;
 }
@@ -76,5 +76,13 @@ export default {
 .user-box {
     height: 60%;
 }
+
+@media screen and (max-width: 1100px) {
+    .sidebar1 {
+      max-width: 40rem;
+      font-size: 15px;
+    }
+}
+
 
 </style>

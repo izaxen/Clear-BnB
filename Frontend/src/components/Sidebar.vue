@@ -18,7 +18,6 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 95%;
   font-size: 20px;
   background: #6497b1;
   height: 50%;
@@ -42,6 +41,19 @@ a {
 a:hover {
   color: rgb(29, 28, 28);
   transform: scale(1.05);
+}
+
+@media screen and (max-width: 1100px) {
+    .sidebar1 {
+      max-width: 40rem;
+      font-size: 15px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .sidebar1 {
+      max-width: 27rem;
+      font-size: 15px;
+    }
 }
 
 </style>

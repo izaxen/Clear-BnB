@@ -1,10 +1,7 @@
 <template>
   <div class="Bookings-page">
-    <div class="sidebar">
-      <SideBar />
-    </div>
-    <div class="list">
-      <ReceiptList /></div>
+    <div class="sidebar"><SideBar /></div>
+    <div class="list"><ReceiptList /></div>
   </div>
 </template>
 
@@ -23,6 +20,8 @@ export default {
 .Bookings-page {
   display: flex;
   flex-direction: column;
+  max-width: 65rem;
+  margin: auto;
 }
 
 .sidebar {
@@ -33,10 +32,6 @@ export default {
 
 .list {
   justify-self: center;
-  width: 70%;
   margin: auto;
 }
-
-
-
 </style>

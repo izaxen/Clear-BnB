@@ -26,7 +26,10 @@ export default {
   },
 
   async created() { 
-    this.getReceipts();
+    await this.$store.dispatch('fetchReceipts')
+    this.receipts = await this.$store.state.receipts
+    this.userReceipts = this.receipts.filter((receipt) => receipt.userId === this.user.id )
+    console.log('user receipts  ',this.userReceipts);
   },
 
   computed: {
@@ -35,14 +38,7 @@ export default {
     },
   },
 
-  methods: {
-    async getReceipts(){
-      await this.$store.dispatch('fetchReceipts')
-      this.receipts = await this.$store.state.receipts
-      
-      this.userReceipts = this.receipts.filter((receipt) => receipt.userId === this.user.id )
-    },
-    
+  methods: {  
     deleteBooking(deleteReceipt){
       this.userReceipts = this.userReceipts.filter((receipt) => receipt !== deleteReceipt)
     }
@@ -57,13 +53,4 @@ h1 {
   font-size: 40px;
 }
 
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-input,
-select {
-  height: 32px;
-}
 </style>

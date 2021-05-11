@@ -18,13 +18,13 @@
         <p>People: 4</p>
         <p>Price: 2400$</p> 
       </div>
-      <button class="btn-link" @click="goToHouse">Go to house</button>
-      <button class="btn-remove" @click="deleteReceipt">Remove</button>
+      <div class="btns">
+       <button class="btn-link" @click="goToHouse">Details</button>
+       <button class="btn-remove" @click="deleteReceipt">Remove</button>
+      </div>
     </div>
-    
   </div>
 </div>
-  
 </template>
 
 <script>
@@ -33,7 +33,7 @@ export default {
 
   methods: {
     goToHouse(){
-      this.$router.push('/details/' + this.receipt.id)
+      this.$router.push('/details/' + this.receipt.rentalObjectId)
     },
     deleteReceipt(){
       this.$store.dispatch('deleteReceipt', this.receipt);
@@ -45,9 +45,6 @@ export default {
 </script>
 
 <style scoped>
-  .view {
-    width: 100%;
-  }
 
   .text {
     margin-top: 15px;
@@ -83,19 +80,26 @@ export default {
     width: 100%;
   }
 
+  .img {
+    padding: 5px;
+    justify-self: center;
+    align-self: center;
+  }
+
   .receipt-card {
     display: grid;
-    grid-template-columns: 25% 55% 20%;
+    grid-template-columns: 35% 45% 20%;
     grid-template-areas:
     "box1 box2 box3";
-    border: 2px solid black;
     border-radius: 10px;
-    height: 240px;
-    width: 80%;
+    height: fit-content;
+    width: 70%;
     justify-self: center;
+    align-self: center;
     margin: 30px 0;
     color: black;
-    box-shadow: 10px 10px 15px 10px rgb(75, 75, 75);
+    box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
+    padding: 5px;
   }
 
   .col-1 {
@@ -111,7 +115,6 @@ export default {
   }
 
   .col-3 {
-    position: relative;
     display: flex;
     flex-direction: column;
     grid-area: box3;
@@ -121,10 +124,66 @@ export default {
     margin: 5px;
   }
 
+  .img {
+    width: 100%;
+    display: grid;
+  }
+  .btns {
+      display: grid;
+      height: 100%;
+  }
+
   img {
     width: 80%;
     min-height: 200px;
-    margin-left: 15px;
-    margin-top: 15px;
+    justify-self: center;
   }
+
+  @media screen and (max-width: 750px) {
+    .receipt-card {
+      display: grid;
+      grid-template-columns: 1fr 0.6fr;
+      grid-template-rows: 1fr 0.5fr;
+      grid-template-areas:
+      "box1 box2"
+      "box3 box3";
+      max-width: 40rem;
+      font-size: 15px;
+      height: fit-content;
+      padding: 5px;
+    }
+
+    .btns {
+      display: flex;
+    }
+
+    .text {
+      margin-bottom: 5px;
+    }
+}
+
+  @media screen and (max-width: 550px) {
+    .receipt-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 0.5fr 0.5fr;
+      grid-template-areas:
+      "box1"
+      "box2"
+      "box3";
+      max-width: 40rem;
+      min-width: 20rem;
+      font-size: 15px;
+      height: fit-content;
+      padding: 5px;
+    }
+
+    .btns {
+      display: flex;
+    }
+
+    .text {
+      margin-bottom: 5px;
+    }
+}
 </style>

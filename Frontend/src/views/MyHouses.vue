@@ -1,8 +1,8 @@
 <template>
-<div class="main1">
-  <div class="sidebar"><SideBar /></div>
-  <div class="list"><UserHouseList /></div>
-</div>
+  <div class="main1">
+    <div class="sidebar"><SideBar /></div>
+    <div class="list"><UserHouseList /></div>
+  </div>
 </template>
 
 <script>
@@ -20,6 +20,8 @@ export default {
 .main1 {
   display: flex;
   flex-direction: column;
+  max-width: 65rem;
+  margin: auto;
 }
 
 .sidebar {
@@ -30,8 +32,6 @@ export default {
 
 .list {
   justify-self: center;
-  width: 70%;
-  margin: auto;
 }
 
 </style>

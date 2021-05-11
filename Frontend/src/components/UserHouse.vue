@@ -8,17 +8,16 @@
     </div>
     <div class="col-2">
       <h2>{{house.city}}</h2>
-      <p>{{house.description}}</p>
       <p>Beds: {{house.availableBeds}}</p>
       <p>Price/night: {{house.price}}$</p>
-
-      <h4>House id: {{house.id}}</h4>
     </div>
     <div class="col-3">
       <div class="text">
       </div>
-      <button class="btn-link" @click="goToHouse">Go to house</button>
-      <button class="btn-remove">Edit</button>
+      <div class="btns">
+        <button class="btn-link" @click="goToHouse">Go to house</button>
+        <button class="btn-remove">Edit</button>
+      </div>
     </div>
     
   </div>
@@ -40,9 +39,6 @@ export default {
 </script>
 
 <style scoped>
-  .view {
-    width: 100%;
-  }
 
   .text {
     margin-top: 15px;
@@ -78,28 +74,26 @@ export default {
     width: 100%;
   }
 
-  .receipt-card {
-    display: grid;
-    grid-template-columns: 25% 55% 20%;
-    grid-template-areas:
-    "box1 box2 box3";
-    border: 2px solid black;
-    border-radius: 10px;
-    height: 240px;
-    width: 80%;
+  .img {
+    padding: 5px;
     justify-self: center;
-    margin: 30px 0;
-    color: black;
-    box-shadow: 10px 10px 15px 10px rgb(75, 75, 75);
+    align-self: center;
   }
 
-  .header {
+  .receipt-card {
     display: grid;
-    grid-template-columns: 25% 55% 20%;
+    grid-template-columns: 35% 45% 20%;
     grid-template-areas:
-    "head1 null head2";
-    grid-area: header;
-    padding-left: 20px;
+    "box1 box2 box3";
+    border-radius: 10px;
+    height: fit-content;
+    width: 80%;
+    justify-self: center;
+    align-self: center;
+    margin: 30px 0;
+    color: black;
+    box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
+    padding: 5px;
   }
 
   .col-1 {
@@ -125,10 +119,81 @@ export default {
     margin: 5px;
   }
 
+  .img {
+    width: 100%;
+    display: grid;
+  }
+  .btns {
+      display: grid;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+  }
+
   img {
     width: 80%;
     min-height: 200px;
-    margin-left: 15px;
-    margin-top: 15px;
+    justify-self: center;
   }
+  @media screen and (min-width: 750px) {
+    .receipt-card {
+      max-width: 40rem;
+      font-size: 15px;
+      height: fit-content;
+      padding: 5px;
+    }
+}
+
+  @media screen and (max-width: 750px) {
+    .receipt-card {
+      display: grid;
+      grid-template-columns: 1fr 0.6fr;
+      grid-template-rows: 1fr 0.2fr;
+      grid-template-areas:
+      "box1 box2"
+      "box3 box3";
+      max-width: 40rem;
+      font-size: 15px;
+      height: fit-content;
+      padding: 5px;
+    }
+
+    .btns {
+      display: flex;
+      position: relative;
+    }
+}
+
+  @media screen and (max-width: 550px) {
+    .receipt-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 0.7fr 0.3fr 0.2fr;
+      grid-template-areas:
+      "box1"
+      "box2"
+      "box3";
+      max-width: 40rem;
+      min-width: 23rem;
+      font-size: 15px;
+      height: fit-content;
+      padding: 5px;
+    }
+
+    .col-2{
+      font-size: 15px;
+    }
+
+    .col-2 p {
+      margin: 4px;
+    }
+
+    .btns {
+      display: flex;
+    }
+
+    .text {
+      margin-bottom: 5px;
+    }
+}
 </style>
