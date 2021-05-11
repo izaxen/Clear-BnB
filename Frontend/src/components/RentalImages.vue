@@ -12,9 +12,8 @@
 <script>
 export default {
 async created(){
-  await this.$store.dispatch('getFileUrl', 'P-V-jmKvrHnun7n87ATjs')
+  
   this.imageList = await this.$store.state.imageList
-
   console.log('file listr i testpage', this.imageList)
 },
 data(){

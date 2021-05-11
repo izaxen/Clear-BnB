@@ -198,9 +198,8 @@ export default createStore({
     },
 
     async getFileUrl(store, id) {
-      //console.log('id',id)
-      //let loadPath= '/api/uploads/ + id
-      let res = await fetch('/api/uploads/P-V-jmKvrHnun7n87ATjs')
+      let loadPath= '/api/uploads/' + id
+      let res = await fetch(loadPath)
       let fileList = await res.json()
       console.log('filelist', fileList)
       store.commit('getImageList', fileList)
