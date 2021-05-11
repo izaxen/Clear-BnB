@@ -5,7 +5,7 @@
     <div class="row1">
       <div class="objectform">
       <Calendar @dates="inAndOutDate" />
-      <AddRentalObjectForm @fetchObject="houseForm" />
+      <AddRentalObjectForm ref="formClearFields" @fetchObject="houseForm" />
       </div>
 
 <div class="add-images">
@@ -22,7 +22,7 @@
 </div>
 
 <div class="row3">
-<label id="add-rental" @click="combineFormAndList">Add rental object</label>
+<label id="add-rental" @click="combineFormAndList; $refs.formClearFields.clearFields()">Add rental object</label>
 </div>
 </div>
 
@@ -51,6 +51,7 @@ return{
   toDate:'',  
   user: null,
   formData: '',
+  clearList: {},
   
 }
   },

@@ -277,11 +277,13 @@ export default {
   --text-opacity: 1;
   color: #718096;
   color: rgba(113, 128, 150, var(--text-opacity));
+  font-size: 99%;
 }
 
 .text-gray-900 {
   --text-opacity: 1;
   color: #1a202c;
   color: rgba(26, 32, 44, var(--text-opacity));
+  font-size: 99%;
 }
 </style>
