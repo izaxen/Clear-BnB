@@ -3,7 +3,7 @@
   <div class="house-view2">
   <div class="sidebar"><SideBar /></div>
 <div class=shell>
-  <h1>Add rental object</h1>
+  <div class="header"><h1>Add rental object</h1></div>
   <div class="addhouse">
     <div class="row1">
       <div class="objectform">
@@ -11,9 +11,9 @@
       <AddRentalObjectForm ref="formClearFields" @fetchObject="houseForm" />
       </div>
 
-<div class="add-images">
-<h3>Add pictures</h3>
-<AddImageForm @formData="LoadFormData"/>
+  <div class="add-images">
+  <h3>Add pictures</h3>
+  <AddImageForm @formData="LoadFormData"/>
 </div></div>
 
 <div class="row2">
@@ -114,6 +114,10 @@ LoadFormData(formData){
   width: 100%;
 }
 
+.header{
+  text-align: center;
+}
+
 .house-view2{
   display: flex;
   flex-direction: column;
@@ -149,11 +153,12 @@ LoadFormData(formData){
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 
   "lhTop rhTop";
+  justify-self: center;
   }
   .row2{
     grid-area: mid;
     display: flex;
-    justify-content: center;
+   
   }
 
   .row3{
@@ -165,6 +170,7 @@ LoadFormData(formData){
 
 .add-images{
   grid-area: rhTop;
+  justify-self: center;
 }
 .objectform{
   width: 290px;
@@ -195,8 +201,7 @@ label{
 
  h1{
    margin: 10px;
-   display: flex;
-    }
+ }
   
   
 

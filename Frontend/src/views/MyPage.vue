@@ -1,7 +1,7 @@
 <template>
   <div class="mypage-container">
       <div class="sidebar"><SideBar /></div>
-
+    <div class="overlay">
       <div class="info">
           <div class="user-box">
               <h1>My Info</h1>
@@ -15,6 +15,7 @@
               </div>
           </div>
       </div>
+   </div>
    </div>
 </template>
 
@@ -43,6 +44,11 @@ export default {
   flex-direction: column;
   max-width: 65rem;
   margin: auto;
+  
+}
+.overlay {
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+   border-radius: 5px;
 }
 
 .sidebar {
@@ -71,6 +77,7 @@ export default {
     width: 50%;
     padding: 40px;
     border-radius: 10px;
+    box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
 }
 
 .user-box {

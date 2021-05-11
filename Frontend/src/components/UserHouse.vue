@@ -94,6 +94,7 @@ export default {
     color: black;
     box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
     padding: 5px;
+    transition: 0.4s;
   }
 
   .col-1 {
