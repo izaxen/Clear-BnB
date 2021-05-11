@@ -85,10 +85,7 @@ margin: 15px;
   float: left;
 }
 
-
-
 label{
-  
   padding:3px;
   border:1px solid black;
   border-radius: 10px;

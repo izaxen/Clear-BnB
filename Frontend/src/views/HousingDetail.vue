@@ -107,7 +107,7 @@ export default {
     let res = await fetch(`/rest/rental-objects/${id}`)
     this.rentalObject = await res.json()
     this.amenities = this.rentalObject.amenities
-
+    console.log('this rental i detal', this.rentalObject)
     this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
   },
 }

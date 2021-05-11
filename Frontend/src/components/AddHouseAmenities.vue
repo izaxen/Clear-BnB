@@ -111,7 +111,7 @@ h3{
   width: 200px;
   margin-bottom: 15px;
   margin-left: 15px;
-  background-color: rgba(240, 240, 240, 0.548);
+  
   }
 
 @media only screen and (max-width: 575px){

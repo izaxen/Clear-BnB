@@ -91,6 +91,9 @@ export default {
       }
     },
   },
+  created(){
+    console.log('this.object', this.object)
+  }
 }
 </script>
 

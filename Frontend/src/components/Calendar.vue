@@ -149,27 +149,9 @@ export default {
         this.disabledDates = disabled
       }
     },
-    filterReceipts() {
-      let testReceipts = [
-        {
-          rentalObjectId: '1',
-          checkInDate: new Date('2021-06-02'),
-          checkOutDate: new Date('2021-06-07'),
-        },
-        {
-          rentalObjectId: '2',
-          checkInDate: new Date('2021-06-03'),
-          checkOutDate: new Date('2021-06-09'),
-        },
-        {
-          rentalObjectId: '2',
-          checkInDate: new Date('2021-06-13'),
-          checkOutDate: new Date('2021-06-16'),
-        },
-      ]
-      //this.$store.state.receipts instead of testReceipts
+    async filterReceipts() {
 
-      let receipts = testReceipts.filter(
+      let receipts = await this.$store.state.receipts.filter(
         (rec) => this.rentalObject.id == rec.rentalObjectId
       )
 
@@ -182,7 +164,9 @@ export default {
     },
   },
   created() {
+   
     if (this.rentalObject != null) {
+      console.log('inne i if', this.rentalObjectId)
       this.range.start =
         this.rentalObject.availableFrom.valueOf() > new Date().valueOf()
           ? this.rentalObject.availableFrom

@@ -22,7 +22,7 @@
 </div>
 
 <div class="row3">
-<label @click="combineFormAndList">Add rental object</label>
+<label id="add-rental" @click="combineFormAndList">Add rental object</label>
 </div>
 </div>
 
@@ -129,27 +129,25 @@ LoadFormData(formData){
   .row3{
     grid-area: bottom;
     margin: 20px;
-    background-color: rgba(240, 240, 240, 0.548);
-
-
+    display: flex;
+    justify-content: center;
   }
 
 .add-images{
   grid-area: rhTop;
-  background-color: rgba(240, 240, 240, 0.548);
-  }
+}
 
 .objectform{
   width: 290px;
   margin-right: 60px;
   margin-top:15px;
   grid-area: lhTop;
-  background-color: rgba(240, 240, 240, 0.548);
+  
 }
 .amenties{
   grid-area: bottom;
   width: 100%;
-  background-color: rgba(240, 240, 240, 0.548);
+  
 }
 
 h3{
@@ -169,8 +167,9 @@ label{
  h1{
    margin: 10px;
    display: flex;
-   
- }
+    }
+  
+  
 
 
 
