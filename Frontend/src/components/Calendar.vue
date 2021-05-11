@@ -10,7 +10,7 @@
           <span class="check-in-out-text">Available from</span>
           <span class="check-in-out-text1">Available to</span>
         </div>
-        <DatePicker
+        <DatePicker v-if="range.end!=null"
           v-model="range"
           mode="date"
           :masks="masks"
@@ -105,7 +105,7 @@ export default {
       rentalObject: '',
       range: {
         start: new Date(),
-        end: new Date(),
+        end: null,
       },
       masks: {
         input: 'YYYY-MM-DD',
@@ -153,11 +153,9 @@ export default {
       this.findFirstAvailable()
     },
     async filterReceipts() {
-
       this.receipts = await this.$store.state.receipts.filter(
         (rec) => this.rentalObject.id == rec.rentalObjectId
       )
-
       this.findAllDisabledDates()
     },
     addDays(firstDate, daysToAdd) {
@@ -183,14 +181,17 @@ export default {
             }
         }
         this.range.start = startDate
+        console.log('this.range.start', startDate)
         this.range.end = endDate
+        console.log('this.range.end', endDate)
 
     },
     checkDateEquality(firstDate, secondDate){
       return firstDate.valueOf() == secondDate.valueOf()
     }
   },
-  created() {
+  async created() {
+    console.log('created')
     this.rentalObject = this.$store.state.rentalObject
     if (this.rentalObject != undefined) {
       this.range.start =
@@ -201,20 +202,21 @@ export default {
         this.rentalObject.availableFrom.valueOf() < new Date().valueOf()
           ? new Date()
           : this.rentalObject.availableFrom
-
-      this.filterReceipts()
     }
+     if(this.rentalObject!=undefined){
+      await this.filterReceipts()
+    }
+    this.range.end = this.addDays(this.range.start, 2)
+  }
+}
+    
+   
 
     // iterate disabledDates and compare this and next day with this.range.start and this.range.start + 1 day.
 
     
     // If either is equal to the other, iterate the next two days
   
-    this.range.end = this.addDays(this.range.start, 2)
-    this.$emit('defaultDates', this.range.start, this.range.end)
-    this.$emit('dateArray', this.findSelectedDays())
-  },
-}
 </script>
 
 <style scoped>
