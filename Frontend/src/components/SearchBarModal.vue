@@ -113,8 +113,6 @@ export default {
       }
       this.$emit('close')
       this.$store.commit('setSearchObject', search)
-      //här vill jag att vi resettar hela formen, får inte rätt på det - A
-      event.toElement.parentElement.parentElement.reset()
       this.$router.push('/overview')
 
       //nollställer data

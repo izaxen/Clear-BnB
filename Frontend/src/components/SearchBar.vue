@@ -115,8 +115,14 @@ export default {
       }
 
       this.$store.commit('setSearchObject', search)
-      //här vill jag att vi resettar hela formen, får inte rätt på det - A
-      event.toElement.parentElement.parentElement.reset()
+      this.citys = []
+      this.cityName = ''
+      this.guests = 1
+      this.guestText = 'Guest'
+      this.days = ''
+      this.fromDate = ''
+      this.toDate = ''
+      this.dateArray = ''
       this.$router.push('/overview')
     },
   },
