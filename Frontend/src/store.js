@@ -10,7 +10,8 @@ export default createStore({
     failedLogIn: false,
     searchObject: null,
     isConfirmation: false,
-    uploadedImages: []
+    uploadedImages: [],
+    rentalObject: null,
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -42,7 +43,7 @@ export default createStore({
       state.rentalObjects = rentalObjects
     },
     addRentalObject(state, rentalObject) {
-      state.rentalObject = rentalObject
+      state.rentalObjects = rentalObject
     },
     removeRentalObject(state, rentalObjects) {
       state.rentalObjects = state.rentalObjects.filter(
@@ -58,12 +59,13 @@ export default createStore({
           state.uploadedImages.push(image)
         }
       }
-      
     },
     removeUploadedImages(state) {
       state.uploadedImages = []
-      
-    }
+    },
+    setRentalObject(state, object) {
+      state.rentalObject = object
+    },
   },
 
   // async methods that will trigger a mutation
@@ -189,8 +191,12 @@ export default createStore({
         method: 'POST',
         body: object.formData,
       })
+    },
 
-    }
+    async fetchRentalObjectById(store, id) {
+      let res = await fetch(`/rest/rental-objects/${id}`)
+      let object = await res.json()
+      store.commit('setRentalObject', object)
+    },
   },
-
 })

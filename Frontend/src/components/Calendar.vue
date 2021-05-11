@@ -97,10 +97,11 @@ export default {
     Calendar,
     DatePicker,
   },
-  props: ['rentalObject', 'textOne', 'searchBar', 'booking'],
+  props: ['textOne', 'searchBar', 'booking'],
 
   data() {
     return {
+      rentalObject: '',
       range: {
         start: new Date(),
         end: new Date(),
@@ -137,11 +138,12 @@ export default {
       return arr
     },
     findAllDisabledDates(receiptArray) {
+      console.log('kvitto: ', receiptArray)
       let disabled = []
       for (let i = 0; i < receiptArray.length; i++) {
         for (
-          let dt = receiptArray[i].checkInDate;
-          dt <= this.addDays(receiptArray[i].checkOutDate, -1);
+          let dt = new Date(receiptArray[i].startDate);
+          dt <= this.addDays(new Date(receiptArray[i].endDate), -1);
           dt.setDate(dt.getDate() + 1)
         ) {
           disabled.push(new Date(dt))
@@ -169,7 +171,7 @@ export default {
       ]
       //this.$store.state.receipts instead of testReceipts
 
-      let receipts = testReceipts.filter(
+      let receipts = this.$store.state.receipts.filter(
         (rec) => this.rentalObject.id == rec.rentalObjectId
       )
 
@@ -182,7 +184,9 @@ export default {
     },
   },
   created() {
-    if (this.rentalObject != null) {
+    this.rentalObject = this.$store.state.rentalObject
+    console.log(this.rentalObject)
+    if (this.rentalObject != undefined) {
       this.range.start =
         this.rentalObject.availableFrom.valueOf() > new Date().valueOf()
           ? this.rentalObject.availableFrom
@@ -197,7 +201,7 @@ export default {
     this.$emit('dateArray', this.findSelectedDays())
   },
   mounted() {
-    if (this.rentalObject != null) {
+    if (this.rentalObject != undefined) {
       this.filterReceipts()
     }
   },
