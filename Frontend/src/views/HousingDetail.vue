@@ -148,6 +148,7 @@ li {
   max-width: 65rem;
   margin: auto;
   padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 .separator {
   width: 100%;
@@ -247,7 +248,7 @@ li {
 
 .amenities {
   padding: 1rem;
-  height: 30vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

@@ -1,39 +1,38 @@
 <template>
-  <form class="search-box">
-    <div class="card">
-      <p class="city-name">City</p>
-      <select @click="showCityNames" class="box1" v-model="city">
-        <option :value="cityName" selected>--Citys--</option>
-        <option v-for="city in citys" :key="city" :value="city">
-          {{ city }}
-        </option>
-      </select>
-    </div>
-    <div class="calendar" ref="search">
-      <Calendar
-        @days-selected="receive"
-        @dates="confirmDates"
-        @defaultDates="confirmDates"
-        @dateArray="getDateArray"
-        :searchBar="searchBar"
-      />
-    </div>
-    <div class="box4">
-      <p>{{ guests }} {{ guestText }}</p>
-      <div class="person-div">
-        <!--<p>Guests: {{guests}}</p>-->
-        <button type="button" @click="addGuests">+</button>
-        <button type="button" @click="subtractGuest">-</button>
+  <div class="modal">
+    <form class="search-box">
+      <div class="card">
+        <p class="city-name">City</p>
+        <select @click="showCityNames" class="box1" v-model="city">
+          <option :value="cityName" selected>--Citys--</option>
+          <option v-for="city in citys" :key="city" :value="city">
+            {{ city }}
+          </option>
+        </select>
       </div>
-    </div>
-    <a class="search-big" href="#">
-      <em class="fas fa-search" @click="addSearch"></em>
-    </a>
+      <div class="calendar" ref="search">
+        <Calendar
+          @days-selected="receive"
+          @dates="confirmDates"
+          @defaultDates="confirmDates"
+          @dateArray="getDateArray"
+          :searchBar="searchBar"
+        />
+      </div>
+      <div class="box4">
+        <p>{{ guests }} {{ guestText }}</p>
+        <div class="person-div">
+          <button type="button" @click="addGuests">+</button>
+          <button type="button" @click="subtractGuest">-</button>
+        </div>
+      </div>
 
-    <a class="search-small" href="#">
-      <em class="fas fa-search" @click="showSearchModal"></em>
-    </a>
-  </form>
+      <a class="search-big" href="#">
+        <em class="fas fa-search" @click="addSearch"></em>
+      </a>
+    </form>
+    <div class="x" @click="close">X</div>
+  </div>
 </template>
 
 <script>
@@ -43,8 +42,6 @@ export default {
   components: {
     Calendar,
   },
-
-  emits: ['showSearchModal'],
 
   data() {
     return {
@@ -100,9 +97,10 @@ export default {
       }
     },
 
-    showSearchModal() {
-      console.log('show search')
-      this.$emit('showSearchModal')
+    close() {
+      console.log('close modal')
+      this.$emit('close')
+      this.isVisibility = false
     },
 
     addSearch(event) {
@@ -113,8 +111,11 @@ export default {
         endDate: this.toDate,
         dateArray: this.dateArray,
       }
-
+      this.$emit('close')
       this.$store.commit('setSearchObject', search)
+      this.$router.push('/overview')
+
+      //nollställer data
       this.citys = []
       this.cityName = ''
       this.guests = 1
@@ -123,13 +124,24 @@ export default {
       this.fromDate = ''
       this.toDate = ''
       this.dateArray = ''
-      this.$router.push('/overview')
     },
   },
 }
 </script>
 
 <style scoped>
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
 option {
   color: rgb(0, 0, 0);
   font-weight: 600;
@@ -161,31 +173,7 @@ button {
 }
 
 p {
-  font-size: 0.8rem;
-}
-
-.person-div {
-  display: flex;
-  overflow: hidden;
-  justify-content: center;
-  align-content: center;
-  position: absolute;
-  text-align: left;
-  font-size: 15px;
-  font-weight: 800;
-  width: 0;
-  height: 0;
-  background: white;
-  top: 100%;
-  left: 16%;
-  border-radius: 10px;
-  z-index: 10;
-  transition: height 0.4s;
-}
-
-.box4:hover > .person-div {
-  height: 70px;
-  width: 100px;
+  font-size: 1rem;
 }
 
 .box1 {
@@ -193,16 +181,30 @@ p {
   cursor: pointer;
 }
 .box4 {
-  border-left: 1px solid gray;
+  width: 20rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.person-div {
+  font-size: 1rem;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.person-div p {
+  font-size: 1rem;
 }
 .search-box {
   display: flex;
+  flex-direction: column;
   background: #fbfbfb;
-  border-radius: 40px;
+
   padding: 10px;
-  width: 600px;
+  width: 100%;
   align-items: center;
-  height: 4.5rem;
 }
 
 .box1:hover > .search-btn {
@@ -236,19 +238,6 @@ p {
   background: #e9e9e9;
 }
 
-.box4 {
-  position: relative;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  padding: 2px;
-  color: rgb(113, 128, 150);
-  font-size: 20px;
-  transition: 0.4s;
-  line-height: 40px;
-  width: 6rem;
-}
-
 .box4:hover {
   cursor: pointer;
 }
@@ -258,38 +247,7 @@ p {
   color: red;
 }
 
-.search-small {
-  display: none;
-}
-
-@media screen and (max-width: 1000px) {
-  .box4,
-  .box1,
-  .card {
-    display: none;
-  }
-  .search-box {
-    width: 100%;
-  }
-}
-@media screen and (max-width: 800px) {
-  .box4,
-  .box1,
-  .card,
-  .links {
-    display: none;
-  }
-}
-@media screen and (max-width: 600px) {
-  .box4,
-  .box1,
-  .card,
-  .calendar,
-  .search-big {
-    display: none;
-  }
-  .search-small {
-    display: flex;
-  }
+.x {
+  cursor: pointer;
 }
 </style>
