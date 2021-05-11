@@ -7,7 +7,7 @@ import Detail from './views/HousingDetail.vue'
 import Overview from './views/Overview.vue'
 import AddHouse from './views/AddHouse.vue'
 import TestPage from './views/TestPage.vue'
-import BookingConfirmation from './views/BookingConfirmation.vue'
+
 // create routes with views
 export default createRouter({
   history: createWebHistory(),
@@ -20,6 +20,8 @@ export default createRouter({
       path: '/details/:id',
       component: Detail,
     },
+   
+    
     {
       path: '/my-page/add-house',
       component: AddHouse,
@@ -32,9 +34,5 @@ export default createRouter({
       path: '/test-page',
       component: TestPage,
     },
-    {
-      path: '/confirm-booking',
-      component: BookingConfirmation,
-    }
-  ],
+   ],
 })
