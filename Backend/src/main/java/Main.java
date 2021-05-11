@@ -136,22 +136,30 @@ public class Main {
         });
 
         app.get("/api/uploads/:id", (req, res) -> {
-            String id = req.params("id");
-            String[] fileNames;
+                    String id = req.params("id");
+                    String[] fileNames;
 
-            File f = new File("src/Static/uploads/"+id+"/");
+                    File f = new File("src/Static/uploads/" + id + "/");
+            System.out.println("f" +f);
+                    fileNames = f.list();
+                    if(fileNames == null){
+                        fileNames = new String[5];
+                        for(int i = 0; i < 5; i++){
+                            fileNames[i] = "https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false";
+                        }
+                    }
 
-            fileNames = f.list();
+                    else {
+                        for (int i = 0; i < fileNames.length; i++) {
+                            fileNames[i] = "http://localhost:4000/uploads/" + id + "/" + fileNames[i];
+                        }
+                    }
 
-            for (int i = 0; i< fileNames.length; i++) {
-                fileNames[i]= "http://localhost:4000/uploads/" + id + "/"+fileNames[i];
+                res.json(fileNames);
                 }
-            System.out.println("filenames" + fileNames);
-            res.json(fileNames);
 
-           // Amenity amenity = collection("Amenity").findById(id);
-           // res.json();
-        });
+
+        );
 
         app.useStatic(Paths.get("src/Static"));
 
