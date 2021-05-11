@@ -1,11 +1,15 @@
 <template>
   <div class=form>
-    <div v-show="$store.state.uploadedImages.length>0">
-      <button @click="deleteImages">Delete images</button>
+    <div class="delete-button" v-show="$store.state.uploadedImages.length>0">
+      <label @click="deleteImages">Delete images</label>
     </div>
     
     <div v-show="$store.state.uploadedImages.length < 4">
-      <input @change="addPictures" type="file" name="files" multiple>
+      <div class="upload-button">
+      <label for="file-input" id="upload-button">Browse files</label>
+      <input @change="addPictures" id="file-input" type="file" name="files" multiple>
+      
+    </div>
     </div>
     
     <div class="rendered-images" v-if="$store.state.uploadedImages.length>0">
@@ -42,6 +46,7 @@ this.$store.commit('addUploadedImages', this.files)
 },
 deleteImages(){
   this.$store.commit('removeUploadedImages')
+  this.url = []
 }
 }
 }
@@ -49,19 +54,43 @@ deleteImages(){
 
 <style scoped>
 
+
+
   .rendered-images{
     display: flex;
     flex-wrap: wrap;
-    
-  }
-  .image{
+    margin-top: 15px;
     align-items: flex-start;
   }
-
+  
 img{
 width: 150px;
-max-height: 150px;
-margin-bottom: 15px;
-margin-right: 15px;
+max-height: 120px;
+margin: 15px;
+}
+
+.upload-button{
+  margin: 15px;
+}
+
+.upload-button>input{
+  display: none;
+}
+
+.delete-button{
+  margin-left: 15px;
+}
+
+#file-input{
+  float: left;
+}
+
+label{
+  padding:3px;
+  border:1px solid black;
+  border-radius: 10px;
+  font-size: 80%;
+  background-color: rgb(233, 233, 233);
+  
 }
 </style>

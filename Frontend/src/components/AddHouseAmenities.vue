@@ -1,6 +1,6 @@
 <template>
 <div>
-<h2>Accessable amenities</h2>
+<h3>Accessable amenities</h3>
 <form class="addhouse" @submit.prevent>
   
 <div class="box-amenities">
@@ -34,7 +34,9 @@ selectedAmenities: function(){
     methods:{
     addAmenitiesToList(){
       let selected = Object.values(this.selectedAmenities)
+      console.log('selected ',Object.values(this.selectedAmenities) )
       let filterList = Object.keys(this.amenities)
+      
       let newList={}
       let addToNewList
       for(let amenity of filterList){
@@ -91,7 +93,7 @@ selectedAmenities: function(){
 
 <style scoped>
 
-h2{
+h3{
   display: flex;
   justify-content: center;
 }
@@ -111,10 +113,14 @@ h2{
   width: 200px;
   margin-bottom: 15px;
   margin-left: 15px;
+  
   }
 
-.amenities:nth-child1(3n+1){
-clear: both;
+@media only screen and (max-width: 575px){
+  h3{
+    margin: 15px;
+    justify-content: flex-start;
+  }
 }
 
 </style>
