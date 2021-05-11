@@ -26,6 +26,9 @@
 </div>
 </div>
 
+<AddRentalObjectConfirmation/>
+
+
 </template>
 
 <script>
@@ -33,6 +36,7 @@ import AddHouseAmenities from '../components/AddHouseAmenities.vue';
 import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
 import Calendar from '../components/Calendar.vue'
 import AddImageForm from '../components/AddImageForm.vue'
+import AddRentalObjectConfirmation from '../components/AddRentalObjectConfirmation.vue'
 
 
 export default {
@@ -40,7 +44,8 @@ export default {
     AddHouseAmenities,
     AddRentalObjectForm,
     Calendar,
-    AddImageForm
+    AddImageForm,
+    AddRentalObjectConfirmation
   },
 
   data(){
@@ -52,6 +57,7 @@ return{
   user: null,
   formData: '',
   clearList: {},
+  rentalObjects:'',
   
 }
   },
@@ -71,7 +77,7 @@ LoadFormData(formData){
     this.toDate = to
   },
   async combineFormAndList(){
-    let rentalObjects = this.rentalForm
+    this.rentalObjects = this.rentalForm
     this.user = this.$store.state.user
  
     let completeAmanities = {amenities: this.rentalAmenities}
@@ -79,8 +85,11 @@ LoadFormData(formData){
     let availableFrom = {availableFrom:this.fromDate}
     let userId = {userId: this.user.id}
 
-    rentalObjects = Object.assign({},rentalObjects, completeAmanities, availableTo,availableFrom, userId)
-    let rentalId = await this.$store.dispatch('postRentalObject', rentalObjects)
+    this.rentalObjects = Object.assign({},this.rentalObjects, completeAmanities, availableTo,availableFrom, userId)
+    let rentalId = await this.$store.dispatch('postRentalObject', this.rentalObjects)
+    this.$store.commit('setRentalObject', this.rentalObjects)
+    console.log('store rentalObject:', this.$store.state.rentalObject)
+    console.log('rentalObjects', this.rentalObjects)
     
     let object = {
       formData: this.formData,
@@ -89,7 +98,8 @@ LoadFormData(formData){
     
     this.$store.dispatch('uploadFiles', object )
     console.log('körs innan push')
-    this.$router.push('/test-page')
+    //this.$router.push('/test-page')
+    this.$store.commit('setIsConfirmation', true)
   }
   }
 }

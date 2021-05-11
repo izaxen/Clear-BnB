@@ -1,6 +1,6 @@
 <template>
 <div class="center">
-<div class="modal-frame" v-if="$store.state.user" v-show="$store.state.isConfirmation">
+<div class="modal-frame" v-if="$store.state.user && $store.state.rentalObject" v-show="$store.state.isConfirmation">
   <div class="header">
     <slot name="header">
       <p>Oops, something went wrong!</p>
@@ -12,8 +12,8 @@
   <div class="left-column">
     <h4 v-if="startDateString" class="border-bottom"><slot name = "start-date-text"></slot></h4>
     <h4 v-if="endDateString" class="border-bottom"><slot name = "end-date-text"></slot></h4>
-    <h4 v-if="rentalObject.address" class="border-bottom"><slot name= "address" >Adress:</slot></h4>
-    <h4 class="border-bottom"><slot v-if="rentalObject.city">City:</slot></h4>
+    <h4 v-if="rentalObject && rentalObject.address" class="border-bottom"><slot name= "address" >Adress:</slot></h4>
+    <h4 v-if="rentalObject.city && rentalObject" class="border-bottom"><slot name="city">City:</slot></h4>
     <h4 class="border-bottom"><slot name="beds-text"></slot></h4>
     <h4 class="border-bottom"><slot name="beds-text-two"></slot></h4>
   </div>
@@ -34,7 +34,7 @@
   </div>
 
     <div class="total">
-    <h5>Total price:</h5> 
+    <h5><slot name="price-text">Total price:</slot></h5> 
     <p><slot name = "price"></slot></p>
   </div>
 </div>
@@ -59,7 +59,10 @@ export default {
     '$route'(){
       this.$store.state.isConfirmation = false
     },
-    '$store.state.rentalObjects'(){
+    '$store.state.rentalObject'(){
+      this.setRentalObject()
+    },
+    rentalFromParent(){
       this.setRentalObject()
     },
     startDate(){
@@ -75,15 +78,8 @@ export default {
     closeModal(){
       this.$store.commit('setIsConfirmation', false)
     },
-    setRentalObject(id){
-      let rentalId
-      if(!id){
-      rentalId = this.$route.params.id}
-      else{
-        rentalId = id
-      }
-
-      this.rentalObject = this.$store.state.rentalObjects.find((r) => r.id == rentalId)
+    setRentalObject(){
+      this.rentalObject = this.$store.state.rentalObject     
     },
     getDateAsString(date){
     let year = date.getFullYear();
