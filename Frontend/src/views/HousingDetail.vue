@@ -1,35 +1,6 @@
 <template>
   <div v-if="!fetching" class="wrapper">
-    <!-- Bilderna ska inte vara hårdkodade -->
-    <div class="hero-picture">
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-      <div class="picture-text">
-        {{ rentalObject.freeText }}
-      </div>
-      <div class="pic-city">{{ rentalObject.city }}</div>
-    </div>
-    <div class="slider">
-      <!-- Bilderna ska inte vara hårdkodade -->
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-    </div>
+   
     <hr class="separator" />
 
     <div class="seller-info">

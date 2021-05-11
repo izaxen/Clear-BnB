@@ -66,6 +66,8 @@ export default createStore({
     setRentalObject(state, object) {
       state.rentalObject = object
     },
+    getImageList(state, list) {
+      state.imageList = list }
   },
 
   // async methods that will trigger a mutation
@@ -77,16 +79,17 @@ export default createStore({
       console.log('fetchReceipts, receipts:', receipts)
       store.commit('setReceipts', receipts)
     },
+
     async postReceipt(store, receipt) {
       let res = await fetch('/rest/booking-receipts', {
         method: 'POST',
         body: JSON.stringify(receipt),
       })
-
       let receiptFromServer = await res.json()
       console.log('postReceipt, receiptsFromServer:', receiptFromServer)
       store.commit('addReceipt', receiptFromServer)
     },
+
     async deleteReceipt(store, receipt) {
       let res = await fetch('/rest/booking-receipts/' + receipt.id, {
         method: 'DELETE',
@@ -94,6 +97,7 @@ export default createStore({
       let deletedReceipt = await res.json()
       store.commit('removeReceipt', deletedReceipt)
     },
+
     async postUser(store, user) {
       let res = await fetch('/api/registerUser', {
         method: 'POST',
@@ -193,7 +197,18 @@ export default createStore({
       })
     },
 
+    async getFileUrl(store, id) {
+      //console.log('id',id)
+      //let loadPath= '/api/uploads/ + id
+      let res = await fetch('/api/uploads/P-V-jmKvrHnun7n87ATjs')
+      let fileList = await res.json()
+      console.log('filelist', fileList)
+      store.commit('getImageList', fileList)
+      
+    },
+
     async fetchRentalObjectById(store, id) {
+      
       let res = await fetch(`/rest/rental-objects/${id}`)
       let object = await res.json()
       store.commit('setRentalObject', object)

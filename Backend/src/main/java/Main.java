@@ -3,6 +3,7 @@ import io.javalin.core.util.FileUtil;
 import io.javalin.http.UploadedFile;
 import models.*;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -132,6 +133,24 @@ public class Main {
 
             res.send("OK");
 
+        });
+
+        app.get("/api/uploads/:id", (req, res) -> {
+            String id = req.params("id");
+            String[] fileNames;
+
+            File f = new File("src/Static/uploads/"+id+"/");
+
+            fileNames = f.list();
+
+            for (int i = 0; i< fileNames.length; i++) {
+                fileNames[i]= "http://localhost:4000/uploads/" + id + "/"+fileNames[i];
+                }
+            System.out.println("filenames" + fileNames);
+            res.json(fileNames);
+
+           // Amenity amenity = collection("Amenity").findById(id);
+           // res.json();
         });
 
         app.useStatic(Paths.get("src/Static"));
