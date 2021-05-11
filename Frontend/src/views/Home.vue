@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-view">
     <div class="banner">
       <div class="banner-img"><img src="https://www.gbtt.com/images/gbtt-travel-banner.jpg" alt=""></div>
       <h1>Take a vacation!</h1>
@@ -14,7 +14,9 @@
       <em class="fas fa-info-circle" id="info9"><div class="info-modal"><p>Rio de janeiro</p></div></em>
       <em class="fas fa-info-circle" id="info10"><div class="info-modal"><p>Peru</p></div></em>
     </div>
-    <CitiesList />
+    <div class="locations">
+      <CitiesList />
+    </div>
   </div>
 </template>
 
@@ -30,6 +32,14 @@ export default {
 </script>
 
 <style scoped>
+  .home-view{
+    display: grid;
+    justify-content: center;
+  }
+
+  .locations{
+    justify-self: center;
+  }
   .banner {
     position: relative;
     z-index: 0;

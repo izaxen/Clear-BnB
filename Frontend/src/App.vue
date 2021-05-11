@@ -19,15 +19,16 @@ export default {
     Footer,
   },
   async created() {
-    await this.$store.dispatch('fetchRentalObjects')
     await this.$store.dispatch('whoAmI')
+    await this.$store.dispatch('fetchRentalObjects')
     await this.$store.dispatch('fetchReceipts')
   },
 }
 </script>
 
 <style scoped>
-header {
-  width: 100%;
-}
+  header{
+    width: 100%;
+  }
+
 </style>

@@ -40,7 +40,7 @@ export default {
         numChild: 0,
         totalPrice: 0,
         rentalObjectId: this.$route.params.id,
-        userId: '-PNU45UnVwW-HWRbJWe_H',
+        userId: '',
       },
     }
   },
@@ -66,9 +66,6 @@ export default {
     },
 
     checkLogin() {
-      console.log('here')
-      console.log(this.$store.state.user == null)
-      console.log('here')
       if (!this.$store.state.user) {
         return
       } else {
@@ -77,18 +74,17 @@ export default {
     },
 
     book() {
-      this.$store.dispatch('postReceipt', this.receipt)
-      this.$store.commit('setIsConfirmation', true)
-      this.$emit('receipt', this.receipt)
       if (!this.$store.state.user) {
         this.isModalVisible = true
         return
       }
+      this.receipt.userId = this.$store.state.user.id
+      this.$store.dispatch('postReceipt', this.receipt)
+      this.$store.commit('setIsConfirmation', true)
+      this.$emit('receipt', this.receipt)
     },
   },
-  created(){
-    console.log('this.object', this.object)
-  }
+  created() {},
 }
 </script>
 

@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     slideRight(){
-      if(this.start === 2)
+      if(this.start === 4)
         return
       this.start = this.start + 2
       this.end = this.end + 2
@@ -85,15 +85,15 @@ button {
 }
 .city-list{
   display: grid;
+  justify-items: center;
+  margin: auto;
 }
 .location-box {
   display: flex;
   flex-wrap: wrap;
-  justify-self: center;
   justify-content: space-evenly;
-  border: 1px solid gray;
   padding: 10px;
-  margin: 30px;
+  margin: 10px;
   width: 70rem;
 }
 h1 {
@@ -104,4 +104,12 @@ h1 {
 input:focus {
   outline: none;
 }
+
+ @media screen and (max-width: 925px) {
+   .location-box {
+     display: flex;
+     flex-direction: column;
+     width: 20rem;
+   }
+ }
 </style>

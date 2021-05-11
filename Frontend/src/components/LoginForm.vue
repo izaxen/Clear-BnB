@@ -4,7 +4,7 @@
     <input
       v-model="password"
       required
-      type="text"
+      type="password"
       placeholder="Enter password"
     />
     <p v-if="wrongInput === true">Wrong username/password</p>

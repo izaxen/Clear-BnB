@@ -1,6 +1,9 @@
 <template>
+<div class="house-view">
+  <div class="house-view2">
+  <div class="sidebar"><SideBar /></div>
 <div class=shell>
-  <h1>Add rental object</h1>
+  <div class="header"><h1>Add rental object</h1></div>
   <div class="addhouse">
     <div class="row1">
       <div class="objectform">
@@ -8,9 +11,9 @@
       <AddRentalObjectForm ref="formClearFields" @fetchObject="houseForm" />
       </div>
 
-<div class="add-images">
-<h3>Add pictures</h3>
-<AddImageForm @formData="LoadFormData"/>
+  <div class="add-images">
+  <h3>Add pictures</h3>
+  <AddImageForm @formData="LoadFormData"/>
 </div></div>
 
 <div class="row2">
@@ -25,9 +28,11 @@
 <label id="add-rental" @click="combineFormAndList(); $refs.formClearFields.clearFields()">Add rental object</label>
 </div>
 </div>
+</div>
+</div>
+
 
 <AddRentalObjectConfirmation/>
-
 
 </template>
 
@@ -37,6 +42,7 @@ import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
 import Calendar from '../components/Calendar.vue'
 import AddImageForm from '../components/AddImageForm.vue'
 import AddRentalObjectConfirmation from '../components/AddRentalObjectConfirmation.vue'
+import SideBar from '../components/Sidebar.vue'
 
 
 export default {
@@ -45,7 +51,8 @@ export default {
     AddRentalObjectForm,
     Calendar,
     AddImageForm,
-    AddRentalObjectConfirmation
+    AddRentalObjectConfirmation,
+    SideBar
   },
 
   data(){
@@ -103,6 +110,26 @@ LoadFormData(formData){
 </script>
 
 <style scoped>
+.house-view {
+  width: 100%;
+}
+
+.header{
+  text-align: center;
+}
+
+.house-view2{
+  display: flex;
+  flex-direction: column;
+  width: 65rem;
+  margin: auto;
+}
+
+.sidebar {
+  height: 10%;
+  min-top: 10%;
+  min-left: 1%;
+}
 
 .addhouse{
   display: grid;
@@ -111,8 +138,6 @@ LoadFormData(formData){
   "top"
   "mid"
   "bottom";
-
-
 }
 
 .shell{
@@ -128,12 +153,12 @@ LoadFormData(formData){
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 
   "lhTop rhTop";
-  
+  justify-self: center;
   }
   .row2{
     grid-area: mid;
     display: flex;
-    justify-content: center;
+   
   }
 
   .row3{
@@ -145,8 +170,8 @@ LoadFormData(formData){
 
 .add-images{
   grid-area: rhTop;
+  justify-self: center;
 }
-
 .objectform{
   width: 290px;
   margin-right: 60px;
@@ -176,8 +201,7 @@ label{
 
  h1{
    margin: 10px;
-   display: flex;
-    }
+ }
   
   
 
