@@ -10,6 +10,10 @@ export default {
   components: {
     Filter,
   },
+
+  created(){
+    this.$store.dispatch('fetchRentalObjects')
+  }
 }
 </script>
 

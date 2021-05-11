@@ -20,6 +20,8 @@ export default createRouter({
       path: '/details/:id',
       component: Detail,
     },
+   
+    
     {
       path: '/my-page/add-house',
       component: AddHouse,
@@ -32,5 +34,5 @@ export default createRouter({
       path: '/test-page',
       component: TestPage,
     },
-  ],
+   ],
 })

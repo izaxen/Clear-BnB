@@ -47,6 +47,7 @@ components:{
 Calendar,
 
 },
+
 watch:{
   description: function(){
     this.addRentalObject()
@@ -107,6 +108,18 @@ watch:{
       this.price = ""
  */
       
+    },
+    clearFields(){
+      console.log('Clear feilds')
+      this.availableFrom = ''
+      this.availableTo = ''
+      this.freeText = ''
+      this.description = ''
+      this.city = ''
+      this.availableBeds = ''
+      this.price = ''
+      this.address=''
+      this.zipCode=''
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div v-if="!fetching" class="wrapper">
     <!-- Bilderna ska inte vara hårdkodade -->
     <div class="hero-picture">
       <img
@@ -52,7 +52,7 @@
         <DisplayHotAmenity :amenities="amenities" />
         {{ rentalObject.description }}
       </div>
-      <BookHousingForm :object="rentalObject" />
+      <BookHousingForm :object="rentalObject" @receipt="saveTempReceipt" />
     </div>
 
     <hr class="separator" />
@@ -67,36 +67,63 @@
       </div>
     </div>
   </div>
+  <BookingConfirmation :receipt="tempReceipt" />
 </template>
 
 <script>
 import DisplayHotAmenity from '../components/DisplayHotAmenity.vue'
 import BookHousingForm from '../components/BookHousingForm.vue'
 import AmenityLoggo from '../components/AmenityLoggo.vue'
+import BookingConfirmation from './BookingConfirmation.vue'
 
+import store from '../store.js'
 export default {
   components: {
     BookHousingForm,
     AmenityLoggo,
+    BookingConfirmation,
     DisplayHotAmenity,
   },
 
   data() {
     return {
-      rentalObject: '',
-      bookingReceipts: '',
-      amenities: '',
+      fetching: true,
+      rentalObject: {},
+      bookingReceipts: {},
+      amenities: {},
+      tempReceipt: {},
       user: '',
     }
   },
 
-  async created() {
-    let id = this.$route.params.id
-    let res = await fetch(`/rest/rental-objects/${id}`)
-    this.rentalObject = await res.json()
-    this.amenities = this.rentalObject.amenities
+  async beforeRouteEnter(to, from, next) {
+    await store.dispatch('fetchReceipts')
 
-    this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
+    await store.dispatch('fetchRentalObjectById', to.params.id)
+
+    next()
+  },
+
+  methods: {
+    saveTempReceipt(receipt) {
+      this.tempReceipt = receipt
+      console.log('körd')
+    },
+
+    async fetch() {
+      let id = this.$route.params.id
+      let res = await fetch(`/rest/rental-objects/${id}`)
+      this.rentalObject = await res.json()
+      this.amenities = this.rentalObject.amenities
+
+      this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
+    },
+  },
+
+  async created() {
+    this.rentalObject = this.$store.state.rentalObject
+    this.amenities = this.rentalObject.amenities
+    this.fetching = false
   },
 }
 </script>
