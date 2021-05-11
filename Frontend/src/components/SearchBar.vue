@@ -182,12 +182,11 @@ p {
 .search-box {
   display: flex;
   background: #fbfbfb;
-  height: 60px;
   border-radius: 40px;
   padding: 10px;
-  width: fit-content;
+  width: 600px;
   align-items: center;
-  height: 5rem;
+  height: 4.5rem;
 }
 
 .box1:hover > .search-btn {
@@ -236,5 +235,32 @@ p {
 
 .box4:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .box4,
+  .box1,
+  .card {
+    display: none;
+  }
+  .search-box {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .box4,
+  .box1,
+  .card,
+  .links {
+    display: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  .box4,
+  .box1,
+  .card,
+  .calendar {
+    display: none;
+  }
 }
 </style>
