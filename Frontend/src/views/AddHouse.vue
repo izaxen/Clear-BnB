@@ -42,6 +42,7 @@ import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
 import Calendar from '../components/Calendar.vue'
 import AddImageForm from '../components/AddImageForm.vue'
 import AddRentalObjectConfirmation from '../components/AddRentalObjectConfirmation.vue'
+import SideBar from '../components/Sidebar.vue'
 
 
 export default {
@@ -50,7 +51,8 @@ export default {
     AddRentalObjectForm,
     Calendar,
     AddImageForm,
-    AddRentalObjectConfirmation
+    AddRentalObjectConfirmation,
+    SideBar
   },
 
   data(){
@@ -115,6 +117,8 @@ LoadFormData(formData){
 .house-view2{
   display: flex;
   flex-direction: column;
+  width: 65rem;
+  margin: auto;
 }
 
 .sidebar {
