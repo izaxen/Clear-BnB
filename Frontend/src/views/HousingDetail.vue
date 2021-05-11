@@ -247,7 +247,7 @@ li {
 
 .amenities {
   padding: 1rem;
-  height: 30vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

@@ -6,7 +6,9 @@
       <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
       <router-link to="/overview">Overview</router-link>
     </div>
-    <div class="search-bar"><SearchBar /></div>
+    <div class="search-bar">
+      <SearchBar @showSearchModal="showSearchModal" />
+    </div>
     <div class="Login-btn">
       <router-link to="" @click="showModalLogin" v-if="loggedIn === null">
         Login
@@ -14,22 +16,26 @@
       <router-link to="" @click="logout" v-if="loggedIn !== null">
         Logout
       </router-link>
-      <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
     </div>
   </nav>
+  <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
+  <SearchBarModal v-show="isSearchModalVisible" @close="exitModal" />
 </template>
 
 <script>
 import LoginModal from '../views/LoginModal.vue'
 import SearchBar from './SearchBar.vue'
+import SearchBarModal from './SearchBarModal.vue'
 export default {
   components: {
     LoginModal,
     SearchBar,
+    SearchBarModal,
   },
   data() {
     return {
       isModalVisible: false,
+      isSearchModalVisible: false,
     }
   },
   computed: {
@@ -44,6 +50,13 @@ export default {
     },
     closeModal() {
       this.isModalVisible = false
+    },
+    exitModal() {
+      this.isSearchModalVisible = false
+    },
+    showSearchModal() {
+      console.log('nav show search')
+      this.isSearchModalVisible = true
     },
     logout() {
       this.$store.dispatch('logout')
@@ -74,7 +87,7 @@ nav {
 .Login-btn {
   grid-area: Login;
   justify-self: right;
-  margin-right: 40px;
+  margin-right: 1rem;
 }
 a {
   text-decoration: none;
@@ -85,6 +98,8 @@ a:hover {
 }
 
 .menu {
+  margin-left: 1rem;
+
   display: none;
   font-size: 4rem;
 }
