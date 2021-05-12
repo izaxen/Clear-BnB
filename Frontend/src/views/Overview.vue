@@ -11,9 +11,9 @@ export default {
     Filter,
   },
 
-  created(){
+  created() {
     this.$store.dispatch('fetchRentalObjects')
-  }
+  },
 }
 </script>
 
@@ -23,5 +23,6 @@ div {
 
   max-width: 65rem;
   margin: auto;
+  min-height: 50rem;
 }
 </style>
