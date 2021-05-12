@@ -103,6 +103,10 @@ export default {
 
     next()
   },
+  beforeRouteLeave(to, from, next){
+    this.$store.commit('setRentalObject', null)
+    next()
+  },
 
   methods: {
     saveTempReceipt(receipt) {
