@@ -12,8 +12,8 @@
   <div class="left-column">
     <h4 v-if="startDateString" class="border-bottom"><slot name = "start-date-text"></slot></h4>
     <h4 v-if="endDateString" class="border-bottom"><slot name = "end-date-text"></slot></h4>
-    <h4 v-if="rentalObject && rentalObject.address" class="border-bottom"><slot name= "address" >Adress:</slot></h4>
-    <h4 v-if="rentalObject.city && rentalObject" class="border-bottom"><slot name="city">City:</slot></h4>
+    <h4 v-if="$store.state.rentalObject && $store.state.rentalObject.address" class="border-bottom"><slot name= "address" >Adress:</slot></h4>
+    <h4 v-if="$store.state.rentalObject.city && $store.state.rentalObject" class="border-bottom"><slot name="city">City:</slot></h4>
     <h4 class="border-bottom"><slot name="beds-text"></slot></h4>
     <h4 class="border-bottom"><slot name="beds-text-two"></slot></h4>
   </div>
@@ -21,8 +21,8 @@
   <div class="right-column">
     <p v-if="startDateString" class="border-bottom">{{startDateString}}</p>
     <p v-if="endDateString" class="border-bottom">{{endDateString}}</p>
-    <p v-if="rentalObject.address" class="border-bottom">{{rentalObject.address}}</p>
-    <p class="border-bottom">{{rentalObject.city}}</p>
+    <p v-if="$store.state.rentalObject.address" class="border-bottom">{{$store.state.rentalObject.address}}</p>
+    <p class="border-bottom">{{$store.state.rentalObject.city}}</p>
     <p class="border-bottom"><slot name="beds-count"></slot></p>
     <p class="border-bottom"><slot name="beds-count-two"></slot></p>
   </div>
@@ -58,12 +58,6 @@ export default {
   watch:{
     '$route'(){
       this.$store.state.isConfirmation = false
-    },
-    '$store.state.rentalObject'(){
-      this.setRentalObject()
-    },
-    rentalFromParent(){
-      this.setRentalObject()
     },
     startDate(){
     this.startDateString = this.getDateAsString(this.startDate)

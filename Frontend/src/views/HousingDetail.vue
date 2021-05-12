@@ -73,6 +73,7 @@ export default {
     await store.dispatch('fetchReceipts')
     await store.dispatch('getFileUrl', to.params.id)
     await store.dispatch('fetchRentalObjectById', to.params.id)
+    
 
     next()
   },
@@ -92,7 +93,6 @@ export default {
       let res = await fetch(`/rest/rental-objects/${id}`)
       this.rentalObject = await res.json()
       this.amenities = this.rentalObject.amenities
-
       this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
     },
   },
