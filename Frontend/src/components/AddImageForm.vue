@@ -4,7 +4,7 @@
       <label @click="deleteImages">Delete images</label>
     </div>
     
-    <div v-show="$store.state.uploadedImages.length < 4">
+    <div v-show="$store.state.uploadedImages.length < 5">
       <div class="upload-button">
       <label for="file-input" id="upload-button">Browse files</label>
       <input @change="addPictures" id="file-input" type="file" name="files" multiple>
@@ -47,15 +47,12 @@ this.$store.commit('addUploadedImages', this.files)
 deleteImages(){
   this.$store.commit('removeUploadedImages')
   this.url = []
-}
-}
+  }
+  }
 }
 </script>
 
 <style scoped>
-
-
-
   .rendered-images{
     display: flex;
     flex-wrap: wrap;
@@ -92,5 +89,9 @@ label{
   font-size: 80%;
   background-color: rgb(233, 233, 233);
   
+}
+
+.text-gray-900{
+  font-size: 97%;
 }
 </style>
