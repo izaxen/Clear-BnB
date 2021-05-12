@@ -1,37 +1,58 @@
 <template>
-<div main>
-  <div>
-    <div class="hero-picture">
-      <img :src="imageList[0]">
-    </div>
-    <div class="slider">
-      <div v-for="image in imageList" >
-      <img :src="image" alt="">
+  <div main>
+    <div>
+      <div class="hero-picture">
+        <img :src="imageList[0]" />
+        <div class="picture-text">
+          {{ object.freeText }}
+        </div>
+        <div class="pic-city">{{ object.city }}</div>
+      </div>
+      <div class="slider">
+        <div v-for="image in imageList" :key="image">
+          <img :src="image" alt="" />
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-  
-  
-</div>
 </template>
 
 <script>
 export default {
-async created(){
-  
-  this.imageList = await this.$store.state.imageList
-  console.log('file listr i testpage', this.imageList)
-},
-data(){
-  return{
-    imageList: [],
-  }
-}
+  props: ['object'],
+  async created() {
+    this.imageList = await this.$store.state.imageList
+    console.log('file listr i testpage', this.imageList)
+  },
+  data() {
+    return {
+      imageList: [],
+    }
+  },
 }
 </script>
 
 <style scoped>
+.picture-text {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  color: whitesmoke;
+  font-weight: 700;
+  font-size: 2rem;
+  min-width: 100%;
+  text-align: center;
+}
 
+.pic-city {
+  position: absolute;
+  color: whitesmoke;
+  font-weight: 700;
+  top: 20px;
+  left: 16px;
+  font-size: 2rem;
+}
 .hero {
   margin: 3rem 0;
 }
@@ -48,7 +69,7 @@ data(){
 }
 .slider {
   display: flex;
-  
+
   justify-content: space-around;
   margin: 10px;
 }
@@ -74,5 +95,4 @@ img {
   height: 100%;
   display: block; /* remove extra space below image */
 }
-
 </style>

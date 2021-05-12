@@ -1,6 +1,6 @@
 <template>
   <div v-if="!fetching" class="wrapper">
-   <RentalImages />
+    <RentalImages :object="rentalObject" />
     <hr class="separator" />
 
     <div class="seller-info">
