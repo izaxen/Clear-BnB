@@ -1,37 +1,39 @@
 <template>
   <div class="modal">
-    <form class="search-box">
-      <div class="card">
-        <p class="city-name">City</p>
-        <select @click="showCityNames" class="box1" v-model="city">
-          <option :value="cityName" selected>--Citys--</option>
-          <option v-for="city in citys" :key="city" :value="city">
-            {{ city }}
-          </option>
-        </select>
-      </div>
-      <div class="calendar" ref="search">
-        <Calendar
-          @days-selected="receive"
-          @dates="confirmDates"
-          @defaultDates="confirmDates"
-          @dateArray="getDateArray"
-          :searchBar="searchBar"
-        />
-      </div>
-      <div class="box4">
-        <p>{{ guests }} {{ guestText }}</p>
-        <div class="person-div">
-          <button type="button" @click="addGuests">+</button>
-          <button type="button" @click="subtractGuest">-</button>
+    <div class="color">
+      <form class="search-box">
+        <div class="card">
+          <p class="city-name">City</p>
+          <select @click="showCityNames" class="box1" v-model="city">
+            <option :value="cityName" selected>--Citys--</option>
+            <option v-for="city in citys" :key="city" :value="city">
+              {{ city }}
+            </option>
+          </select>
         </div>
-      </div>
+        <div class="calendar" ref="search">
+          <Calendar
+            @days-selected="receive"
+            @dates="confirmDates"
+            @defaultDates="confirmDates"
+            @dateArray="getDateArray"
+            :searchBar="searchBar"
+          />
+        </div>
+        <div class="box4">
+          <p>{{ guests }} {{ guestText }}</p>
+          <div class="person-div">
+            <button type="button" @click="addGuests">+</button>
+            <button type="button" @click="subtractGuest">-</button>
+          </div>
+        </div>
 
-      <a class="search-big" href="#">
-        <em class="fas fa-search" @click="addSearch"></em>
-      </a>
-    </form>
-    <div class="x" @click="close">X</div>
+        <a class="search-big" href="#">
+          <em class="fas fa-search" @click="addSearch"></em>
+        </a>
+      </form>
+      <button class="x" @click="close">X</button>
+    </div>
   </div>
 </template>
 
@@ -137,10 +139,25 @@ export default {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.3);
-  display: grid;
+
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+  width: 100%;
+  align-items: center;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+}
+
+.color {
+  border-radius: 10px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 option {
   color: rgb(0, 0, 0);
@@ -198,13 +215,6 @@ p {
   font-size: 1rem;
 }
 .search-box {
-  display: flex;
-  flex-direction: column;
-  background: #fbfbfb;
-
-  padding: 10px;
-  width: 100%;
-  align-items: center;
 }
 
 .box1:hover > .search-btn {
