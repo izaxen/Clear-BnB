@@ -1,23 +1,19 @@
 <template>
-<div>
-<h3>Accessable amenities</h3>
-<form class="addhouse" @submit.prevent>
-  
-<div class="box-amenities">
-  
-    <div v-for="(key, value) in amenities" :key="key" class= "amenities">
-    <div class="amen">
-     
-      <AmentiyLoggo
-      :value="key"
-      :name="value"
-  />  
-    <input type="checkbox" :value="value"  class="checkboxx" v-model="selectedAmenities">
+  <div class="shell-amenities">
+    <h3>Accessible amenities</h3>
+      <div class="box-amenities">
+        <div v-for="(key, value) in amenities" :key="key" class= "amenities">
+          <div class="amen">
+            <AmentiyLoggo
+              :value="key"
+              :name="value"
+              />  
+          <input type="checkbox" :value="value"  class="checkboxx" v-model="selectedAmenities">
+      </div>
     </div>
   </div>
 </div>
-</form>
-</div>
+
 </template>
 
 <script>
@@ -93,12 +89,25 @@ selectedAmenities: function(){
 
 <style scoped>
 
+.shell-amenities{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+.box-amenities{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+
+}
+
 h3{
   display: flex;
   justify-content: center;
-}
-.addhouse{
-  margin-top: 30px;
 }
 
 .amen{

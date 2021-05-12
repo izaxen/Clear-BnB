@@ -1,6 +1,6 @@
 <template>
-<div class="house-view">
-  <div class="house-view2">
+<div>
+  
   <div class="sidebar"><SideBar /></div>
 <div class=shell>
   <div class="header"><h1>Add rental object</h1></div>
@@ -22,18 +22,14 @@
   </div>  
   </div>
   
-</div>
+  </div>
 
-<div class="row3">
-<label id="add-rental" @click="combineFormAndList(); $refs.formClearFields.clearFields()">Add rental object</label>
+    <div class="row3">
+    <label id="add-rental" @click="combineFormAndList(); $refs.formClearFields.clearFields()">Add rental object</label>
+    </div>
+  </div>
+    <AddRentalObjectConfirmation/>
 </div>
-</div>
-</div>
-</div>
-
-
-<AddRentalObjectConfirmation/>
-
 </template>
 
 <script>
@@ -110,41 +106,27 @@ LoadFormData(formData){
 </script>
 
 <style scoped>
-.house-view {
-  width: 100%;
-}
 
 .header{
   text-align: center;
 }
 
-.house-view2{
-  display: flex;
-  flex-direction: column;
-  width: 65rem;
-  margin: auto;
-}
-
-.sidebar {
-  height: 10%;
-  min-top: 10%;
-  min-left: 1%;
-}
-
-.addhouse{
-  display: grid;
-  grid-template-rows:auto auto auto;
-  grid-template-areas: 
-  "top"
-  "mid"
-  "bottom";
-}
+.add-images{
+  grid-area: rhTop;
+  }
 
 .shell{
   max-width: 65rem;
   margin: auto;
   padding: 1px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sidebar{
+  max-width: 65rem;
+  margin: auto;
+  padding: 1px;
+height: 10%;
 }
 
 .row1{
@@ -155,10 +137,10 @@ LoadFormData(formData){
   "lhTop rhTop";
   justify-self: center;
   }
+  
   .row2{
     grid-area: mid;
     display: flex;
-   
   }
 
   .row3{
@@ -168,15 +150,13 @@ LoadFormData(formData){
     justify-content: center;
   }
 
-.add-images{
-  grid-area: rhTop;
-  justify-self: center;
-}
+
 .objectform{
-  width: 290px;
+  width: 291px;
   margin-right: 60px;
   margin-top:15px;
   grid-area: lhTop;
+  
   
 }
 .amenties{
@@ -217,6 +197,8 @@ label{
 
   .objectform{
     width: 100%;
+    justify-items: center;
+    
   }
 
   .row1{
@@ -226,6 +208,10 @@ label{
   grid-template-areas: 
   "lhTop"
   "rhTop";
+  }
+ 
+  .add-images{
+    justify-self: left;
   }
 
 }

@@ -9,6 +9,8 @@ import AddHouse from './views/AddHouse.vue'
 import MyPage from './views/MyPage.vue'
 import MyBookings from './views/MyBookings.vue'
 import MyHouses from './views/MyHouses.vue'
+
+
 // create routes with views
 export default createRouter({
   history: createWebHistory(),
@@ -22,8 +24,7 @@ export default createRouter({
       path: '/details/:id',
       component: Detail,
     },
-   
-    
+        
     {
       path: '/my-page/add-house',
       component: AddHouse,
