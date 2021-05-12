@@ -140,7 +140,7 @@ public class Main {
                     String[] fileNames;
 
                     File f = new File("src/Static/uploads/" + id + "/");
-            System.out.println("f" +f);
+            
                     fileNames = f.list();
                     if(fileNames == null){
                         fileNames = new String[5];
