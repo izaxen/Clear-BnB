@@ -175,7 +175,7 @@ export default {
             }
         }
         this.range.start = startDate
-        this.range.end = endDate
+        this.range.end = this.addDays(endDate, 1)
 
     },
     checkDateEquality(firstDate, secondDate){
