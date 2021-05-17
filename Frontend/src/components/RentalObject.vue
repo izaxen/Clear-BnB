@@ -1,16 +1,14 @@
 <template>
-  <div class="rental-card">
+  <div class="rental-card" v-if="getImg">
     <router-link :to="link">
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-      />
+      <img :src="imageList[0]" alt="img"/>
     </router-link>
     <div class="wrapper">
       <div class="hero">
         <h3>{{ object.city }}</h3>
         <h5>{{ object.address }}</h5>
         <span>From {{ from }}, to {{ to }}</span>
-        <div class="small-text">Price: {{ object.price }}</div>
+        <div class="small-text">Price: {{ object.price }}$</div>
 
         <hr class="separator" />
         <p>{{ object.freeText }}</p>
@@ -42,6 +40,7 @@ export default {
       poolUrl: '',
       airUrl: '',
       link: '/details/' + this.object.id,
+      imageList: []
     }
   },
 
@@ -59,6 +58,12 @@ export default {
     this.airUrl = this.object.amenities.airCondition
       ? 'https://image.flaticon.com/icons/png/512/114/114735.png'
       : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-air-conditioner-2184221-1828706.png'
+    }
+  },
+  computed: {
+    async getImg(){
+      await this.$store.dispatch('getFileUrl', this.object.id)
+      this.imageList = this.$store.state.imageList
     }
   },
 }
