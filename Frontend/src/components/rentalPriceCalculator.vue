@@ -31,14 +31,28 @@
   </div>
 
   <div class="sum">
-    <div>Total:</div>
-    <div>{{ sum == 0 || isNaN(sum) ? 'Select all fields' : `${sum} kr` }}</div>
+    <div class="group">
+      <div>Service fee:</div>
+      <div>
+        {{ sum == 0 || isNaN(sum) ? '' : `${Math.round(sum * 0.15)} kr` }}
+      </div>
+    </div>
+    <div class="group">
+      <div>Total:</div>
+      <div>
+        {{
+          sum == 0 || isNaN(sum)
+            ? 'Select all fields'
+            : `${Math.round(sum * 1.15)} kr`
+        }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['numOfDays'],
+  props: ['numOfDays', 'pricePerNight', 'price'],
   emits: ['num-guest'],
 
   data() {
@@ -55,10 +69,10 @@ export default {
 
   watch: {
     totalCount: function () {
-      this.sum = this.numOfDays * 87 * this.totalCount
+      this.sum = this.numOfDays * this.price * this.totalCount
     },
     numOfDays: function () {
-      this.sum = this.numOfDays * 87 * this.totalCount
+      this.sum = this.numOfDays * this.price * this.totalCount
     },
     sum: function () {
       this.$emit('num-guest', this.adultCount, this.childrenCount, this.sum)
@@ -76,7 +90,6 @@ export default {
         ? (this.childrenCount = 0)
         : (this.childrenCount--, this.totalCount--)
     },
-    close() {},
   },
 }
 </script>
@@ -117,12 +130,12 @@ export default {
 
 .sum {
   margin: 0 0.5rem;
-  display: flex;
-  justify-content: space-between;
 }
 
 .sum > div {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 button {
