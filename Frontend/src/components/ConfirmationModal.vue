@@ -45,6 +45,7 @@
 <script>
 export default {
   props:["startDate", "endDate"],
+  emits: ['close'],
 
   data(){
     return{
@@ -77,6 +78,7 @@ export default {
   methods: {
     closeModal(){
       this.$store.commit('setIsConfirmation', false)
+      this.$emit('close')
     },
     setRentalObject(){
       this.rentalObject = this.$store.state.rentalObject     

@@ -1,5 +1,5 @@
 <template>
-  <ConfirmationModal :startDate="availableFrom" :endDate="availableTo">
+  <ConfirmationModal :startDate="availableFrom" :endDate="availableTo" @close="close">
    <template v-slot:header>
       <h2>Your object has been added.</h2>
     </template>
@@ -15,8 +15,8 @@
 
 <script>
 import ConfirmationModal from './ConfirmationModal.vue'
-
 export default {
+emits: ['close'],
 components:{
   ConfirmationModal,
 },
@@ -26,6 +26,12 @@ data(){
   availableFrom: '',
   availableTo : '',
   }
+},
+
+methods:{
+  exit(){
+    this.$emit('close')
+  },
 },
 
 watch:{

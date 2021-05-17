@@ -28,7 +28,7 @@
     <label id="add-rental" @click="combineFormAndList(); $refs.formClearFields.clearFields()">Add rental object</label>
     </div>
   </div>
-    <AddRentalObjectConfirmation/>
+    <AddRentalObjectConfirmation @close="pushUrl"/>
 </div>
 </template>
 
@@ -61,12 +61,17 @@ return{
   formData: '',
   clearList: {},
   rentalObjects:'',
-  
-}
-  },
+
+  }
+},
+
   methods:{
 LoadFormData(formData){
   this.formData= formData
+  },
+
+  pushUrl(){
+    this.$router.push('/my-page/my-houses')
   },
 
   amenitiesList(list){
@@ -99,8 +104,18 @@ LoadFormData(formData){
     }
     
     this.$store.dispatch('uploadFiles', object )
-    this.$store.commit('setIsConfirmation', true)
-  }
+     this.$store.commit('setIsConfirmation', true)
+     
+    
+  },
+
+  computed: {
+    pushUrl(){
+      return this.$store.state.isConfirmation
+    }
+  },
+
+
   }
 }
 </script>
