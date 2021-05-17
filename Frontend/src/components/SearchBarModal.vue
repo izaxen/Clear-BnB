@@ -5,8 +5,8 @@
         <div class="card">
           <p class="city-name">City</p>
           <select @click="showCityNames" class="box1" v-model="city">
-            <option :value="cityName" selected>--Citys--</option>
-            <option v-for="city in citys" :key="city" :value="city">
+            <option :value="cityName" selected>--Cities--</option>
+            <option v-for="city in cities" :key="city" :value="city">
               {{ city }}
             </option>
           </select>
@@ -49,7 +49,7 @@ export default {
     return {
       searchBar: true,
       city: '',
-      citys: [],
+      cities: [],
       cityName: '',
       guests: 1,
       guestText: 'Guest',
@@ -76,13 +76,13 @@ export default {
     showCityNames() {
       let getCitys = this.$store.state.rentalObjects
       for (let cityName of getCitys) {
-        this.citys.push(cityName.city)
+        this.cities.push(cityName.city)
       }
 
-      let removedDuplicates = this.citys.filter((value, index) => {
-        return this.citys.indexOf(value) === index
+      let removedDuplicates = this.cities.filter((value, index) => {
+        return this.cities.indexOf(value) === index
       })
-      this.citys = removedDuplicates
+      this.cities = removedDuplicates
     },
 
     changeGuestText() {
@@ -118,7 +118,7 @@ export default {
       this.$router.push('/overview')
 
       //nollställer data
-      this.citys = []
+      this.cities = []
       this.cityName = ''
       this.guests = 1
       this.guestText = 'Guest'

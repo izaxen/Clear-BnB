@@ -3,8 +3,8 @@
     <form class="box-bg" @submit.prevent>
       <div class="mb-4">
         <div v-if="searchBar" class="text">
-          <span class="check-in-out-text">Check in</span>
-          <span class="check-in-out-text1">Check out</span>
+          <!--<span class="check-in-out-text">Check in</span>
+          <span class="check-in-out-text1">Check out</span>-->
         </div>
         <div v-else class="text">
           <span class="check-in-out-text">Available from</span>
@@ -219,13 +219,11 @@ export default {
   height: 2rem;
 }
 .box-bg {
-  align-items: flex-end;
   padding: 0 0.5rem;
   background-color: rgb(255, 255, 255);
 }
 .select-date {
   text-align: left;
-
   font-size: 0.875rem;
   font-weight: 700;
   display: block;
@@ -238,26 +236,25 @@ export default {
   align-self: flex-end;
 }
 .single-date-box {
+  align-self: center;
   position: relative;
   flex-grow: 1;
-  border-radius: 0;
+  width: 8.5rem;
 }
 
 .calendar-logo {
   width: 1rem;
   position: absolute;
   pointer-events: none;
-  margin: -0.15rem 0.5rem 0 0.5rem;
-
+  margin: 0 0.5rem 0 0.5rem;
   height: 100%;
 }
+
 .chosen-date-box {
   width: 100%;
   padding: 0.25rem 0.25rem 0.25rem 2rem;
   flex-grow: 1;
-  border-width: 1px;
-  border-radius: 0.25rem;
-  background-color: rgb(233, 233, 233);
+  border: none;
   line-height: inherit;
   overflow: visible;
   font-family: inherit;
@@ -279,7 +276,6 @@ export default {
   display: flex;
   justify-content: space-around;
   font-size: 12px;
-  color: #718096;
 }
 .check-in-out-text1 {
   margin-left: 2rem;

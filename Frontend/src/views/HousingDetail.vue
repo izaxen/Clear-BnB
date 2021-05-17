@@ -73,7 +73,6 @@ export default {
     await store.dispatch('fetchReceipts')
     await store.dispatch('getFileUrl', to.params.id)
     await store.dispatch('fetchRentalObjectById', to.params.id)
-    
 
     next()
   },

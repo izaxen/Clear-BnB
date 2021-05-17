@@ -67,20 +67,32 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;700&display=swap');
+
 nav {
   display: flex;
   justify-content: space-between;
-  background: #6497b1;
+  background-color: white;
   color: black;
-  height: 6rem;
-  box-shadow: 0 0 5px 2px;
+  height: 4.3rem;
+  box-shadow: rgb(141, 137, 137) 5px 0px 2px 2px;
   align-items: center;
+  font-family: 'Dosis bold', Arial, Helvetica, sans-serif;
+  font-size: 22px;
+}
 
-  border-bottom: 1px solid rgb(167, 167, 167);
+.search-bar{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+   z-index: 3;
 }
 .home-btns {
   grid-area: Home;
   margin-left: 30px;
+}
+.links{
+  margin-left: 0.7rem;
 }
 .links a {
   margin: 10px;
@@ -88,7 +100,7 @@ nav {
 .Login-btn {
   grid-area: Login;
   justify-self: right;
-  margin-right: 1rem;
+  margin-right: 1.1rem;
 }
 a {
   text-decoration: none;

@@ -1,10 +1,9 @@
 <template>
   <form class="search-box">
     <div class="card">
-      <p class="city-name">City</p>
       <select @click="showCityNames" class="box1" v-model="city">
-        <option :value="cityName" selected>--Citys--</option>
-        <option v-for="city in citys" :key="city" :value="city">
+        <option :value="cityName" selected> - City - </option>
+        <option v-for="city in cities" :key="city" :value="city">
           {{ city }}
         </option>
       </select>
@@ -50,7 +49,7 @@ export default {
     return {
       searchBar: true,
       city: '',
-      citys: [],
+      cities: [],
       cityName: '',
       guests: 1,
       guestText: 'Guest',
@@ -77,13 +76,13 @@ export default {
     showCityNames() {
       let getCitys = this.$store.state.rentalObjects
       for (let cityName of getCitys) {
-        this.citys.push(cityName.city)
+        this.cities.push(cityName.city)
       }
 
-      let removedDuplicates = this.citys.filter((value, index) => {
-        return this.citys.indexOf(value) === index
+      let removedDuplicates = this.cities.filter((value, index) => {
+        return this.cities.indexOf(value) === index
       })
-      this.citys = removedDuplicates
+      this.cities = removedDuplicates
     },
 
     changeGuestText() {
@@ -94,7 +93,7 @@ export default {
       this.changeGuestText()
     },
     subtractGuest() {
-      if (this.guests > 0) {
+      if (this.guests > 1) {
         this.guests--
         this.changeGuestText()
       }
@@ -115,7 +114,7 @@ export default {
       }
 
       this.$store.commit('setSearchObject', search)
-      this.citys = []
+      this.cities = []
       this.cityName = ''
       this.guests = 1
       this.guestText = 'Guest'
@@ -130,12 +129,15 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
 option {
   color: rgb(0, 0, 0);
   font-weight: 600;
-  background: #59deff93;
+  background: white;
   padding: 10px;
-  font-size: 17px;
+  font-size: 22px;
+  font-family: 'Crimson Text', serif;
 }
 
 .card {
@@ -143,7 +145,8 @@ option {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 5px;
+  padding-right: 7px;
+  border-right: 1px solid gray;
 }
 
 button {
@@ -156,12 +159,7 @@ button {
 .city-name {
   margin: 0;
   padding: 0;
-  font-size: 0.8rem;
   color: gray;
-}
-
-p {
-  font-size: 0.8rem;
 }
 
 .person-div {
@@ -170,7 +168,6 @@ p {
   justify-content: center;
   align-content: center;
   position: absolute;
-  text-align: left;
   font-size: 15px;
   font-weight: 800;
   width: 0;
@@ -200,9 +197,11 @@ p {
   background: #fbfbfb;
   border-radius: 40px;
   padding: 10px;
-  width: 600px;
   align-items: center;
-  height: 4.5rem;
+  height: 3.1rem;
+  border: 1px solid rgb(175, 163, 163);
+  font-family: 'Crimson Text', serif;
+  color: black;
 }
 
 .box1:hover > .search-btn {
@@ -225,15 +224,10 @@ p {
   background: none;
   outline: none;
   padding: 2px;
-  color: rgb(113, 128, 150);
-  height: 28px;
-  font-size: 15px;
+  padding-left: 1px;
   transition: 0.4s;
-  width: 6rem;
-
-  border: 1px solid black;
   border-radius: 5px;
-  background: #e9e9e9;
+  width: 9rem;
 }
 
 .box4 {
@@ -242,11 +236,10 @@ p {
   justify-content: center;
   align-content: center;
   padding: 2px;
-  color: rgb(113, 128, 150);
   font-size: 20px;
   transition: 0.4s;
-  line-height: 40px;
-  width: 6rem;
+  width: 8rem;
+  height: 28px;
 }
 
 .box4:hover {
