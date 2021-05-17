@@ -1,5 +1,5 @@
 <template>
-  <div v-if="value" class="flex-holder">
+  <div v-if="value" :class="site ? 'flex-holder' : 'am-display'">
     <img class="icon" :src="url" />
     <p>{{ text }}</p>
   </div>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  props: ['value', 'name'],
+  props: ['value', 'name', 'site'],
 
   data() {
     let data = {
@@ -21,8 +21,6 @@ export default {
   },
 
   created() {
-
-
     if (this.name == 'wifi') {
       this.url =
         'https://ak.picdn.net/shutterstock/videos/1007702740/thumb/1.jpg'
@@ -104,16 +102,22 @@ export default {
 </script>
 
 <style scoped>
-
-.flex-holder{
+.flex-holder {
   display: flex;
-  align-items:center;
+  align-items: center;
   font-size: 12px;
-  height:30px
+  height: 30px;
 }
 img {
   margin-right: 10px;
-  height: 60%;
-  width: 30px;
+  height: 32px;
+  width: 32px;
+}
+
+.am-display {
+  width: 30%;
+  display: flex;
+  margin-bottom: 2rem;
+  font-size: 1rem;
 }
 </style>

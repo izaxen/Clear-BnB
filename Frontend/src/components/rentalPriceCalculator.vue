@@ -195,4 +195,14 @@ div {
 .close button {
   cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+  .link {
+    width: 50%;
+  }
+
+  .num-guest-text {
+    font-size: 0.9rem;
+  }
+}
 </style>
