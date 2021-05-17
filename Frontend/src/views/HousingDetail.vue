@@ -70,14 +70,13 @@ export default {
   },
 
   async beforeRouteEnter(to, from, next) {
-    await store.dispatch('fetchReceipts')
     await store.dispatch('getFileUrl', to.params.id)
+    await store.dispatch('fetchReceipts')
     await store.dispatch('fetchRentalObjectById', to.params.id)
-    
 
     next()
   },
-  beforeRouteLeave(to, from, next){
+  beforeRouteLeave(to, from, next) {
     this.$store.commit('setRentalObject', null)
     next()
   },
@@ -85,7 +84,6 @@ export default {
   methods: {
     saveTempReceipt(receipt) {
       this.tempReceipt = receipt
-      console.log('körd')
     },
 
     async fetch() {
