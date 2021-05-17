@@ -194,8 +194,6 @@ button {
 }
 .search-box {
   display: flex;
-  
-  
   border-radius: 40px;
   padding: 10px;
   align-items: center;
@@ -285,6 +283,10 @@ button {
   }
   .search-small {
     display: flex;
+  }
+  .search-box{
+        border-radius: 100%;
+        padding: 13px;
   }
 }
 </style>
