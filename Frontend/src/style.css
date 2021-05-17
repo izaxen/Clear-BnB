@@ -10,6 +10,7 @@ body {
   margin: 0;
   padding: 0;
   background-image: url('https://wallpaperaccess.com/full/42546.jpg');
+  background-attachment: fixed;
 }
 
 #app {
