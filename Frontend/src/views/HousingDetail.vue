@@ -1,35 +1,6 @@
 <template>
   <div v-if="!fetching" class="wrapper">
-    <!-- Bilderna ska inte vara hårdkodade -->
-    <div class="hero-picture">
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-      <div class="picture-text">
-        {{ rentalObject.freeText }}
-      </div>
-      <div class="pic-city">{{ rentalObject.city }}</div>
-    </div>
-    <div class="slider">
-      <!-- Bilderna ska inte vara hårdkodade -->
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-      <img
-        src="https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false"
-        alt=""
-      />
-    </div>
+    <RentalImages :object="rentalObject" />
     <hr class="separator" />
 
     <div class="seller-info">
@@ -75,6 +46,7 @@ import DisplayHotAmenity from '../components/DisplayHotAmenity.vue'
 import BookHousingForm from '../components/BookHousingForm.vue'
 import AmenityLoggo from '../components/AmenityLoggo.vue'
 import BookingConfirmation from './BookingConfirmation.vue'
+import RentalImages from '../components/RentalImages.vue'
 
 import store from '../store.js'
 export default {
@@ -83,6 +55,7 @@ export default {
     AmenityLoggo,
     BookingConfirmation,
     DisplayHotAmenity,
+    RentalImages,
   },
 
   data() {
@@ -98,9 +71,14 @@ export default {
 
   async beforeRouteEnter(to, from, next) {
     await store.dispatch('fetchReceipts')
-
+    await store.dispatch('getFileUrl', to.params.id)
     await store.dispatch('fetchRentalObjectById', to.params.id)
+    
 
+    next()
+  },
+  beforeRouteLeave(to, from, next){
+    this.$store.commit('setRentalObject', null)
     next()
   },
 
@@ -115,7 +93,6 @@ export default {
       let res = await fetch(`/rest/rental-objects/${id}`)
       this.rentalObject = await res.json()
       this.amenities = this.rentalObject.amenities
-
       this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
     },
   },
