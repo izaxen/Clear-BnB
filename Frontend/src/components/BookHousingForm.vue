@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Calendar :booking="true" @days-selected="receive" @dates="confirmDates" />
+    <div class="calendar"><Calendar :booking="true" @days-selected="receive" @dates="confirmDates" /></div>
     <NumberOfGuests @num-guest="confirmGuest" :numOfDays="days" />
 
     <button @click="book" :disabled="receipt.totalPrice == 0 ? '' : disabled">

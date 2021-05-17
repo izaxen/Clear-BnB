@@ -23,7 +23,7 @@
         >
           <template v-slot="{ inputValue, inputEvents, isDragging }">
             <div class="date-range">
-              <div class="single-date-box">
+              <div class="single-date-box" :class="booking ? 'smaller-width' : ''">
                 <svg
                   class="calendar-logo"
                   fill="none"
@@ -57,7 +57,7 @@
                   />
                 </svg>
               </span>
-              <div class="single-date-box text-gray-900">
+              <div class="single-date-box text-gray-900" :class="booking ? 'smaller-width' : ''">
                 <svg
                   class="calendar-logo"
                   fill="none"
@@ -220,7 +220,6 @@ export default {
 }
 .box-bg {
   padding: 0 0.5rem;
-  background-color: rgb(255, 255, 255);
 }
 .select-date {
   text-align: left;
@@ -240,6 +239,9 @@ export default {
   position: relative;
   flex-grow: 1;
   width: 8.5rem;
+}
+.smaller-width{
+  width: 7rem;
 }
 
 .calendar-logo {

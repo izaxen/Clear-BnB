@@ -79,12 +79,11 @@ h5 {
 }
 .rental-card {
   margin: 1rem 2rem 0;
-
+  background-color: white;
   display: flex;
   flex-direction: row;
   padding: 0.8rem 2rem;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(0, 0, 0, 0.3);
-
   border-radius: 10px;
 }
 

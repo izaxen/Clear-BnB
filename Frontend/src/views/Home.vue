@@ -33,6 +33,7 @@ export default {
 
 <style scoped>
   .home-view{
+    padding: 20px;
     display: grid;
     justify-content: center;
   }

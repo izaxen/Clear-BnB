@@ -194,7 +194,8 @@ button {
 }
 .search-box {
   display: flex;
-  background: #fbfbfb;
+  
+  
   border-radius: 40px;
   padding: 10px;
   align-items: center;
@@ -253,6 +254,7 @@ button {
 
 .search-small {
   display: none;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1000px) {

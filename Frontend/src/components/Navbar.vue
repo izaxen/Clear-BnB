@@ -75,7 +75,7 @@ nav {
   background-color: white;
   color: black;
   height: 4.3rem;
-  box-shadow: rgb(141, 137, 137) 5px 0px 2px 2px;
+  box-shadow: rgb(141, 137, 137) 4px 2px 10px 0;
   align-items: center;
   font-family: 'Dosis bold', Arial, Helvetica, sans-serif;
   font-size: 22px;
@@ -102,12 +102,17 @@ nav {
   justify-self: right;
   margin-right: 1.1rem;
 }
+
 a {
   text-decoration: none;
   color: rgb(0, 0, 0);
+  border-radius: 50px;
+  padding: 10px;
 }
 a:hover {
-  text-decoration: underline;
+  background: rgb(247, 252, 253);
+  box-shadow: grey 1px 1px 2px;
+  
 }
 
 .menu {

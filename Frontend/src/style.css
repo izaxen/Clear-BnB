@@ -9,6 +9,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-image: url('https://wallpaperaccess.com/full/42546.jpg');
 }
 
 #app {
@@ -19,8 +20,13 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  display: flex;
 }
 
 main {
+  margin: auto;
+  background-color: rgb(245, 245, 245);
+  background-color: white;
+  max-width: 80rem;
   flex: 1;
 }
