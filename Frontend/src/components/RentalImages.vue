@@ -4,7 +4,7 @@
       <div class="hero-picture">
         <img :src="imageList[0]" />
         <div class="picture-text">
-          {{ object.freeText }}
+          <p>{{ object.freeText }}</p>
         </div>
         <div class="pic-city">{{ object.city }}</div>
       </div>
@@ -22,7 +22,6 @@ export default {
   props: ['object'],
   async created() {
     this.imageList = await this.$store.state.imageList
-    console.log('file listr i testpage', this.imageList)
   },
   data() {
     return {
@@ -36,13 +35,14 @@ export default {
 .picture-text {
   position: absolute;
   top: 75%;
-  left: 50%;
-  transform: translate(-50%, -75%);
+  left: 30%;
+  transform: translate(-50%);
   color: whitesmoke;
+  background-color: rgba(128, 128, 128, 0.452);
+  padding: 5px;
   font-weight: 700;
-  font-size: 2rem;
-  min-width: 100%;
-  text-align: center;
+  font-size: 1rem;
+  width: 50%;
 }
 
 .pic-city {

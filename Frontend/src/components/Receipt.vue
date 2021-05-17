@@ -2,22 +2,19 @@
 <div class="view">
   <div class="receipt-card">
     <div class="col-1">
-      <div class="img">
-        <img src="https://thumbs.dreamstime.com/b/nice-brick-house-red-door-11568682.jpg" alt="">
+      <div class="img" v-if="getImg">
+        <img :src="imageList[0]" alt="">
       </div>
     </div>
     <div class="col-2">
-      <h2>{{receipt.city}}</h2>
-      <p>{{receipt.description}}</p>
-
-      <h4>Booking id: {{receipt.id}}</h4>
+      <h4>Booking: {{receipt.id}}</h4>
+      <p>Check in: {{new Date(receipt.startDate).toLocaleDateString("se-SE").split("/").toString()}}</p>
+      <p>Check out: {{new Date(receipt.endDate).toLocaleDateString("se-SE").split("/").toString()}}</p>
+      <p>Adults: {{receipt.numAdult}}</p>
+      <p>Children: {{receipt.numChild}}</p>
+      <p>Price: {{receipt.totalPrice}}$</p>
     </div>
     <div class="col-3">
-      <div class="text">
-        <p>Available from: {{receipt.availableFrom}}</p>
-        <p>People: 4</p>
-        <p>Price: 2400$</p> 
-      </div>
       <div class="btns">
        <button class="btn-link" @click="goToHouse">Details</button>
        <button class="btn-remove" @click="deleteReceipt">Remove</button>
@@ -30,6 +27,11 @@
 <script>
 export default {
   props:["receipt"],
+  data(){
+    return {
+      imageList: []
+    }
+  },
 
   methods: {
     goToHouse(){
@@ -39,21 +41,29 @@ export default {
       this.$store.dispatch('deleteReceipt', this.receipt);
       this.$emit('deleteBooking', this.receipt)
     }
-  }
+  },
+
+  computed: {
+    async getImg(){
+      await this.$store.dispatch('getFileUrl', this.receipt.rentalObjectId)
+      this.imageList = this.$store.state.imageList
+    }
+  },
 
 }
 </script>
 
 <style scoped>
-
-  .text {
-    margin-top: 15px;
-    margin-bottom: 30px;
-  }
+  .btns {
+        display: grid;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
 
   button{
     height: 40px;
-    width: 80%;
+    width: 100px;
     border: none;
     border-radius: 10px;
     background: #6497b1;
@@ -93,13 +103,14 @@ export default {
     "box1 box2 box3";
     border-radius: 10px;
     height: fit-content;
-    width: 70%;
+    width: 80%;
     justify-self: center;
     align-self: center;
     margin: 30px 0;
     color: black;
     box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
     padding: 5px;
+    transition: 0.4s;
   }
 
   .col-1 {
@@ -115,22 +126,15 @@ export default {
   }
 
   .col-3 {
+    position: relative;
     display: flex;
     flex-direction: column;
     grid-area: box3;
   }
 
-  .col-3 p {
-    margin: 5px;
-  }
-
   .img {
     width: 100%;
     display: grid;
-  }
-  .btns {
-      display: grid;
-      height: 100%;
   }
 
   img {
