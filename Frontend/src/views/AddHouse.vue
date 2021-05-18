@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="sidebar"><SideBar /></div>
 <div class=shell>
   <div class="header"><h1>Add rental object</h1></div>
@@ -29,8 +30,9 @@
     <label v-if="checkRentalForm" id="add-rental-disable">Add rental object</label>
     </div>
   </div>
-    <AddRentalObjectConfirmation @close="pushUrl"/>
+    <AddRentalObjectConfirmation @close="pushUrl" />
 </div>
+
 </template>
 
 <script>
@@ -232,7 +234,7 @@ label:hover{
 }
 
   h1{
-    margin: 10px;
+    margin: 15px;
   }
 
   #add-rental-disable{
