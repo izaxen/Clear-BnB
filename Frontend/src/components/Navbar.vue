@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <div class="menu">=</div>
+    <div @click="openMenu" class="menu">=</div>
     <div class="links">
       <router-link to="/">Home</router-link>
       <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
@@ -20,22 +20,32 @@
   </nav>
   <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
   <SearchBarModal v-show="isSearchModalVisible" @close="exitModal" />
+  <Hamburger
+    @login="showModalLogin"
+    @logout="logout"
+    @show="openMenu"
+    :open="showHamburger"
+  />
 </template>
 
 <script>
 import LoginModal from '../views/LoginModal.vue'
 import SearchBar from './SearchBar.vue'
 import SearchBarModal from './SearchBarModal.vue'
+import Hamburger from '../components/Sidebar/HamburgerMenu.vue'
+
 export default {
   components: {
     LoginModal,
     SearchBar,
     SearchBarModal,
+    Hamburger,
   },
   data() {
     return {
       isModalVisible: false,
       isSearchModalVisible: false,
+      showHamburger: false,
     }
   },
   computed: {
@@ -60,7 +70,12 @@ export default {
     },
     logout() {
       this.$store.dispatch('logout')
-      this.$router.push('/');
+      this.$router.push('/')
+    },
+
+    openMenu() {
+      console.log('hej')
+      this.showHamburger = !this.showHamburger
     },
   },
 }
