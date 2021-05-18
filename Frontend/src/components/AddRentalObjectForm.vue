@@ -5,21 +5,22 @@
       <div class="input-boxes">
         
         <div class="input-holder">
-        <input class="freetext  border-radius" v-model="freeText" type="text" placeholder="Title..."/>
-        <textarea class="description border-radius" v-model="description" type="text" placeholder="Description..."/>
+        <input class="freetext  border-radius" v-model="freeText" type="text" placeholder=" Title..."/>
+        <textarea class="description border-radius" v-model="description" type="text" placeholder=" Description..."/>
         </div>
         
           
           <div class ="address-row">
-            <input class="medium-box  border-radius" v-model="address" required type="text" placeholder="Address..."/>
-            <input class="medium-box1  border-radius" v-model="city" required type="text" placeholder="City..."/>
+            <input class="medium-box  border-radius" v-model="address" required type="text" placeholder=" Address..."/>
+            
             
           </div>
 
         <div class="beds-price">
-          <input class="small-box  border-radius" v-model="zipCode" required type="text" placeholder="Zip Code..."/>
-        <input class="small-box  border-radius" v-model="availableBeds" required type="number" min="1"  max ="25" placeholder="Beds.."/>
-        <input class="small-box border-radius" v-model="price" required type="number" min="400" placeholder="Price.."/>
+          <input class="medium-box1  border-radius" v-model="city" required type="text" placeholder=" City..."/>
+          <input class="small-box  border-radius" v-model="zipCode" required type="text" placeholder=" Zip Code..."/>
+        <input class="small-box  border-radius" v-model="availableBeds" required type="number" min="1"  max ="25" placeholder=" Beds.."/>
+        <input class="small-box border-radius" v-model="price" required type="number" min="400" placeholder=" Price.."/>
         
         </div>
       </div>
@@ -128,12 +129,7 @@ watch:{
 .beds-price{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-}
-
-.address-row{
-  display: flex;
-  flex-direction: row;
+  
 }
 
 .input-boxes{
@@ -148,21 +144,23 @@ textarea{
 }
 
 .freetext{
+line-height: 18px;
 width: 100%;
 }
 
 .medium-box{
-  flex-grow: 2;
+  width: 100%;
   line-height: 18px;
 }
 .medium-box1{
+  grid-area: right;
   line-height: 18px;
-  margin-left: 10px;
 }
 
 .small-box{
   line-height: 18px;
   width: 60px;
+  margin-left:5px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 

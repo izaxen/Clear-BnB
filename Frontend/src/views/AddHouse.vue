@@ -14,7 +14,7 @@
       </div>
 
   <div class="add-images">
-  <h3>Add pictures</h3>
+  <h3>Add 6 pictures</h3>
   <AddImageForm @formData="LoadFormData"/>
 </div></div>
 
@@ -27,7 +27,8 @@
   </div>
 
     <div class="row3">
-    <label id="add-rental" @click="combineFormAndList(); $refs.formClearFields.clearFields()">Add rental object</label>
+    <label v-if="!checkRentalForm" id="add-rental" @click="combineFormAndList(); $refs.formClearFields.clearFields()">Add rental object</label>
+    <label v-if="checkRentalForm" id="add-rental-disable">Add rental object</label>
     </div>
   </div>
     <AddRentalObjectConfirmation @close="pushUrl"/>
@@ -55,7 +56,7 @@ export default {
 
   data(){
 return{
-  rentalamenities:'',
+  rentalAmenities:'',
   rentalForm:'',
   fromDate:'',
   toDate:'',  
@@ -63,29 +64,36 @@ return{
   formData: '',
   clearList: {},
   rentalObjects:'',
-
+  validateList:'',
   }
 },
 
-  methods:{
-LoadFormData(formData){
-  this.formData= formData
-  },
 
-  pushUrl(){
-    this.$router.push('/my-page/my-houses')
+methods:{
+pushUrl(){
+  console.log('kör pushurl')
+this.$router.push('/my-page/my-houses')
+},
+  
+
+  LoadFormData(formData){
+  this.formData= formData
   },
 
   amenitiesList(list){
   this.rentalAmenities = list
-    },
-  houseForm(form){
-   this.rentalForm = form
   },
+
+  houseForm(form){
+    console.log('start')
+  this.rentalForm = form
+  },
+
   inAndOutDate(from,to){
     this.fromDate = from
     this.toDate = to
   },
+  
   async combineFormAndList(){
     this.rentalObjects = this.rentalForm
     this.user = this.$store.state.user
@@ -98,26 +106,34 @@ LoadFormData(formData){
     this.rentalObjects = Object.assign({},this.rentalObjects, completeAmanities, availableTo,availableFrom, userId)
     let rentalId = await this.$store.dispatch('postRentalObject', this.rentalObjects)
     this.$store.commit('setRentalObject', this.rentalObjects)
-    
-    
     let object = {
       formData: this.formData,
       rentalId: rentalId
     }
-    
     this.$store.dispatch('uploadFiles', object )
-     this.$store.commit('setIsConfirmation', true)
-     
-    
+    this.$store.commit('setIsConfirmation', true)
+  },
+
+  
+
   },
 
   computed: {
-    pushUrl(){
-      return this.$store.state.isConfirmation
+
+    checkRentalForm(){
+    if(this.rentalForm == '' || this.amenitiesList == undefined|| this.fromDate == '' || this.toDate == '' || this.formData == ''){
+      return true
+    }
+    for(let value of Object.values(this.rentalForm)){
+      if(value == ''){
+        return true
+      }
+    }
+    return false
     }
   },
   }
-}
+
 </script>
 
 <style scoped>
@@ -168,7 +184,6 @@ height: 10%;
     justify-content: center;
   }
 
-
 .objectform{
   display: flex;
   flex-direction: column;
@@ -185,7 +200,7 @@ height: 10%;
   }
 
 .calendar{
-  scale: 95%;
+  scale: 100%;
   align-self: center;
   margin-left: -1px ;
   margin-top: 8px;
@@ -202,24 +217,27 @@ h3{
   margin:15px;
 }
 
- label{
-   height: 40px;
-    align-content: center;
-    border: none;
-    border-radius: 10px;
-    background: #6497b1;
-    font-weight: 700;
-    font-size: 15px;
-    margin: 5px;
- }
-
- label:hover{
-    background: #c4eafd;
-    cursor: pointer;
- }
+label{
+  padding: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 10px;
+  font-size: 90%;
+  background: #6497b1;
+  color: black;
+}
+ 
+label:hover{
+  background: #c4eafd;
+  cursor: pointer;
+}
 
   h1{
     margin: 10px;
+  }
+
+  #add-rental-disable{
+    opacity: 0.3;
   }
 
 @media only screen and (max-width: 575px){

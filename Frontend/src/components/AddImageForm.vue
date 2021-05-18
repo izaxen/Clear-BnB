@@ -52,6 +52,7 @@ methods:{
 this.$emit('formData', formData)
 this.$store.commit('addUploadedImages', this.files) 
 },
+
 deleteImages(){
   this.$store.commit('removeUploadedImages')
   this.url = []
@@ -85,27 +86,26 @@ margin: 15px;
 
 .delete-button{
   margin-left: 15px;
-  text-align: center;
 }
 
 #file-input{
   float: left;
 }
 
-  label{
-  display:inline-block;
-  height: 40px;
-  border: none;
-  border-radius: 10px;
-  background: #6497b1;
+ label{
+  padding: 8px;
   font-weight: 700;
   font-size: 15px;
- }
-
- label:hover{
-    background: #c4eafd;
-    cursor: pointer;
- }
+  border-radius: 10px;
+  font-size: 90%;
+  background: #6497b1;
+  color: black;
+}
+ 
+label:hover{
+  background: #c4eafd;
+  cursor: pointer;
+}
 
 .text-gray-900{
   font-size: 97%;

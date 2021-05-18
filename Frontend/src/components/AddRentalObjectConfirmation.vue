@@ -29,8 +29,9 @@ data(){
 },
 
 methods:{
-  exit(){
+  close(){
     this.$emit('close')
+    
   },
 },
 
