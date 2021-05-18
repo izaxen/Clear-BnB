@@ -17,8 +17,8 @@
         Logout
       </router-link>
     </div>
+    <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
   </nav>
-  <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
   <SearchBarModal v-show="isSearchModalVisible" @close="exitModal" />
   <Hamburger
     @login="showModalLogin"
@@ -96,24 +96,23 @@ nav {
   font-size: 22px;
 }
 
-.search-bar{
+.search-bar {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-   z-index: 3;
+  z-index: 3;
 }
 .home-btns {
   grid-area: Home;
   margin-left: 30px;
 }
-.links{
+.links {
   margin-left: 0.7rem;
 }
 .links a {
   margin: 10px;
 }
 .Login-btn {
-  grid-area: Login;
   justify-self: right;
   margin-right: 1.1rem;
 }
@@ -127,7 +126,6 @@ a {
 a:hover {
   background: rgb(219, 240, 219);
   box-shadow: grey 1px 1px 2px;
-  
 }
 
 .menu {
@@ -143,6 +141,16 @@ a:hover {
   }
   .menu {
     display: flex;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .search-bar {
+    position: inherit;
+  }
+
+  .Login-btn {
+    display: none;
   }
 }
 </style>

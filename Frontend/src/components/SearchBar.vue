@@ -2,7 +2,7 @@
   <form class="search-box">
     <div class="card">
       <select @click="showCityNames" class="box1" v-model="city">
-        <option :value="cityName" selected> - City - </option>
+        <option :value="cityName" selected>- City -</option>
         <option v-for="city in cities" :key="city" :value="city">
           {{ city }}
         </option>
@@ -255,17 +255,20 @@ button {
   text-decoration: none;
 }
 
-@media screen and (max-width: 1000px) {
-  .box4,
-  .box1,
-  .card {
+@media screen and (max-width: 1200px) {
+  .box4 {
     display: none;
   }
   .search-box {
     width: 100%;
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1030px) {
+  .box1 {
+    display: none;
+  }
+}
+@media screen and (max-width: 850px) {
   .box4,
   .box1,
   .card,
@@ -273,7 +276,7 @@ button {
     display: none;
   }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 580px) {
   .box4,
   .box1,
   .card,
@@ -284,9 +287,9 @@ button {
   .search-small {
     display: flex;
   }
-  .search-box{
-        border-radius: 100%;
-        padding: 13px;
+  .search-box {
+    border-radius: 100%;
+    padding: 13px;
   }
 }
 </style>

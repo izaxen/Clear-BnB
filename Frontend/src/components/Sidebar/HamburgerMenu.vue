@@ -57,13 +57,14 @@ export default {
   z-index: 50;
   min-width: 100%;
   min-height: 10vh;
-  background-color: rgb(209, 209, 209);
+  background: rgb(219, 240, 219);
+
   /* fixa med display none */
   transform: translateY(-200%);
   transition: all 0.4s;
   justify-content: space-around;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 a {
