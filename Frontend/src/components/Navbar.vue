@@ -1,13 +1,21 @@
 <template>
   <nav>
     <div @click="openMenu" class="menu">=</div>
+    
+    
     <div class="links">
+      <img id="logo" src="../assets/clearbnb-grey-house.png" alt="">
+
       <router-link to="/">Home</router-link>
       <router-link to="/overview">Overview</router-link>
     </div>
+    
     <div class="search-bar">
       <SearchBar @showSearchModal="showSearchModal" />
     </div>
+
+  
+
 
     <div class="Login-btn">
       <router-link to="" @click="showModalLogin" v-if="loggedIn === null">
@@ -97,6 +105,14 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;700&display=swap');
 
+#logo{
+  
+  max-height: 60px;
+  margin-left: 130px;
+  margin-right: 40px;
+  align-self: center;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -120,7 +136,9 @@ nav {
   margin-left: 30px;
 }
 .links {
+  display: flex;
   margin-left: 0.7rem;
+  align-items: baseline;
 }
 .links a {
   margin: 10px;
