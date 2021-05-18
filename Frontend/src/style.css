@@ -33,14 +33,8 @@ body {
 
 main {
   margin: auto;
+  width: 80vw;
   max-width: 80rem;
-  min-width: 80rem;
+  min-width: 65rem;
   flex: 1;
-}
-
-@media screen and(max-width: 1400px) {
-  main {
-    max-width: 65rem;
-    min-width: 65rem;
-  }
 }
