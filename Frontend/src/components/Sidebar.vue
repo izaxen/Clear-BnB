@@ -56,4 +56,13 @@ a:hover {
     }
 }
 
+@media screen and (max-width: 500px) {
+    .sidebar1 {
+      flex-direction: column;
+      max-width: 27rem;
+      font-size: 15px;
+      text-align: center;
+    }
+}
+
 </style>

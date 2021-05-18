@@ -2,20 +2,20 @@
 <div class="view">
   <div class="receipt-card">
     <div class="col-1">
-      <div class="img">
-        <img src="https://thumbs.dreamstime.com/b/nice-brick-house-red-door-11568682.jpg" alt="">
+      <div class="img" v-if="getImg">
+        <img :src="imageList[0]" alt="">
       </div>
     </div>
     <div class="col-2">
       <h2>{{house.city}}</h2>
       <p>Beds: {{house.availableBeds}}</p>
       <p>Price/night: {{house.price}}$</p>
+      <p>From: {{new Date(house.availableFrom).toLocaleDateString("se-SE").split("/").toString()}}</p>
+      <p>To: {{new Date(house.availableTo).toLocaleDateString("se-SE").split("/").toString()}}</p>
     </div>
     <div class="col-3">
-      <div class="text">
-      </div>
       <div class="btns">
-        <button class="btn-link" @click="goToHouse">Go to house</button>
+        <button class="btn-link" @click="goToHouse">Details</button>
         <button class="btn-remove">Edit</button>
       </div>
     </div>
@@ -28,26 +28,33 @@
 <script>
 export default {
   props:["house"],
+  data(){
+    return {
+      imageList: []
+    }
+  },
 
   methods: {
     goToHouse(){
       this.$router.push('/details/' + this.house.id)
     }
-  }
+  },
+
+  computed: {
+    async getImg(){
+      await this.$store.dispatch('getFileUrl', this.house.id)
+      this.imageList = this.$store.state.imageList
+    }
+  },
 
 }
 </script>
 
 <style scoped>
 
-  .text {
-    margin-top: 15px;
-    margin-bottom: 30px;
-  }
-
   button{
     height: 40px;
-    width: 80%;
+    width: 100px;
     border: none;
     border-radius: 10px;
     background: #6497b1;
@@ -106,6 +113,10 @@ export default {
 
   .col-2 {
     grid-area: box2;
+    max-height: 300px;
+    overflow: hidden;
+    overflow: scroll;
+    overflow: auto;
     padding: 5px;
   }
 

@@ -90,6 +90,21 @@ export default {
       font-size: 15px;
     }
 }
+@media screen and (max-width: 400px) {
+    .sidebar1 {
+      max-width: 40rem;
+      font-size: 15px;
+    }
+    .info {
+    margin: 20px auto 20px auto;
+    width: 90%;
+    padding: 10px;
+    font-size: 15px;
+    }
+    .user-info {
+        font-size: 15px;
+    }
+}
 
 
 </style>

@@ -76,7 +76,6 @@ export default createStore({
     async fetchReceipts(store) {
       let res = await fetch('/rest/booking-receipts')
       let receipts = await res.json()
-      console.log('fetchReceipts, receipts:', receipts)
       store.commit('setReceipts', receipts)
     },
 
@@ -198,10 +197,9 @@ export default createStore({
     },
 
     async getFileUrl(store, id) {
-      let loadPath= '/api/uploads/' + id
+      let loadPath = '/api/uploads/' + id
       let res = await fetch(loadPath)
       let fileList = await res.json()
-      console.log('filelist', fileList)
       store.commit('getImageList', fileList)
       
     },
