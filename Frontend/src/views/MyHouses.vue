@@ -12,13 +12,13 @@ import UserHouseList from '../components/UserHouseList.vue'
 import SideBar from '../components/Sidebar.vue'
 export default {
   components: {
-    SideBar, UserHouseList
+    SideBar,
+    UserHouseList,
   },
 }
 </script>
 
 <style scoped>
-  
 .main1 {
   display: flex;
   flex-direction: column;
@@ -27,9 +27,10 @@ export default {
 }
 
 .overlay {
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-   border-radius: 5px;
-   min-height: 72vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  min-height: 72vh;
+  background-color: rgba(205, 205, 205, 0.9);
 }
 
 .sidebar {
@@ -41,5 +42,4 @@ export default {
 .list {
   justify-self: center;
 }
-
 </style>

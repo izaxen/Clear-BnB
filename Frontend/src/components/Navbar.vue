@@ -1,41 +1,62 @@
 <template>
   <nav>
-    <div class="menu">=</div>
+    <div @click="openMenu" class="menu">=</div>
     <div class="links">
       <router-link to="/">Home</router-link>
-      <router-link to="/my-page" v-if="loggedIn !== null">My Page</router-link>
       <router-link to="/overview">Overview</router-link>
     </div>
     <div class="search-bar">
       <SearchBar @showSearchModal="showSearchModal" />
     </div>
+
     <div class="Login-btn">
       <router-link to="" @click="showModalLogin" v-if="loggedIn === null">
-        Login
+        <i class="fas fa-user-circle"></i>
       </router-link>
-      <router-link to="" @click="logout" v-if="loggedIn !== null">
-        Logout
-      </router-link>
+      <div v-if="loggedIn != null" class="show">
+        <i class="fas fa-bars"></i>
+        <i class="fas fa-user-circle"></i>
+        <div class="user-links">
+          <router-link to="" @click="logout" v-if="loggedIn !== null">
+            Log out</router-link
+          >
+          <router-link to="/my-page" v-if="loggedIn !== null">
+            My Page</router-link
+          >
+        </div>
+      </div>
     </div>
+
+    <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
   </nav>
-  <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
   <SearchBarModal v-show="isSearchModalVisible" @close="exitModal" />
+  <Hamburger
+    @login="showModalLogin"
+    @logout="logout"
+    @show="openMenu"
+    :open="showHamburger"
+  />
 </template>
 
 <script>
 import LoginModal from '../views/LoginModal.vue'
 import SearchBar from './SearchBar.vue'
 import SearchBarModal from './SearchBarModal.vue'
+import Hamburger from '../components/Sidebar/HamburgerMenu.vue'
+
 export default {
   components: {
     LoginModal,
     SearchBar,
     SearchBarModal,
+    Hamburger,
   },
   data() {
     return {
       isModalVisible: false,
       isSearchModalVisible: false,
+      showHamburger: false,
+      showUserLinks: false,
     }
   },
   computed: {
@@ -60,7 +81,14 @@ export default {
     },
     logout() {
       this.$store.dispatch('logout')
-      this.$router.push('/');
+      this.$router.push('/')
+    },
+
+    openMenu() {
+      this.showHamburger = !this.showHamburger
+    },
+    showUserLinks() {
+      this.showUserLinks = !this.showUserLinks
     },
   },
 }
@@ -81,26 +109,59 @@ nav {
   font-size: 22px;
 }
 
-.search-bar{
+.search-bar {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-   z-index: 3;
+  z-index: 3;
 }
 .home-btns {
   grid-area: Home;
   margin-left: 30px;
 }
-.links{
+.links {
   margin-left: 0.7rem;
 }
 .links a {
   margin: 10px;
 }
 .Login-btn {
-  grid-area: Login;
   justify-self: right;
   margin-right: 1.1rem;
+
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.user-links {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 0;
+  height: 0;
+  background: white;
+  border-radius: 10px;
+  z-index: 10;
+  transition: height 0.4s;
+}
+
+.show:hover > .user-links {
+  height: 100px;
+  width: 200px;
+}
+
+.fa-user-circle {
+  font-size: 2rem;
+}
+
+.fa-bars {
+  font-size: 1.5rem;
+  margin-right: 0.6rem;
 }
 
 a {
@@ -108,11 +169,12 @@ a {
   color: rgb(0, 0, 0);
   border-radius: 50px;
   padding: 10px;
+  text-align: center;
 }
 a:hover {
   background: rgb(219, 240, 219);
-  box-shadow: grey 1px 1px 2px;
-  
+
+  /* box-shadow: grey 1px 1px 2px; */
 }
 
 .menu {
@@ -122,12 +184,22 @@ a:hover {
   font-size: 4rem;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   .links {
     display: none;
   }
   .menu {
     display: flex;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .search-bar {
+    position: inherit;
+  }
+
+  .Login-btn {
+    display: none;
   }
 }
 </style>
