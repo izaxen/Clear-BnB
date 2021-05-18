@@ -47,10 +47,15 @@ export default {
 </script>
 
 <style scoped>
-
 h1 {
   text-align: center;
   font-size: 40px;
+}
+
+@media screen and (max-width: 550px) {
+  h1 {
+    font-size: 30px;
+  }
 }
 
 </style>

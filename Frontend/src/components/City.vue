@@ -1,22 +1,33 @@
 <template>
-  <div class="card" @click="goToHouse">
+  <div class="card" @click="goToHouse" v-if="getImg">
     <!-- v-bind: (short ':') binds an attribute
           to a reactive varaible -->
-    <img src="http://www.dib.mn/wp-content/uploads/2017/11/Bilgee-house-big.jpg" alt="">
+    <img :src="imageList[0]" alt="">
     <h3>{{ city.city }}</h3>
-    <p>{{ city.freeText }}</p>
+    <p>{{ city.description }}</p>
   </div>
 </template>
 
 <script>
 export default {
   props: ['city'],
+  data(){
+    return {
+      imageList: []
+    }
+  },
 
   methods: {
     goToHouse(){
       this.$router.push('/details/' + this.city.id)
     }
-  }
+  },
+  computed: {
+    async getImg(){
+      await this.$store.dispatch('getFileUrl', this.city.id)
+      this.imageList = this.$store.state.imageList
+    }
+  },
 }
 </script>
 
@@ -27,11 +38,11 @@ export default {
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
   "box1 box2"
-  "box3 box3";
+  "box1 box3";
   align-content: center;
   justify-content: center;
   margin: 20px;
-  box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
+  box-shadow: 10px 10px 25px 5px rgba(158, 158, 158, 0.603);
   border-radius: 8px;
   padding: 10px;
   cursor: pointer;
@@ -39,10 +50,15 @@ export default {
   height: 220px;
   transition: 0.4s;
 }
+.card:hover {
+  transform: scale(1.1);
+}
 img {
   width: 200px;
-  height: 100px;
+  height: 190px;
+  border-radius: 5px;
   grid-area: box1;
+  transition: 0.3s;
 }
 
 h3 {
@@ -51,6 +67,8 @@ h3 {
 }
 
 p {
+  overflow:hidden;
+  margin-left: 10px;
   grid-area: box3;
 }
 
