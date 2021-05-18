@@ -268,7 +268,7 @@ button {
     display: none;
   }
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 880px) {
   .box4,
   .box1,
   .card,
