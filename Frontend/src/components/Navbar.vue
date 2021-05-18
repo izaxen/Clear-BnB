@@ -128,7 +128,6 @@ nav {
 .Login-btn {
   justify-self: right;
   margin-right: 1.1rem;
-
   border-radius: 50px;
   cursor: pointer;
 }
