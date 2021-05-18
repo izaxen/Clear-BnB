@@ -95,9 +95,8 @@ export default {
 </script>
 
 <style scoped>
-* {
-  font-weight: 500;
-  font-size: 0.9rem;
+.container {
+  font-size: 1.3rem;
 }
 .link {
   margin: 0 0.5rem 0 0.5rem;
@@ -110,7 +109,7 @@ export default {
   align-items: center;
   border: 1px solid black;
   border-radius: 5px;
-  background: #b3cde0;
+  background: rgb(201, 232, 201);
 }
 .close {
   display: flex;
@@ -161,7 +160,7 @@ button:hoover {
 }
 
 div {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 .guest-counter {
@@ -184,12 +183,17 @@ div {
   display: flex;
   flex-direction: column;
   width: 17.5rem;
-  background: #b3cde0;
+  background: rgb(201, 232, 201);
+
   margin-left: 0.5rem;
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   border-radius: 0 0 4px 4px;
+}
+
+.group {
+  font-size: 1.3rem;
 }
 
 .close button {

@@ -94,6 +94,8 @@ export default {
 
 <style scoped>
 .container {
+  background-color: rgba(255, 255, 255, 0.717);
+
   padding: 10px;
   min-width: 20rem;
   border: 0.1px solid black;
@@ -105,6 +107,10 @@ export default {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
+.calendar {
+  align-self: center;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     align-self: center;
@@ -113,21 +119,23 @@ export default {
 }
 
 button {
-  background-image: linear-gradient(147deg, #b3cde0 1%, #6497b1 99%);
+  background: rgb(201, 232, 201);
+
   width: 50%;
   max-width: 300px;
-  color: white;
+  font-size: 1.4rem;
   border: none;
   margin: 0 auto;
   border-radius: 5px;
-  padding: 1rem 1.4rem;
+  padding: 0.6rem 1.4rem;
   cursor: pointer;
-
+  border: 1px solid black;
   text-align: center;
 }
 
 button:disabled {
-  background-image: linear-gradient(147deg, #979a9c 1%, #889195 99%);
+  background: rgb(166, 166, 166);
+
   cursor: not-allowed;
 }
 </style>

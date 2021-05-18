@@ -31,7 +31,5 @@ body {
 }
 
 main {
-  max-width: 80rem;
-  margin: auto;
   flex: 1;
 }
