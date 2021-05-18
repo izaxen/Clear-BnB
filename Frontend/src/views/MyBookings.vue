@@ -1,7 +1,7 @@
 <template>
   <div class="Bookings-page">
-    <div class="sidebar"><SideBar /></div>
     <div class="overlay">
+      <div class="sidebar"><SideBar /></div>
       <div class="list"><ReceiptList /></div>
     </div>
   </div>
@@ -12,13 +12,13 @@ import SideBar from '../components/Sidebar.vue'
 import ReceiptList from '../components/ReceiptList.vue'
 export default {
   components: {
-    ReceiptList, SideBar
-  }
+    ReceiptList,
+    SideBar,
+  },
 }
 </script>
 
 <style scoped>
-
 .Bookings-page {
   display: flex;
   flex-direction: column;
@@ -27,10 +27,11 @@ export default {
 }
 
 .overlay {
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-   border-radius: 5px;
-   min-height: 72vh;
-   width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  min-height: 72vh;
+  width: 100%;
+  background-color: rgba(205, 205, 205, 0.9);
 }
 
 .sidebar {

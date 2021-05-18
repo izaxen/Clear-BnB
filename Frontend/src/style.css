@@ -28,13 +28,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  display: flex;
 }
 
 main {
   margin: auto;
-  width: 80vw;
-  max-width: 80rem;
-  min-width: 65rem;
+  max-width: 65rem;
   flex: 1;
 }

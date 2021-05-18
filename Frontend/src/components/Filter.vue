@@ -105,7 +105,6 @@ export default {
 </script>
 
 <style scoped>
-
 .filter {
   margin-top: 2rem;
   width: 100%;
@@ -116,6 +115,7 @@ export default {
 
 .no-match {
   font-size: 3rem;
+  width: 100%;
 }
 .wrapper {
   display: flex;

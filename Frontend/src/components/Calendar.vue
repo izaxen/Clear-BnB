@@ -10,7 +10,8 @@
           <span class="check-in-out-text">Available from</span>
           <span class="check-in-out-text1">Available to</span>
         </div>
-        <DatePicker v-if="range.end!=null"
+        <DatePicker
+          v-if="range.end != null"
           v-model="range"
           mode="date"
           :masks="masks"
@@ -23,7 +24,10 @@
         >
           <template v-slot="{ inputValue, inputEvents, isDragging }">
             <div class="date-range">
-              <div class="single-date-box" :class="booking ? 'smaller-width' : ''">
+              <div
+                class="single-date-box"
+                :class="booking ? 'smaller-width' : ''"
+              >
                 <svg
                   class="calendar-logo"
                   fill="none"
@@ -57,7 +61,10 @@
                   />
                 </svg>
               </span>
-              <div class="single-date-box text-gray-900" :class="booking ? 'smaller-width' : ''">
+              <div
+                class="single-date-box text-gray-900"
+                :class="booking ? 'smaller-width' : ''"
+              >
                 <svg
                   class="calendar-logo"
                   fill="none"
@@ -163,24 +170,28 @@ export default {
       secondDate.setDate(secondDate.getDate() + daysToAdd)
       return secondDate
     },
-    findFirstAvailable(){
+    findFirstAvailable() {
       let startDate = new Date(this.range.start)
       console.log('startDate', startDate)
       let endDate = this.addDays(startDate, 1)
-        for(let j=0; j<this.disabledDates.length;j++){
-          if(startDate.getDate() === this.disabledDates[j].getDate() && startDate.getMonth() === this.disabledDates[j].getMonth()  || endDate.getDate() === this.disabledDates[j].getDate() && endDate.getMonth() === this.disabledDates[j].getMonth()){
-             startDate = this.addDays(this.disabledDates[j], 1)
-             endDate = this.addDays(this.disabledDates[j], 2)
-             j=0
-            }
+      for (let j = 0; j < this.disabledDates.length; j++) {
+        if (
+          (startDate.getDate() === this.disabledDates[j].getDate() &&
+            startDate.getMonth() === this.disabledDates[j].getMonth()) ||
+          (endDate.getDate() === this.disabledDates[j].getDate() &&
+            endDate.getMonth() === this.disabledDates[j].getMonth())
+        ) {
+          startDate = this.addDays(this.disabledDates[j], 1)
+          endDate = this.addDays(this.disabledDates[j], 2)
+          j = 0
         }
-        this.range.start = startDate
-        this.range.end = this.addDays(endDate, 1)
-
+      }
+      this.range.start = startDate
+      this.range.end = this.addDays(endDate, 1)
     },
-    checkDateEquality(firstDate, secondDate){
+    checkDateEquality(firstDate, secondDate) {
       return firstDate.valueOf() == secondDate.valueOf()
-    }
+    },
   },
   async created() {
     this.rentalObject = this.$store.state.rentalObject
@@ -194,13 +205,12 @@ export default {
           ? new Date()
           : this.rentalObject.availableFrom
     }
-     if(this.rentalObject!=undefined){
+    if (this.rentalObject != undefined) {
       await this.filterReceipts()
     }
     this.range.end = this.addDays(this.range.start, 2)
-  }
+  },
 }
-    
 </script>
 
 <style scoped>
@@ -209,13 +219,16 @@ export default {
   width: 100%;
   max-width: 21rem;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: center;
-  width: fit-content;
+  margin-left: 13px;
+  
 }
 
 .booking {
-  background-color: #b3cde0 !important;
+  background: rgb(201, 232, 201) !important;
+
+  border-radius: 7px;
+  border: 1px solid black;
   height: 2rem;
 }
 .box-bg {
@@ -240,7 +253,7 @@ export default {
   flex-grow: 1;
   width: 8.5rem;
 }
-.smaller-width{
+.smaller-width {
   width: 7rem;
 }
 
@@ -261,7 +274,7 @@ export default {
   overflow: visible;
   font-family: inherit;
   font-size: 100%;
-  margin: 0;
+  
 }
 .divider-arrow-box {
   margin: 0.5rem;

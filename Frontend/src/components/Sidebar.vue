@@ -1,16 +1,22 @@
 <template>
   <div class="sidebar1">
-    <router-link to="/my-page/add-house"><em class="fas fa-plus-circle"></em>Add house</router-link>
-    <router-link to="/my-page/my-houses"><em class="fas fa-home"></em>Houses</router-link>
-    <router-link to="/my-page/my-bookings"><em class="fas fa-book"></em>Bookings</router-link>
-    <router-link to="/my-page"><em class="fas fa-users"></em>Profile</router-link>
+    <router-link to="/my-page/add-house"
+      ><em class="fas fa-plus-circle"></em>Add house</router-link
+    >
+    <router-link to="/my-page/my-houses"
+      ><em class="fas fa-home"></em>Houses</router-link
+    >
+    <router-link to="/my-page/my-bookings"
+      ><em class="fas fa-book"></em>Bookings</router-link
+    >
+    <router-link to="/my-page"
+      ><em class="fas fa-users"></em>Profile</router-link
+    >
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style scoped>
@@ -19,7 +25,8 @@ export default {
   flex-direction: row;
   justify-content: space-evenly;
   font-size: 20px;
-  background: #6497b1;
+  background: rgb(219, 240, 219);
+
   height: 50%;
   padding: 5px;
   font-size: 20px;
@@ -27,7 +34,7 @@ export default {
   margin: 10px auto;
   border-radius: 10px;
 }
-em{
+em {
   margin-right: 10px;
 }
 
@@ -44,25 +51,24 @@ a:hover {
 }
 
 @media screen and (max-width: 1100px) {
-    .sidebar1 {
-      max-width: 40rem;
-      font-size: 15px;
-    }
+  .sidebar1 {
+    max-width: 40rem;
+    font-size: 15px;
+  }
 }
 @media screen and (max-width: 700px) {
-    .sidebar1 {
-      max-width: 27rem;
-      font-size: 15px;
-    }
+  .sidebar1 {
+    max-width: 27rem;
+    font-size: 15px;
+  }
 }
 
 @media screen and (max-width: 500px) {
-    .sidebar1 {
-      flex-direction: column;
-      max-width: 27rem;
-      font-size: 15px;
-      text-align: center;
-    }
+  .sidebar1 {
+    flex-direction: column;
+    max-width: 27rem;
+    font-size: 15px;
+    text-align: center;
+  }
 }
-
 </style>
