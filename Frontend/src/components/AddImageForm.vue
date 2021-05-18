@@ -98,7 +98,7 @@ margin: 15px;
   font-size: 15px;
   border-radius: 10px;
   font-size: 90%;
-  background: #6497b1;
+  background: rgb(219,240,219);
   color: black;
 }
  

@@ -1,6 +1,4 @@
 <template>
-<div>
-  
   <div class="sidebar"><SideBar /></div>
 <div class=shell>
   <div class="header"><h1>Add rental object</h1></div>
@@ -151,6 +149,7 @@ this.$router.push('/my-page/my-houses')
   margin: auto;
   padding: 1px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(205,205,205,0.9);
 }
 
 .sidebar{
@@ -223,7 +222,7 @@ label{
   font-size: 15px;
   border-radius: 10px;
   font-size: 90%;
-  background: #6497b1;
+  background: rgb(219,240,219);
   color: black;
 }
  
