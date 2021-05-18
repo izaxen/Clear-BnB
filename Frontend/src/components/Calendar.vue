@@ -209,9 +209,9 @@ export default {
   width: 100%;
   max-width: 21rem;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: center;
-  width: fit-content;
+  margin-left: 13px;
+  
 }
 
 .booking {
@@ -221,7 +221,6 @@ export default {
 .box-bg {
   align-items: flex-end;
   padding: 0 0.5rem;
-  background-color: rgb(255, 255, 255);
 }
 .select-date {
   text-align: left;
@@ -257,12 +256,12 @@ export default {
   flex-grow: 1;
   border-width: 1px;
   border-radius: 0.25rem;
-  background-color: rgb(233, 233, 233);
+  
   line-height: inherit;
   overflow: visible;
   font-family: inherit;
   font-size: 100%;
-  margin: 0;
+  
 }
 .divider-arrow-box {
   margin: 0.5rem;

@@ -143,8 +143,8 @@ public class Main {
 
                     fileNames = f.list();
                     if(fileNames == null){
-                        fileNames = new String[5];
-                        for(int i = 0; i < 5; i++){
+                        fileNames = new String[6];
+                        for(int i = 0; i < 6; i++){
                             fileNames[i] = "https://www.skistar.com/sv/boka-online/accommodation/Image/Get?imageId=129416&ImageSize=7&keepRatio=false";
                         }
                     }

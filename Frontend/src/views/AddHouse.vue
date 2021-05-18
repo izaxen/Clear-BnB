@@ -7,7 +7,9 @@
   <div class="addhouse">
     <div class="row1">
       <div class="objectform">
+        <div class="calendar">
       <Calendar @dates="inAndOutDate" />
+        </div>
       <AddRentalObjectForm ref="formClearFields" @fetchObject="houseForm" />
       </div>
 
@@ -114,8 +116,6 @@ LoadFormData(formData){
       return this.$store.state.isConfirmation
     }
   },
-
-
   }
 }
 </script>
@@ -147,10 +147,13 @@ height: 10%;
 .row1{
   grid-area: top;
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-areas: 
   "lhTop rhTop";
   justify-self: center;
+  grid-gap: 15px;
+  margin: 15px;
+  min-height: 315px;
   }
   
   .row2{
@@ -160,24 +163,37 @@ height: 10%;
 
   .row3{
     grid-area: bottom;
-    margin: 20px;
+    margin: 0 15px 35px 15px;
     display: flex;
     justify-content: center;
   }
 
 
 .objectform{
-  width: 291px;
-  margin-right: 60px;
-  margin-top:15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   grid-area: lhTop;
-  
-  
+  background-color: rgb(245, 245, 245);
+  border: 1px solid gray;
 }
+
+.add-images{
+  grid-area: rhTop;
+  background-color: rgb(245, 245, 245);
+  border: 1px solid gray;
+  }
+
+.calendar{
+  scale: 95%;
+  align-self: center;
+  margin-left: -1px ;
+  margin-top: 8px;
+}
+
 .amenties{
   grid-area: bottom;
   width: 100%;
-  
 }
 
 h3{
@@ -186,21 +202,25 @@ h3{
   margin:15px;
 }
 
-label{
-  padding: 3px;
-  border:1px solid black;
-  border-radius: 10px;
-  font-size: 90%;
-  background-color: rgb(233, 233, 233);
+ label{
+   height: 40px;
+    align-content: center;
+    border: none;
+    border-radius: 10px;
+    background: #6497b1;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 5px;
  }
 
- h1{
-   margin: 10px;
+ label:hover{
+    background: #c4eafd;
+    cursor: pointer;
  }
-  
-  
 
-
+  h1{
+    margin: 10px;
+  }
 
 @media only screen and (max-width: 575px){
   .addhouse{

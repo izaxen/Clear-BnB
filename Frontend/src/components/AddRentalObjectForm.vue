@@ -3,37 +3,29 @@
     <div class="rental-info">
           
       <div class="input-boxes">
+        
         <div class="input-holder">
-        <p>Description</p>
-        <textarea class="description border-radius" v-model="description" type="text"  rows="1" cols="17" placeholder="Description..."/>
+        <input class="freetext  border-radius" v-model="freeText" type="text" placeholder="Title..."/>
+        <textarea class="description border-radius" v-model="description" type="text" placeholder="Description..."/>
         </div>
-        <div class="input-holder">
-        <p>Freetext</p>
-        <textarea class="freetext  border-radius" v-model="freeText" type="text" rows="10" cols="17" placeholder="Freetext..."/>
-        </div>
-        <div class="input-holder ">
-        <p>City</p>
-        <input class="small-box  border-radius" v-model="city" required type="text" placeholder="City..."/>
-        </div>
-        <div class="input-holder ">
-        <p>Adress</p>
-        <input class="small-box  border-radius" v-model="address" required type="text" placeholder="Address..."/>
-        </div>
-        <div class="input-holder ">
-        <p>Zip code</p>
-        <input class="small-box  border-radius" v-model="zipCode" required type="text" placeholder="Zip Code..."/>
-        </div>
-        <div class="input-holder">
-        <p>Number of beds</p>
-        <input class="num-beds small-box  border-radius" v-model="availableBeds" required type="number" min="1" placeholder="Number of beds"/>
-        </div>
-        <div class="input-holder">
-        <p>Price per night</p>
-        <input class="price small-box" v-model="price" required type="number" min="400" placeholder="Price per night"/>
+        
+          
+          <div class ="address-row">
+            <input class="medium-box  border-radius" v-model="address" required type="text" placeholder="Address..."/>
+            <input class="medium-box1  border-radius" v-model="city" required type="text" placeholder="City..."/>
+            
+          </div>
+
+        <div class="beds-price">
+          <input class="small-box  border-radius" v-model="zipCode" required type="text" placeholder="Zip Code..."/>
+        <input class="small-box  border-radius" v-model="availableBeds" required type="number" min="1"  max ="25" placeholder="Beds.."/>
+        <input class="small-box border-radius" v-model="price" required type="number" min="400" placeholder="Price.."/>
+        
         </div>
       </div>
+    </div>
       
-      </div>
+      
     </form>
 </template>
 
@@ -98,16 +90,6 @@ watch:{
       }
       this.$emit('fetchObject', rentalObject)
 
-     /*  this.$store.dispatch('postRentalObject', rentalObject)
-      this.availableFrom = ""
-      this.availableTo = ""
-      this.freeText = ""
-      this.description = ""
-      this.city = ""
-      this.availableBeds = ""
-      this.price = ""
- */
-      
     },
     clearFields(){
       console.log('Clear feilds')
@@ -128,87 +110,74 @@ watch:{
 <style scoped>
 
 .border-radius{
-  border-radius: 0.15rem;
+  border-radius: 0.11rem;
+  border: 1px solid grey;
+  margin: 10px 0;
 }
+
 .rental-info{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
   padding: 10px;
-  width: 290px;
-  
   font-family: 'Times New Roman', Times, serif;
   font-size: 13px;
 }
-.input-holder{
-  height: fit-content;
-  width: 100%;
-  margin-top: 10px;
-}
-p{
-  font-size: 12px;
-  margin: 0;
-  margin-bottom: 2px;
-}
-.column{
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-content: space-around;
-  border: 1px solid rgb(34, 32, 32);
-  padding: 3px;
-}
-.row{
+
+.beds-price{
   display: flex;
   flex-direction: row;
-  width: 100%;
-  margin-bottom: 7px;
+  justify-content: space-between;
 }
-.row p{
-  color: rgb(0, 0, 0);
-  margin: 0;
+
+.address-row{
+  display: flex;
+  flex-direction: row;
 }
-input[type=date]{
-  font-size: 13px;
-}
+
 .input-boxes{
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-input[type=number]{
-  margin: 0;
-  padding: 0;
-}
-
-.button {
-  margin-top:1rem ;
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-
 }
 
 textarea{
   width: 100%;
   resize: none;
 }
-.description{
-  min-height: 70px;
-}
+
 .freetext{
-min-height: 150px;
-}
-.small-box{
-  line-height: 13px;
-  min-height: 20px;
-  width: 60%;
+width: 100%;
 }
 
+.medium-box{
+  flex-grow: 2;
+  line-height: 18px;
+}
+.medium-box1{
+  line-height: 18px;
+  margin-left: 10px;
+}
+
+.small-box{
+  line-height: 18px;
+  width: 60px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.description{
+  line-height: 30px;
+}
 
 @media only screen and (max-width: 575px){
 .rental-info{
