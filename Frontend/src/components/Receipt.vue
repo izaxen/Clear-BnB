@@ -8,8 +8,8 @@
     </div>
     <div class="col-2">
       <h4>Booking: {{receipt.id}}</h4>
-      <p>Check in: {{new Date(receipt.startDate).toLocaleDateString("se-SE").split("/").toString()}}</p>
-      <p>Check out: {{new Date(receipt.endDate).toLocaleDateString("se-SE").split("/").toString()}}</p>
+      <h5>Check in: {{new Date(receipt.startDate).toLocaleDateString("se-SE").split("/").toString()}}</h5>
+      <h5>Check out: {{new Date(receipt.endDate).toLocaleDateString("se-SE").split("/").toString()}}</h5>
       <p>Adults: {{receipt.numAdult}}</p>
       <p>Children: {{receipt.numChild}}</p>
       <p>Price: {{receipt.totalPrice}}$</p>
@@ -108,7 +108,7 @@ export default {
     align-self: center;
     margin: 30px 0;
     color: black;
-    box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
+    box-shadow: 5px 5px 10px 2px rgba(144, 144, 144, 0.603);
     padding: 5px;
     transition: 0.4s;
   }
@@ -139,19 +139,24 @@ export default {
 
   img {
     width: 80%;
-    min-height: 200px;
+    height: 200px;
     justify-self: center;
   }
+  @media screen and (max-width: 1150px) {
+    .receipt-card{
+      width: 600px;
+    }
+  }
 
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 800px) {
     .receipt-card {
       display: grid;
       grid-template-columns: 1fr 0.6fr;
-      grid-template-rows: 1fr 0.5fr;
+      grid-template-rows: 1fr 0.2fr;
       grid-template-areas:
       "box1 box2"
       "box3 box3";
-      max-width: 40rem;
+      width: 500px;
       font-size: 15px;
       height: fit-content;
       padding: 5px;
@@ -170,15 +175,12 @@ export default {
     .receipt-card {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr 0.5fr 0.5fr;
+      grid-template-rows: 1fr 0.4fr 0.2fr;
       grid-template-areas:
       "box1"
       "box2"
       "box3";
-      max-width: 40rem;
-      min-width: 20rem;
-      font-size: 15px;
-      height: fit-content;
+      width: 300px;
       padding: 5px;
     }
 
@@ -190,4 +192,14 @@ export default {
       margin-bottom: 5px;
     }
 }
+@media screen and (max-width: 350px) {
+  .receipt-card {
+    width: 230px;
+  }
+
+  p {
+    display: none;
+  }
+}
+
 </style>
