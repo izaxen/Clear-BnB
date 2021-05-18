@@ -2,21 +2,23 @@
   <div class="container">
     <div class="card">
       <img class="icon" :src="wifiUrl" />
-      <h2>{{ amenities.wifi ? 'Wifi' : 'No wifi' }}</h2>
+      <div class="am-text">{{ amenities.wifi ? 'Wifi' : 'No wifi' }}</div>
     </div>
     <div class="card">
       <img class="icon" :src="petsUrl" />
-      <h2>{{ amenities.petsAllowed ? 'Pets allowed' : 'No pets' }}</h2>
+      <div class="am-text">
+        {{ amenities.petsAllowed ? 'Pets allowed' : 'No pets' }}
+      </div>
     </div>
     <div class="card">
       <img class="icon" :src="poolUrl" />
-      <h2>{{ amenities.pool ? 'Pool' : 'No pool' }}</h2>
+      <div class="am-text">{{ amenities.pool ? 'Got pool' : 'No pool' }}</div>
     </div>
     <div class="card">
       <img class="icon" :src="airUrl" />
-      <h2>
+      <div class="am-text">
         {{ amenities.airCondition ? 'Air conditioner' : 'No air conditioner' }}
-      </h2>
+      </div>
     </div>
   </div>
 </template>
@@ -52,6 +54,11 @@ export default {
 </script>
 
 <style scoped>
+.am-text {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
 .container {
   margin-bottom: 2rem;
 }
@@ -64,7 +71,7 @@ h2 {
 }
 
 img {
-  width: 64px;
-  height: 64px;
+  width: 32px;
+  height: 32px;
 }
 </style>

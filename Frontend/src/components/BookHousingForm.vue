@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <div class="calendar"><Calendar :booking="true" @days-selected="receive" @dates="confirmDates" /></div>
-    <NumberOfGuests @num-guest="confirmGuest" :numOfDays="days" />
+    <Calendar :booking="true" @days-selected="receive" @dates="confirmDates" />
+    <NumberOfGuests
+      @num-guest="confirmGuest"
+      :numOfDays="days"
+      :price="object.price"
+    />
 
     <button @click="book" :disabled="receipt.totalPrice == 0 ? '' : disabled">
       Book
@@ -101,9 +105,10 @@ export default {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 600px) {
   .container {
-    min-width: 12rem;
+    align-self: center;
+    width: 90%;
   }
 }
 

@@ -17,10 +17,17 @@
 
     <hr class="separator" />
     <div class="hero">
-      <div class="amenity-focus"></div>
-
       <div class="hero-text">
+        <h2>
+          {{ rentalObject.city }}
+        </h2>
+        <h4>
+          {{ rentalObject.address }}
+        </h4>
+        <h5>{{ rentalObject.freeText }}</h5>
         <DisplayHotAmenity :amenities="amenities" />
+      </div>
+      <div class="disc">
         {{ rentalObject.description }}
       </div>
       <BookHousingForm :object="rentalObject" @receipt="saveTempReceipt" />
@@ -70,13 +77,13 @@ export default {
   },
 
   async beforeRouteEnter(to, from, next) {
-    await store.dispatch('fetchReceipts')
     await store.dispatch('getFileUrl', to.params.id)
+    await store.dispatch('fetchReceipts')
     await store.dispatch('fetchRentalObjectById', to.params.id)
 
     next()
   },
-  beforeRouteLeave(to, from, next){
+  beforeRouteLeave(to, from, next) {
     this.$store.commit('setRentalObject', null)
     next()
   },
@@ -84,7 +91,6 @@ export default {
   methods: {
     saveTempReceipt(receipt) {
       this.tempReceipt = receipt
-      console.log('körd')
     },
 
     async fetch() {
@@ -105,6 +111,15 @@ export default {
 </script>
 
 <style scoped>
+.disc {
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+h2 {
+  margin-top: 0;
+}
 .avatar {
   display: flex;
   font-size: 1rem;
@@ -224,9 +239,8 @@ li {
 
 .amenities {
   padding: 1rem;
-  height: 60vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
@@ -257,7 +271,7 @@ img {
     margin-top: 1rem;
   }
 
-  .hero-text {
+  .disc {
     margin-bottom: 2rem;
   }
 }

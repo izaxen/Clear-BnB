@@ -76,10 +76,11 @@ export default {
     color: black;
     text-align: center;
     margin: 20px auto 20px auto;
-    width: 70%;
+    width: 700px;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
+    box-shadow: 5px 5px 10px 2px rgba(144, 144, 144, 0.603);
+    transition: 0.4s;
 }
 
 .user-box {
@@ -90,6 +91,37 @@ export default {
     .sidebar1 {
       max-width: 40rem;
       font-size: 15px;
+    }
+}
+@media screen and (max-width: 850px) {
+    .info {
+        width: 500px;
+    }
+    .user-info {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 560px) {
+    .info {
+        width: 350px;
+    }
+    .user-info {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .sidebar1 {
+      max-width: 40rem;
+      font-size: 15px;
+    }
+    .info {
+    margin: 20px auto 20px auto;
+    width: 250px;
+    padding: 10px;
+    font-size: 15px;
+    }
+    .user-info {
+        font-size: 12px;
     }
 }
 

@@ -2,20 +2,20 @@
 <div class="view">
   <div class="receipt-card">
     <div class="col-1">
-      <div class="img">
-        <img src="https://thumbs.dreamstime.com/b/nice-brick-house-red-door-11568682.jpg" alt="">
+      <div class="img" v-if="getImg">
+        <img :src="imageList[0]" alt="">
       </div>
     </div>
     <div class="col-2">
       <h2>{{house.city}}</h2>
+      <h4>From: {{new Date(house.availableFrom).toLocaleDateString("se-SE").split("/").toString()}}</h4>
+      <h4>To: {{new Date(house.availableTo).toLocaleDateString("se-SE").split("/").toString()}}</h4>
       <p>Beds: {{house.availableBeds}}</p>
       <p>Price/night: {{house.price}}$</p>
     </div>
     <div class="col-3">
-      <div class="text">
-      </div>
       <div class="btns">
-        <button class="btn-link" @click="goToHouse">Go to house</button>
+        <button class="btn-link" @click="goToHouse">Details</button>
         <button class="btn-remove">Edit</button>
       </div>
     </div>
@@ -28,26 +28,39 @@
 <script>
 export default {
   props:["house"],
+  data(){
+    return {
+      imageList: []
+    }
+  },
 
   methods: {
     goToHouse(){
       this.$router.push('/details/' + this.house.id)
     }
-  }
+  },
+
+  computed: {
+    async getImg(){
+      await this.$store.dispatch('getFileUrl', this.house.id)
+      this.imageList = this.$store.state.imageList
+    }
+  },
 
 }
 </script>
 
 <style scoped>
-
-  .text {
-    margin-top: 15px;
-    margin-bottom: 30px;
-  }
+  .btns {
+        display: grid;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
 
   button{
     height: 40px;
-    width: 80%;
+    width: 100px;
     border: none;
     border-radius: 10px;
     background: #6497b1;
@@ -92,7 +105,7 @@ export default {
     align-self: center;
     margin: 30px 0;
     color: black;
-    box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
+    box-shadow: 5px 5px 10px 2px rgba(144, 144, 144, 0.603);
     padding: 5px;
     transition: 0.4s;
   }
@@ -116,77 +129,34 @@ export default {
     grid-area: box3;
   }
 
-  .col-3 p {
-    margin: 5px;
-  }
-
   .img {
     width: 100%;
     display: grid;
   }
-  .btns {
-      display: grid;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-  }
 
   img {
     width: 80%;
-    min-height: 200px;
+    height: 200px;
     justify-self: center;
   }
-  @media screen and (min-width: 750px) {
-    .receipt-card {
-      max-width: 40rem;
-      font-size: 15px;
-      height: fit-content;
-      padding: 5px;
+  @media screen and (max-width: 1150px) {
+    .receipt-card{
+      width: 600px;
     }
-}
+  }
 
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 800px) {
     .receipt-card {
       display: grid;
-      grid-template-columns: 1fr 0.6fr;
+      grid-template-columns: 1fr 0.8fr;
       grid-template-rows: 1fr 0.2fr;
       grid-template-areas:
       "box1 box2"
       "box3 box3";
-      max-width: 40rem;
+      width: 500px;
       font-size: 15px;
       height: fit-content;
       padding: 5px;
-    }
-
-    .btns {
-      display: flex;
-      position: relative;
-    }
-}
-
-  @media screen and (max-width: 550px) {
-    .receipt-card {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 0.7fr 0.3fr 0.2fr;
-      grid-template-areas:
-      "box1"
-      "box2"
-      "box3";
-      max-width: 40rem;
-      min-width: 23rem;
-      font-size: 15px;
-      height: fit-content;
-      padding: 5px;
-    }
-
-    .col-2{
-      font-size: 15px;
-    }
-
-    .col-2 p {
-      margin: 4px;
     }
 
     .btns {
@@ -197,4 +167,36 @@ export default {
       margin-bottom: 5px;
     }
 }
+
+  @media screen and (max-width: 550px) {
+    .receipt-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 0.4fr 0.2fr;
+      grid-template-areas:
+      "box1"
+      "box2"
+      "box3";
+      width: 300px;
+      padding: 5px;
+    }
+
+    .btns {
+      display: flex;
+    }
+
+    .text {
+      margin-bottom: 5px;
+    }
+}
+@media screen and (max-width: 350px) {
+  .receipt-card {
+    width: 230px;
+  }
+
+  p {
+    display: none;
+  }
+}
+
 </style>
