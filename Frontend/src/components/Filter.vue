@@ -105,6 +105,7 @@ export default {
 </script>
 
 <style scoped>
+
 .filter {
   margin-top: 2rem;
   width: 100%;
