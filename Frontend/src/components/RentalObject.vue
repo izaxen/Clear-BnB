@@ -95,7 +95,7 @@ span{
   font-weight: 500;
 }
 .rental-card {
-  margin: 3% 7%;
+  margin: 1rem 2rem;
   background-color: white;
   display: flex;
   flex-direction: row;

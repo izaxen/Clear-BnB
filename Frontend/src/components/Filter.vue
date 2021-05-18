@@ -114,19 +114,7 @@ export default {
 }
 
 .no-match {
-  width: 65rem;
   font-size: 3rem;
-  width: 100%;
-  margin: 3rem 7rem;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  padding: 0.8rem 2rem;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(0, 0, 0, 0.3);
-  color: black;
-  border-radius: 10px;
-  justify-content: space-between;
-  max-width: 80%;
 }
 
 .wrapper {
