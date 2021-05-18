@@ -1,10 +1,10 @@
 <template>
   <div class=form>
-    <div class="delete-button" v-show="$store.state.uploadedImages.length>0">
+    <div class="delete-button" v-show="folderSize > 0">
       <label @click="deleteImages">Delete images</label>
     </div>
     
-    <div v-show="$store.state.uploadedImages.length < 5">
+    <div v-show="folderSize < 6">
       <div class="upload-button">
       <label for="file-input" id="upload-button">Browse files</label>
       <input @change="addPictures" id="file-input" type="file" name="files" multiple>
@@ -12,8 +12,8 @@
     </div>
     </div>
     
-    <div class="rendered-images" v-if="$store.state.uploadedImages.length>0">
-      <div v-for="(file, i) of $store.state.uploadedImages" :key="file.name" class="image">
+    <div class="rendered-images" v-if="folderSize > 0">
+      <div v-for="(file, i) of imageFolder" :key="file.name" class="image">
       <img :src="url[i]" alt="">
       </div>
     </div>
@@ -31,6 +31,14 @@ export default {
       url:[]
     }
   },
+  computed:{
+    folderSize: function(){
+      return this.$store.state.uploadedImages.length
+    },
+    imageFolder: function(){
+      return this.$store.state.uploadedImages
+    } 
+  },
 
 methods:{
   addPictures(){
@@ -44,6 +52,7 @@ methods:{
 this.$emit('formData', formData)
 this.$store.commit('addUploadedImages', this.files) 
 },
+
 deleteImages(){
   this.$store.commit('removeUploadedImages')
   this.url = []
@@ -61,13 +70,14 @@ deleteImages(){
   }
   
 img{
-width: 150px;
-max-height: 120px;
+width: 190px;
+max-height: 115px;
 margin: 15px;
 }
 
 .upload-button{
   margin: 15px;
+  
 }
 
 .upload-button>input{
@@ -82,13 +92,19 @@ margin: 15px;
   float: left;
 }
 
-label{
-  padding:3px;
-  border:1px solid black;
+ label{
+  padding: 8px;
+  font-weight: 700;
+  font-size: 15px;
   border-radius: 10px;
-  font-size: 80%;
-  background-color: rgb(233, 233, 233);
-  
+  font-size: 90%;
+  background: rgb(219,240,219);
+  color: black;
+}
+ 
+label:hover{
+  background: #c4eafd;
+  cursor: pointer;
 }
 
 .text-gray-900{

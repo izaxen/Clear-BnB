@@ -209,9 +209,9 @@ export default {
   width: 100%;
   max-width: 21rem;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: center;
-  width: fit-content;
+  margin-left: 13px;
+  
 }
 
 .booking {
@@ -261,7 +261,7 @@ export default {
   overflow: visible;
   font-family: inherit;
   font-size: 100%;
-  margin: 0;
+  
 }
 .divider-arrow-box {
   margin: 0.5rem;
