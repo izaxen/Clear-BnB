@@ -38,7 +38,6 @@ export default {
   left: 30%;
   transform: translate(-50%);
   color: whitesmoke;
-  background-color: rgba(128, 128, 128, 0.452);
   padding: 5px;
   font-weight: 700;
   font-size: 1rem;

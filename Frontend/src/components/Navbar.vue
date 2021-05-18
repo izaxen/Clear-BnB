@@ -75,7 +75,7 @@ nav {
   background-color: white;
   color: black;
   height: 4.3rem;
-  box-shadow: rgb(141, 137, 137) 4px 2px 10px 0;
+  box-shadow: rgb(75, 72, 72) 4px 2px 10px 0;
   align-items: center;
   font-family: 'Dosis bold', Arial, Helvetica, sans-serif;
   font-size: 22px;
@@ -110,7 +110,7 @@ a {
   padding: 10px;
 }
 a:hover {
-  background: rgb(247, 252, 253);
+  background: rgb(219, 240, 219);
   box-shadow: grey 1px 1px 2px;
   
 }

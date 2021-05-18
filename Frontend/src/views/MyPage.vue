@@ -42,13 +42,16 @@ export default {
 .mypage-container {
   display: flex;
   flex-direction: column;
-  max-width: 65rem;
   margin: auto;
+  background-color: white;
+  width: 80rem;
+  height: 90vh;
   
 }
 .overlay {
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
    border-radius: 5px;
+   height: 90%;
 }
 
 .sidebar {
@@ -70,14 +73,14 @@ export default {
 .info {
     background: rgb(255, 255, 255);
     border: 2px solid black;
-    height: 100%;
     color: black;
     text-align: center;
     margin: 20px auto 20px auto;
-    width: 50%;
+    width: 700px;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 10px 10px 15px 5px rgb(75, 75, 75);
+    box-shadow: 5px 5px 10px 2px rgba(144, 144, 144, 0.603);
+    transition: 0.4s;
 }
 
 .user-box {
@@ -90,6 +93,22 @@ export default {
       font-size: 15px;
     }
 }
+@media screen and (max-width: 850px) {
+    .info {
+        width: 500px;
+    }
+    .user-info {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 560px) {
+    .info {
+        width: 350px;
+    }
+    .user-info {
+        font-size: 15px;
+    }
+}
 @media screen and (max-width: 400px) {
     .sidebar1 {
       max-width: 40rem;
@@ -97,12 +116,12 @@ export default {
     }
     .info {
     margin: 20px auto 20px auto;
-    width: 90%;
+    width: 250px;
     padding: 10px;
     font-size: 15px;
     }
     .user-info {
-        font-size: 15px;
+        font-size: 12px;
     }
 }
 

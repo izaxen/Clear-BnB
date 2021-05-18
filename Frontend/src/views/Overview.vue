@@ -23,6 +23,6 @@ div {
   margin: auto;
   padding-bottom: 1rem;
   min-height: 90vh;
-  background-color: rgb(245, 245, 245);
+  background-color: rgba(205, 205, 205, 0.9);
 }
 </style>

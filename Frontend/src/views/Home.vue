@@ -36,6 +36,9 @@ export default {
     padding: 20px;
     display: grid;
     justify-content: center;
+    align-self: center;
+    min-height: 90vh;
+    background-color: white;
   }
 
   .locations{
