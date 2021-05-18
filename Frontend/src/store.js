@@ -55,7 +55,7 @@ export default createStore({
     },
     addUploadedImages(state, images) {
       for (let image of images) {
-        if (state.uploadedImages.length < 5) {
+        if (state.uploadedImages.length < 6) {
           state.uploadedImages.push(image)
         }
       }

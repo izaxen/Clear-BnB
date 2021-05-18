@@ -90,6 +90,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 0 15px 15px 15px;
+  background-color: rgb(245, 245, 245);
+  border: 1px solid gray;
+  
 }
 .box-amenities {
   margin-top: 30px;
