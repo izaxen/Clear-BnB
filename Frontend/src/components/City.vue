@@ -2,31 +2,32 @@
   <div class="card" @click="goToHouse" v-if="getImg">
     <!-- v-bind: (short ':') binds an attribute
           to a reactive varaible -->
-    <img :src="imageList[0]" alt="">
+    <img :src="imageList[0]" alt="" />
     <h3>{{ city.city }}</h3>
     <p>{{ city.description }}</p>
+    <div class="text">Läs mer</div>
   </div>
 </template>
 
 <script>
 export default {
   props: ['city'],
-  data(){
+  data() {
     return {
-      imageList: []
+      imageList: [],
     }
   },
 
   methods: {
-    goToHouse(){
+    goToHouse() {
       this.$router.push('/details/' + this.city.id)
-    }
+    },
   },
   computed: {
-    async getImg(){
+    async getImg() {
       await this.$store.dispatch('getFileUrl', this.city.id)
       this.imageList = this.$store.state.imageList
-    }
+    },
   },
 }
 </script>
@@ -35,27 +36,29 @@ export default {
 .card {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 2fr 6fr 1fr;
   grid-template-areas:
-  "box1 box2"
-  "box1 box3";
+    'box1 box2'
+    'box1 box3'
+    '. text';
   align-content: center;
   justify-content: center;
-  margin: 20px;
-  box-shadow: 10px 10px 25px 5px rgba(158, 158, 158, 0.603);
+  background-color: rgba(205, 205, 205, 0.9);
+
   border-radius: 8px;
   padding: 10px;
   cursor: pointer;
-  width: 380px;
+  width: 50%;
   height: 220px;
   transition: 0.4s;
+  margin-bottom: 1rem;
 }
 .card:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 img {
-  width: 200px;
-  height: 190px;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   grid-area: box1;
   transition: 0.3s;
@@ -66,22 +69,41 @@ h3 {
   grid-area: box2;
 }
 
+.text {
+  grid-area: text;
+  text-align: right;
+}
+
 p {
-  overflow:hidden;
+  overflow: hidden;
   margin-left: 10px;
   grid-area: box3;
 }
 
- @media screen and (max-width: 925px) {
-    .card {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-      grid-template-areas:
-      "box1"
-      "box2" 
-      "box3";
-      width: 250px;
-      height: 290px;
-    }
+@media screen and (max-width: 850px) {
+  img {
+    /* width: 150px; */
+  }
+
+  .card {
+    grid-template-columns: 1fr 1fr;
+  }
 }
+@media screen and (max-width: 730px) {
+  .card {
+    height: 180px;
+  }
+}
+/* @media screen and (max-width: 700px) {
+  .card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      'box1'
+      'box2'
+      'box3'
+      'text';
+    height: 180px;
+  }
+} */
 </style>

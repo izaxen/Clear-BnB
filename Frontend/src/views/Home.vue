@@ -1,44 +1,13 @@
 <template>
-  <div class="home-view">
-    <div class="banner">
-      <div class="banner-img">
-        <img src="https://www.gbtt.com/images/gbtt-travel-banner.jpg" alt="" />
-      </div>
-      <h1>Take a vacation!</h1>
-      <em class="fas fa-info-circle" id="info1"
-        ><div class="info-modal"><p>Egypt</p></div></em
-      >
-      <em class="fas fa-info-circle" id="info2"
-        ><div class="info-modal"><p>New York</p></div></em
-      >
-      <em class="fas fa-info-circle" id="info3"
-        ><div class="info-modal"><p>Rome</p></div></em
-      >
-      <em class="fas fa-info-circle" id="info4"
-        ><div class="info-modal"><p>Paris</p></div></em
-      >
-      <em class="fas fa-info-circle" id="info5"
-        ><div class="info-modal"><p>USA</p></div></em
-      >
-      <em class="fas fa-info-circle" id="info6"
-        ><div class="info-modal"><p>London</p></div></em
-      >
-      <em class="fas fa-info-circle" id="info7"
-        ><div class="info-modal"><p>Pisa</p></div></em
-      >
-      <em class="fas fa-info-circle" id="info8"
-        ><div class="info-modal"><p>India</p></div></em
-      >
-      <em class="fas fa-info-circle" id="info9"
-        ><div class="info-modal"><p>Rio de janeiro</p></div></em
-      >
-      <em class="fas fa-info-circle" id="info10"
-        ><div class="info-modal"><p>Peru</p></div></em
-      >
+  <div class="start-container">
+    <div id="wrapper" contenteditable="true" spellcheck="false">
+      <div class="hero-text">WE ARE HERE</div>
+      <div class="hero-text">SO YOU CAN</div>
+      <div class="hero-text">BE THERE</div>
     </div>
-    <div class="locations">
-      <CitiesList />
-    </div>
+    <CitiesList />
+    <CitiesList />
+    <CitiesList />
   </div>
 </template>
 
@@ -53,136 +22,55 @@ export default {
 </script>
 
 <style scoped>
-.home-view {
-  padding: 20px;
-  display: grid;
-  justify-content: center;
-  align-self: center;
-  min-height: 90vh;
-  background-color: white;
-  max-width: 80rem;
+.start-container {
+  font-weight: bold;
+  font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif;
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 65rem;
   margin: auto;
 }
 
-.locations {
-  justify-self: center;
-}
-.banner {
-  position: relative;
-  z-index: 0;
-}
-
-.info-modal {
-  overflow: hidden;
-  text-align: center;
-  font-size: 20px;
-  background: white;
-  width: 0;
-  height: 0;
-  z-index: 3;
-  transition: 0.4s;
-  border-radius: 10px;
-}
-
-.fa-info-circle {
-  font-size: 40px;
-}
-
-.fa-info-circle:hover {
-  cursor: pointer;
-}
-
-.fa-info-circle:hover > .info-modal {
-  width: 150px;
-  height: 150px;
-  background: white;
-}
-
-#info1 {
-  position: absolute;
-  left: 88%;
-  top: 50%;
-  z-index: 1;
-}
-
-#info2 {
-  position: absolute;
-  left: 85%;
-  top: 30%;
-  z-index: 1;
-}
-
-#info3 {
-  position: absolute;
-  left: 73%;
-  top: 40%;
-  z-index: 1;
-}
-
-#info4 {
-  position: absolute;
-  left: 55%;
-  top: 30%;
-  z-index: 1;
-}
-
-#info5 {
-  position: absolute;
-  left: 47%;
-  top: 40%;
-  z-index: 1;
-}
-
-#info6 {
-  position: absolute;
-  left: 40%;
-  top: 17%;
-  z-index: 1;
-}
-#info7 {
-  position: absolute;
-  left: 35%;
-  top: 25%;
-  z-index: 1;
-}
-#info8 {
-  position: absolute;
-  left: 22%;
-  top: 40%;
-  z-index: 1;
-}
-
-#info9 {
-  position: absolute;
-  left: 12%;
-  top: 35%;
-  z-index: 1;
-}
-
-#info10 {
-  position: absolute;
-  left: 5%;
-  top: 55%;
-  z-index: 1;
-}
-
-img {
+#wrapper {
+  font-size: 6rem;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 600px;
-  margin: 0;
+  margin-bottom: 20rem;
 }
 
-h1 {
-  color: rgb(0, 0, 0);
-  background: rgba(99, 214, 243, 0.13);
-  border-radius: 15px;
-  padding: 10px;
-  font-size: 40px;
-  position: absolute;
-  top: 0;
-  left: 40%;
-  font-weight: 800;
-  margin: 0;
-  z-index: 1;
+#wrapper:focus {
+  outline: none;
+}
+
+.hero-text {
+}
+
+#wrapper div {
+  margin-bottom: 3rem;
+  color: #fff;
+  letter-spacing: 0.35em;
+  text-shadow: rgba(0, 0, 0, 0.1) 0 20px 80px;
+}
+
+#wrapper:hover div:nth-child(1) {
+  text-shadow: #fff 0 0 10px, #fff 0 4px 3px, #ddd 0 9px 3px, #ccc 0 12px 1px,
+    rgba(0, 0, 0, 0.2) 0 14px 5px, rgba(0, 0, 0, 0.1) 0 20px 10px,
+    rgba(0, 0, 100, 0.2) 0 15px 80px;
+}
+
+#wrapper:hover div:nth-child(3) {
+  text-shadow: #fff 0 0 2px, #fff 0 4px 5px, #ddd 0 9px 5px, #ccc 0 12px 10px,
+    rgba(0, 0, 0, 0.2) 0 14px 5px, rgba(0, 0, 0, 0.1) 0 20px 10px,
+    rgba(0, 0, 100, 0.2) 0 15px 80px;
+}
+
+@media screen and (max-width: 400px) {
+  #wrapper {
+    font-size: 3rem;
+  }
 }
 </style>

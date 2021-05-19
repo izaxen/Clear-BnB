@@ -215,13 +215,14 @@ export default {
 
 <style scoped>
 .calendar {
+  /* font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif; */
+
   display: flex;
   width: 100%;
   max-width: 21rem;
   flex-direction: column;
   justify-content: center;
   margin-left: 13px;
-  
 }
 
 .booking {
@@ -274,7 +275,6 @@ export default {
   overflow: visible;
   font-family: inherit;
   font-size: 100%;
-  
 }
 .divider-arrow-box {
   margin: 0.5rem;
