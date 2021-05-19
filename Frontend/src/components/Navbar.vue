@@ -3,7 +3,7 @@
   <nav>
     <div @click="openMenu" class="menu">=</div>
     <div class="links">
-    <router-link to="/"><img id="logo" src="../assets/clearbnb-grey-house.png" alt=""></router-link>
+    <router-link id="img-router" to="/"><img id="logo" src="../assets/clearbnb-grey-house.png" alt=""></router-link>
     <router-link to="/overview">Overview</router-link>
     </div>
     
@@ -105,6 +105,7 @@ export default {
   align-self: center;
 }
 
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -129,7 +130,6 @@ nav {
 }
 .links {
   display: flex;
-  
   align-items: center;
 }
 .links a {
@@ -180,11 +180,14 @@ a {
   padding: 10px;
   text-align: center;
 }
-a:hover {
+ a:hover{
   background: rgb(219, 240, 219);
+ }
 
-  /* box-shadow: grey 1px 1px 2px; */
-}
+ #img-router:hover{
+   background: none;
+
+ }
 
 .menu {
   margin-left: 1rem;

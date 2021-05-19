@@ -1,9 +1,9 @@
 <template>
   <div class="start-container">
     <div id="wrapper" contenteditable="true" spellcheck="false">
-      <div class="hero-text">WE ARE HERE</div>
-      <div class="hero-text">SO YOU CAN</div>
-      <div class="hero-text">BE THERE</div>
+      <div class="hero-text lh">WE ARE HERE</div>
+      <div class="hero-text mid">SO YOU CAN</div>
+      <div class="hero-text rh">BE THERE</div>
     </div>
     <CitiesList :text="'POPULAR LOCATIONS'" />
     <CitiesList :text="'PARTY LOCATION'" />
@@ -50,6 +50,7 @@ export default {
 }
 
 #wrapper div {
+  display: flex;
   margin-bottom: 3rem;
   color: #fff;
   letter-spacing: 0.35em;
