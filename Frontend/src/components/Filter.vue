@@ -115,8 +115,8 @@ export default {
 
 .no-match {
   font-size: 3rem;
-  width: 100%;
 }
+
 .wrapper {
   display: flex;
   justify-content: space-between;
