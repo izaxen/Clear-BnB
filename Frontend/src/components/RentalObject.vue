@@ -17,10 +17,10 @@
     </div>
       <div class="icons-wrapper">
       <div class="icons">
-        <i :class="wifi"></i>
-        <i :class="pets"></i>
-        <i :class="pool"></i>
-        <i :class="aircon"></i>
+        <i class="icon" :class="wifi"></i>
+        <i class="icon" :class="pets"></i>
+        <i class="icon" :class="pool"></i>
+        <i class="icon" :class="aircon"></i>
       </div>
     </div>
   </div>
@@ -161,9 +161,9 @@ p {
 }
 
 .icon {
-  height: 35px;
-  width: 35px;
-  margin: 0.5rem 0;
+  height: 32px;
+  width: 32px;
+  margin: 0.7rem 0 0;
 }
 
 @media screen and (max-width: 840px) {
