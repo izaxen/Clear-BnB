@@ -5,9 +5,9 @@
       <div class="hero-text">SO YOU CAN</div>
       <div class="hero-text">BE THERE</div>
     </div>
-    <CitiesList />
-    <CitiesList />
-    <CitiesList />
+    <CitiesList :text="'POPULAR LOCATIONS'" />
+    <CitiesList :text="'PARTY LOCATION'" />
+    <CitiesList :text="'CLOSE TO YOU'" />
   </div>
 </template>
 

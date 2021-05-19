@@ -1,7 +1,7 @@
 <template>
   <!-- key should be an unique value -->
   <div class="city-list">
-    <div class="big-text">POPULAR LOCATIONS</div>
+    <div class="big-text">{{ text }}</div>
     <div class="location-box">
       <City v-for="city of rentalObjects" :key="city.id" :city="city" />
     </div>
@@ -19,6 +19,8 @@
 <script>
 import City from './City.vue'
 export default {
+  props: ['text'],
+
   components: {
     City,
   },
