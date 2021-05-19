@@ -62,7 +62,6 @@ export default {
       isModalVisible: false,
       isSearchModalVisible: false,
       showHamburger: false,
-      showUserLinks: false,
     }
   },
   computed: {
@@ -92,9 +91,6 @@ export default {
 
     openMenu() {
       this.showHamburger = !this.showHamburger
-    },
-    showUserLinks() {
-      this.showUserLinks = !this.showUserLinks
     },
   },
 }

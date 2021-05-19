@@ -12,6 +12,7 @@ export default createStore({
     isConfirmation: false,
     uploadedImages: [],
     rentalObject: null,
+    landLord: null,
   },
 
   // we cannot update state directly, so we use mutation methods to do that
@@ -67,7 +68,11 @@ export default createStore({
       state.rentalObject = object
     },
     getImageList(state, list) {
-      state.imageList = list }
+      state.imageList = list
+    },
+    setLandLord(state, landLord) {
+      state.landLord = landLord
+    },
   },
 
   // async methods that will trigger a mutation
@@ -177,7 +182,7 @@ export default createStore({
     async whoAmI(store) {
       let res = await fetch('/api/whoami')
       let user = await res.json()
-      console.log(user);
+      console.log(user)
       store.commit('setUser', user)
     },
 
@@ -201,11 +206,17 @@ export default createStore({
       let res = await fetch(loadPath)
       let fileList = await res.json()
       store.commit('getImageList', fileList)
-      
+    },
+
+    async fetchLandLord(store, objectID) {
+      let id = store.state.rentalObject.userId
+
+      let res = await fetch(`/rest/users/${id}`)
+      let landLord = await res.json()
+      store.commit('setLandLord', landLord)
     },
 
     async fetchRentalObjectById(store, id) {
-      
       let res = await fetch(`/rest/rental-objects/${id}`)
       let object = await res.json()
       store.commit('setRentalObject', object)

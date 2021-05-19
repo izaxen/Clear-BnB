@@ -3,8 +3,8 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          <h1 v-if="!isVisibility">Login here</h1>
-          <h1 v-if="isVisibility">Register here</h1>
+          <h1 v-if="!isVisibility">Login</h1>
+          <h1 v-if="isVisibility">Register</h1>
         </slot>
         <button type="button" class="btn-close" @click="close">x</button>
       </header>
@@ -85,7 +85,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.45);
   display: grid;
   justify-content: center;
   align-items: center;
@@ -93,7 +93,7 @@ export default {
 }
 .modal {
   text-align: center;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
   width: 400px;
@@ -108,7 +108,8 @@ export default {
 .modal-header {
   position: relative;
   border-bottom: 1px solid #eeeeee;
-  color: #05b3df;
+  color: rgb(130, 193, 130);
+
   justify-content: space-between;
 }
 .modal-footer {
@@ -129,12 +130,13 @@ export default {
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
-  color: #05b3df;
+  color: rgb(130, 193, 130);
+
   background: transparent;
 }
 .btn-modal {
   color: white;
-  background: #05b3df;
+  background: rgb(130, 193, 130);
   border: none;
   border-radius: 3px;
   width: 100px;
@@ -145,6 +147,6 @@ export default {
 .btn-modal:hover {
   cursor: pointer;
   transform: scale(1.05);
-  background-color: #05b3df;
+  background-color: rgb(130, 193, 130);
 }
 </style>

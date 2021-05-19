@@ -53,7 +53,7 @@ input {
   margin: 4px;
   text-decoration: none;
   width: 300px;
-  height: 25px;
+  height: 40px;
   justify-self: center;
   align-self: center;
 }
@@ -70,14 +70,14 @@ button {
   justify-self: center;
   margin-right: 10px;
   margin-top: 20px;
-  background-color: #05b3df;
+  background-color: rgb(130, 193, 130);
   color: white;
   border: none;
   border-radius: 3px;
 }
 button:hover {
   cursor: pointer;
-  background-color: #05b3df;
+  background-color: rgb(130, 193, 130);
   transform: scale(1.05);
 }
 .logo {
