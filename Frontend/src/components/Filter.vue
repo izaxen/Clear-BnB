@@ -75,7 +75,7 @@ export default {
       return this.filterObjectByBeds(
         this.filterObjectsByPrice(
           this.filterObjectsByCity(
-            this.filterObjectsByDescription(this.objects)
+            this.filterObjectsByText(this.objects)
           )
         )
       )
@@ -90,8 +90,8 @@ export default {
       return objects.filter((object) => object.city == this.city)
     },
 
-    filterObjectsByDescription(objects) {
-      return objects.filter((object) => object.freeText.includes(this.text))
+    filterObjectsByText(objects) {
+      return objects.filter((object) => object.freeText.toUpperCase().includes(this.text.toUpperCase()) || object.description.toUpperCase().includes(this.text.toUpperCase()) || object.address.toUpperCase().includes(this.text.toUpperCase()))
     },
 
     filterObjectsByPrice(objects) {
@@ -127,7 +127,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-  background-color: whitesmoke;
+  background-color: rgb(245, 245, 245);
   box-shadow: 1px 1px 2px 1px rgb(175, 170, 170);
   width: 100%;
   font-size: 1.2rem;
@@ -139,6 +139,9 @@ export default {
 input,
 select {
   height: 32px;
+  border-radius: 5px;
+  border: 1px solid rgb(126, 126, 126);
+  color: black;
 }
 
 .number-input{
@@ -178,16 +181,16 @@ select {
     flex-direction: column;
   }
 
-    .input-holder, .right-box{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.5rem;
-}
+  .input-holder, .right-box{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 0.5rem;
+  }
 
-.right-box{
-  flex-direction: column;
-}
+  .right-box{
+   flex-direction: column;
+  }
   .price-box{
     align-self: center;
     margin: 1.2rem;
