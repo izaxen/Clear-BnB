@@ -37,7 +37,7 @@ export default {
     return {
       from: fromDate,
       to: toDate,
-      wif: '',
+      wifi: '',
       pets: '',
       pool: '',
       aircon: '',
