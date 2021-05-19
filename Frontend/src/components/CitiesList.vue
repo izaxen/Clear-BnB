@@ -101,11 +101,17 @@ button {
   font-weight: 900;
 }
 
-/* @media screen and (max-width: 925px) {
+@media screen and (max-width: 400px) {
   .location-box {
     display: flex;
     flex-direction: column;
-    width: 20rem;
   }
-} */
+
+  .location-box > div:nth-child(odd) {
+    margin-right: 0;
+  }
+  .location-box > div:nth-child(even) {
+    margin-left: 0;
+  }
+}
 </style>

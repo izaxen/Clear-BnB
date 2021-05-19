@@ -43,7 +43,7 @@ export default {
     '. text';
   align-content: center;
   justify-content: center;
-  background-color: rgba(205, 205, 205, 0.9);
+  background-color: rgba(243, 243, 243, 0.9);
 
   border-radius: 8px;
   padding: 10px;
@@ -62,6 +62,7 @@ img {
   border-radius: 5px;
   grid-area: box1;
   transition: 0.3s;
+  object-fit: cover;
 }
 
 h3 {
@@ -94,16 +95,9 @@ p {
     height: 180px;
   }
 }
-/* @media screen and (max-width: 700px) {
+@media screen and (max-width: 400px) {
   .card {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-areas:
-      'box1'
-      'box2'
-      'box3'
-      'text';
-    height: 180px;
+    width: 100%;
   }
-} */
+}
 </style>

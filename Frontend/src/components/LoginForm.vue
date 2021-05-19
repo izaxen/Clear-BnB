@@ -53,7 +53,7 @@ input {
   margin: 4px;
   text-decoration: none;
   width: 300px;
-  height: 25px;
+  height: 40px;
   justify-self: center;
   align-self: center;
 }

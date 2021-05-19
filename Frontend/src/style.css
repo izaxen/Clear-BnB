@@ -24,6 +24,7 @@ body {
 #app {
   font-family: 'Crimson Text', serif;
   /* font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif; */
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
