@@ -38,14 +38,14 @@ export default {
 
   mounted() {
     this.wifiUrl = this.amenities.wifi
-      ? 'https://media.istockphoto.com/vectors/icon-in-flat-style-wireless-symbol-vector-id944860382'
+      ? 'http://assets.stickpng.com/images/580b585b2edbce24c47b2488.png'
       : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-wifi-1914404-1620362.png'
     this.petsUrl = this.amenities.petsAllowed
       ? 'https://image.flaticon.com/icons/png/512/2262/2262533.png'
       : 'https://image.flaticon.com/icons/png/512/34/34704.png'
     this.poolUrl = this.amenities.pool
       ? 'https://cdn1.iconfinder.com/data/icons/real-estate-94/200/810-512.png'
-      : 'https://thumbs.dreamstime.com/z/no-pool-icon-simple-thin-line-outline-vector-hotel-service-ban-prohibition-forbiddance-icons-ui-ux-website-mobile-172950965.jpg'
+      : 'https://www.pngrepo.com/png/114160/180/no-diving-in-pool.png'
     this.airUrl = this.amenities.airCondition
       ? 'https://image.flaticon.com/icons/png/512/114/114735.png'
       : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-air-conditioner-2184221-1828706.png'

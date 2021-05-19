@@ -1,27 +1,27 @@
 <template>
   <div class="rental-card" v-if="getImg">
     <div class="info-box">
-    <router-link :to="link">
-      <img :src="imageList[0]" alt="img"/>
-    </router-link>
-    <div class="wrapper">
-      <div class="hero">
-        <h3>{{ object.city }}</h3>
-        <h5>{{ object.address }}</h5>
-        <span>From {{ from }}, to {{ to }}</span>
-        <div class="small-text">Price: {{ object.price }}$</div>
+      <router-link :to="link">
+        <img :src="imageList[0]" alt="img" />
+      </router-link>
+      <div class="wrapper">
+        <div class="hero">
+          <h3>{{ object.city }}</h3>
+          <h5>{{ object.address }}</h5>
+          <span>From {{ from }}, to {{ to }}</span>
+          <div class="small-text">Price: {{ object.price }}$</div>
 
-        <hr class="separator" />
-        <p>{{ object.freeText }}</p>
+          <hr class="separator" />
+          <p>{{ object.freeText }}</p>
+        </div>
       </div>
-    </div>
     </div>
     <div class="icons-wrapper">
       <div class="icons">
-        <img class="icon" :src="wifiUrl" />
-        <img class="icon" :src="petsUrl" />
-        <img class="icon" :src="poolUrl" />
-        <img class="icon" :src="airUrl" />
+        <i :class="wifi"></i>
+        <i :class="pets"></i>
+        <i :class="pool"></i>
+        <i :class="aircon"></i>
       </div>
     </div>
   </div>
@@ -37,36 +37,36 @@ export default {
     return {
       from: fromDate,
       to: toDate,
-      wifiUrl: '',
-      petsUrl: '',
-      poolUrl: '',
-      airUrl: '',
+      wif: '',
+      pets: '',
+      pool: '',
+      aircon: '',
       link: '/details/' + this.object.id,
-      imageList: []
+      imageList: [],
     }
   },
 
   created() {
-    if(this.object.amenities != undefined){
-    this.wifiUrl = this.object.amenities.wifi
-      ? 'https://media.istockphoto.com/vectors/icon-in-flat-style-wireless-symbol-vector-id944860382'
-      : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-wifi-1914404-1620362.png'
-    this.petsUrl = this.object.amenities.petsAllowed
-      ? 'https://image.flaticon.com/icons/png/512/2262/2262533.png'
-      : 'https://image.flaticon.com/icons/png/512/34/34704.png'
-    this.poolUrl = this.object.amenities.pool
-      ? 'https://cdn1.iconfinder.com/data/icons/real-estate-94/200/810-512.png'
-      : 'https://thumbs.dreamstime.com/z/no-pool-icon-simple-thin-line-outline-vector-hotel-service-ban-prohibition-forbiddance-icons-ui-ux-website-mobile-172950965.jpg'
-    this.airUrl = this.object.amenities.airCondition
-      ? 'https://image.flaticon.com/icons/png/512/114/114735.png'
-      : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-air-conditioner-2184221-1828706.png'
+    if (this.object.amenities != undefined) {
+      this.wifi = this.object.amenities.wifi
+        ? 'fas fa-wifi'
+        : 'fas fa-wifi-slash'
+      this.pets = this.object.amenities.petsAllowed
+        ? 'fas fa-paw'
+        : 'fas fa-do-not-enter'
+      this.pool = this.object.amenities.pool
+        ? 'fas fa-swimming-pool'
+        : 'fas fa-tint-slash'
+      this.aircon = this.object.amenities.airCondition
+        ? 'fas fa-wind'
+        : 'fas fa-slash'
     }
   },
   computed: {
-    async getImg(){
+    async getImg() {
       await this.$store.dispatch('getFileUrl', this.object.id)
       this.imageList = this.$store.state.imageList
-    }
+    },
   },
 }
 </script>
@@ -77,7 +77,7 @@ h5 {
   margin: 0;
   padding: 0;
   font-size: 1.7rem;
-  font-weight:600;
+  font-weight: 600;
 }
 
 h5 {
@@ -87,10 +87,10 @@ h5 {
 .small-text {
   margin-top: 0.5rem;
   font-size: 1.1rem;
-  font-weight:600;
+  font-weight: 600;
 }
 
-span{
+span {
   font-size: 1.2rem;
   font-weight: 500;
 }
@@ -106,7 +106,7 @@ span{
   justify-content: space-between;
 }
 
-.info-box{
+.info-box {
   display: flex;
   flex-direction: row;
   max-width: 60rem;
@@ -117,7 +117,7 @@ span{
   flex-direction: column;
   margin-right: 1rem;
 }
-a{
+a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,7 +151,7 @@ p {
 }
 
 @media screen and (min-width: 841px) {
-  hr{
+  hr {
     display: none;
   }
 }
@@ -170,7 +170,7 @@ p {
     align-items: center;
   }
 
-  .info-box{
+  .info-box {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -178,17 +178,16 @@ p {
     width: 70%;
   }
 
-  .wrapper{
+  .wrapper {
     width: 50%;
   }
 
-  img{
+  img {
     margin: 0.7rem 0;
   }
 
-  .hero{
+  .hero {
     margin: 0;
   }
-
 }
 </style>

@@ -23,7 +23,7 @@ export default {
   created() {
     if (this.name == 'wifi') {
       this.url =
-        'https://ak.picdn.net/shutterstock/videos/1007702740/thumb/1.jpg'
+        'http://assets.stickpng.com/images/580b585b2edbce24c47b2488.png'
       this.text = 'Wifi'
     } else if (this.name == 'smartTv') {
       this.url =
@@ -40,8 +40,7 @@ export default {
       this.url = 'https://img.icons8.com/ios/452/smoking.png'
       this.text = 'Smoking allowed'
     } else if (this.name == 'fireplace') {
-      this.url =
-        'https://www.pngfind.com/pngs/m/71-712105_png-file-svg-fireplace-icon-png-transparent-png.png'
+      this.url = 'https://img.icons8.com/ios/452/fireplace.png'
       this.text = 'Fireplace'
     } else if (this.name == 'parking') {
       this.url =
@@ -61,8 +60,7 @@ export default {
       this.url = 'https://img.icons8.com/ios/452/hair-dryer.png'
       this.text = 'Hairdryer'
     } else if (this.name == 'dishwasher') {
-      this.url =
-        'https://image.shutterstock.com/image-vector/working-dishwasher-icon-outline-vector-260nw-1776039650.jpg'
+      this.url = 'https://img.icons8.com/ios/452/dishwasher.png'
       this.text = 'Dishwasher'
     } else if (this.name == 'pool') {
       this.url =
@@ -75,8 +73,7 @@ export default {
       this.url = 'https://image.flaticon.com/icons/png/512/16/16573.png'
       this.text = 'Iron'
     } else if (this.name == 'elevator') {
-      this.url =
-        'https://image.shutterstock.com/image-vector/elevator-line-icon-vector-illustration-260nw-1723335778.jpg'
+      this.url = 'https://iconape.com/wp-content/png_logo_vector/elevator.png'
       this.text = 'Elevator'
     } else if (this.name == 'kitchen') {
       this.url =
@@ -90,7 +87,7 @@ export default {
       this.text = 'Bedroom essentials'
     } else if (this.name == 'coffeeMaker') {
       this.url =
-        'https://i.pinimg.com/736x/de/45/01/de4501e1226923bc840823372c9d1e69.jpg'
+        'https://cdn.iconscout.com/icon/free/png-256/coffee-maker-2580235-2151474.png'
       this.text = 'Coffe maker'
     } else if (this.name == 'bathroomEssentials') {
       this.url =
