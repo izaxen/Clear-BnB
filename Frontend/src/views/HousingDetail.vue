@@ -10,7 +10,7 @@
         <li>{{ rentalObject.address }}</li>
       </ul>
       <div class="avatar">
-        {{ user.firstName }}{{ user.lastName }}
+        {{ landLord.firstName }}{{ landLord.lastName }}
         <img src="https://www.shankarainfra.com/img/avatar.png" alt="" />
       </div>
     </div>
@@ -72,7 +72,7 @@ export default {
       bookingReceipts: {},
       amenities: {},
       tempReceipt: {},
-      user: '',
+      landLord: '',
     }
   },
 
@@ -80,6 +80,7 @@ export default {
     await store.dispatch('getFileUrl', to.params.id)
     await store.dispatch('fetchReceipts')
     await store.dispatch('fetchRentalObjectById', to.params.id)
+    await store.dispatch('fetchLandLord')
 
     next()
   },
@@ -92,19 +93,12 @@ export default {
     saveTempReceipt(receipt) {
       this.tempReceipt = receipt
     },
-
-    async fetch() {
-      let id = this.$route.params.id
-      let res = await fetch(`/rest/rental-objects/${id}`)
-      this.rentalObject = await res.json()
-      this.amenities = this.rentalObject.amenities
-      this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
-    },
   },
 
   async created() {
     this.rentalObject = this.$store.state.rentalObject
     this.amenities = this.rentalObject.amenities
+    this.landLord = this.$store.state.landLord
     this.fetching = false
   },
 }
