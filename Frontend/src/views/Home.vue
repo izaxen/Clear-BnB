@@ -1,9 +1,9 @@
 <template>
   <div class="start-container">
-    <div id="wrapper" contenteditable="true" spellcheck="false">
-      <div class="hero-text lh">WE ARE HERE</div>
-      <div class="hero-text mid">SO YOU CAN</div>
-      <div class="hero-text rh">BE THERE</div>
+    <div id="wrapper">
+      <div class="hero-text">WE ARE HERE</div>
+      <div class="hero-text">SO YOU CAN</div>
+      <div class="hero-text">BE THERE</div>
     </div>
     <CitiesList :text="'POPULAR LOCATIONS'" />
     <CitiesList :text="'PARTY LOCATION'" />
