@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import AmentiyLoggo from './AmenityLoggo.vue'
+import AmentiyLoggo from './AmenityLogo.vue'
 
 export default {
   watch: {

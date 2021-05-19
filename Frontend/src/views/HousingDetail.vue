@@ -10,7 +10,7 @@
         <li>{{ rentalObject.address }}</li>
       </ul>
       <div class="avatar">
-        {{ user.firstName }}{{ user.lastName }}
+        {{ landLord.firstName }}{{ landLord.lastName }}
         <img src="https://www.shankarainfra.com/img/avatar.png" alt="" />
       </div>
     </div>
@@ -36,7 +36,7 @@
     <hr class="separator" />
     <div class="hej">
       <div class="amenities">
-        <AmenityLoggo
+        <AmenityLogo
           v-for="(key, value) in amenities"
           :key="key"
           :value="key"
@@ -51,7 +51,7 @@
 <script>
 import DisplayHotAmenity from '../components/DisplayHotAmenity.vue'
 import BookHousingForm from '../components/BookHousingForm.vue'
-import AmenityLoggo from '../components/AmenityLoggo.vue'
+import AmenityLogo from '../components/AmenityLogo.vue'
 import BookingConfirmation from './BookingConfirmation.vue'
 import RentalImages from '../components/RentalImages.vue'
 
@@ -59,7 +59,7 @@ import store from '../store.js'
 export default {
   components: {
     BookHousingForm,
-    AmenityLoggo,
+    AmenityLogo,
     BookingConfirmation,
     DisplayHotAmenity,
     RentalImages,
@@ -72,7 +72,7 @@ export default {
       bookingReceipts: {},
       amenities: {},
       tempReceipt: {},
-      user: '',
+      landLord: '',
     }
   },
 
@@ -80,6 +80,7 @@ export default {
     await store.dispatch('getFileUrl', to.params.id)
     await store.dispatch('fetchReceipts')
     await store.dispatch('fetchRentalObjectById', to.params.id)
+    await store.dispatch('fetchLandLord')
 
     next()
   },
@@ -92,19 +93,12 @@ export default {
     saveTempReceipt(receipt) {
       this.tempReceipt = receipt
     },
-
-    async fetch() {
-      let id = this.$route.params.id
-      let res = await fetch(`/rest/rental-objects/${id}`)
-      this.rentalObject = await res.json()
-      this.amenities = this.rentalObject.amenities
-      this.user = await fetch(`/rest/users/${this.rentalObject.userID}`)
-    },
   },
 
   async created() {
     this.rentalObject = this.$store.state.rentalObject
     this.amenities = this.rentalObject.amenities
+    this.landLord = this.$store.state.landLord
     this.fetching = false
   },
 }
