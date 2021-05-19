@@ -36,7 +36,7 @@
     <hr class="separator" />
     <div class="hej">
       <div class="amenities">
-        <AmenityLoggo
+        <AmenityLogo
           v-for="(key, value) in amenities"
           :key="key"
           :value="key"
@@ -51,7 +51,7 @@
 <script>
 import DisplayHotAmenity from '../components/DisplayHotAmenity.vue'
 import BookHousingForm from '../components/BookHousingForm.vue'
-import AmenityLoggo from '../components/AmenityLoggo.vue'
+import AmenityLogo from '../components/AmenityLogo.vue'
 import BookingConfirmation from './BookingConfirmation.vue'
 import RentalImages from '../components/RentalImages.vue'
 
@@ -59,7 +59,7 @@ import store from '../store.js'
 export default {
   components: {
     BookHousingForm,
-    AmenityLoggo,
+    AmenityLogo,
     BookingConfirmation,
     DisplayHotAmenity,
     RentalImages,

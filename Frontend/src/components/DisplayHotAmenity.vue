@@ -2,7 +2,7 @@
   <div class="container">
     <div class="card">
       <img class="icon" :src="wifiUrl" />
-      <div class="am-text">{{ amenities.wifi ? 'Got wifi' : 'No wifi' }}</div>
+      <div class="am-text">{{ amenities.wifi ? 'Wifi' : 'No wifi' }}</div>
     </div>
     <div class="card">
       <img class="icon" :src="petsUrl" />
@@ -12,12 +12,12 @@
     </div>
     <div class="card">
       <img class="icon" :src="poolUrl" />
-      <div class="am-text">{{ amenities.pool ? 'Got pool' : 'No pool' }}</div>
+      <div class="am-text">{{ amenities.pool ? 'Pool' : 'No pool' }}</div>
     </div>
     <div class="card">
       <img class="icon" :src="airUrl" />
       <div class="am-text">
-        {{ amenities.airCondition ? 'Got air condition' : 'No air condition' }}
+        {{ amenities.airCondition ? 'Air conditioner' : 'No air conditioner' }}
       </div>
     </div>
   </div>
