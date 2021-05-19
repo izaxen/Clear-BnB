@@ -1,13 +1,18 @@
 <template>
+<div>
   <nav>
     <div @click="openMenu" class="menu">=</div>
     <div class="links">
-      <router-link to="/">Home</router-link>
-      <router-link to="/overview">Overview</router-link>
+    <router-link id="img-router" to="/"><img id="logo" src="../assets/clearbnb-grey-house.png" alt=""></router-link>
+    <router-link to="/overview">Overview</router-link>
     </div>
+    
     <div class="search-bar">
       <SearchBar @showSearchModal="showSearchModal" />
     </div>
+
+  
+
 
     <div class="Login-btn">
       <router-link to="" @click="showModalLogin" v-if="loggedIn === null">
@@ -36,6 +41,7 @@
     @show="openMenu"
     :open="showHamburger"
   />
+</div>
 </template>
 
 <script>
@@ -93,6 +99,13 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;700&display=swap');
 
+#logo{
+  margin-top: 5px;
+  max-height: 50px;
+  align-self: center;
+}
+
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -116,7 +129,8 @@ nav {
   margin-left: 30px;
 }
 .links {
-  margin-left: 0.7rem;
+  display: flex;
+  align-items: center;
 }
 .links a {
   margin: 10px;
@@ -166,11 +180,14 @@ a {
   padding: 10px;
   text-align: center;
 }
-a:hover {
+ a:hover{
   background: rgb(219, 240, 219);
+ }
 
-  /* box-shadow: grey 1px 1px 2px; */
-}
+ #img-router:hover{
+   background: none;
+
+ }
 
 .menu {
   margin-left: 1rem;

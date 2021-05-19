@@ -50,6 +50,7 @@ export default {
 }
 
 #wrapper div {
+  display: flex;
   margin-bottom: 3rem;
   color: #fff;
   letter-spacing: 0.35em;
