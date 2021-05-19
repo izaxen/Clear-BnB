@@ -99,11 +99,13 @@ span{
   background-color: white;
   display: flex;
   flex-direction: row;
-  padding: 0.8rem 2rem;
+  padding: 1.5rem 2rem;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(0, 0, 0, 0.3);
   color: black;
   border-radius: 10px;
   justify-content: space-between;
+  width: 80%;
+  min-width: 250px;
 }
 
 .info-box{
@@ -123,8 +125,8 @@ a{
   justify-content: center;
 }
 img {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   margin-right: 1rem;
   border-radius: 10px;
 }
@@ -134,6 +136,7 @@ p {
 .icons {
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
 }
 
 .separator {
@@ -142,13 +145,16 @@ p {
   background-color: black;
 }
 .wrapper {
-  width: 50%;
+  display: flex;
+  align-items: center;
 }
 
 .icon {
   height: 32px;
   width: 32px;
+  margin: 0.5rem 0;
 }
+
 
 @media screen and (min-width: 841px) {
   hr{
@@ -159,15 +165,22 @@ p {
 @media screen and (max-width: 840px) {
   .rental-card > * {
   }
-  .icons-wrapper {
-    width: 168px;
-  }
+  
 }
 @media screen and (max-width: 600px) {
+  .icons{
+    flex-direction: row;
+  }
+
+  .icons-wrapper{
+    width: 95%;
+  }
+
   .rental-card {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 400px;
   }
 
   .info-box{
@@ -179,10 +192,14 @@ p {
   }
 
   .wrapper{
-    width: 50%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   img{
+    height: 200px;
+    width: 200px;
     margin: 0.7rem 0;
   }
 
