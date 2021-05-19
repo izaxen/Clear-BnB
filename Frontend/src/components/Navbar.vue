@@ -2,13 +2,9 @@
 <div>
   <nav>
     <div @click="openMenu" class="menu">=</div>
-    
-    
-    
     <div class="links">
-     
-     <router-link to="/"><img id="logo" src="../assets/clearbnb-grey-house.png" alt=""></router-link>
-     <router-link to="/overview">Overview</router-link>
+    <router-link to="/"><img id="logo" src="../assets/clearbnb-grey-house.png" alt=""></router-link>
+    <router-link to="/overview">Overview</router-link>
     </div>
     
     <div class="search-bar">
@@ -108,7 +104,8 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;700&display=swap');
 
 #logo{
-  max-height: 60px;
+  margin-top: 5px;
+  max-height: 50px;
   align-self: center;
 }
 
