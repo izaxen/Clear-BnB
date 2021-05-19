@@ -1,6 +1,6 @@
 <template>
   <div class="start-container">
-    <div id="wrapper" contenteditable="true" spellcheck="false">
+    <div id="wrapper">
       <div class="hero-text">WE ARE HERE</div>
       <div class="hero-text">SO YOU CAN</div>
       <div class="hero-text">BE THERE</div>
