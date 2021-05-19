@@ -1,21 +1,26 @@
 <template>
   <div class="wrapper container">
     <div class="filter">
-      <select v-model="city">
+      <div class="right-box">
+        <div class="input-holder">
+      <select class="city" v-model="city">
         <option value="">All cities</option>
         <option v-for="object in cityOption" :key="object.id" :value="object">
           {{ object }}
         </option>
       </select>
-      <input type="text" v-model="text" placeholder="text" />
-      <label for="vol">Price {{ range }} kr</label>
+        <input class="number-input"
+         type="number"
+         v-model="beds"
+         min="1"
+         placeholder="Beds"
+        />
+        </div>
+      <input class="search" type="text" v-model="text" placeholder="Search..." />
+      </div>
+      <div class="price-box"><label class="price" for="vol">Price {{ range }} kr</label>
       <input type="range" v-model="range" min="300" max="1500" step="10" />
-      <input
-        type="number"
-        v-model="beds"
-        min="1"
-        placeholder="Number of beds"
-      />
+      </div>
     </div>
   </div>
 
@@ -70,7 +75,7 @@ export default {
       return this.filterObjectByBeds(
         this.filterObjectsByPrice(
           this.filterObjectsByCity(
-            this.filterObjectsByDescription(this.objects)
+            this.filterObjectsByText(this.objects)
           )
         )
       )
@@ -85,8 +90,8 @@ export default {
       return objects.filter((object) => object.city == this.city)
     },
 
-    filterObjectsByDescription(objects) {
-      return objects.filter((object) => object.freeText.includes(this.text))
+    filterObjectsByText(objects) {
+      return objects.filter((object) => object.freeText.toUpperCase().includes(this.text.toUpperCase()) || object.description.toUpperCase().includes(this.text.toUpperCase()) || object.address.toUpperCase().includes(this.text.toUpperCase()))
     },
 
     filterObjectsByPrice(objects) {
@@ -106,7 +111,7 @@ export default {
 
 <style scoped>
 .filter {
-  margin-top: 2rem;
+  margin-top: 0.2rem;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -122,6 +127,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 1px 1px 2px 1px rgb(175, 170, 170);
+  width: 100%;
+  font-size: 1.2rem;
 }
 
 .container {
@@ -130,17 +139,73 @@ export default {
 input,
 select {
   height: 32px;
+  border-radius: 5px;
+  border: 1px solid rgb(126, 126, 126);
+  color: black;
 }
 
+.number-input{
+  width: 20%;
+}
+
+.price-box{
+  display: flex;
+  height: 32px;
+  align-items: center;
+  flex-direction: column;
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.price{
+  margin-right: 1rem;
+}
+
+.city{
+  width: 47%;
+  margin-right: 3%;
+}
+
+.search{
+  margin-top: 0.5rem;
+  width: 70%;
+}
+
+
 @media screen and (max-width: 840px) {
-  .filter {
+
+}
+
+@media screen and (max-width: 600px) {
+  .price-box{
     flex-direction: column;
-    width: 20rem;
-    height: 20vh;
+  }
+
+  .input-holder, .right-box{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 0.5rem;
+  }
+
+  .right-box{
+   flex-direction: column;
+  }
+  .price-box{
+    align-self: center;
+    margin: 1.2rem;
   }
 
   .filter {
+    flex-direction: column;
+    justify-content:center;
+    width: 20rem;
     flex-shrink: 2;
+  }
+
+  .wrapper{
+    justify-content: center;
+    padding: 0;
   }
 }
 </style>

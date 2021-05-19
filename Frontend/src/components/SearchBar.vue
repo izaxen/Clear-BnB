@@ -2,7 +2,7 @@
   <form class="search-box">
     <div class="card">
       <select @click="showCityNames" class="box1" v-model="city">
-        <option :value="cityName" selected>- City -</option>
+        <option :value="cityName" selected>All cities</option>
         <option v-for="city in cities" :key="city" :value="city">
           {{ city }}
         </option>
@@ -20,7 +20,6 @@
     <div class="box4">
       <p>{{ guests }} {{ guestText }}</p>
       <div class="person-div">
-        <!--<p>Guests: {{guests}}</p>-->
         <button type="button" @click="addGuests">+</button>
         <button type="button" @click="subtractGuest">-</button>
       </div>
@@ -133,7 +132,7 @@ export default {
 
 option {
   color: rgb(0, 0, 0);
-  font-weight: 600;
+  font-weight: 500;
   background: white;
   padding: 10px;
   font-size: 22px;
@@ -147,6 +146,7 @@ option {
   flex-direction: column;
   padding-right: 7px;
   border-right: 1px solid gray;
+  height: 100%;
 }
 
 button {
@@ -238,7 +238,7 @@ button {
   font-size: 20px;
   transition: 0.4s;
   width: 8rem;
-  height: 28px;
+  height: 100%;
 }
 
 .box4:hover {

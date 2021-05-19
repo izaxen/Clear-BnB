@@ -1,27 +1,26 @@
 <template>
   <div class="rental-card" v-if="getImg">
     <div class="info-box">
-      <router-link :to="link">
-        <img :src="imageList[0]" alt="img" />
-      </router-link>
-      <div class="wrapper">
-        <div class="hero">
-          <h3>{{ object.city }}</h3>
-          <h5>{{ object.address }}</h5>
-          <span>From {{ from }}, to {{ to }}</span>
-          <div class="small-text">Price: {{ object.price }}$</div>
-
-          <hr class="separator" />
-          <p>{{ object.freeText }}</p>
-        </div>
+    <router-link :to="link">
+      <img class="picture" :src="imageList[0]" alt="img"/>
+    </router-link>
+    <div class="wrapper">
+      <div class="hero">
+        <h3>{{ object.city }}</h3>
+        <h5>{{ object.address }}</h5>
+        <span>From {{ from }}, to {{ to }}</span>
+        <div class="small-text">Price: {{ object.price }}$</div>
+        <hr class="separator" />
+        <p>{{ object.freeText }}</p>
       </div>
     </div>
-    <div class="icons-wrapper">
+    </div>
+      <div class="icons-wrapper">
       <div class="icons">
-        <i :class="wifi"></i>
-        <i :class="pets"></i>
-        <i :class="pool"></i>
-        <i :class="aircon"></i>
+        <i class="icon" :class="wifi"></i>
+        <i class="icon" :class="pets"></i>
+        <i class="icon" :class="pool"></i>
+        <i class="icon" :class="aircon"></i>
       </div>
     </div>
   </div>
@@ -99,11 +98,15 @@ span {
   background-color: white;
   display: flex;
   flex-direction: row;
-  padding: 0.8rem 2rem;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(0, 0, 0, 0.3);
+  padding: 0.2rem 0.3rem;
+  /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(0, 0, 0, 0.3);*/
+  border: 1px solid rgb(173, 169, 169);
+  box-shadow: 1px 2px 3px 0 rgb(173, 169, 169);
   color: black;
-  border-radius: 10px;
+  border-radius: 7px;
   justify-content: space-between;
+  width: 80%;
+  min-width: 250px;
 }
 
 .info-box {
@@ -122,18 +125,28 @@ a {
   align-items: center;
   justify-content: center;
 }
-img {
-  height: 100px;
-  width: 100px;
+img{
+  height: 180px;
+  width: 180px;
   margin-right: 1rem;
-  border-radius: 10px;
+  border-radius: 3px;
+  object-fit: cover;
 }
+
+.picture{
+ border: 1px solid rgb(136, 132, 132);
+}
+
 p {
   margin-top: 0;
 }
+
 .icons {
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
+  margin-right: 0.7rem;
+  height: 100%;
 }
 
 .separator {
@@ -142,32 +155,42 @@ p {
   background-color: black;
 }
 .wrapper {
-  width: 50%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.2rem;
 }
 
 .icon {
   height: 32px;
   width: 32px;
-}
-
-@media screen and (min-width: 841px) {
-  hr {
-    display: none;
-  }
+  margin: 0.7rem 0 0;
 }
 
 @media screen and (max-width: 840px) {
-  .rental-card > * {
+  .wrapper{
+    align-items: flex-start;
+    max-height: 250px;
+    overflow: hidden;
   }
-  .icons-wrapper {
-    width: 168px;
-  }
+  
 }
 @media screen and (max-width: 600px) {
+  .icons{
+    flex-direction: row;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .icons-wrapper{
+    width: 80%;
+  }
+
   .rental-card {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 100%;
+    padding: 0;
   }
 
   .info-box {
@@ -178,11 +201,14 @@ p {
     width: 70%;
   }
 
-  .wrapper {
-    width: 50%;
+  .wrapper{
+    justify-content: center;
+    align-items: flex-start;
   }
 
-  img {
+  img{
+    height: 200px;
+    width: 200px;
     margin: 0.7rem 0;
   }
 
