@@ -64,7 +64,7 @@ export default {
   transition: all 0.4s;
   justify-content: space-around;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 a {
