@@ -2,7 +2,7 @@
   <form class="search-box">
     <div class="card">
       <select @click="showCityNames" class="box1" v-model="city">
-        <option :value="cityName" selected>- City -</option>
+        <option :value="cityName" selected>All cities</option>
         <option v-for="city in cities" :key="city" :value="city">
           {{ city }}
         </option>
@@ -132,7 +132,7 @@ export default {
 
 option {
   color: rgb(0, 0, 0);
-  font-weight: 600;
+  font-weight: 500;
   background: white;
   padding: 10px;
   font-size: 22px;

@@ -2,7 +2,7 @@
   <div class="rental-card" v-if="getImg">
     <div class="info-box">
     <router-link :to="link">
-      <img :src="imageList[0]" alt="img"/>
+      <img class="picture" :src="imageList[0]" alt="img"/>
     </router-link>
     <div class="wrapper">
       <div class="hero">
@@ -99,7 +99,7 @@ span{
   background-color: white;
   display: flex;
   flex-direction: row;
-  padding: 1rem 2rem;
+  padding: 0.5rem 0.5rem;
   /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(0, 0, 0, 0.3);*/
   border: 1px solid rgb(173, 169, 169);
   box-shadow: 1px 2px 3px 0 rgb(173, 169, 169);
@@ -127,11 +127,15 @@ a{
   justify-content: center;
 }
 img {
-  height: 150px;
-  width: 150px;
+  height: 250px;
+  width: 250px;
   margin-right: 1rem;
-  border-radius: 7px;
+  border-radius: 3px;
   object-fit: cover;
+}
+
+.picture{
+ border: 1px solid rgb(136, 132, 132);
 }
 
 p {
@@ -141,6 +145,7 @@ p {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  margin-right: 0.7rem;
   height: 100%;
 }
 
@@ -161,24 +166,30 @@ p {
 }
 
 @media screen and (max-width: 840px) {
-  .rental-card > * {
+  .wrapper{
+    align-items: flex-start;
+    max-height: 250px;
+    overflow: hidden;
   }
   
 }
 @media screen and (max-width: 600px) {
   .icons{
     flex-direction: row;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
   }
 
   .icons-wrapper{
-    width: 95%;
+    width: 80%;
   }
 
   .rental-card {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 400px;
+    max-width: 330px;
+    padding: 0;
   }
 
   .info-box{
