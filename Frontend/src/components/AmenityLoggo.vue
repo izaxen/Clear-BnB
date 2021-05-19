@@ -23,7 +23,7 @@ export default {
   created() {
     if (this.name == 'wifi') {
       this.url =
-        'http://assets.stickpng.com/images/580b585b2edbce24c47b2488.png'
+        'https://assets.stickpng.com/images/580b585b2edbce24c47b2488.png'
       this.text = 'Wifi'
     } else if (this.name == 'smartTv') {
       this.url =
