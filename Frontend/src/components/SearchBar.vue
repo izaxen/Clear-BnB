@@ -250,6 +250,10 @@ button {
   color: red;
 }
 
+.search-big {
+  margin-left: 0.4rem;
+}
+
 .search-small {
   display: none;
   text-decoration: none;
