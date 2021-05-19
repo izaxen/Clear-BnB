@@ -160,13 +160,6 @@ p {
   margin: 0.5rem 0;
 }
 
-
-@media screen and (min-width: 841px) {
-  hr{
-    display: none;
-  }
-}
-
 @media screen and (max-width: 840px) {
   .rental-card > * {
   }

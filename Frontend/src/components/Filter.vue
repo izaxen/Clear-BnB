@@ -1,20 +1,22 @@
 <template>
   <div class="wrapper container">
     <div class="filter">
-      <select v-model="city">
+      <div class="right-box">
+        <div class="input-holder">
+      <select class="city" v-model="city">
         <option value="">All cities</option>
         <option v-for="object in cityOption" :key="object.id" :value="object">
           {{ object }}
         </option>
       </select>
-      <div class="input-holder">
         <input class="number-input"
          type="number"
          v-model="beds"
          min="1"
          placeholder="Beds"
         />
-      <input type="text" v-model="text" placeholder="Search..." />
+        </div>
+      <input class="search" type="text" v-model="text" placeholder="Search..." />
       </div>
       <div class="price-box"><label class="price" for="vol">Price {{ range }} kr</label>
       <input type="range" v-model="range" min="300" max="1500" step="10" />
@@ -109,7 +111,7 @@ export default {
 
 <style scoped>
 .filter {
-  margin-top: 2rem;
+  margin-top: 0.2rem;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -140,39 +142,67 @@ select {
 }
 
 .number-input{
-  width: 4rem;
+  width: 20%;
 }
 
 .price-box{
   display: flex;
   height: 32px;
   align-items: center;
+  flex-direction: column;
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
 }
 
 .price{
   margin-right: 1rem;
 }
 
+.city{
+  width: 47%;
+  margin-right: 3%;
+}
+
+.search{
+  margin-top: 0.5rem;
+  width: 70%;
+}
+
 
 @media screen and (max-width: 840px) {
-  .filter {
-    flex-direction: column;
-    width: 20rem;
-    height: 20vh;
-  }
 
-  .filter {
-    flex-shrink: 2;
-  }
-
-  .wrapper{
-    justify-content: center;
-  }
 }
 
 @media screen and (max-width: 600px) {
   .price-box{
     flex-direction: column;
+  }
+
+    .input-holder, .right-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.right-box{
+  flex-direction: column;
+}
+  .price-box{
+    align-self: center;
+    margin: 1.2rem;
+  }
+
+  .filter {
+    flex-direction: column;
+    justify-content:center;
+    width: 20rem;
+    flex-shrink: 2;
+  }
+
+  .wrapper{
+    justify-content: center;
+    padding: 0;
   }
 }
 </style>
