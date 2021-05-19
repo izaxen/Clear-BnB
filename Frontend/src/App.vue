@@ -29,6 +29,7 @@ export default {
 <style scoped>
   header{
     width: 100%;
+    z-index: 1;
   }
 
 </style>

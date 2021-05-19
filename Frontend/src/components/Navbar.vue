@@ -100,7 +100,7 @@ export default {
 nav {
   display: flex;
   justify-content: space-between;
-  background-color: white;
+  background: white;
   color: black;
   height: 4.3rem;
   box-shadow: rgb(75, 72, 72) 4px 2px 10px 0;

@@ -10,11 +10,11 @@
       <input type="text" v-model="text" placeholder="text" />
       <label for="vol">Price {{ range }} kr</label>
       <input type="range" v-model="range" min="300" max="1500" step="10" />
-      <input
+      <input class="number-input"
         type="number"
         v-model="beds"
         min="1"
-        placeholder="Number of beds"
+        placeholder="Beds"
       />
     </div>
   </div>
@@ -122,6 +122,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 2px 1px rgb(175, 170, 170);
+  width: 100%;
+  font-size: 1.2rem;
 }
 
 .container {
@@ -130,6 +134,10 @@ export default {
 input,
 select {
   height: 32px;
+}
+
+.number-input{
+  width: 4rem;
 }
 
 @media screen and (max-width: 840px) {
