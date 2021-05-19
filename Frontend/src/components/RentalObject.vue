@@ -99,7 +99,7 @@ span{
   background-color: white;
   display: flex;
   flex-direction: row;
-  padding: 0.5rem 0.5rem;
+  padding: 0.1rem 0.5rem;
   /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(0, 0, 0, 0.3);*/
   border: 1px solid rgb(173, 169, 169);
   box-shadow: 1px 2px 3px 0 rgb(173, 169, 169);
@@ -127,8 +127,8 @@ a{
   justify-content: center;
 }
 img {
-  height: 250px;
-  width: 250px;
+  height: 180px;
+  width: 180px;
   margin-right: 1rem;
   border-radius: 3px;
   object-fit: cover;
@@ -157,6 +157,7 @@ p {
 .wrapper {
   display: flex;
   align-items: center;
+  padding: 0.5rem 0.2rem;
 }
 
 .icon {
@@ -202,8 +203,7 @@ p {
 
   .wrapper{
     justify-content: center;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
   }
 
   img{
