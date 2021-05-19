@@ -7,15 +7,18 @@
           {{ object }}
         </option>
       </select>
-      <input type="text" v-model="text" placeholder="text" />
-      <label for="vol">Price {{ range }} kr</label>
+      <div class="input-holder">
+        <input class="number-input"
+         type="number"
+         v-model="beds"
+         min="1"
+         placeholder="Beds"
+        />
+      <input type="text" v-model="text" placeholder="Search..." />
+      </div>
+      <div class="price-box"><label class="price" for="vol">Price {{ range }} kr</label>
       <input type="range" v-model="range" min="300" max="1500" step="10" />
-      <input class="number-input"
-        type="number"
-        v-model="beds"
-        min="1"
-        placeholder="Beds"
-      />
+      </div>
     </div>
   </div>
 
@@ -140,6 +143,17 @@ select {
   width: 4rem;
 }
 
+.price-box{
+  display: flex;
+  height: 32px;
+  align-items: center;
+}
+
+.price{
+  margin-right: 1rem;
+}
+
+
 @media screen and (max-width: 840px) {
   .filter {
     flex-direction: column;
@@ -149,6 +163,16 @@ select {
 
   .filter {
     flex-shrink: 2;
+  }
+
+  .wrapper{
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .price-box{
+    flex-direction: column;
   }
 }
 </style>

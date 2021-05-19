@@ -99,7 +99,7 @@ span{
   background-color: white;
   display: flex;
   flex-direction: row;
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem;
   /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4), 0 1px 1px 0 rgba(0, 0, 0, 0.3);*/
   border: 1px solid rgb(173, 169, 169);
   box-shadow: 1px 2px 3px 0 rgb(173, 169, 169);
@@ -131,7 +131,9 @@ img {
   width: 150px;
   margin-right: 1rem;
   border-radius: 7px;
+  object-fit: cover;
 }
+
 p {
   margin-top: 0;
 }
@@ -139,6 +141,7 @@ p {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  height: 100%;
 }
 
 .separator {
