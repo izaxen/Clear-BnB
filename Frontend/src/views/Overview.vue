@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overview">
     <Filter />
   </div>
 </template>
@@ -18,14 +18,14 @@ export default {
 </script>
 
 <style scoped>
-div {
+.overview {
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   max-width: 65rem;
   margin: auto;
-  min-height: 75rem;
-  background-color: rgba(205, 205, 205, 0.9);
+  background-color: rgba(205, 205, 205, 0.6);
+  height: 100%;
 }
 </style>
