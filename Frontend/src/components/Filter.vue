@@ -69,21 +69,7 @@ export default {
   async created() {
     let res = await fetch(`/rest/rental-objects/filter/price<=900`)
     this.objects = await res.json()
-    // await this.$store.dispatch('fetchRentalObjects')
-    // this.objects = await this.$store.state.rentalObjects
-    // let unfilteredArr = []
-    // this.objects.forEach((o) => {
-    //   unfilteredArr.push(o.city)
-    // })
-    // let removedDuplicates = unfilteredArr.filter((value, index) => {
-    //   return unfilteredArr.indexOf(value) === index
-    // })
-    // this.cityOption = removedDuplicates
-    // if (this.$store.state.searchObject) {
-    //   this.city = this.$store.state.searchObject.city
-    //   this.beds = this.$store.state.searchObject.guests
-    //   this.$store.commit('removeSearchObject')
-    // }
+    this.cityOption = this.$store.state.cityNames
   },
   methods: {
     async paramObjects() {

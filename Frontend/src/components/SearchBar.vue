@@ -73,15 +73,15 @@ export default {
     },
 
     showCityNames() {
-      let getCitys = this.$store.state.rentalObjects
-      for (let cityName of getCitys) {
-        this.cities.push(cityName.city)
-      }
+      // let getCitys = this.$store.state.rentalObjects
+      // for (let cityName of getCitys) {
+      //   this.cities.push(cityName.city)
+      // }
 
-      let removedDuplicates = this.cities.filter((value, index) => {
-        return this.cities.indexOf(value) === index
-      })
-      this.cities = removedDuplicates
+      // let removedDuplicates = this.cities.filter((value, index) => {
+      //   return this.cities.indexOf(value) === index
+      // })
+      this.cities = this.$store.state.cityNames
     },
 
     changeGuestText() {

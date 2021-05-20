@@ -78,7 +78,7 @@ export default {
 
   async beforeRouteEnter(to, from, next) {
     await store.dispatch('getFileUrl', to.params.id)
-    await store.dispatch('fetchReceipts')
+    await store.dispatch('fetchRentalReceipts', to.params.id)
     await store.dispatch('fetchRentalObjectById', to.params.id)
     await store.dispatch('fetchLandLord')
 
