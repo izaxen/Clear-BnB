@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="height">
     <div class="shell">
       <div class="sidebar"><SideBar /></div>
       <div class="header"><h1>Add rental object</h1></div>
@@ -154,6 +154,9 @@ export default {
 </script>
 
 <style scoped>
+.height{
+  height: 100%;
+}
 .header {
   text-align: center;
 }
@@ -168,6 +171,7 @@ export default {
   padding: 1px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   background-color: rgba(205, 205, 205, 0.9);
+  height: 100%;
 }
 
 .sidebar {
