@@ -41,7 +41,7 @@
     </div>
 
      <div class="button-holder">
-    <button @click="closeModal">Ok</button>
+    <button @click="closeModal">OK</button>
   </div>
 
   
@@ -153,6 +153,7 @@ img{
   box-shadow: rgb(49, 48, 48) 0px 3px 3px;
   width:450px;
   background-color: rgb(205,205,205);
+  border-radius: 5px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
 
@@ -170,24 +171,17 @@ img{
   grid-template-areas: "lh rh";
   background-color: rgb(245,245,245);
   margin: 0 15px;
+  border-radius: 5px;
 }
 .column-holder{
   grid-area: lh;
   display: flex;
 }
-
 .left-column, .right-column{
   display: flex;
   flex-direction: column;
   width: 50%;
-}
-
-.left-column{
   text-align: start;
-}
-
-.right-column{
-  text-align:start;
 }
 
 .bot-modal{
@@ -202,6 +196,7 @@ img{
   align-content: center;
   font-size: 17px;
   background-color: rgb(245,245,245);
+  border-radius: 5px;
 }
 
 .button-holder{
@@ -226,6 +221,33 @@ button:hover{
 h5{
   margin: 0 10px;
   align-self: center;
+}
+
+@media only screen and (max-width: 468px){
+  .modal-frame{
+    width: 350px;
+  }
+
+  h1, h2, h3, h4, h5, p{
+  display: inline;
+  margin: 10px;
+}
+
+.image{
+  display: none;
+}
+
+.mid-modal{
+  grid:none;
+  display: flex;
+  justify-content: center;
+      
+}
+.column-holder{
+  display: flex;
+  width: 100%;
+  }
+
 }
 
 </style>
