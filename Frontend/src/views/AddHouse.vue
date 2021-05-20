@@ -10,7 +10,6 @@
               <Calendar @dates="inAndOutDate" />
             </div>
             <AddRentalObjectForm
-              ref="formClearFields"
               @fetchObject="houseForm"
             />
           </div>
@@ -32,7 +31,7 @@
         <label
           v-if="!checkRentalForm"
           id="add-rental"
-          @click="combineFormAndList(), $refs.formClearFields.clearFields()"
+          @click="combineFormAndList()"
           >Add rental object</label
         >
         <label v-if="checkRentalForm" id="add-rental-disable"
@@ -78,7 +77,9 @@ export default {
 
   methods: {
     pushUrl() {
-      console.log('kör pushurl')
+      this.$store.commit('removeUploadedImages')
+      this.$store.commit('setRentalObject', null)
+     
       this.$router.push('/my-page/my-houses')
     },
 
@@ -91,7 +92,6 @@ export default {
     },
 
     houseForm(form) {
-      console.log('start')
       this.rentalForm = form
     },
 

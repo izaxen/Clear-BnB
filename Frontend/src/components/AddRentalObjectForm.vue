@@ -1,19 +1,14 @@
 <template>
   <form @submit.prevent="addRentalObject">
     <div class="rental-info">
-          
       <div class="input-boxes">
-        
         <div class="input-holder">
         <input class="freetext  border-radius" v-model="freeText" type="text" placeholder=" Title..."/>
         <textarea class="description border-radius" v-model="description" type="text" placeholder=" Description..."/>
         </div>
-        
           
           <div class ="address-row">
             <input class="medium-box  border-radius" v-model="address" required type="text" placeholder=" Address..."/>
-            
-            
           </div>
 
         <div class="beds-price">
@@ -92,18 +87,6 @@ watch:{
       this.$emit('fetchObject', rentalObject)
 
     },
-    clearFields(){
-      console.log('Clear feilds')
-      this.availableFrom = ''
-      this.availableTo = ''
-      this.freeText = ''
-      this.description = ''
-      this.city = ''
-      this.availableBeds = ''
-      this.price = ''
-      this.address=''
-      this.zipCode=''
-    }
   }
 }
 </script>
@@ -174,7 +157,7 @@ input[type=number] {
 }
 
 .description{
-  line-height: 30px;
+  line-height: 20px;
 }
 
 @media only screen and (max-width: 575px){

@@ -1,54 +1,50 @@
 <template>
 <div class="modal"  v-show="$store.state.isConfirmation">
   <div class="modal-backdrop">
-  <div class="modal-frame" v-if="$store.state.user && $store.state.rentalObject" >
-  
-  <div class="modal-header">
-    <slot name="header">
-      <p>Oops, something went wrong!</p>
-    </slot>
-  </div>
-<div class="mid-modal">
-  <div class="image">
-    <img src="../assets/clearbnb-grey-house.png" alt="">
-  </div>
-  <div class="column-holder">
+    <div class="modal-frame" v-if="$store.state.user && rentalObject" >
+      <div class="modal-header">
+        <slot name="header">
+        <p>Oops, something went wrong!</p>
+        </slot>
+      </div>
+      <div class="mid-modal">
+        <div class="image">
+          <img src="../assets/clearbnb-grey-house.png" alt="">
+      </div>
+      
+        <div class="column-holder">
+          <div class="left-column">
+            <h4 v-if="startDateString" class="border-bottom"><slot name = "start-date-text"></slot></h4>
+            <h4 v-if="endDateString" class="border-bottom"><slot name = "end-date-text"></slot></h4>
+            <h4 v-if="rentalObject && rentalObject.address" class="border-bottom"><slot name= "address" >Adress:</slot></h4>
+            <h4 v-if="rentalObject.city && rentalObject" class="border-bottom"><slot name="city">City:</slot></h4>
+            <h4 class="border-bottom"><slot name="beds-text"></slot></h4>
+            <h4 class="border-bottom"><slot name="beds-text-two"></slot></h4>
+        </div>
+          <div class="right-column">
+          <p v-if="startDateString" class="border-bottom">{{startDateString}}</p>
+          <p v-if="endDateString" class="border-bottom">{{endDateString}}</p>
+          <p v-if="rentalObject.address" class="border-bottom">{{rentalObject.address}}</p>
+          <p class="border-bottom">{{rentalObject.city}}</p>
+          <p class="border-bottom"><slot name="beds-count"></slot></p>
+          <p class="border-bottom"><slot name="beds-count-two"></slot></p>
+          </div>
+        </div>
+      </div>
 
-  <div class="left-column">
-    <h4 v-if="startDateString" class="border-bottom"><slot name = "start-date-text"></slot></h4>
-    <h4 v-if="endDateString" class="border-bottom"><slot name = "end-date-text"></slot></h4>
-    <h4 v-if="$store.state.rentalObject && $store.state.rentalObject.address" class="border-bottom"><slot name= "address" >Adress:</slot></h4>
-    <h4 v-if="$store.state.rentalObject.city && $store.state.rentalObject" class="border-bottom"><slot name="city">City:</slot></h4>
-    <h4 class="border-bottom"><slot name="beds-text"></slot></h4>
-    <h4 class="border-bottom"><slot name="beds-text-two"></slot></h4>
-  </div>
+      <div class= bot-modal>
+        <div class="total">
+          <h5><slot name="price-text">Total price:</slot></h5> 
+          <p><slot name = "price"></slot> :-</p>
+        </div>
 
-  <div class="right-column">
-    <p v-if="startDateString" class="border-bottom">{{startDateString}}</p>
-    <p v-if="endDateString" class="border-bottom">{{endDateString}}</p>
-    <p v-if="$store.state.rentalObject.address" class="border-bottom">{{$store.state.rentalObject.address}}</p>
-    <p class="border-bottom">{{$store.state.rentalObject.city}}</p>
-    <p class="border-bottom"><slot name="beds-count"></slot></p>
-    <p class="border-bottom"><slot name="beds-count-two"></slot></p>
-  </div></div>
-
-  </div>
-    <div class= bot-modal>
-
-      <div class="total">
-      <h5><slot name="price-text">Total price:</slot></h5> 
-     <p><slot name = "price"></slot> :-</p>
+        <div class="button-holder">
+        <button @click="closeModal">OK</button>
+        </div>
+      </div>
     </div>
-
-     <div class="button-holder">
-    <button @click="closeModal">OK</button>
   </div>
-
-  
-  </div>
-  </div>
-</div></div>
-  
+</div>
 </template>
 
 <script>
@@ -75,7 +71,6 @@ export default {
     endDate(){
     this.endDateString = this.getDateAsString(this.endDate)
     },
-
   },
 
   methods: {
@@ -83,9 +78,7 @@ export default {
       this.$store.commit('setIsConfirmation', false)
       this.$emit('close')
     },
-    setRentalObject(){
-      this.rentalObject = this.$store.state.rentalObject     
-    },
+   
     getDateAsString(date){
     let year = date.getFullYear();
     let month = date.getMonth() + 1
@@ -101,6 +94,13 @@ export default {
     }
    
   },
+
+computed:{
+  rentalObject: function(){
+    return this.$store.state.rentalObject 
+  }
+},
+
   created(){
     this.$store.dispatch('fetchRentalObjects')
   },
