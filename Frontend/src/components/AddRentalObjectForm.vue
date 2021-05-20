@@ -87,7 +87,7 @@ watch:{
       address: this.address,
       zipCode: this.zipCode,
       availableBeds: this.availableBeds,
-      price : this.price * 1.15,
+      price : this.price,
       }
       this.$emit('fetchObject', rentalObject)
 

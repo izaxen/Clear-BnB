@@ -1,12 +1,17 @@
 <template>
-<div class="center">
-<div class="modal-frame" v-if="$store.state.user && $store.state.rentalObject" v-show="$store.state.isConfirmation">
-  <div class="header">
+<div class="modal"  v-show="$store.state.isConfirmation">
+  <div class="modal-backdrop">
+  <div class="modal-frame" v-if="$store.state.user && $store.state.rentalObject" >
+  
+  <div class="modal-header">
     <slot name="header">
       <p>Oops, something went wrong!</p>
     </slot>
   </div>
-
+<div class="mid-modal">
+  <div class="image">
+    <img src="../assets/clearbnb-grey-house.png" alt="">
+  </div>
   <div class="column-holder">
 
   <div class="left-column">
@@ -25,20 +30,24 @@
     <p class="border-bottom">{{$store.state.rentalObject.city}}</p>
     <p class="border-bottom"><slot name="beds-count"></slot></p>
     <p class="border-bottom"><slot name="beds-count-two"></slot></p>
-  </div>
+  </div></div>
 
   </div>
+    <div class= bot-modal>
 
-  <div class="button-holder">
-    <button @click="closeModal">Ok</button>
+      <div class="total">
+      <h5><slot name="price-text">Total price:</slot></h5> 
+     <p><slot name = "price"></slot> :-</p>
+    </div>
+
+     <div class="button-holder">
+    <button @click="closeModal">OK</button>
   </div>
 
-    <div class="total">
-    <h5><slot name="price-text">Total price:</slot></h5> 
-    <p><slot name = "price"></slot></p>
+  
   </div>
-</div>
-</div>
+  </div>
+</div></div>
   
 </template>
 
@@ -102,79 +111,143 @@ export default {
 <style scoped>
 h1, h2, h3, h4, h5, p{
   display: inline;
-  margin: 3px;
+  margin: 8px;
+  
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+img{
+  margin: 10px;
+  width: 70px;
+  
+ }
+.image{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  
+
 }
 
 .modal-frame{
   display: grid;
+  grid-template-rows: 10% 70% 20%;
+  grid-template-areas: 
+  "top"
+  "mid"
+  "bot";
+  overflow-x: auto;
   color: black;
   border: 1px solid #011f4b;
   box-shadow: rgb(49, 48, 48) 0px 3px 3px;
-  justify-self: center;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  max-width:300px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #b3cde0;
-  padding: 10px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  width:450px;
+  background-color: rgb(205,205,205);
+  border-radius: 5px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
 
-.center{
+.modal-header{
   display: flex;
-  text-align: center;
-  width: 100%;
+  grid-area: top;
+  justify-content: center;
+  margin: 15px;
 }
 
+.mid-modal{
+  grid-area: mid;
+  display: grid;
+  grid-template-columns:70% 30%; 
+  grid-template-areas: "lh rh";
+  background-color: rgb(245,245,245);
+  margin: 0 15px;
+  border-radius: 5px;
+}
 .column-holder{
+  grid-area: lh;
   display: flex;
-  justify-content: space-evenly;
 }
-
 .left-column, .right-column{
   display: flex;
   flex-direction: column;
-  padding: 10px;
   width: 50%;
-}
-
-.left-column{
   text-align: start;
-  background-color: #eaeff3;
 }
 
-.right-column{
-  text-align: end;
-  background-color: #deebf3;
+.bot-modal{
+  grid-area: bot;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin: 15px;
 }
-
-.border-bottom{
-  border-bottom: 1px solid #011f4b;
-}
-
 .total{
-  margin-top: 5px;
-  margin-bottom: 5px;
+  display: flex;
+  align-content: center;
   font-size: 17px;
+  background-color: rgb(245,245,245);
+  border-radius: 5px;
 }
 
 .button-holder{
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
+  align-self: center;  
 }
 
 button{
+  width: 60px;
   cursor: pointer;
-  background-color: blanchedalmond;
+  background: rgb(201, 232, 201);
+  border: none;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
 }
 
 button:hover{
-  background-color: rgb(223, 189, 139);
+  background-color: rgb(182, 235, 182);
+}
+h5{
+  margin: 0 10px;
+  align-self: center;
+}
+
+@media only screen and (max-width: 468px){
+  .modal-frame{
+    width: 350px;
+  }
+
+  h1, h2, h3, h4, h5, p{
+  display: inline;
+  margin: 10px;
+}
+
+.image{
+  display: none;
+}
+
+.mid-modal{
+  grid:none;
+  display: flex;
+  justify-content: center;
+      
+}
+.column-holder{
+  display: flex;
+  width: 100%;
+  }
+
 }
 
 </style>
