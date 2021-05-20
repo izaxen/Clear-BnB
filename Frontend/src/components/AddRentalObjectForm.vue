@@ -111,7 +111,7 @@ watch:{
 <style scoped>
 
 .border-radius{
-  border-radius: 0.11rem;
+  border-radius: 5px;
   border: 1px solid grey;
   margin: 10px 0;
 }

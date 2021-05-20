@@ -5,7 +5,7 @@
       <div class="header"><h1>Add rental object</h1></div>
       <div class="addhouse">
         <div class="row1">
-          <div class="objectform">
+          <div class="objectform border-radius">
             <div class="calendar">
               <Calendar @dates="inAndOutDate" />
             </div>
@@ -15,7 +15,7 @@
             />
           </div>
 
-          <div class="add-images">
+          <div class="add-images border-radius">
             <h3>Add 6 pictures</h3>
             <AddImageForm @formData="LoadFormData" />
           </div>
@@ -154,6 +154,10 @@ export default {
 </script>
 
 <style scoped>
+.border-radius{
+  border-radius: 5px;
+}
+
 .height{
   height: 100%;
 }
