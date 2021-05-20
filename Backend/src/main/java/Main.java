@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static nosqlite.Database.collection;
 import static nosqlite.utilities.Filter.eq;
@@ -59,6 +60,16 @@ public class Main {
             res.json(rentalObject);
         });
 
+        app.get("/rest/rental-objects/filter/:filter", (req, res) -> {
+            String filter = req.params("filter");
+            try {
+            List<RentalObject> filtered = collection("RentalObject").find(filter);
+            res.json(filtered);
+            } catch (Exception e){
+                res.send("wrong filter");
+            }
+        });
+
         app.post("/rest/rental-objects", (req, res) -> {
             RentalObject rentalObject = req.body(RentalObject.class);
             collection("RentalObject").save(rentalObject);
@@ -80,7 +91,7 @@ public class Main {
         });
 
 
-        app.get("/rest/booking-receipts/:id", (req, res) -> {
+        app.get("/rest/booking-receipts/:id/", (req, res) -> {
             String id = req.params("id");
             BookingReceipt bookingReceipt = collection("bookingReceipt").findById(id);
             res.json(bookingReceipt);

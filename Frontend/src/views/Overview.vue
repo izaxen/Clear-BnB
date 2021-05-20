@@ -11,9 +11,9 @@ export default {
     Filter,
   },
 
-  created() {
+  /*async created() {
     this.$store.dispatch('fetchRentalObjects')
-  },
+  },*/
 }
 </script>
 
