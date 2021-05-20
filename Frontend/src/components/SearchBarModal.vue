@@ -1,9 +1,10 @@
 <template>
-  <div class="modal">
-    <div class="color">
+  <div class="modal-backdrop">
+    <div class="modal-frame">
       <form class="search-box">
-        <div class="card">
-          <p class="city-name">City</p>
+        
+        <div class="city-search">
+          
           <select @click="showCityNames" class="box1" v-model="city">
             <option :value="cityName" selected>--Cities--</option>
             <option v-for="city in cities" :key="city" :value="city">
@@ -11,7 +12,9 @@
             </option>
           </select>
         </div>
-        <div class="calendar" ref="search">
+        
+        
+        <div class="calendar-search">
           <Calendar
             @days-selected="receive"
             @dates="confirmDates"
@@ -20,21 +23,32 @@
             :searchBar="searchBar"
           />
         </div>
-        <div class="box4">
-          <p>{{ guests }} {{ guestText }}</p>
+
+
+        <div class="choose-guest border-radius">
           <div class="person-div">
+          <p>{{ guests }} {{ guestText }}</p>
+            <div class="plus-add-btn">
             <button type="button" @click="addGuests">+</button>
             <button type="button" @click="subtractGuest">-</button>
+            </div>
           </div>
-        </div>
+        
 
+        <div class="search">
         <a class="search-big" href="#">
           <em class="fas fa-search" @click="addSearch"></em>
         </a>
+        </div>
+
+         <button class="button-close" @click="close">Go back</button>
+         </div>
       </form>
-      <button class="x" @click="close">X</button>
+
+     
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -132,54 +146,33 @@ export default {
 </script>
 
 <style scoped>
-.modal {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.3);
 
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-
-  padding: 10px;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
+.modal-frame {
+  display: grid;
+  grid-template-rows: 25% 25% 25% 25%;
+  grid-template-areas: 
+  "top"
+  "mid-top"
+  "mid-bot"
+  "bot";
+  overflow-x: auto;
+  color: black;
+  border: 1px solid #011f4b;
+  box-shadow: rgb(49, 48, 48) 0px 3px 3px;
+  width: 350px;
+  height:250px;
+  background-color: rgb(205,205,205);
+  border-radius: 5px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.color {
-  border-radius: 10px;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-option {
-  color: rgb(0, 0, 0);
-  font-weight: 600;
-  background: #59deff93;
-  padding: 10px;
-  font-size: 17px;
-}
-
-.card {
+.city-search{
+  grid-area: top;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 5px;
-}
-
-button {
-  height: 20px;
-  width: 20px;
-  align-self: center;
-  margin-left: 5px;
+  margin: 15px
 }
 
 .city-name {
@@ -188,6 +181,59 @@ button {
   font-size: 0.8rem;
   color: gray;
 }
+
+.calendar-search{
+  grid-area: mid-top ;
+  display:flex;
+  justify-content: center;
+  margin: 0 5px;
+}
+
+.choose-guest{
+  grid-area: mid-bot;
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  grid-template-areas:
+  "lh mid rh";
+  margin: 15px;
+  background-color: rgb(245,245,245);
+  justify-items: center;
+}
+
+.search{
+  grid-area: mid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.person-div {
+  grid-area: lh;
+    
+}
+
+.person-div p {
+  font-size: 1rem;
+}
+
+option {
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  background: #59deff93;
+  padding: 10px;
+  font-size: 17px;
+}
+
+
+button {
+  height: 20px;
+  width: 20px;
+  align-self: center;
+  margin-left: 5px;
+}
+
+
 
 p {
   font-size: 1rem;
@@ -204,18 +250,8 @@ p {
   justify-content: space-between;
 }
 
-.person-div {
-  font-size: 1rem;
 
-  display: flex;
-  flex-direction: row;
-}
 
-.person-div p {
-  font-size: 1rem;
-}
-.search-box {
-}
 
 .box1:hover > .search-btn {
   background: #4aae9b;
@@ -231,6 +267,7 @@ p {
   justify-content: center;
   align-items: center;
 }
+
 .box1 {
   margin-left: 1rem;
   border: none;
@@ -255,6 +292,7 @@ p {
 .fa-search {
   font-size: 1.4rem;
   color: red;
+  
 }
 
 .x {

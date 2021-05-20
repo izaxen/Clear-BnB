@@ -224,7 +224,8 @@ export default {
   max-width: 21rem;
   flex-direction: column;
   justify-content: center;
-  margin-left: 13px;
+  
+  
 }
 
 .booking {
