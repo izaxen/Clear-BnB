@@ -2,15 +2,14 @@
   <div main>
     <div>
       <div class="hero-picture">
-        <img :src="imageList[0]" />
+        <div class="pic1">
+          <img :src="imageList[0]" alt="img"/>
+          <div class="pic-city">{{ object.city }}</div>
+          </div>
+        <div class="pic2"><img :src="imageList[1]" alt="img"/></div>
+        <div class="pic3"><img :src="imageList[2]" alt="img"/></div>
         <div class="picture-text">
           <p>{{ object.freeText }}</p>
-        </div>
-        <div class="pic-city">{{ object.city }}</div>
-      </div>
-      <div class="slider">
-        <div v-for="image in imageList" :key="image">
-          <img :src="image" alt="" />
         </div>
       </div>
     </div>
@@ -59,29 +58,35 @@ export default {
   padding: 0 1rem;
 }
 .hero-picture {
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: 1fr 0.4fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+  "pic1 pic2"
+  "pic1 pic3";
   height: 50vh;
+}
+.pic1{
+  width: 100%;
+  height: 50vh;
+  grid-area: pic1;
   position: relative;
 }
-.hero-picture img {
-  filter: brightness(50%);
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+.pic2{
+  width: 100%;
+  height: 24vh;
+  grid-area: pic2;
 }
-.slider {
-  display: flex;
+.pic3{
+  width: 100%;
+  height: 25vh;
+  grid-area: pic3;
+}
 
-  justify-content: space-around;
-  margin: 10px;
-}
-.slider img {
-  height: 100px;
-  width: 80px;
-  border-radius: 5px;
-  margin: 1rem 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.5s ease;
-}
-.slider img:hover {
-  opacity: 0.3;
+.hero-picture img {
+  filter: brightness(80%);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
 }
 .hero {
   display: flex;
@@ -92,6 +97,7 @@ img {
   border-radius: 5px;
   width: 100%;
   height: 100%;
-  display: block; /* remove extra space below image */
+  transition: 0.2s;
 }
+
 </style>

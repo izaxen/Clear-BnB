@@ -10,7 +10,7 @@
         <li>{{ rentalObject.address }}</li>
       </ul>
       <div class="avatar">
-        {{ landLord.firstName }}{{ landLord.lastName }}
+        {{ landLord.firstName }} {{ landLord.lastName }}
         <img src="https://www.shankarainfra.com/img/avatar.png" alt="" />
       </div>
     </div>
@@ -27,11 +27,11 @@
         <h5>{{ rentalObject.freeText }}</h5>
         <DisplayHotAmenity :amenities="amenities" />
       </div>
-      <div class="disc">
-        {{ rentalObject.description }}
-      </div>
       <BookHousingForm :object="rentalObject" @receipt="saveTempReceipt" />
     </div>
+    <div class="disc">
+        {{ rentalObject.description }}
+      </div>
 
     <hr class="separator" />
     <div class="hej">
@@ -109,6 +109,7 @@ export default {
   display: flex;
   align-items: center;
   margin: 0 1rem;
+  font-size: 25px;
 }
 
 h2 {
@@ -116,18 +117,19 @@ h2 {
 }
 .avatar {
   display: flex;
-  font-size: 1rem;
   justify-content: center;
   align-items: center;
+  width: 500px;
 }
 ul {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
 }
 li {
   margin-right: 2rem;
-  font-size: 1rem;
 }
 .wrapper {
   margin: auto;
@@ -164,9 +166,7 @@ li {
 }
 
 .hej {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  display: grid;
 }
 
 .am {
@@ -180,6 +180,13 @@ li {
 
 .hero-text {
   padding: 0 1rem;
+  font-size: 30px;
+}
+.hero-text h4,h2 {
+  margin: 0;
+}
+.hero-text h4 {
+  font-weight: 200;
 }
 .hero-picture {
   height: 50vh;
@@ -217,26 +224,29 @@ li {
 }
 
 .seller-info {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   padding-left: 1rem;
   display: flex;
-
-  width: 60%;
-  font-size: 0.8rem;
+  width: 100%;
+  font-weight: 700;
+  font-size: 30px;
 }
 
 .seller-info img {
-  height: 32px;
-  width: 32px;
+  height: 52px;
+  width: 52px;
   border-radius: 50%;
-  margin-left: 1rem;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .amenities {
   padding: 1rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-column-gap: 40px;
 }
 
 img {
@@ -245,6 +255,27 @@ img {
   width: 100%;
   height: 100%;
   display: block; /* remove extra space below image */
+}
+@media screen and (max-width: 1100px) {
+  .amenities{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-column-gap: 40px;
+  }
+}
+@media screen and (max-width: 920px) {
+  .seller-info {
+    font-size: 20px;
+  } 
+}
+@media screen and (max-width: 720px) {
+  .avatar {
+    display: none;
+  }
+  .seller-info {
+    align-self: center;
+    justify-self: center;
+  }
 }
 
 @media screen and (max-width: 600px) {
