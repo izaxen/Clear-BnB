@@ -28,9 +28,9 @@
         <div class="choose-guest border-radius">
           <div class="person-div">
           <p>{{ guests }} {{ guestText }}</p>
-            <div class="plus-add-btn">
-            <button type="button" @click="addGuests">+</button>
-            <button type="button" @click="subtractGuest">-</button>
+            <div class="plus-add-btn border-radius">
+            <label id="add-btn" @click="addGuests">+</label>
+            <label id="sub-btn" @click="subtractGuest">-</label>
             </div>
           </div>
         
@@ -41,8 +41,9 @@
         </a>
         </div>
 
-         <button class="button-close" @click="close">Go back</button>
-         </div>
+        <div class="close-btn">
+         <label id="close" @click="close">Go back</label>
+         </div></div>
       </form>
 
      
@@ -160,7 +161,7 @@ export default {
   border: 1px solid #011f4b;
   box-shadow: rgb(49, 48, 48) 0px 3px 3px;
   width: 350px;
-  height:250px;
+  height:px;
   background-color: rgb(205,205,205);
   border-radius: 5px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -210,68 +211,58 @@ export default {
 
 .person-div {
   grid-area: lh;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
     
 }
 
 .person-div p {
   font-size: 1rem;
+  margin: 10px 10px -5px 10px;
+  align-self: center;
+}
+
+label{
+  margin: 0 10px;
+}
+
+#add-btn, #sub-btn{
+  font-size: xx-large;
+  margin-top: -5px
+}
+
+#add-btn:hover,#sub-btn:hover {
+  scale: 1.3;
+}
+
+.plus-add-btn{
+  display:flex;
+  align-items: center;
+  margin: 10px;
+  background: rgb(201, 232, 201);
 }
 
 option {
   color: rgb(0, 0, 0);
   font-weight: 600;
-  background: #59deff93;
+  background: rgb(219,240,219);
   padding: 10px;
   font-size: 17px;
-}
-
-
-button {
-  height: 20px;
-  width: 20px;
-  align-self: center;
-  margin-left: 5px;
-}
-
-
-
-p {
-  font-size: 1rem;
+  border-radius:35px;
 }
 
 .box1 {
   border-right: 1px solid gray;
   cursor: pointer;
 }
-.box4 {
-  width: 20rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-
-
 
 .box1:hover > .search-btn {
-  background: #4aae9b;
-}
-.search-btn {
-  color: #e84118;
-  float: right;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #000000;
 }
 
 .box1 {
   margin-left: 1rem;
-  border: none;
-  background: none;
   outline: none;
   padding: 2px;
   color: rgb(113, 128, 150);
@@ -279,23 +270,34 @@ p {
   font-size: 15px;
   transition: 0.4s;
   width: 6rem;
-
   border: 1px solid black;
   border-radius: 5px;
-  background: #e9e9e9;
+  background: rgb(245,245,245);
 }
 
-.box4:hover {
-  cursor: pointer;
-}
 
 .fa-search {
-  font-size: 1.4rem;
-  color: red;
-  
+  font-size: 40px;
+  color:  #007973a6;
 }
 
-.x {
-  cursor: pointer;
-}
+.close-btn{
+  display:flex;
+  align-items: flex-end;
+  }
+
+  #close{
+    text-align: center;
+    width: 67px;
+    background: rgb(219,240,219);
+    margin: 10px;
+    cursor: pointer;
+    background: rgb(201, 232, 201);
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 3px;
+    
+  
+  }
+
 </style>

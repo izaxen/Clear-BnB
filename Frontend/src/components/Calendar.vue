@@ -44,7 +44,7 @@
                   ></path>
                 </svg>
                 <input
-                  class="chosen-date-box"
+                  class="chosen-date-box border-radius"
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking' : '',
@@ -81,7 +81,7 @@
                   ></path>
                 </svg>
                 <input
-                  class="chosen-date-box co"
+                  class="chosen-date-box co border-radius"
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking' : '',
@@ -236,7 +236,7 @@ export default {
   height: 2rem;
 }
 .box-bg {
-  padding: 0 0.5rem;
+  padding: 0 10px;
 }
 .select-date {
   text-align: left;

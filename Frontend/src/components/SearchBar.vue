@@ -247,7 +247,7 @@ button {
 
 .fa-search {
   font-size: 1.4rem;
-  color: red;
+  color:  #007973a6;
 }
 
 .search-big {
