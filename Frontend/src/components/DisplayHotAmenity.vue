@@ -8,7 +8,7 @@
     <div class="card">
       <img class="icon" :src="petsUrl" alt="img"/>
       <div class="am-text">
-        {{ amenities.petsAllowed ? 'Pealt="img"s allowed' : 'No pets' }}
+        {{ amenities.petsAllowed ? 'Pets allowed' : 'No pets' }}
       </div>
      </div>
     </div>

@@ -11,9 +11,6 @@
           <img :src="imageList[2]" alt="img"/>
           <button type="button" class="modal" @click="showPic">More pictures</button>
         </div>
-        <div class="picture-text">
-          <p>{{ object.freeText }}</p>
-        </div>
       </div>
     </div>
   </div>
@@ -134,7 +131,7 @@ img {
     grid-template-areas:
     "pic1 pic1"
     "pic2 pic3";
-    height: 580px;
+    height: 530px;
   }
   .pic1 {
     height: 300px;
@@ -148,12 +145,12 @@ img {
 }
 @media screen and (max-width: 450px){
   .hero-picture {
-    height: 570px;
+    height: 520px;
   }
 }
 @media screen and (max-width: 400px){
   .hero-picture {
-    height: 570px;
+    height: 520px;
   }
   .modal {
     width: 120px;

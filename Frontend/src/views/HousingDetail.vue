@@ -145,12 +145,13 @@ export default {
 
 .modal {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   grid-gap: 3px;
-  padding: 3px;
-  background: white;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.883);
   width: 8  0%;
   max-height: 900px;
+  max-width: 60%;
   overflow: scroll;
   overflow: auto;
   position: absolute;
@@ -335,6 +336,11 @@ img {
     width: 80%;
   }
 }
+@media screen and (min-height: 1000px) {
+  .modal {
+    height: 80%;
+  }
+}
 @media screen and (max-height: 850px) {
   .modal {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -385,6 +391,9 @@ img {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
     grid-column-gap: 40px;
+  }
+  .modal {
+    max-width: 70%;
   }
 
 }
