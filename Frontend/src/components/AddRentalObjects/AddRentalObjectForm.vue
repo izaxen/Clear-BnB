@@ -161,12 +161,11 @@ input[type=number] {
 }
 
 @media only screen and (max-width: 575px){
+
 .rental-info{
   justify-content: center;
   align-items: center;
   margin:-3px;
 }
-
-
 } 
 </style>
