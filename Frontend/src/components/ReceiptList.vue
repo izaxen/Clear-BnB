@@ -1,13 +1,12 @@
 <template>
-  <div v-if="userLoggedIn !== null">
+  <div>
     <h1>Your bookings!</h1>
-    <Receipt 
-    v-for="receipt of userReceipts"
-    :key="receipt.id"
-    :receipt="receipt"
-    @deleteBooking="deleteBooking"
+    <Receipt
+      v-for="receipt of userReceipts"
+      :key="receipt.id"
+      :receipt="receipt"
+      @deleteBooking="deleteBooking"
     />
-    
   </div>
 </template>
 
@@ -18,31 +17,17 @@ export default {
     Receipt,
   },
 
-  data(){
-    return {
-      user: null,
-      userReceipts: []
-    }
-  },
-
-  async created() { 
-    await this.$store.dispatch('fetchReceipts')
-    this.receipts = await this.$store.state.receipts
-    this.userReceipts = this.receipts.filter((receipt) => receipt.userId === this.user.id )
-    console.log('user receipts  ',this.userReceipts);
-  },
-
   computed: {
-    userLoggedIn(){
-      this.user = this.$store.state.user
+    userReceipts() {
+      return this.$store.state.userReceipts
     },
   },
 
-  methods: {  
-    deleteBooking(deleteReceipt){
-      this.userReceipts = this.userReceipts.filter((receipt) => receipt !== deleteReceipt)
-    }
-  } 
+  methods: {
+    deleteBooking(deleteReceipt) {
+      this.$store.dispatch('deleteReceipt', deleteReceipt.id)
+    },
+  },
 }
 </script>
 
@@ -57,5 +42,4 @@ h1 {
     font-size: 30px;
   }
 }
-
 </style>
