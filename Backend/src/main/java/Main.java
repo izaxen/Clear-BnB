@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static nosqlite.Database.collection;
-import static nosqlite.utilities.Filter.eq;
+
+import static nosqlite.utilities.Filter.*;
 
 public class Main {
 
@@ -48,11 +49,15 @@ public class Main {
             res.json(rentalObject);
         });
         app.get("/rest/rental-objects/filter/:filter", (req, res) -> {
+            System.out.println("inne i filter");
             String filter = req.params("filter");
             try {
                 List<RentalObject> filtered = collection("RentalObject").find(filter);
                 res.json(filtered);
+                System.out.println(filtered);
+
             } catch (Exception e) {
+                System.out.println(e);
                 res.send("wrong filter");
             }
         });
@@ -76,6 +81,11 @@ public class Main {
             collection("RentalObject").deleteById(id);
             res.send("OK");
         });
+        app.get("/rest/rental-objects/user/:id", (req, res) -> {
+            String id = req.params("id");
+            List<RentalObject>list = collection("RentalObject").find(eq("userId", id));
+            res.json(list);
+        });
         //BookingReceipt
         app.get("/rest/booking-receipts", (req, res) -> {
             List<BookingReceipt> bookingReceipts = collection("BookingReceipt").find();
@@ -83,14 +93,18 @@ public class Main {
         });
         app.get("/rest/booking-receipts/:id/", (req, res) -> {
             String id = req.params("id");
-            BookingReceipt bookingReceipt = collection("bookingReceipt").findById(id);
+            BookingReceipt bookingReceipt = collection("BookingReceipt").findById(id);
+            res.json(bookingReceipt);
+        });
+        app.get("/rest/booking-receipts/user/:id", (req, res) -> {
+            String id = req.params("id");
+            List<BookingReceipt> bookingReceipt = collection("BookingReceipt").find(eq("userId",id));
             res.json(bookingReceipt);
         });
         app.get("/rest/booking-receipts/filter/:id/", (req, res) -> {
             String id = req.params("id");
             try {
-                List<BookingReceipt> bookingReceipts = collection("bookingReceipt").find(eq("rentalObjectId", id));
-            System.out.println(bookingReceipts);
+                List<BookingReceipt> bookingReceipts = collection("BookingReceipt").find(eq("rentalObjectId", id));
             res.json(bookingReceipts);
             } catch (Exception e ) {
                 System.out.println(e);
