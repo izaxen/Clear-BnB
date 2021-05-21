@@ -14,7 +14,7 @@
       </div>
     </div>
   </div>
-</template>
+</template>w
 
 <script>
 export default {
@@ -66,28 +66,24 @@ export default {
 .hero-picture {
   display: grid;
   grid-gap: 8px;
-  grid-template-columns: 1fr 0.4fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 0.5fr;
+  grid-template-rows: 230px 230px;
   grid-template-areas:
   "pic1 pic2"
   "pic1 pic3";
-  height: 50vh;
+  height: fit-content;
+
   transition: 0.4s;
 }
 .pic1{
-  width: 100%;
-  height: 50vh;
   grid-area: pic1;
   position: relative;
 }
+
 .pic2{
-  width: 100%;
-  height: 24vh;
   grid-area: pic2;
 }
 .pic3{
-  width: 100%;
-  height: 25vh;
   grid-area: pic3;
   position: relative;
 }
@@ -119,56 +115,22 @@ img {
   border-radius: 5px;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   transition: 0.2s;
 }
 
 @media screen and (max-width: 750px){
   .hero-picture {
-    display: grid;
-    grid-gap: 8px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     grid-template-areas:
     "pic1 pic1"
     "pic2 pic3";
-    height: 530px;
   }
-  .pic1 {
-    height: 300px;
-  }
-  .pic2{
-    height: 23vh;
-  }
-  .pic3{
-    height: 23vh;
-  }
-}
-@media screen and (max-width: 450px){
-  .hero-picture {
-    height: 520px;
-  }
+
 }
 @media screen and (max-width: 400px){
-  .hero-picture {
-    height: 520px;
-  }
   .modal {
     width: 120px;
-  }
-}
-@media screen and (max-height: 840px){
-  .hero-picture {
-    height: 500px;
-  }
-}
-@media screen and (max-height: 740px){
-  .hero-picture {
-    height: 480px;
-  }
-}
-@media screen and (max-height: 670px){
-  .hero-picture {
-    height: 460px;
   }
 }
 </style>
