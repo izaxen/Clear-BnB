@@ -23,6 +23,7 @@
           />
         </div>
         <input
+          @change="paramObjects"
           class="search"
           type="text"
           v-model="text"
@@ -59,29 +60,48 @@ export default {
       text: '',
       city: '',
       objects: [],
-      cityOption: '',
+
       range: 900,
       beds: '',
       timeOut: '',
     }
   },
 
+  computed: {
+    cityOption() {
+      if (!this.$store.state.cityNames) {
+        return ['loading']
+      } else {
+        return this.$store.state.cityNames
+      }
+    },
+  },
+
   async created() {
-    let res = await fetch(`/rest/rental-objects/filter/price<=900`)
-    this.objects = await res.json()
-    this.cityOption = this.$store.state.cityNames
+    if (this.$store.state.searchObject) {
+      this.city = this.$store.state.searchObject.city
+      this.beds = this.$store.state.searchObject.guests
+      this.$store.commit('removeSearchObject')
+      this.paramObjects()
+    } else {
+      this.paramObjects()
+    }
   },
   methods: {
     async paramObjects() {
+      // price<=900?adress=freeText%?freeText%freText%
+
       clearTimeout(this.timeOut)
       this.timeOut = setTimeout(async () => {
         let params = []
         let bed = this.beds ? `availableBeds>=${this.beds}` : null
         let city = this.city ? `city=${this.city}` : null
         let price = this.range ? `price<=${this.range}` : null
+
         params.push(bed, city, price)
         params = params.filter((a) => a != null)
         params = params.join('&&')
+        console.log(params)
         let res = await fetch(`/rest/rental-objects/filter/${params}`)
         this.objects = await res.json()
       }, 300)

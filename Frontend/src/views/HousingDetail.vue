@@ -81,7 +81,6 @@ export default {
     await store.dispatch('fetchRentalReceipts', to.params.id)
     await store.dispatch('fetchRentalObjectById', to.params.id)
     await store.dispatch('fetchLandLord')
-
     next()
   },
   beforeRouteLeave(to, from, next) {
