@@ -206,7 +206,7 @@ input[type=range]::-webkit-slider-thumb {
     width: 0.7rem;
     border-radius: 30px 1px 30px 1px;
     border: 1px solid rgb(27, 65, 27);
-    background: #007973;
+    background: #007973a6;
     margin-top: -0.3rem;
 }
 
@@ -216,7 +216,7 @@ input[type=range]::-moz-range-thumb{
     width: 0.6rem;
     border-radius: 30px 1px 30px 1px;
     border: 1px solid rgb(27, 65, 27);
-    background: #007973;
+    background: #007973a6;
     margin-top: -0.3rem;
 }
 
