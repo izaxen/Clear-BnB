@@ -6,7 +6,9 @@ export default createStore({
   state: {
     receipts: [],
     rentalReceipts: null,
+    userReceipts: null,
     rentalObjects: [],
+    userObjects: null,
     user: null,
     failedLogIn: false,
     searchObject: null,
@@ -38,6 +40,9 @@ export default createStore({
     setRentalReceipts(state, receipts) {
       state.rentalReceipts = receipts
     },
+    setUserReceipts(state, receipts) {
+      state.userReceipts = receipts
+    },
     removeReceipt(state, receipt) {
       state.receipts = state.receipts.filter((r) => r.id != receipt.id)
     },
@@ -50,6 +55,9 @@ export default createStore({
     },
     setRentalObjects(state, rentalObjects) {
       state.rentalObjects = rentalObjects
+    },
+    setUserObjects(state, rentalObjects) {
+      state.userObjects = rentalObjects
     },
     addRentalObject(state, rentalObject) {
       state.rentalObjects = rentalObject
@@ -86,6 +94,11 @@ export default createStore({
   // async methods that will trigger a mutation
   // this.$store.dispatch('nameOfAction')
   actions: {
+    async fetchUserReceipts(store, id) {
+      let res = await fetch('/rest/booking-receipts/user/' + id)
+      let receipts = await res.json()
+      store.commit('setUserReceipts', receipts)
+    },
     async fetchReceipts(store) {
       let res = await fetch('/rest/booking-receipts')
       let receipts = await res.json()
@@ -106,8 +119,8 @@ export default createStore({
       store.commit('addReceipt', receiptFromServer)
     },
 
-    async deleteReceipt(store, receipt) {
-      let res = await fetch('/rest/booking-receipts/' + receipt.id, {
+    async deleteReceipt(store, receiptId) {
+      let res = await fetch('/rest/booking-receipts/' + receiptId, {
         method: 'DELETE',
       })
       let deletedReceipt = await res.json()
@@ -152,7 +165,11 @@ export default createStore({
 
       store.commit('setRentalObjects', rentalObjects)
     },
-
+    async fetchUserObjects(store, userId) {
+      let res = await fetch('/rest/rental-objects/user/id')
+      let rentalObjects = await res.json()
+      store.commit('setUserObjects', rentalObjects)
+    },
     async postRentalObject(store, rentalObject) {
       let res = await fetch('/rest/rental-objects', {
         method: 'POST',
