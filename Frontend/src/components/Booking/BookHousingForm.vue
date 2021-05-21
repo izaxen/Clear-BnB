@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import NumberOfGuests from './rentalPriceCalculator.vue'
-import Calendar from './Calendar.vue'
-import LoginModal from '../views/LoginModal.vue'
+import NumberOfGuests from './RentalPriceCalculator.vue'
+import Calendar from '../Utils/Calendar.vue'
+import LoginModal from '../../views/LoginModal.vue'
 
 export default {
   props: ['object'],

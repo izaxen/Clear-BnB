@@ -1,10 +1,10 @@
 <template>
   <div class="sidebar1">
-    <router-link to="/my-page/add-house"
-      ><em class="fas fa-plus-circle"></em>Add house</router-link
+    <router-link to="/my-page/add-object"
+      ><em class="fas fa-plus-circle"></em>Add rental object</router-link
     >
-    <router-link to="/my-page/my-houses"
-      ><em class="fas fa-home"></em>Houses</router-link
+    <router-link to="/my-page/my-objects"
+      ><em class="fas fa-home"></em>Rental objects</router-link
     >
     <router-link to="/my-page/my-bookings"
       ><em class="fas fa-book"></em>Bookings</router-link

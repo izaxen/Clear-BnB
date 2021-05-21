@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="wrapper container">
     <div class="filter">
       <div class="right-box">
@@ -30,10 +31,11 @@
     :object="object"
   />
   <div class="no-match" v-if="filterObjects.length == 0">No match</div>
+</div>
 </template>
 
 <script>
-import RentalObject from './RentalObject.vue'
+import RentalObject from '../RentalDetails/RentalObject.vue'
 export default {
   components: {
     RentalObject,

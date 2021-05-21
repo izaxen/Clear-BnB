@@ -3,12 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 // import views
 
 import Home from './views/Home.vue'
-import Detail from './views/HousingDetail.vue'
+import Detail from './views/RentalObjectDetails.vue'
 import Overview from './views/Overview.vue'
-import AddHouse from './views/AddHouse.vue'
+import AddRentalObject from './views/AddRentalObject.vue'
 import MyPage from './views/MyPage.vue'
 import MyBookings from './views/MyBookings.vue'
-import MyHouses from './views/MyHouses.vue'
+import MyObjects from './views/MyObjects.vue'
 
 
 // create routes with views
@@ -26,8 +26,8 @@ export default createRouter({
     },
         
     {
-      path: '/my-page/add-house',
-      component: AddHouse,
+      path: '/my-page/add-object',
+      component: AddRentalObject,
     },
     {
       path: '/overview',
@@ -42,8 +42,8 @@ export default createRouter({
       component: MyBookings,
     },
     {
-      path: '/my-page/my-houses',
-      component: MyHouses,
+      path: '/my-page/my-objects',
+      component: MyObjects,
     }
   ]
 })

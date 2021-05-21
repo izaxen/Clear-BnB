@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import SideBar from '../components/Sidebar.vue'
-import ReceiptList from '../components/ReceiptList.vue'
+import SideBar from '../components/Sidebar/Sidebar.vue'
+import ReceiptList from '../components/Booking/ReceiptList.vue'
 export default {
   components: {
     ReceiptList,

@@ -2,18 +2,18 @@
   <div class="main1">
     <div class="overlay">
       <div class="sidebar"><SideBar /></div>
-      <div class="list"><UserHouseList /></div>
+      <div class="list"><UserObjectList /></div>
     </div>
   </div>
 </template>
 
 <script>
-import UserHouseList from '../components/UserHouseList.vue'
-import SideBar from '../components/Sidebar.vue'
+import UserObjectList from '../components/User/UserObjectList.vue'
+import SideBar from '../components/Sidebar/Sidebar.vue'
 export default {
   components: {
     SideBar,
-    UserHouseList,
+    UserObjectList,
   },
 }
 </script>

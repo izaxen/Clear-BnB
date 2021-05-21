@@ -1,4 +1,5 @@
 <template>
+<div>
   <div v-if="!fetching" class="wrapper">
     <RentalImages :object="rentalObject" />
     <hr class="separator" />
@@ -46,14 +47,15 @@
     </div>
   </div>
   <BookingConfirmation :receipt="tempReceipt" />
+</div>
 </template>
 
 <script>
-import DisplayHotAmenity from '../components/DisplayHotAmenity.vue'
-import BookHousingForm from '../components/BookHousingForm.vue'
-import AmenityLogo from '../components/AmenityLogo.vue'
-import BookingConfirmation from './BookingConfirmation.vue'
-import RentalImages from '../components/RentalImages.vue'
+import DisplayHotAmenity from '../components/RentalDetails/DisplayHotAmenity.vue'
+import BookHousingForm from '../components/Booking/BookHousingForm.vue'
+import AmenityLogo from '../components/Utils/AmenityLogo.vue'
+import BookingConfirmation from '../components/Booking/BookingConfirmation.vue'
+import RentalImages from '../components/RentalDetails/RentalImages.vue'
 
 import store from '../store.js'
 export default {

@@ -44,12 +44,12 @@
 </template>
 
 <script>
-import AddHouseAmenities from '../components/AddHouseAmenities.vue'
-import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
-import Calendar from '../components/Calendar.vue'
-import AddImageForm from '../components/AddImageForm.vue'
-import AddRentalObjectConfirmation from '../components/AddRentalObjectConfirmation.vue'
-import SideBar from '../components/Sidebar.vue'
+import AddHouseAmenities from '../components/AddRentalObjects/AddRentalAmenities.vue'
+import AddRentalObjectForm from '../components/AddRentalObjects/AddRentalObjectForm.vue'
+import Calendar from '../components/Utils/Calendar.vue'
+import AddImageForm from '../components/AddRentalObjects/AddImageForm.vue'
+import AddRentalObjectConfirmation from '../components/AddRentalObjects/AddRentalObjectConfirmation.vue'
+import SideBar from '../components/Sidebar/Sidebar.vue'
 
 export default {
   components: {

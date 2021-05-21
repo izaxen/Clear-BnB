@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import ConfirmationModal from '../components/ConfirmationModal.vue'
+import ConfirmationModal from '../Utils/ConfirmationModal.vue'
 
 export default {
 

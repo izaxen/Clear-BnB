@@ -1,8 +1,8 @@
 <template>
   <div v-if="userLoggedIn !== null">
     <h1>Your rentals!</h1>
-    <UserHouse 
-    v-for="house of userHouses"
+    <UserObject 
+    v-for="house of userObjects"
     :key="house.id"
     :house="house"
     />
@@ -11,23 +11,23 @@
 </template>
 
 <script>
-import UserHouse from '../components/UserHouse.vue'
+import UserObject from './UserObject.vue'
 export default {
   components: {
-    UserHouse
+    UserObject
   },
 
   data(){
       return {
       user: null,
-      userHouses: []
+      userObjects: []
     }
   },
 
   async created() {
     await this.$store.dispatch('fetchRentalObjects')
     this.houses = await this.$store.state.rentalObjects
-    this.userHouses = this.houses.filter((house) => house.userId === this.user.id )
+    this.userObjects = this.houses.filter((house) => house.userId === this.user.id )
   },
 
   computed: {

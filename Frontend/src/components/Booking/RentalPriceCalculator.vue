@@ -28,7 +28,7 @@
         <button @click="isActive = !isActive">X</button>
       </div>
     </div>
-  </div>
+ 
 
   <div class="sum">
     <div class="group">
@@ -45,6 +45,7 @@
             ? 'Select all fields'
             : `${Math.round(sum * 1.15)} kr`
         }}
+      </div>
       </div>
     </div>
   </div>

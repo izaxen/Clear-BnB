@@ -4,7 +4,7 @@
     <div class="box-amenities">
       <div v-for="(key, value) in amenities" :key="key" class="amenities">
         <div class="amen">
-          <AmentiyLoggo :value="key" :name="value" :site="true" />
+          <AmentiyLogo :value="key" :name="value" :site="true" />
           <input
             type="checkbox"
             :value="value"
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import AmentiyLoggo from './AmenityLogo.vue'
+import AmentiyLogo from '../Utils/AmenityLogo.vue'
 
 export default {
   watch: {
@@ -80,7 +80,7 @@ export default {
   },
 
   components: {
-    AmentiyLoggo,
+    AmentiyLogo,
   },
 }
 </script>
