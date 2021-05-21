@@ -22,11 +22,12 @@
         <i class="fas fa-bars"></i>
         <i class="fas fa-user-circle"></i>
         <div class="user-links">
-          <router-link to="" @click="logout" v-if="loggedIn !== null">
-            Log out</router-link
-          >
+         
           <router-link to="/my-page" v-if="loggedIn !== null">
             My Page</router-link
+          >
+          <router-link to="" @click="logout" v-if="loggedIn !== null">
+            Log out</router-link
           >
         </div>
       </div>
@@ -166,6 +167,7 @@ nav {
 
 .fa-user-circle {
   font-size: 2rem;
+  color:  #007973a6;
 }
 
 .fa-bars {

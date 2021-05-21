@@ -6,9 +6,9 @@
     <template v-slot:start-date-text>Available from:</template>
     <template v-slot:end-date-text>Available to:</template>
     <template v-slot:beds-text>Available beds:</template>
-    <template v-slot:beds-count>{{$store.state.rentalObject.availableBeds}}</template>
+    <template v-slot:beds-count>{{rentalObject.availableBeds}}</template>
     <template v-slot:price-text>Price per night:</template>
-    <template v-slot:price>{{$store.state.rentalObject.price}}</template>
+    <template v-slot:price>{{rentalObject.price}}</template>
     
   </ConfirmationModal>
 </template>
@@ -35,10 +35,20 @@ methods:{
   },
 },
 
-watch:{
+computed:{
+      rentalObject: function(){ 
+        
+      return this.$store.state.rentalObject}
+},
+
+
+watch:{ 
+  
   '$store.state.rentalObject'(){
+    if(this.$store.state.rentalObject != null){
     this.availableFrom = this.$store.state.rentalObject.availableFrom
     this.availableTo = this.$store.state.rentalObject.availableTo
+  } 
   }
 }
 }

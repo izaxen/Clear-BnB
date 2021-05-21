@@ -1,5 +1,5 @@
 <template>
-  <div class="shell-amenities">
+  <div class="shell-amenities border-radius">
     <h3>Accessible amenities</h3>
     <div class="box-amenities">
       <div v-for="(key, value) in amenities" :key="key" class="amenities">
@@ -86,6 +86,10 @@ export default {
 </script>
 
 <style scoped>
+.border-radius{
+  border-radius:5px;
+}
+
 .shell-amenities {
   display: flex;
   flex-wrap: wrap;
