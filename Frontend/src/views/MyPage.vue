@@ -47,13 +47,13 @@ export default {
 }
 .overlay {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  
   background-color: rgba(205, 205, 205, 0.9);
   height: 100%;
 }
 
 .sidebar {
-  height: 10%;
+  
 }
 
 .user-info {
@@ -82,6 +82,7 @@ export default {
 .user-box {
   height: 60%;
 }
+
 
 @media screen and (max-width: 1100px) {
   .sidebar1 {

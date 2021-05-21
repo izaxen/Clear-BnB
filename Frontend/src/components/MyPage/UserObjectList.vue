@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import UserObject from './UserObject.vue'
+import UserObject from '../MyPage/UserObject.vue'
 export default {
   components: {
     UserObject

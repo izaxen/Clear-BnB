@@ -7,8 +7,8 @@ import Detail from './views/RentalObjectDetails.vue'
 import Overview from './views/Overview.vue'
 import AddRentalObject from './views/AddRentalObject.vue'
 import MyPage from './views/MyPage.vue'
-import MyBookings from './views/MyBookings.vue'
-import MyObjects from './views/MyObjects.vue'
+import MyBookings from './components/MyPage/MyBookings.vue'
+import MyObjects from './components/MyPage/MyObjects.vue'
 
 
 // create routes with views

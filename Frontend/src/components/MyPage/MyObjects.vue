@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import UserObjectList from '../components/User/UserObjectList.vue'
-import SideBar from '../components/Sidebar/Sidebar.vue'
+import UserObjectList from './UserObjectList.vue'
+import SideBar from '../Sidebar/Sidebar.vue'
 export default {
   components: {
     SideBar,
