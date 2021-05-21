@@ -164,6 +164,7 @@ input[type=number] {
 .rental-info{
   justify-content: center;
   align-items: center;
+  margin:-3px;
 }
 
 

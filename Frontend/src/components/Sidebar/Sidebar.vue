@@ -76,7 +76,7 @@ a:hover {
   }
   em{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
 }
 </style>

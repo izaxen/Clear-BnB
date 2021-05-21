@@ -180,9 +180,8 @@ export default {
 
 .sidebar {
   max-width: 65rem;
-  margin: auto;
   padding: 1px;
-  height: 10%;
+  
 }
 
 .row1 {
@@ -267,6 +266,14 @@ h1 {
 }
 
 @media only screen and (max-width: 575px) {
+.rental-info{
+  padding: 0;
+}
+  .row1{
+    grid:none;
+    margin: 15px;
+    
+  }
   .addhouse {
     display: flex;
     flex-wrap: wrap;
@@ -277,6 +284,7 @@ h1 {
   .objectform {
     width: 100%;
     justify-items: center;
+    
   }
 
   .row1 {

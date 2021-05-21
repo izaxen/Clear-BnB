@@ -51,6 +51,7 @@ export default {
 </script>
 
 <style scoped>
+
 .content {
   display: none;
   flex-direction: row;
@@ -65,6 +66,8 @@ export default {
   justify-content: space-around;
   align-items: center;
   font-size: 1.2rem;
+
+  box-shadow: rgb(75, 72, 72) -3px 8px 10px -6px;
 }
 
 a {
