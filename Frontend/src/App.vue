@@ -17,7 +17,7 @@ export default {
     Footer,
   },
   async created() {
-    // await this.$store.dispatch('whoAmI')
+    await this.$store.dispatch('whoAmI')
     await this.$store.dispatch('fetchReceipts')
     await this.$store.dispatch('fetchCityNames')
   },
