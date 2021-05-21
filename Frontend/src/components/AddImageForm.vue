@@ -93,13 +93,15 @@ margin: 15px;
 }
 
  label{
-  padding: 8px;
-  font-weight: 700;
-  font-size: 15px;
-  border-radius: 10px;
-  font-size: 90%;
-  background: rgb(219,240,219);
-  color: black;
+  width: 150px;
+  cursor: pointer;
+  background: rgb(201, 232, 201);
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  text-align: center;
 }
  
 label:hover{

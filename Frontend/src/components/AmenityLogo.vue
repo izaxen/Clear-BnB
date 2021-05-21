@@ -23,11 +23,11 @@ export default {
   created() {
     if (this.name == 'wifi') {
       this.url =
-        'https://assets.stickpng.com/images/580b585b2edbce24c47b2488.png'
+        'https://www.pngfind.com/pngs/m/298-2986400_wifi-signal-png-transparent-png.png'
       this.text = 'Wifi'
     } else if (this.name == 'smartTv') {
       this.url =
-        'https://i.pinimg.com/originals/9e/d8/61/9ed86194c90b60ad5ce0e14fdb1b97d5.png'
+        'https://pic.onlinewebfonts.com/svg/img_485439.png'
       this.text = 'Smart tv'
     } else if (this.name == 'partyAllowed') {
       this.url =
