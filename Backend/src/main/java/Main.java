@@ -49,7 +49,14 @@ public class Main {
             res.json(rentalObject);
         });
         app.get("/rest/rental-objects/filter/:filter", (req, res) -> {
-            System.out.println("inne i filter");
+            //System.out.println("inne i filter");
+            //String checkIn = req.query("checkIn");
+            //String checkOut = req.query("checkout");
+
+            // Filter all objects where search-dates are bigger than or equal to availableFrom
+            // And smaller than or equal to availableTo
+            // Then find all bookingReceipts for each of the objects in the result
+            // And remove object if all dates in the available period have been taken already
             String filter = req.params("filter");
             try {
                 List<RentalObject> filtered = collection("RentalObject").find(filter);
@@ -58,7 +65,7 @@ public class Main {
 
             } catch (Exception e) {
                 System.out.println(e);
-                res.send("wrong filter");
+                res.status(400);
             }
         });
         app.get("/rest/rental-objects/cities/find", (req, res) -> {
