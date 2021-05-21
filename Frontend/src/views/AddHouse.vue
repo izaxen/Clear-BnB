@@ -1,21 +1,20 @@
 <template>
-  <div>
+  <div class="height">
     <div class="shell">
       <div class="sidebar"><SideBar /></div>
       <div class="header"><h1>Add rental object</h1></div>
       <div class="addhouse">
         <div class="row1">
-          <div class="objectform">
+          <div class="objectform border-radius">
             <div class="calendar">
               <Calendar @dates="inAndOutDate" />
             </div>
             <AddRentalObjectForm
-              ref="formClearFields"
               @fetchObject="houseForm"
             />
           </div>
 
-          <div class="add-images">
+          <div class="add-images border-radius">
             <h3>Add 6 pictures</h3>
             <AddImageForm @formData="LoadFormData" />
           </div>
@@ -32,7 +31,7 @@
         <label
           v-if="!checkRentalForm"
           id="add-rental"
-          @click="combineFormAndList(), $refs.formClearFields.clearFields()"
+          @click="combineFormAndList()"
           >Add rental object</label
         >
         <label v-if="checkRentalForm" id="add-rental-disable"
@@ -78,7 +77,9 @@ export default {
 
   methods: {
     pushUrl() {
-      console.log('kör pushurl')
+      this.$store.commit('removeUploadedImages')
+      this.$store.commit('setRentalObject', null)
+     
       this.$router.push('/my-page/my-houses')
     },
 
@@ -91,7 +92,6 @@ export default {
     },
 
     houseForm(form) {
-      console.log('start')
       this.rentalForm = form
     },
 
@@ -154,6 +154,13 @@ export default {
 </script>
 
 <style scoped>
+.border-radius{
+  border-radius: 5px;
+}
+
+.height{
+  height: 100%;
+}
 .header {
   text-align: center;
 }
@@ -168,6 +175,7 @@ export default {
   padding: 1px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   background-color: rgba(205, 205, 205, 0.9);
+  height: 100%;
 }
 
 .sidebar {
@@ -234,13 +242,15 @@ h3 {
 }
 
 label {
-  padding: 8px;
-  font-weight: 700;
-  font-size: 15px;
-  border-radius: 10px;
-  font-size: 90%;
-  background: rgb(219, 240, 219);
-  color: black;
+  width: 150px;
+  cursor: pointer;
+  background: rgb(201, 232, 201);
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  text-align: center;
 }
 
 label:hover {

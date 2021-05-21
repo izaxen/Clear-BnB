@@ -1,19 +1,14 @@
 <template>
   <form @submit.prevent="addRentalObject">
     <div class="rental-info">
-          
       <div class="input-boxes">
-        
         <div class="input-holder">
         <input class="freetext  border-radius" v-model="freeText" type="text" placeholder=" Title..."/>
         <textarea class="description border-radius" v-model="description" type="text" placeholder=" Description..."/>
         </div>
-        
           
           <div class ="address-row">
             <input class="medium-box  border-radius" v-model="address" required type="text" placeholder=" Address..."/>
-            
-            
           </div>
 
         <div class="beds-price">
@@ -87,23 +82,11 @@ watch:{
       address: this.address,
       zipCode: this.zipCode,
       availableBeds: this.availableBeds,
-      price : this.price * 1.15,
+      price : this.price,
       }
       this.$emit('fetchObject', rentalObject)
 
     },
-    clearFields(){
-      console.log('Clear feilds')
-      this.availableFrom = ''
-      this.availableTo = ''
-      this.freeText = ''
-      this.description = ''
-      this.city = ''
-      this.availableBeds = ''
-      this.price = ''
-      this.address=''
-      this.zipCode=''
-    }
   }
 }
 </script>
@@ -111,7 +94,7 @@ watch:{
 <style scoped>
 
 .border-radius{
-  border-radius: 0.11rem;
+  border-radius: 5px;
   border: 1px solid grey;
   margin: 10px 0;
 }
@@ -174,7 +157,7 @@ input[type=number] {
 }
 
 .description{
-  line-height: 30px;
+  line-height: 20px;
 }
 
 @media only screen and (max-width: 575px){

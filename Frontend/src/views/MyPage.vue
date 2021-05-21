@@ -42,21 +42,18 @@ export default {
   display: flex;
   flex-direction: column;
   margin: auto;
-
-  max-width: 80rem;
+  max-width: 65rem;
+  height: 100%;
 }
 .overlay {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  min-height: 90vh;
-
   background-color: rgba(205, 205, 205, 0.9);
+  height: 100%;
 }
 
 .sidebar {
   height: 10%;
-  min-top: 10%;
-  min-left: 1%;
 }
 
 .user-info {

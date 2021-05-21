@@ -11,6 +11,8 @@
           <span class="check-in-out-text1">Available to</span>
         </div>
         <DatePicker
+          color="green"
+          :columns="2"
           v-if="range.end != null"
           v-model="range"
           mode="date"
@@ -26,7 +28,7 @@
             <div class="date-range">
               <div
                 class="single-date-box"
-                :class="booking ? 'smaller-width' : ''"
+                :class="booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
               >
                 <svg
                   class="calendar-logo"
@@ -35,16 +37,16 @@
                   stroke-linejoin="round"
                   stroke-width="2"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  stroke="black"
                 >
                   <path
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   ></path>
                 </svg>
                 <input
-                  class="chosen-date-box text-gray-900"
+                  class="chosen-date-box border-radius"
                   :class="[
-                    isDragging ? 'text-gray-600' : 'text-gray-900',
+                    isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking' : '',
                   ]"
                   :value="inputValue.start"
@@ -62,8 +64,8 @@
                 </svg>
               </span>
               <div
-                class="single-date-box text-gray-900"
-                :class="booking ? 'smaller-width' : ''"
+                class="single-date-box text-black-500"
+                :class="booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
               >
                 <svg
                   class="calendar-logo"
@@ -72,16 +74,16 @@
                   stroke-linejoin="round"
                   stroke-width="2"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  stroke="black"
                 >
                   <path
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   ></path>
                 </svg>
                 <input
-                  class="chosen-date-box co"
+                  class="chosen-date-box co border-radius"
                   :class="[
-                    isDragging ? 'text-gray-600' : 'text-gray-900',
+                    isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking' : '',
                   ]"
                   :value="inputValue.end"
@@ -222,7 +224,8 @@ export default {
   max-width: 21rem;
   flex-direction: column;
   justify-content: center;
-  margin-left: 13px;
+  
+  
 }
 
 .booking {
@@ -233,7 +236,7 @@ export default {
   height: 2rem;
 }
 .box-bg {
-  padding: 0 0.5rem;
+  padding: 0 10px;
 }
 .select-date {
   text-align: left;
@@ -248,6 +251,15 @@ export default {
   justify-content: flex-start;
   align-self: flex-end;
 }
+.solid-border{
+  font-size: 1.1rem;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
+.font-smaller-thicker{
+}
+
 .single-date-box {
   align-self: center;
   position: relative;
@@ -290,7 +302,7 @@ export default {
 .text {
   display: flex;
   justify-content: space-around;
-  font-size: 12px;
+  font-size: 1rem;
 }
 .check-in-out-text1 {
   margin-left: 2rem;
@@ -299,18 +311,16 @@ export default {
   margin-left: 0.2;
 }
 
-.text-gray-600 {
+.text-gray-500 {
   --text-opacity: 1;
-  color: #718096;
-  color: rgba(113, 128, 150, var(--text-opacity));
-  font-size: 99%;
+  color: rgba(8, 8, 8, 0.61);
+  font-weight: 500;
 }
 
-.text-gray-900 {
+.text-black-500 {
   --text-opacity: 1;
-  color: #1a202c;
-  color: rgba(26, 32, 44, var(--text-opacity));
-  font-size: 99%;
+  color: black, var(--text-opacity);
+  font-weight: 500;
 }
 @media screen and (max-width: 450px){
  .calendar {
