@@ -130,6 +130,9 @@ export default {
       this.$emit('dateArray', this.findAllNights())
     },
   },
+  computed:{
+    
+  },
 
   methods: {
     findAllNights() {

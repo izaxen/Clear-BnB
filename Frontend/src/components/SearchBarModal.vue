@@ -148,6 +148,11 @@ export default {
 
 <style scoped>
 
+.modal-backdrop {
+  margin-top: 70px;
+  align-items:flex-start ;
+  }
+
 .modal-frame {
   display: grid;
   grid-template-rows: 25% 25% 25% 25%;
