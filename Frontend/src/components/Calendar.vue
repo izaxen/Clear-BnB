@@ -312,4 +312,15 @@ export default {
   color: rgba(26, 32, 44, var(--text-opacity));
   font-size: 99%;
 }
+@media screen and (max-width: 450px){
+ .calendar {
+   width: 310px;
+ }
+}
+
+@media screen and (max-width: 400px) {
+  .calendar {
+    width: 200px;
+  }
+}
 </style>

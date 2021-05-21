@@ -7,7 +7,10 @@
           <div class="pic-city">{{ object.city }}</div>
           </div>
         <div class="pic2"><img :src="imageList[1]" alt="img"/></div>
-        <div class="pic3"><img :src="imageList[2]" alt="img"/></div>
+        <div class="pic3">
+          <img :src="imageList[2]" alt="img"/>
+          <button type="button" class="modal" @click="showPic">More pictures</button>
+        </div>
         <div class="picture-text">
           <p>{{ object.freeText }}</p>
         </div>
@@ -27,6 +30,12 @@ export default {
       imageList: [],
     }
   },
+  methods: {
+    showPic(){
+      this.$emit('showPic')
+      console.log('Clicked on modal');
+    }
+  }
 }
 </script>
 
@@ -66,6 +75,7 @@ export default {
   "pic1 pic2"
   "pic1 pic3";
   height: 50vh;
+  transition: 0.4s;
 }
 .pic1{
   width: 100%;
@@ -82,6 +92,21 @@ export default {
   width: 100%;
   height: 25vh;
   grid-area: pic3;
+  position: relative;
+}
+
+.modal {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  height: 40px;
+  width: 150px;
+  opacity: 0.9;
+}
+
+.modal:hover {
+  cursor: pointer;
+  opacity: 1;
 }
 
 .hero-picture img {
@@ -100,4 +125,53 @@ img {
   transition: 0.2s;
 }
 
+@media screen and (max-width: 750px){
+  .hero-picture {
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "pic1 pic1"
+    "pic2 pic3";
+    height: 580px;
+  }
+  .pic1 {
+    height: 300px;
+  }
+  .pic2{
+    height: 23vh;
+  }
+  .pic3{
+    height: 23vh;
+  }
+}
+@media screen and (max-width: 450px){
+  .hero-picture {
+    height: 570px;
+  }
+}
+@media screen and (max-width: 400px){
+  .hero-picture {
+    height: 570px;
+  }
+  .modal {
+    width: 120px;
+  }
+}
+@media screen and (max-height: 840px){
+  .hero-picture {
+    height: 500px;
+  }
+}
+@media screen and (max-height: 740px){
+  .hero-picture {
+    height: 480px;
+  }
+}
+@media screen and (max-height: 670px){
+  .hero-picture {
+    height: 460px;
+  }
+}
 </style>
