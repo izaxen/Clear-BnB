@@ -70,6 +70,12 @@ export default {
     }
   },
 
+  watch:{
+    '$store.state.chosenDates'(){
+      this.paramObjects()
+    }
+  },
+
   computed: {
     cityOption() {
       if (!this.$store.state.cityNames) {
