@@ -333,4 +333,15 @@ export default {
   color: black, var(--text-opacity);
   font-weight: 500;
 }
+@media screen and (max-width: 450px){
+ .calendar {
+   width: 310px;
+ }
+}
+
+@media screen and (max-width: 400px) {
+  .calendar {
+    width: 200px;
+  }
+}
 </style>
