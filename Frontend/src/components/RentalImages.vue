@@ -2,20 +2,19 @@
   <div main>
     <div>
       <div class="hero-picture">
-        <img :src="imageList[0]" />
-        <div class="picture-text">
-          <p>{{ object.freeText }}</p>
-        </div>
-        <div class="pic-city">{{ object.city }}</div>
-      </div>
-      <div class="slider">
-        <div v-for="image in imageList" :key="image">
-          <img :src="image" alt="" />
+        <div class="pic1">
+          <img :src="imageList[0]" alt="img"/>
+          <div class="pic-city">{{ object.city }}</div>
+          </div>
+        <div class="pic2"><img :src="imageList[1]" alt="img"/></div>
+        <div class="pic3">
+          <img :src="imageList[2]" alt="img"/>
+          <button type="button" class="modal" @click="showPic">More pictures</button>
         </div>
       </div>
     </div>
   </div>
-</template>
+</template>w
 
 <script>
 export default {
@@ -28,6 +27,12 @@ export default {
       imageList: [],
     }
   },
+  methods: {
+    showPic(){
+      this.$emit('showPic')
+      console.log('Clicked on modal');
+    }
+  }
 }
 </script>
 
@@ -59,29 +64,47 @@ export default {
   padding: 0 1rem;
 }
 .hero-picture {
-  height: 50vh;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: 1fr 0.5fr;
+  grid-template-rows: 230px 230px;
+  grid-template-areas:
+  "pic1 pic2"
+  "pic1 pic3";
+  height: fit-content;
+
+  transition: 0.4s;
+}
+.pic1{
+  grid-area: pic1;
   position: relative;
 }
-.hero-picture img {
-  filter: brightness(50%);
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
-}
-.slider {
-  display: flex;
 
-  justify-content: space-around;
-  margin: 10px;
+.pic2{
+  grid-area: pic2;
 }
-.slider img {
-  height: 100px;
-  width: 80px;
-  border-radius: 5px;
-  margin: 1rem 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.5s ease;
+.pic3{
+  grid-area: pic3;
+  position: relative;
 }
-.slider img:hover {
-  opacity: 0.3;
+
+.modal {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  height: 40px;
+  width: 150px;
+  opacity: 0.9;
+}
+
+.modal:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.hero-picture img {
+  filter: brightness(80%);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
 }
 .hero {
   display: flex;
@@ -92,6 +115,22 @@ img {
   border-radius: 5px;
   width: 100%;
   height: 100%;
-  display: block; /* remove extra space below image */
+  object-fit: cover;
+  transition: 0.2s;
+}
+
+@media screen and (max-width: 750px){
+  .hero-picture {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    "pic1 pic1"
+    "pic2 pic3";
+  }
+
+}
+@media screen and (max-width: 400px){
+  .modal {
+    width: 120px;
+  }
 }
 </style>
