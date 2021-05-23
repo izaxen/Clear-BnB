@@ -121,7 +121,7 @@ export default {
       receipts: null,
       rentalObject: '',
       range: {
-        start: new Date(),
+        start: new Date().setHours(0,0,0,0),
         end: null,
       },
       masks: {
@@ -207,12 +207,12 @@ export default {
     this.rentalObject = this.$store.state.rentalObject
     if (this.rentalObject != undefined) {
       this.range.start =
-        this.rentalObject.availableFrom.valueOf() > new Date().valueOf()
+        this.rentalObject.availableFrom.valueOf() > new Date().setHours(0,0,0,0).valueOf()
           ? this.rentalObject.availableFrom
-          : new Date()
+          : new Date().setHours(0,0,0,0)
       this.rentalObject.availableFrom =
-        this.rentalObject.availableFrom.valueOf() < new Date().valueOf()
-          ? new Date()
+        this.rentalObject.availableFrom.valueOf() < new Date().setHours(0,0,0,0).valueOf()
+          ? new Date().setHours(0,0,0,0)
           : this.rentalObject.availableFrom
     }
     if (this.rentalObject != undefined) {
