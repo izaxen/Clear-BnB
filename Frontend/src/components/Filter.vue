@@ -100,9 +100,11 @@ export default {
 
         params.push(bed, city, price)
         params = params.filter((a) => a != null)
-        params = params.join('&&')
+        params = params.join('&')
         console.log(params)
-        let res = await fetch(`/rest/rental-objects/filter/${params}`)
+        let query = 'filter?' + params
+        console.log(query)
+        let res = await fetch(`/rest/rental-objects/filter/${query}`)
         this.objects = await res.json()
       }, 300)
     },
