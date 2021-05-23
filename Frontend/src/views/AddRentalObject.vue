@@ -80,7 +80,7 @@ export default {
       this.$store.commit('removeUploadedImages')
       this.$store.commit('setRentalObject', null)
      
-      this.$router.push('/my-page/my-houses')
+      this.$router.push('/my-page/my-objects')
     },
 
     LoadFormData(formData) {
@@ -263,6 +263,9 @@ h1 {
 
 #add-rental-disable {
   opacity: 0.3;
+}
+.chosen-date-box{
+  border: 1px solid grey;
 }
 
 @media only screen and (max-width: 575px) {
