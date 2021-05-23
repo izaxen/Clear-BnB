@@ -95,9 +95,8 @@ export default {
 <style scoped>
 .container {
   background-color: rgba(255, 255, 255, 0.717);
-
   padding: 10px;
-  min-width: 20rem;
+  width: 350px;
   border: 0.1px solid black;
   display: flex;
   flex-direction: column;
@@ -109,12 +108,18 @@ export default {
 
 .calendar {
   align-self: center;
+  font-size: 20px;
 }
 
 @media screen and (max-width: 600px) {
   .container {
     align-self: center;
-    width: 90%;
+    width: 350px;
+  }
+}
+@media screen and (max-width: 450px){
+  .container {
+    height: 20px;
   }
 }
 

@@ -78,12 +78,10 @@ export default {
 
       this.$store.dispatch('registerUser', user)
       if (this.userExists === true) {
-        console.log('inside test')
         return
       } else {
         console.log('User', user)
         store.commit('setFailedLogin', false)
-        //this.$emit('close');
       }
     },
   },
