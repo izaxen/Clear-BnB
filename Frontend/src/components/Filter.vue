@@ -29,6 +29,7 @@
           v-model="text"
           placeholder="Search..."
         />
+        <Calendar class="calendar"><template v-slot:start></template></Calendar>
       </div>
       <div class="price-box">
         <label class="price" for="vol">Price {{ range }} kr</label>
@@ -50,9 +51,11 @@
 
 <script>
 import RentalObject from './RentalObject.vue'
+import Calendar from './Calendar.vue'
 export default {
   components: {
     RentalObject,
+    Calendar,
   },
 
   data() {
@@ -97,12 +100,14 @@ export default {
         let bed = this.beds ? `availableBeds>=${this.beds}` : null
         let city = this.city ? `city=${this.city}` : null
         let price = this.range ? `price<=${this.range}` : null
+        let availableFrom = this.$store.state.chosenDates ? `availableFrom<=${this.$store.state.chosenDates[0]}` : null
+        let availableTo = this.$store.state.chosenDates ? `availableTo>=${this.$store.state.chosenDates[1]}` : null
 
-        params.push(bed, city, price)
+        params.push(bed, city, price, availableFrom, availableTo)
         params = params.filter((a) => a != null)
         params = params.join('&')
         console.log(params)
-        let query = 'filter?' + params
+        let query = 'search?' + params
         console.log(query)
         let res = await fetch(`/rest/rental-objects/filter/${query}`)
         this.objects = await res.json()
@@ -139,12 +144,20 @@ export default {
 .container {
   padding: 2rem;
 }
+
 input,
-select {
+select,
+.calendar {
   height: 32px;
   border-radius: 5px;
   border: 1px solid rgb(126, 126, 126);
   color: black;
+  background-color: white;
+}
+
+.calendar{
+  margin-top: 8px;
+  width: 95%;
 }
 
 .number-input {
@@ -165,13 +178,13 @@ select {
 }
 
 .city {
-  width: 47%;
+  width: 60%;
   margin-right: 3%;
 }
 
 .search {
   margin-top: 0.5rem;
-  width: 70%;
+  width: 95%;
 }
 
 input[type='range'] {
