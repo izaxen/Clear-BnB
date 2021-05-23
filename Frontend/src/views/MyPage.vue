@@ -5,7 +5,8 @@
       <div class="info">
         <div class="user-box">
           <h1>My Info</h1>
-          <div class="user-info" v-if="userLoggedIn !== null">
+          <div v-if="!user"></div>
+          <div v-else class="user-info">
             <h3>Firstname: {{ user.firstName }}</h3>
             <h3>Lastname: {{ user.lastName }}</h3>
             <h3>Email: {{ user.email }}</h3>
@@ -21,18 +22,29 @@
 
 <script>
 import SideBar from '../components/Sidebar.vue'
+import store from '../store.js'
 export default {
   components: { SideBar },
-  data() {
-    return {
-      user: null,
-    }
-  },
 
   computed: {
-    userLoggedIn() {
-      return (this.user = this.$store.state.user)
+    user() {
+      return this.$store.state.user
     },
+  },
+
+  async beforeRouteEnter(to, from, next) {
+    if (!store.state.user) {
+      await store.dispatch('whoAmI')
+      if (store.state.user) {
+        next()
+      } else {
+        next((vm) => {
+          vm.$router.push('/')
+        })
+      }
+    } else {
+      next()
+    }
   },
 }
 </script>

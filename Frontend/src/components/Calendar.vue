@@ -28,7 +28,11 @@
             <div class="date-range">
               <div
                 class="single-date-box"
-                :class="booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
+                :class="
+                  booking
+                    ? 'smaller-width solid-border font-smaller-thicker'
+                    : ''
+                "
               >
                 <svg
                   class="calendar-logo"
@@ -65,7 +69,11 @@
               </span>
               <div
                 class="single-date-box text-black-500"
-                :class="booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
+                :class="
+                  booking
+                    ? 'smaller-width solid-border font-smaller-thicker'
+                    : ''
+                "
               >
                 <svg
                   class="calendar-logo"
@@ -165,7 +173,7 @@ export default {
       this.findFirstAvailable()
     },
     async filterReceipts() {
-      this.receipts = await this.$store.state.receipts.filter(
+      this.receipts = await this.$store.state.rentalReceipts.filter(
         (rec) => this.rentalObject.id == rec.rentalObjectId
       )
       this.findAllDisabledDates()
@@ -254,13 +262,13 @@ export default {
   justify-content: flex-start;
   align-self: flex-end;
 }
-.solid-border{
+.solid-border {
   font-size: 1.1rem;
   border: 1px solid black;
   border-radius: 7px;
 }
 
-.font-smaller-thicker{
+.font-smaller-thicker {
 }
 
 .single-date-box {

@@ -5,7 +5,10 @@ export default createStore({
   // this.$store.state.nameOfVariable
   state: {
     receipts: [],
+    rentalReceipts: null,
+    userReceipts: null,
     rentalObjects: [],
+    userObjects: null,
     user: null,
     failedLogIn: false,
     searchObject: null,
@@ -13,11 +16,15 @@ export default createStore({
     uploadedImages: [],
     rentalObject: null,
     landLord: null,
+    cityNames: null,
   },
 
   // we cannot update state directly, so we use mutation methods to do that
   // this.$store.commit('nameOfMutation', data)
   mutations: {
+    setCityNames(state, cityNames) {
+      state.cityNames = cityNames
+    },
     setReceipts(state, receipts) {
       state.receipts = receipts
     },
@@ -29,6 +36,12 @@ export default createStore({
     },
     addReceipt(state, receipt) {
       state.receipts.push(receipt)
+    },
+    setRentalReceipts(state, receipts) {
+      state.rentalReceipts = receipts
+    },
+    setUserReceipts(state, receipts) {
+      state.userReceipts = receipts
     },
     removeReceipt(state, receipt) {
       state.receipts = state.receipts.filter((r) => r.id != receipt.id)
@@ -42,6 +55,9 @@ export default createStore({
     },
     setRentalObjects(state, rentalObjects) {
       state.rentalObjects = rentalObjects
+    },
+    setUserObjects(state, rentalObjects) {
+      state.userObjects = rentalObjects
     },
     addRentalObject(state, rentalObject) {
       state.rentalObjects = rentalObject
@@ -78,12 +94,21 @@ export default createStore({
   // async methods that will trigger a mutation
   // this.$store.dispatch('nameOfAction')
   actions: {
+    async fetchUserReceipts(store, id) {
+      let res = await fetch('/rest/booking-receipts/user/' + id)
+      let receipts = await res.json()
+      store.commit('setUserReceipts', receipts)
+    },
     async fetchReceipts(store) {
       let res = await fetch('/rest/booking-receipts')
       let receipts = await res.json()
       store.commit('setReceipts', receipts)
     },
-
+    async fetchRentalReceipts(store, rentalObjectId) {
+      let res = await fetch('/rest/booking-receipts/filter/' + rentalObjectId)
+      let receipt = await res.json()
+      store.commit('setRentalReceipts', receipt)
+    },
     async postReceipt(store, receipt) {
       let res = await fetch('/rest/booking-receipts', {
         method: 'POST',
@@ -94,8 +119,8 @@ export default createStore({
       store.commit('addReceipt', receiptFromServer)
     },
 
-    async deleteReceipt(store, receipt) {
-      let res = await fetch('/rest/booking-receipts/' + receipt.id, {
+    async deleteReceipt(store, receiptId) {
+      let res = await fetch('/rest/booking-receipts/' + receiptId, {
         method: 'DELETE',
       })
       let deletedReceipt = await res.json()
@@ -140,7 +165,11 @@ export default createStore({
 
       store.commit('setRentalObjects', rentalObjects)
     },
-
+    async fetchUserObjects(store, userId) {
+      let res = await fetch('/rest/rental-objects/user/id')
+      let rentalObjects = await res.json()
+      store.commit('setUserObjects', rentalObjects)
+    },
     async postRentalObject(store, rentalObject) {
       let res = await fetch('/rest/rental-objects', {
         method: 'POST',
@@ -220,6 +249,12 @@ export default createStore({
       let res = await fetch(`/rest/rental-objects/${id}`)
       let object = await res.json()
       store.commit('setRentalObject', object)
+    },
+
+    async fetchCityNames(store) {
+      let res = await fetch('/rest/rental-objects/cities/find')
+      let nameList = await res.json()
+      store.commit('setCityNames', nameList)
     },
   },
 })

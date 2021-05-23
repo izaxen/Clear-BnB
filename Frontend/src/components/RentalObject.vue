@@ -1,21 +1,21 @@
 <template>
   <div class="rental-card" v-if="getImg">
     <div class="info-box">
-    <router-link :to="link">
-      <img class="picture" :src="imageList[0]" alt="img"/>
-    </router-link>
-    <div class="wrapper">
-      <div class="hero">
-        <h3>{{ object.city }}</h3>
-        <h5>{{ object.address }}</h5>
-        <span>From {{ from }}, to {{ to }}</span>
-        <div class="small-text">Price: {{ object.price }}$</div>
-        <hr class="separator" />
-        <p>{{ object.freeText }}</p>
+      <router-link :to="link">
+        <img class="picture" :src="imageList[0]" alt="img" />
+      </router-link>
+      <div class="wrapper">
+        <div class="hero">
+          <h3>{{ object.city }}</h3>
+          <h5>{{ object.address }}</h5>
+          <span>From {{ from }}, to {{ to }}</span>
+          <div class="small-text">Price: {{ object.price }}$</div>
+          <hr class="separator" />
+          <p>{{ object.freeText }}</p>
+        </div>
       </div>
     </div>
-    </div>
-      <div class="icons-wrapper">
+    <div class="icons-wrapper">
       <div class="icons">
         <i class="icon" :class="wifi"></i>
         <i class="icon" :class="pets"></i>
@@ -125,7 +125,7 @@ a {
   align-items: center;
   justify-content: center;
 }
-img{
+img {
   height: 180px;
   width: 180px;
   margin-right: 1rem;
@@ -133,8 +133,8 @@ img{
   object-fit: cover;
 }
 
-.picture{
- border: 1px solid rgb(136, 132, 132);
+.picture {
+  border: 1px solid rgb(136, 132, 132);
 }
 
 p {
@@ -167,21 +167,20 @@ p {
 }
 
 @media screen and (max-width: 840px) {
-  .wrapper{
+  .wrapper {
     align-items: flex-start;
     max-height: 250px;
     overflow: hidden;
   }
-  
 }
 @media screen and (max-width: 600px) {
-  .icons{
+  .icons {
     flex-direction: row;
     margin-right: 0;
     margin-bottom: 0.5rem;
   }
 
-  .icons-wrapper{
+  .icons-wrapper {
     width: 80%;
   }
 
@@ -201,12 +200,12 @@ p {
     width: 70%;
   }
 
-  .wrapper{
+  .wrapper {
     justify-content: center;
     align-items: flex-start;
   }
 
-  img{
+  img {
     height: 200px;
     width: 200px;
     margin: 0.7rem 0;

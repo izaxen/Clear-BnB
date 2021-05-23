@@ -26,8 +26,7 @@ export default {
         'https://www.pngfind.com/pngs/m/298-2986400_wifi-signal-png-transparent-png.png'
       this.text = 'Wifi'
     } else if (this.name == 'smartTv') {
-      this.url =
-        'https://pic.onlinewebfonts.com/svg/img_485439.png'
+      this.url = 'https://pic.onlinewebfonts.com/svg/img_485439.png'
       this.text = 'Smart tv'
     } else if (this.name == 'partyAllowed') {
       this.url =
