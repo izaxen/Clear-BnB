@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import emailjs from 'emailjs-com'
+
 import NumberOfGuests from './rentalPriceCalculator.vue'
 import Calendar from './Calendar.vue'
 import LoginModal from '../views/LoginModal.vue'
@@ -83,12 +85,39 @@ export default {
         return
       }
       this.receipt.userId = this.$store.state.user.id
+      this.sendEmail()
       this.$store.dispatch('postReceipt', this.receipt)
       this.$store.commit('setIsConfirmation', true)
       this.$emit('receipt', this.receipt)
     },
+
+    sendEmail() {
+      let templateParams = {
+        to_name: this.$store.state.user.firstName,
+        email: this.$store.state.user.email,
+        check_in: this.receipt.startDate,
+        check_out: this.receipt.endDate,
+        price: this.receipt.totalPrice,
+        city: this.$store.state.rentalObject.city,
+        address: this.$store.state.rentalObject.address,
+        num_booked: this.$store.state.rentalObject.address,
+        from_name: 'Clear BnB',
+      }
+
+      let serviceID = 'service_6txoxfd'
+      let templateID = 'template_v1jnjqf'
+      let userID = 'user_PITuQ6yClqXAIlNw6sizK'
+
+      emailjs.send(serviceID, templateID, templateParams, userID).then(
+        function (response) {
+          console.log('SUCCESS!', response.status, response.text)
+        },
+        function (error) {
+          console.log('FAILED...', error)
+        }
+      )
+    },
   },
-  created() {},
 }
 </script>
 
