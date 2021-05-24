@@ -45,7 +45,8 @@
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking' : '',
-                    addHouse ? 'border' : '',
+                    addHouse ? 'border bg' : '',
+                    searchBar ? 'border1' : '',
                   ]"
                   :value="inputValue.start"
                   v-on="inputEvents.start"
@@ -84,7 +85,8 @@
                     :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking' : '',
-                    addHouse ? 'border' : '',
+                    addHouse ? 'border bg' : '',
+                    searchBar ? 'border1' : '',
                   ]"
                   :value="inputValue.end"
                   v-on="inputEvents.end"
@@ -110,7 +112,6 @@ export default {
 props: ['textOne', 'searchBar', 'booking', 'addHouse'],
 
   unmounted() {
-    console.log('unmounted')
   window.removeEventListener("resize", this.myEventHandler);
 },
 
@@ -146,7 +147,6 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse'],
 
     myEventHandler(e){
     this.size= window.innerWidth
-    console.log('this size', this.size)
     },
     
     findAllNights() {
@@ -191,7 +191,6 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse'],
     },
     findFirstAvailable() {
       let startDate = new Date(this.range.start)
-      console.log('startDate', startDate)
       let endDate = this.addDays(startDate, 1)
       for (let j = 0; j < this.disabledDates.length; j++) {
         if (
@@ -333,6 +332,7 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse'],
   margin-left: 0.2;
 }
 
+
 .text-gray-500 {
   --text-opacity: 1;
   color: rgba(8, 8, 8, 0.61);
@@ -343,6 +343,10 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse'],
   --text-opacity: 1;
   color: black, var(--text-opacity);
   font-weight: 500;
+}
+
+.bg{
+  background: rgb(255, 255, 255);
 }
 
 </style>

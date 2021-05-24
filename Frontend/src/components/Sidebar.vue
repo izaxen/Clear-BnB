@@ -27,13 +27,16 @@ export default {}
   background: rgb(245,245,245);
   border: 1px solid rgb(63, 63, 63);
   border-left: none;
+  border-right: none;
+  border-top: none;
   padding: 10px 0 ;
   align-content: center;
 }
 em {
   display: flex;
   flex-direction: column;
-  margin-right:3px
+  margin-right:3px;
+  justify-content: center;
 }
 
 a {
@@ -51,8 +54,8 @@ p{
 a:hover p {
   border-radius:5px;
   color: rgb(29, 28, 28);
-  text-decoration: underline;
-  text-decoration-thickness: 3px;
+  background-color: rgb(219,240,219);
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 500px) {
@@ -60,11 +63,11 @@ a:hover p {
     max-width: 100%;
     font-size: 15px;
     text-align: center;
-    
   }
-  a {
-    display: flex;
-    flex-direction: column;
-  }
+}
+@media screen and(min-width: 501px){
+  
+  .sidebar1{
+  display:none;}
 }
 </style>
