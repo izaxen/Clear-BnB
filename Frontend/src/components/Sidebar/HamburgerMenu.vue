@@ -1,22 +1,24 @@
 <template>
   <div @click="openMenu" v-bind:class="[open ? 'active' : null, 'content']">
-    <router-link to="/"><em class="fas fa-home"></em>Home</router-link>
+    <router-link class="link" to="/"
+      ><em class="fas fa-home"></em>Home</router-link
+    >
 
-    <router-link to="/my-page" v-if="loggedIn !== null">
+    <router-link class="link" to="/my-page" v-if="loggedIn !== null">
       <i class="fas fa-user"></i>
       My Page</router-link
     >
 
-    <router-link to="/overview">
+    <router-link class="link" to="/accommodations">
       <i class="fas fa-filter"></i>
-      Overview
+      Accommodations
     </router-link>
 
-    <router-link to="" @click="login" v-if="loggedIn === null">
+    <router-link class="link" to="" @click="login" v-if="loggedIn === null">
       <i class="fas fa-sign-in-alt"></i>
       Login
     </router-link>
-    <router-link to="" @click="logout" v-if="loggedIn !== null">
+    <router-link class="link" to="" @click="logout" v-if="loggedIn !== null">
       <i class="fas fa-sign-out-alt"></i>
       Logout
     </router-link>
@@ -67,6 +69,13 @@ export default {
 
 }
 
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
 a {
   text-decoration: none;
   color: black;
@@ -77,6 +86,11 @@ a {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+i,
+em {
+  margin: 10px 0 10px;
 }
 
 .active {

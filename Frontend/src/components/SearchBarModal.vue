@@ -2,9 +2,7 @@
   <div class="modal-backdrop">
     <div class="modal-frame">
       <form class="search-box">
-        
         <div class="city-search">
-          
           <select @click="showCityNames" class="box1" v-model="city">
             <option :value="cityName" selected>--Cities--</option>
             <option v-for="city in cities" :key="city" :value="city">
@@ -12,8 +10,7 @@
             </option>
           </select>
         </div>
-        
-        
+
         <div class="calendar-search">
           <Calendar
             @days-selected="receive"
@@ -24,32 +21,28 @@
           />
         </div>
 
-
         <div class="choose-guest border-radius">
           <div class="person-div">
-          <p>{{ guests }} {{ guestText }}</p>
+            <p>{{ guests }} {{ guestText }}</p>
             <div class="plus-add-btn border-radius">
-            <label id="add-btn" @click="addGuests">+</label>
-            <label id="sub-btn" @click="subtractGuest">-</label>
+              <label id="add-btn" @click="addGuests">+</label>
+              <label id="sub-btn" @click="subtractGuest">-</label>
             </div>
           </div>
-        
 
-        <div class="search">
-        <a class="search-big" href="#">
-          <em class="fas fa-search" @click="addSearch"></em>
-        </a>
+          <div class="search">
+            <a class="search-big" href="#">
+              <em class="fas fa-search" @click="addSearch"></em>
+            </a>
+          </div>
+
+          <div class="close-btn">
+            <label id="close" @click="close">Go back</label>
+          </div>
         </div>
-
-        <div class="close-btn">
-         <label id="close" @click="close">Go back</label>
-         </div></div>
       </form>
-
-     
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -122,7 +115,7 @@ export default {
       }
       this.$emit('close')
       this.$store.commit('setSearchObject', search)
-      this.$router.push('/overview')
+      this.$router.push('/accommodations')
 
       //nollställer data
       this.cities = []
@@ -139,38 +132,37 @@ export default {
 </script>
 
 <style scoped>
-
 .modal-backdrop {
   margin-top: 70px;
-  align-items:flex-start ;
-  }
+  align-items: flex-start;
+}
 
 .modal-frame {
   display: grid;
   grid-template-rows: 25% 25% 25% 25%;
-  grid-template-areas: 
-  "top"
-  "mid-top"
-  "mid-bot"
-  "bot";
+  grid-template-areas:
+    'top'
+    'mid-top'
+    'mid-bot'
+    'bot';
   overflow-x: auto;
   color: black;
   border: 1px solid #011f4b;
   box-shadow: rgb(49, 48, 48) 0px 3px 3px;
   width: 350px;
-  height:px;
-  background-color: rgb(205,205,205);
+  height: px;
+  background-color: rgb(205, 205, 205);
   border-radius: 5px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.city-search{
+.city-search {
   grid-area: top;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 15px
+  margin: 15px;
 }
 
 .city-name {
@@ -180,30 +172,28 @@ export default {
   color: gray;
 }
 
-.calendar-search{
-  grid-area: mid-top ;
-  display:flex;
+.calendar-search {
+  grid-area: mid-top;
+  display: flex;
   justify-content: center;
   margin: 0 5px;
 }
 
-.choose-guest{
+.choose-guest {
   grid-area: mid-bot;
   display: grid;
   grid-template-columns: 33% 34% 33%;
-  grid-template-areas:
-  "lh mid rh";
+  grid-template-areas: 'lh mid rh';
   margin: 15px;
-  background-color: rgb(245,245,245);
+  background-color: rgb(245, 245, 245);
   justify-items: center;
 }
 
-.search{
+.search {
   grid-area: mid;
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .person-div {
@@ -211,7 +201,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-items: center;
-    
 }
 
 .person-div p {
@@ -220,21 +209,23 @@ export default {
   align-self: center;
 }
 
-label{
+label {
   margin: 0 10px;
 }
 
-#add-btn, #sub-btn{
+#add-btn,
+#sub-btn {
   font-size: xx-large;
-  margin-top: -5px
+  margin-top: -5px;
 }
 
-#add-btn:hover,#sub-btn:hover {
+#add-btn:hover,
+#sub-btn:hover {
   scale: 1.3;
 }
 
-.plus-add-btn{
-  display:flex;
+.plus-add-btn {
+  display: flex;
   align-items: center;
   margin: 10px;
   background: rgb(201, 232, 201);
@@ -243,10 +234,10 @@ label{
 option {
   color: rgb(0, 0, 0);
   font-weight: 600;
-  background: rgb(219,240,219);
+  background: rgb(219, 240, 219);
   padding: 10px;
   font-size: 17px;
-  border-radius:35px;
+  border-radius: 35px;
 }
 
 .box1 {
@@ -269,32 +260,28 @@ option {
   width: 6rem;
   border: 1px solid black;
   border-radius: 5px;
-  background: rgb(245,245,245);
+  background: rgb(245, 245, 245);
 }
-
 
 .fa-search {
   font-size: 40px;
-  color:  #007973a6;
+  color: #007973a6;
 }
 
-.close-btn{
-  display:flex;
+.close-btn {
+  display: flex;
   align-items: flex-end;
-  }
+}
 
-  #close{
-    text-align: center;
-    width: 67px;
-    background: rgb(219,240,219);
-    margin: 10px;
-    cursor: pointer;
-    background: rgb(201, 232, 201);
-    border-radius: 5px;
-    border: 1px solid black;
-    padding: 3px;
-    
-  
-  }
-
+#close {
+  text-align: center;
+  width: 67px;
+  background: rgb(219, 240, 219);
+  margin: 10px;
+  cursor: pointer;
+  background: rgb(201, 232, 201);
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 3px;
+}
 </style>
