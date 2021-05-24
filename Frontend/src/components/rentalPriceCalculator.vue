@@ -140,8 +140,7 @@ export default {
   margin: 0.5rem 0.5rem;
   width: 93%;
   margin: 0.7rem;
-  background-color: rgb(226, 224, 224);
-  background: rgb(219, 240, 219);
+  background: rgba(219, 240, 219, 0.555);
   
   padding: 0.3rem;
 }
