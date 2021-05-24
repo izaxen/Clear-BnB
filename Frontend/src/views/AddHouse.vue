@@ -7,7 +7,7 @@
         <div class="row1">
           <div class="objectform border-radius">
             <div class="calendar">
-              <Calendar @dates="inAndOutDate" />
+              <Calendar :addHouse="true" @dates="inAndOutDate" />
             </div>
             <AddRentalObjectForm
               @fetchObject="houseForm"
@@ -167,6 +167,7 @@ export default {
 
 .add-images {
   grid-area: rhTop;
+  
 }
 
 .shell {
@@ -268,28 +269,33 @@ h1 {
 }
 
 @media only screen and (max-width: 575px) {
+.rental-info{
+  padding: 0;
+}
+  .row1{
+    grid:none;
+    margin: 15px;
+    
+  }
   .addhouse {
     display: flex;
     flex-wrap: wrap;
     margin-right: 0;
     justify-content: center;
   }
-
   .objectform {
     width: 100%;
     justify-items: center;
-  }
-
-  .rental-info{
-  padding: 0;
-}
-
-  .row1{
-    grid:none;
-    margin: 15px;
     
   }
-
+  .row1 {
+    grid-area: top;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'lhTop'
+      'rhTop';
+  }
   .add-images {
     justify-self: left;
   }

@@ -37,10 +37,11 @@ export default {}
 em {
   display: flex;
   flex-direction: column;
-  margin-right: 10px;
+  margin-right:3px
 }
 
 a {
+  display: flex;
   text-decoration: none;
   color: black;
   font-weight: 700;
@@ -60,6 +61,7 @@ a:hover {
     max-width: 27rem;
     font-size: 15px;
     text-align: center;
+    
   }
 }
 </style>

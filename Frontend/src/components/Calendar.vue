@@ -26,7 +26,8 @@
             <div class="date-range">
               <div
                 class="single-date-box"
-                :class="booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
+                :class="
+                booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
               >
                 <svg
                   class="calendar-logo"
@@ -46,6 +47,7 @@
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking' : '',
+                    addHouse ? 'border' : '',
                   ]"
                   :value="inputValue.start"
                   v-on="inputEvents.start"
@@ -63,7 +65,8 @@
               </span>
               <div
                 class="single-date-box text-black-500"
-                :class="booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
+                :class="
+                booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
               >
                 <svg
                   class="calendar-logo"
@@ -80,9 +83,10 @@
                 </svg>
                 <input
                   class="chosen-date-box co border-radius"
-                  :class="[
+                    :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking' : '',
+                    addHouse ? 'border' : '',
                   ]"
                   :value="inputValue.end"
                   v-on="inputEvents.end"
@@ -105,7 +109,7 @@ export default {
     DatePicker,
   },
 
-props: ['textOne', 'searchBar', 'booking'],
+props: ['textOne', 'searchBar', 'booking', 'addHouse'],
 
   unmounted() {
     console.log('unmounted')
@@ -234,16 +238,14 @@ props: ['textOne', 'searchBar', 'booking'],
 </script>
 
 <style scoped>
+
 .calendar {
   /* font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif; */
-
   display: flex;
   width: 100%;
   max-width: 21rem;
   flex-direction: column;
   justify-content: center;
-  
-  
 }
 
 .booking {
@@ -275,9 +277,6 @@ props: ['textOne', 'searchBar', 'booking'],
   border-radius: 7px;
 }
 
-.font-smaller-thicker{
-}
-
 .single-date-box {
   align-self: center;
   position: relative;
@@ -305,6 +304,11 @@ props: ['textOne', 'searchBar', 'booking'],
   overflow: visible;
   font-family: inherit;
   font-size: 100%;
+}
+
+.border{
+  border: solid 1px grey;
+
 }
 .divider-arrow-box {
   margin: 0.5rem;
