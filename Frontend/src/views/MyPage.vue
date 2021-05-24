@@ -5,8 +5,11 @@
       <div class="info">
         <div class="user-box">
           <h1>My Info</h1>
+          
           <div v-if="!user"></div>
+
           <div v-else class="user-info">
+            <label>Edit</label>
             <h3>Firstname: {{ user.firstName }}</h3>
             <h3>Lastname: {{ user.lastName }}</h3>
             <h3>Email: {{ user.email }}</h3>
@@ -50,6 +53,11 @@ export default {
 </script>
 
 <style scoped>
+img{
+  align-self: flex-end;
+  height: 30px;
+  width: 30px;
+}
 .mypage-container {
   display: flex;
   flex-direction: column;
@@ -68,7 +76,7 @@ export default {
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  margin-top: 30px;
+  
   height: 60%;
   text-align: start;
   padding: 30px;
@@ -91,6 +99,22 @@ export default {
   height: 60%;
 }
 
+label {
+  align-self: flex-end;
+  cursor: pointer;
+  background: rgb(201, 232, 201);
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+label:hover {
+  background: #c4eafd;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 850px) {
   .info {
     width: 500px;
@@ -107,6 +131,8 @@ export default {
     font-size: 15px;
   }
 }
+
+
 @media screen and (max-width: 400px) {
   .sidebar1 {
     max-width: 40rem;
