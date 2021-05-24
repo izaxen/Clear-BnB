@@ -23,7 +23,7 @@
           />
         </div>
         <input
-          @change="paramObjects"
+          @keyup="paramObjects"
           class="search"
           type="text"
           v-model="text"
@@ -91,10 +91,10 @@ export default {
     }
   },
 
-  watch:{
-    '$store.state.chosenDates'(){
+  watch: {
+    '$store.state.chosenDates'() {
       this.paramObjects()
-    }
+    },
   },
 
   computed: {
@@ -127,16 +127,19 @@ export default {
         let bed = this.beds ? `availableBeds>=${this.beds}` : null
         let city = this.city ? `city=${this.city}` : null
         let price = this.range ? `price<=${this.range}` : null
-        let availableFrom = this.$store.state.chosenDates ? `availableFrom<=${this.$store.state.chosenDates[0]}` : null
-        let availableTo = this.$store.state.chosenDates ? `availableTo>=${this.$store.state.chosenDates[1]}` : null
+        let availableFrom = this.$store.state.chosenDates
+          ? `availableFrom<=${this.$store.state.chosenDates[0]}`
+          : null
+        let availableTo = this.$store.state.chosenDates
+          ? `availableTo>=${this.$store.state.chosenDates[1]}`
+          : null
+        let search = `search=${this.text}`
 
-        params.push(bed, city, price, availableFrom, availableTo)
+        params.push(bed, city, price, availableFrom, availableTo, search)
         params = params.filter((a) => a != null)
         params = params.join('&')
-        console.log(params)
-        let query = 'search?' + params
-        console.log(query)
-        let res = await fetch(`/rest/rental-objects/filter/${query}`)
+        let query = params
+        let res = await fetch(`/rest/rental-objects/filter/query?${query}`)
         this.objects = await res.json()
         this.fetching = false
       }, 300)
@@ -183,7 +186,7 @@ select,
   background-color: white;
 }
 
-.calendar{
+.calendar {
   margin-top: 8px;
   width: 95%;
 }
