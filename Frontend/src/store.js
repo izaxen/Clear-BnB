@@ -53,8 +53,9 @@ export default createStore({
     setUserReceipts(state, receipts) {
       state.userReceipts = receipts
     },
-    removeReceipt(state, receipt) {
-      state.receipts = state.receipts.filter((r) => r.id != receipt.id)
+    removeReceipt(state, receiptId) {
+      console.log('delete receipt mutations');
+      state.userReceipts = state.userReceipts.filter((r) => r.id != receiptId)
     },
     setUser(state, user) {
       state.user = user
@@ -130,11 +131,10 @@ export default createStore({
     },
 
     async deleteReceipt(store, receiptId) {
-      let res = await fetch('/rest/booking-receipts/' + receiptId, {
+      await fetch('/rest/booking-receipts/' + receiptId, {
         method: 'DELETE',
       })
-      let deletedReceipt = await res.json()
-      store.commit('removeReceipt', deletedReceipt)
+      store.commit('removeReceipt', receiptId)
     },
 
     async postUser(store, user) {

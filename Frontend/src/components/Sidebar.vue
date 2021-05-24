@@ -29,7 +29,7 @@ export default {}
   border-left: none;
   border-right: none;
   border-top: none;
-  padding: 10px 0 ;
+  padding: 5px 0 ;
   align-content: center;
 }
 em {
@@ -54,8 +54,14 @@ p{
 a:hover p {
   border-radius:5px;
   color: rgb(29, 28, 28);
-  background-color: rgb(219,240,219);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
   border-radius: 5px;
+}
+@media screen and (max-width: 360px) {
+  a {
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 500px) {
