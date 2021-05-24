@@ -7,6 +7,8 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static nosqlite.Database.collection;
 
@@ -49,19 +51,18 @@ public class Main {
             res.json(rentalObject);
         });
         app.get("/rest/rental-objects/filter/:filter", (req, res) -> {
-            //System.out.println("inne i filter");
-            //String checkIn = req.query("checkIn");
-            //String checkOut = req.query("checkout");
 
-            // Filter all objects where search-dates are bigger than or equal to availableFrom
-            // And smaller than or equal to availableTo
-            // Then find all bookingReceipts for each of the objects in the result
+            // Find all bookingReceipts for each of the objects in the result
             // And remove object if all dates in the available period have been taken already
-            String filter = req.params("filter");
+
             try {
-                List<RentalObject> filtered = collection("RentalObject").find(filter);
+                Map<String, List<String>> querySet = req.query();
+
+                String queryString = querySet.entrySet().stream().map(e -> e.getKey()+"="+e.getValue().get(0)).collect(Collectors.joining("&&"));
+                List<RentalObject>filtered = collection("RentalObject").find(queryString);
+                System.out.println(filtered.size());
+
                 res.json(filtered);
-                System.out.println(filtered);
 
             } catch (Exception e) {
                 System.out.println(e);

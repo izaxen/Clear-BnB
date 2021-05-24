@@ -2,13 +2,9 @@
   <div class="calendar">
     <form class="box-bg" @submit.prevent>
       <div class="mb-4">
-        <div v-if="searchBar" class="text">
-          <!--<span class="check-in-out-text">Check in</span>
-          <span class="check-in-out-text1">Check out</span>-->
-        </div>
-        <div v-else class="text">
-          <span class="check-in-out-text">Available from</span>
-          <span class="check-in-out-text1">Available to</span>
+        <div class="text">
+          <span><slot class="start-text" name="start"></slot></span>
+          <span><slot class="end-text" name="end"></slot></span>
         </div>
         <DatePicker
           color="green"
@@ -121,7 +117,7 @@ export default {
       receipts: null,
       rentalObject: '',
       range: {
-        start: new Date(),
+        start: new Date().setHours(0,0,0,0),
         end: null,
       },
       masks: {
@@ -133,6 +129,7 @@ export default {
 
   watch: {
     range: function () {
+      this.$store.commit('setChosenDates', [this.range.start.valueOf(), this.range.end.valueOf()])
       this.$emit('dates', this.range.start, this.range.end)
       this.$emit('days-selected', this.findSelectedDays().length - 1)
       this.$emit('dateArray', this.findAllNights())
@@ -210,12 +207,12 @@ export default {
     this.rentalObject = this.$store.state.rentalObject
     if (this.rentalObject != undefined) {
       this.range.start =
-        this.rentalObject.availableFrom.valueOf() > new Date().valueOf()
+        this.rentalObject.availableFrom.valueOf() > new Date().setHours(0,0,0,0).valueOf()
           ? this.rentalObject.availableFrom
-          : new Date()
+          : new Date().setHours(0,0,0,0)
       this.rentalObject.availableFrom =
-        this.rentalObject.availableFrom.valueOf() < new Date().valueOf()
-          ? new Date()
+        this.rentalObject.availableFrom.valueOf() < new Date().setHours(0,0,0,0).valueOf()
+          ? new Date().setHours(0,0,0,0)
           : this.rentalObject.availableFrom
     }
     if (this.rentalObject != undefined) {
@@ -268,9 +265,6 @@ export default {
   border-radius: 7px;
 }
 
-.font-smaller-thicker {
-}
-
 .single-date-box {
   align-self: center;
   position: relative;
@@ -298,6 +292,7 @@ export default {
   overflow: visible;
   font-family: inherit;
   font-size: 100%;
+  background-color: inherit;
 }
 .divider-arrow-box {
   margin: 0.5rem;
@@ -315,10 +310,10 @@ export default {
   justify-content: space-around;
   font-size: 1rem;
 }
-.check-in-out-text1 {
+.start-text {
   margin-left: 2rem;
 }
-.check-in-out-text {
+.end-text {
   margin-left: 0.2;
 }
 

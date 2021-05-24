@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Calendar :booking="true" @days-selected="receive" @dates="confirmDates" />
+    <Calendar :booking="true" @days-selected="receive" @dates="confirmDates"><template v-slot:start>Available From</template><template v-slot:end>Available To</template> </Calendar>
     <NumberOfGuests
       @num-guest="confirmGuest"
       :numOfDays="days"

@@ -11,7 +11,14 @@ export default {
     Filter,
   },
 
-  async created() {},
+  async created() {
+    this.$store.commit('setIsOverview', true)
+  },
+
+  beforeRouteLeave(to, from, next) {
+    this.$store.commit('setIsOverview', false)
+    next()
+  }
 }
 </script>
 

@@ -4,6 +4,7 @@ export default createStore({
   // state is where we store reactive variables
   // this.$store.state.nameOfVariable
   state: {
+    isOverview: false,
     receipts: [],
     rentalReceipts: null,
     userReceipts: null,
@@ -22,6 +23,15 @@ export default createStore({
   // we cannot update state directly, so we use mutation methods to do that
   // this.$store.commit('nameOfMutation', data)
   mutations: {
+    setIsOverview(state, bool) {
+      state.isOverview = bool
+    },
+    setChosenDates(state, dates) {
+      state.chosenDates = dates
+    },
+    removeChosenDates(state) {
+      state.chosenDates = null
+    },
     setCityNames(state, cityNames) {
       state.cityNames = cityNames
     },
