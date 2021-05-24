@@ -107,6 +107,7 @@ span {
   justify-content: space-between;
   width: 80%;
   min-width: 250px;
+  justify-self: center;
 }
 
 .info-box {

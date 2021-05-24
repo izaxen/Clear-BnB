@@ -138,6 +138,7 @@ export default {
 .container {
   padding: 2rem;
 }
+
 input,
 select {
   height: 32px;
