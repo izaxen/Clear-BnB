@@ -51,18 +51,41 @@ public class Main {
             res.json(rentalObject);
         });
         app.get("/rest/rental-objects/filter/:filter", (req, res) -> {
-
             // Find all bookingReceipts for each of the objects in the result
             // And remove object if all dates in the available period have been taken already
-
             try {
+                String search = "";
                 Map<String, List<String>> querySet = req.query();
 
-                String queryString = querySet.entrySet().stream().map(e -> e.getKey()+"="+e.getValue().get(0)).collect(Collectors.joining("&&"));
-                List<RentalObject>filtered = collection("RentalObject").find(queryString);
-                System.out.println(filtered.size());
+                if(querySet.containsKey("search")) {
+                    search = querySet.get("search").get(0);
+                    querySet.remove("search");
+                }
+                String queryString = querySet.entrySet().stream().map(e ->
+                        e.getKey() + "=" + e.getValue().get(0)).collect(Collectors.joining("&&"));
 
-                res.json(filtered);
+                List<RentalObject>searched;
+                if (!search.equals("")){
+                    searched = collection("RentalObject").find(or(
+                            text("address", "%" + search + "%"),
+                            text("description", "%" + search + "%"),
+                            text("freeText", "%" + search + "%")
+                    ));
+                    List<RentalObject> filtered = collection("RentalObject").find(queryString);
+                    List<RentalObject>finalList = new ArrayList<>();
+                    for(RentalObject rental: searched){
+                        for(RentalObject r : filtered){
+                            if(rental.getId().equals(r.getId())){
+                                finalList.add(rental);
+                            }
+                        }
+                    }
+                    searched = finalList;
+                }
+                else {
+                    searched = collection("RentalObject").find(queryString);
+                }
+                res.json(searched);
 
             } catch (Exception e) {
                 System.out.println(e);

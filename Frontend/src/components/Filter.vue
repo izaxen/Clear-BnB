@@ -23,7 +23,7 @@
           />
         </div>
         <input
-          @change="paramObjects"
+          @keyup="paramObjects"
           class="search"
           type="text"
           v-model="text"
@@ -44,7 +44,6 @@
       </div>
     </div>
   </div>
-
   <RentalObject v-for="object in objects" :key="object.id" :object="object" />
   <div class="no-match" v-if="objects.length == 0">No match</div>
 </template>
@@ -108,14 +107,13 @@ export default {
         let price = this.range ? `price<=${this.range}` : null
         let availableFrom = this.$store.state.chosenDates ? `availableFrom<=${this.$store.state.chosenDates[0]}` : null
         let availableTo = this.$store.state.chosenDates ? `availableTo>=${this.$store.state.chosenDates[1]}` : null
+        let search = `search=${this.text}`
 
-        params.push(bed, city, price, availableFrom, availableTo)
+        params.push(bed, city, price, availableFrom, availableTo, search)
         params = params.filter((a) => a != null)
         params = params.join('&')
-        console.log(params)
-        let query = 'search?' + params
-        console.log(query)
-        let res = await fetch(`/rest/rental-objects/filter/${query}`)
+        let query = params
+        let res = await fetch(`/rest/rental-objects/filter/query?${query}`)
         this.objects = await res.json()
       }, 300)
     },
