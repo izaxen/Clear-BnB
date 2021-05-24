@@ -121,7 +121,7 @@ export default {
       this.fromDate = ''
       this.toDate = ''
       this.dateArray = ''
-      this.$router.push('/overview')
+      this.$router.push('/accommodations')
     },
   },
 }
@@ -247,7 +247,7 @@ button {
 
 .fa-search {
   font-size: 1.4rem;
-  color:  #007973a6;
+  color: #007973a6;
 }
 
 .search-big {
