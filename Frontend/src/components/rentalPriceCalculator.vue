@@ -1,12 +1,10 @@
 <template>
-  <div>
+  <div class="center">
     <div class="container">
       <div class="link" @click="isActive = !isActive">
-        <div class="num-guest-text">Number of guests {{ totalCount }}</div>
+        <div class="num-guest-text">Guests: {{ totalCount }}</div>
       </div>
-    </div>
-
-    <div class="expandable" :class="{ active: isActive }">
+      <div class="expandable" :class="{ active: isActive }">
       <div class="guest-counter">
         <div class="type">Adult:</div>
         <div>{{ adultCount }}</div>
@@ -28,13 +26,14 @@
         <button @click="isActive = !isActive">X</button>
       </div>
     </div>
+    </div>
   </div>
 
   <div class="sum">
     <div class="group">
       <div>Service fee:</div>
       <div>
-        {{ sum == 0 || isNaN(sum) ? '' : `${Math.round(sum * 0.15)} kr` }}
+        {{ sum == 0 || isNaN(sum) ? '15%' : `${Math.round(sum * 0.15)} $` }}
       </div>
     </div>
     <div class="group">
@@ -43,7 +42,7 @@
         {{
           sum == 0 || isNaN(sum)
             ? 'Select all fields'
-            : `${Math.round(sum * 1.15)} kr`
+            : `${Math.round(sum * 1.15)} $`
         }}
       </div>
     </div>
@@ -95,21 +94,31 @@ export default {
 </script>
 
 <style scoped>
+.center{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 .container {
+  display: flex;
   font-size: 1.3rem;
+  margin-top: 10px;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  width:calc(100% - 20px);
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid black;
 }
 .link {
   margin: 0 0.5rem 0 0.5rem;
-
+  width: 100%;
   display: block;
   height: 2rem;
-  border-radius: 1px;
   position: relative;
   display: flex;
   align-items: center;
-  border: 1px solid black;
   border-radius: 5px;
-  background: rgb(201, 232, 201);
 }
 .close {
   display: flex;
@@ -128,7 +137,13 @@ export default {
 }
 
 .sum {
-  margin: 0 0.5rem;
+  margin: 0.5rem 0.5rem;
+  width: 93%;
+  margin: 0.7rem;
+  background-color: rgb(226, 224, 224);
+  background: rgb(219, 240, 219);
+  
+  padding: 0.3rem;
 }
 
 .sum > div {
@@ -144,7 +159,7 @@ button {
   border: 1px solid #005b96;
 }
 
-button:hoover {
+button:hover {
   cursor: pointer;
 }
 
@@ -182,18 +197,16 @@ div {
   z-index: 100;
   display: flex;
   flex-direction: column;
-  width: 17.5rem;
-  background: rgb(201, 232, 201);
-
-  margin-left: 0.5rem;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  width: 16rem;
+  background: white;
+  border: 1px solid black;
   border-radius: 0 0 4px 4px;
+  margin-top: 40px;
 }
 
 .group {
   font-size: 1.3rem;
+  margin: 0.3rem 0;
 }
 
 .close button {

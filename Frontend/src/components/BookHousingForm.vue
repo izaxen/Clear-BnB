@@ -1,15 +1,14 @@
 <template>
   <div class="container">
     <Calendar :booking="true" @days-selected="receive" @dates="confirmDates"
-      ><template v-slot:start>Available From</template
-      ><template v-slot:end>Available To</template>
+      ><template v-slot:start>Check in</template
+      ><template v-slot:end>Check out</template>
     </Calendar>
     <NumberOfGuests
       @num-guest="confirmGuest"
       :numOfDays="days"
       :price="object.price"
     />
-
     <button @click="book" :disabled="receipt.totalPrice == 0 ? '' : disabled">
       Book
     </button>
@@ -125,15 +124,16 @@ export default {
 </script>
 
 <style scoped>
+
 .container {
-  background-color: rgba(255, 255, 255, 0.717);
+  background-color: rgba(247, 247, 247, 0.938);
   padding: 10px;
-  width: 350px;
+  width: 300px;
   border: 0.1px solid black;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  justify-content: space-between;
-  height: 290px;
   border-radius: 5px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
 }
@@ -156,23 +156,29 @@ export default {
 }
 
 button {
-  background: rgb(201, 232, 201);
-
-  width: 50%;
-  max-width: 300px;
-  font-size: 1.4rem;
+  display: flex;
+  background: white;
+  width: 35%;
+  max-width: 100px;
+  font-size: 1.2rem;
   border: none;
   margin: 0 auto;
   border-radius: 5px;
-  padding: 0.6rem 1.4rem;
   cursor: pointer;
-  border: 1px solid black;
-  text-align: center;
+  border: 1px solid gray;
+  box-shadow: gray 1px 1px 1px 1px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  font-weight: 600;
 }
 
 button:disabled {
   background: rgb(166, 166, 166);
-
   cursor: not-allowed;
+}
+
+button:hover{
+  background-color: rgb(219, 240, 219);
 }
 </style>
