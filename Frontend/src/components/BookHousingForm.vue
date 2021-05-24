@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <Calendar :booking="true" @days-selected="receive" @dates="confirmDates"><template v-slot:start>Available From</template><template v-slot:end>Available To</template> </Calendar>
+    <Calendar :booking="true" @days-selected="receive" @dates="confirmDates"
+      ><template v-slot:start>Available From</template
+      ><template v-slot:end>Available To</template>
+    </Calendar>
     <NumberOfGuests
       @num-guest="confirmGuest"
       :numOfDays="days"
@@ -108,14 +111,14 @@ export default {
       let templateID = 'template_v1jnjqf'
       let userID = 'user_PITuQ6yClqXAIlNw6sizK'
 
-      emailjs.send(serviceID, templateID, templateParams, userID).then(
-        function (response) {
-          console.log('SUCCESS!', response.status, response.text)
-        },
-        function (error) {
-          console.log('FAILED...', error)
-        }
-      )
+      // emailjs.send(serviceID, templateID, templateParams, userID).then(
+      //   function (response) {
+      //     console.log('SUCCESS!', response.status, response.text)
+      //   },
+      //   function (error) {
+      //     console.log('FAILED...', error)
+      //   }
+      // )
     },
   },
 }
@@ -146,7 +149,7 @@ export default {
     width: 350px;
   }
 }
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
   .container {
     height: 20px;
   }
