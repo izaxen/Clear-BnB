@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <h1>Your bookings!</h1>
     <Receipt
       v-for="receipt of userReceipts"
