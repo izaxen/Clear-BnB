@@ -265,5 +265,22 @@ export default createStore({
       let nameList = await res.json()
       store.commit('setCityNames', nameList)
     },
+
+    async updateUser(store, user) {
+      console.log('user i store', user)
+      let res = await fetch('/rest/users', {
+        method: 'POST',
+        body: JSON.stringify(user),
+      })
+
+      let loggedInUser = await res.json()
+     /*  if ('error' in loggedInUser) {
+        console.log('Failed to register', loggedInUser)
+        this.state.failedLogIn = true
+        return
+      } */
+      console.log('Registerd user', loggedInUser)
+      store.commit('setUser', loggedInUser)
+    },
   },
 })

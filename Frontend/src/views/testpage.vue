@@ -1,0 +1,174 @@
+<template>
+  <div class="mypage-container">
+    <div class="overlay">
+      <div class="sidebar"><SideBar /></div>
+      <div class="info">
+        <div class="user-box">
+          <h1>My Info</h1>
+          
+          <div v-if="!user"></div>
+          <div v-else class="user-info">
+            <form @submit.prevent="dispatch">
+            <input type="text" v-model="value.firstName" required>
+	          <input type="text" v-model="value.lastName" requierd>
+	          <input type="text" v-model="value.email" requierd>
+	          <input type="text" v-model="value.phoneNumber" requierd>
+	          <input type="text" v-model="value.city" requierd>
+	          <input type="text" v-model="value.address" requierd>
+            <button>ok</button>
+            </form>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import SideBar from '../components/Sidebar.vue'
+import store from '../store.js'
+
+export default {
+  components: { SideBar },
+
+  methods:{
+  getInfo(indata){
+    this.user1 = this.$store.state.user
+    for(let [key, value] of Object.entries(this.user1)){
+      if(key == indata){
+        return value
+      }
+    }
+   },
+   
+   dispatch(){
+     let updatedInfo = {
+       firstName: this.value.firstName,
+       lastName: this.value.lastName,
+       email: this.value.email,
+       phoneNumber: this.value.phoneNumber,
+       city: this.value.city,
+       address: this.value.address}
+      this.user1 = this.$store.state.user
+       let updatedUser = Object.assign(this.user1, updatedInfo)
+   this.$store.dispatch('updateUser', updatedUser)
+  },
+  },
+
+
+  
+  data(){
+    return{
+      user1:'',
+		value:{
+			firstName: this.getInfo('firstName'),
+			lastName: this.getInfo('lastName'),
+			email: this.getInfo('email'),
+			phoneNumber: this.getInfo('phoneNumber'),
+			city: this.getInfo('city'),
+			address: this.getInfo('address'),
+		}
+    }
+	},
+
+	computed: {
+  user() {
+  return this.$store.state.user
+  },
+  },
+
+  async beforeRouteEnter(to, from, next) {
+    if (!store.state.user) {
+      await store.dispatch('whoAmI')
+      if (store.state.user) {
+        next()
+      } else {
+        next((vm) => {
+          vm.$router.push('/')
+        })
+      }
+    } else {
+      next()
+    }
+  },
+  
+}
+
+</script>
+
+<style scoped>
+.mypage-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 65rem;
+  height: 100%;
+}
+.overlay {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(205, 205, 205, 0.9);
+  height: 100%;
+}
+
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  margin-top: 30px;
+  height: 60%;
+  text-align: start;
+  padding: 30px;
+}
+
+.info {
+  background: rgb(255, 255, 255);
+  border: 2px solid black;
+  color: black;
+  text-align: center;
+  margin: 20px auto 20px auto;
+  width: 700px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px 2px rgba(144, 144, 144, 0.603);
+  transition: 0.4s;
+}
+
+.user-box {
+  height: 60%;
+}
+
+@media screen and (max-width: 850px) {
+  .info {
+    width: 500px;
+  }
+  .user-info {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .info {
+    width: 350px;
+  }
+  .user-info {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .sidebar1 {
+    max-width: 40rem;
+    font-size: 15px;
+  }
+  .info {
+    margin: 20px auto 20px auto;
+    width: 250px;
+    padding: 10px;
+    font-size: 15px;
+  }
+  .user-info {
+    font-size: 12px;
+  }
+}
+</style>

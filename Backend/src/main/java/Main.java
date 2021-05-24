@@ -25,6 +25,13 @@ public class Main {
         //           List<User> users = collection("User").find();
         //           res.json(users);
         //        });
+        app.post("/rest/updateUser/:id", (req, res) -> {
+           String id = req.params("id");
+           User user = req.body(User.class);
+            collection("User").save(user);
+           //User user = collection("User").updateFieldById();
+        });
+
         app.get("/rest/users/:id", (req, res) -> {
             String id = req.params("id");
             User user = collection("User").findById(id);
