@@ -180,9 +180,7 @@ export default {
 
 .sidebar {
   max-width: 65rem;
-  margin: auto;
   padding: 1px;
-  height: 10%;
 }
 
 .row1 {
@@ -265,6 +263,9 @@ h1 {
 #add-rental-disable {
   opacity: 0.3;
 }
+.chosen-date-box{
+  border: 1px solid grey;
+}
 
 @media only screen and (max-width: 575px) {
   .addhouse {
@@ -279,13 +280,14 @@ h1 {
     justify-items: center;
   }
 
-  .row1 {
-    grid-area: top;
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      'lhTop'
-      'rhTop';
+  .rental-info{
+  padding: 0;
+}
+
+  .row1{
+    grid:none;
+    margin: 15px;
+    
   }
 
   .add-images {

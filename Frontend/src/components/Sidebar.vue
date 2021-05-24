@@ -25,16 +25,18 @@ export default {}
   flex-direction: row;
   justify-content: space-evenly;
   font-size: 20px;
-  background: rgb(219, 240, 219);
-
-  height: 50%;
-  padding: 5px;
-  font-size: 20px;
-  border: 1px solid black;
-  margin: 10px auto;
-  border-radius: 10px;
+  background: rgb(245,245,245);
+  border: 1px solid rgb(63, 63, 63);
+  border-right-style: none;
+  border-top-style:none;
+  border-left: none;
+  margin: 0 auto;
+  padding: 10px 0 ;
+  align-content: center;
 }
 em {
+  display: flex;
+  flex-direction: column;
   margin-right: 10px;
 }
 
@@ -48,6 +50,7 @@ a {
 a:hover {
   color: rgb(29, 28, 28);
   transform: scale(1.05);
+  background-color: rgb(219,243,219) ;
 }
 
 @media screen and (max-width: 1100px) {
@@ -65,7 +68,7 @@ a:hover {
 
 @media screen and (max-width: 500px) {
   .sidebar1 {
-    flex-direction: column;
+    flex-direction: row;
     max-width: 27rem;
     font-size: 15px;
     text-align: center;

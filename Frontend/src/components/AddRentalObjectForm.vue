@@ -109,6 +109,8 @@ watch:{
   font-size: 13px;
 }
 
+
+
 .beds-price{
   display: flex;
   flex-direction: row;
@@ -164,8 +166,8 @@ input[type=number] {
 .rental-info{
   justify-content: center;
   align-items: center;
+  margin: -3px;
 }
-
 
 } 
 </style>

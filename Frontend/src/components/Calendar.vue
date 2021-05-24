@@ -3,16 +3,14 @@
     <form class="box-bg" @submit.prevent>
       <div class="mb-4">
         <div v-if="searchBar" class="text">
-          <!--<span class="check-in-out-text">Check in</span>
-          <span class="check-in-out-text1">Check out</span>-->
-        </div>
+      </div>
         <div v-else class="text">
           <span class="check-in-out-text">Available from</span>
           <span class="check-in-out-text1">Available to</span>
         </div>
         <DatePicker
           color="green"
-          :columns="2"
+          :columns="size < 800 ? 1:2"
           v-if="range.end != null"
           v-model="range"
           mode="date"
@@ -115,12 +113,17 @@ export default {
       range: {
         start: new Date(),
         end: null,
+        size:window.innerWidth,
       },
       masks: {
         input: 'YYYY-MM-DD',
       },
       disabledDates: [],
     }
+  },
+  
+  unmounted() {
+  window.removeEventListener("resize", this.myEventHandler);
   },
 
   watch: {
@@ -130,11 +133,13 @@ export default {
       this.$emit('dateArray', this.findAllNights())
     },
   },
-  computed:{
-    
-  },
-
+  
   methods: {
+    myEventHandler(e){
+      console.log('size', this.size)
+    this.size= window.innerWidth
+    },
+
     findAllNights() {
       let allDates = this.findSelectedDays()
       allDates.pop()
@@ -198,6 +203,7 @@ export default {
       return firstDate.valueOf() == secondDate.valueOf()
     },
   },
+
   async created() {
     this.rentalObject = this.$store.state.rentalObject
     if (this.rentalObject != undefined) {
@@ -214,6 +220,7 @@ export default {
       await this.filterReceipts()
     }
     this.range.end = this.addDays(this.range.start, 2)
+    window.addEventListener("resize", this.myEventHandler)
   },
 }
 </script>
