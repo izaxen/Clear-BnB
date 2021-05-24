@@ -11,9 +11,14 @@ export default {
     Filter,
   },
 
-  created() {
-    this.$store.dispatch('fetchRentalObjects')
+  async created() {
+    this.$store.commit('setIsOverview', true)
   },
+
+  beforeRouteLeave(to, from, next) {
+    this.$store.commit('setIsOverview', false)
+    next()
+  }
 }
 </script>
 

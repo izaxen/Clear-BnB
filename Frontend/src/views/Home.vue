@@ -18,6 +18,10 @@ export default {
   components: {
     CitiesList,
   },
+
+  created() {
+    this.$store.dispatch('fetchRentalObjects')
+  },
 }
 </script>
 
