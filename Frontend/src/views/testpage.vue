@@ -4,20 +4,19 @@
       <div class="sidebar"><SideBar /></div>
       <div class="info">
         <div class="user-box">
-          <h1>My Info</h1>
+          <h1>Edit my info</h1>
           
           <div v-if="!user"></div>
           <div v-else class="user-info">
-            <form @submit.prevent="dispatch">
-            <input type="text" v-model="value.firstName" required>
-	          <input type="text" v-model="value.lastName" requierd>
-	          <input type="text" v-model="value.email" requierd>
-	          <input type="text" v-model="value.phoneNumber" requierd>
-	          <input type="text" v-model="value.city" requierd>
-	          <input type="text" v-model="value.address" requierd>
-            <button>ok</button>
+            <form class="user-info" @submit.prevent="dispatch">
+            <input class="border-radius" type="text" v-model="value.firstName" placeholder="Firstname.." required>
+	          <input class="border-radius" type="text" v-model="value.lastName" placeholder="Lastname.." requierd>
+	          <input class="border-radius" type="email" v-model="value.email" placeholder="email.." requierd>
+	          <input class="border-radius" type="number" v-model="value.phoneNumber" placeholder="Phonenumber.." requierd>
+	          <input class="border-radius" type="text" v-model="value.city" placeholder="City.."  requierd>
+	          <input class="border-radius" type="text" v-model="value.address" placeholder="Address.." requierd>
+            <input class="border-radius" type="submit" value="Send">
             </form>
-
             
           </div>
         </div>
@@ -42,7 +41,7 @@ export default {
       }
     }
    },
-   
+
    dispatch(){
      let updatedInfo = {
        firstName: this.value.firstName,
@@ -51,6 +50,7 @@ export default {
        phoneNumber: this.value.phoneNumber,
        city: this.value.city,
        address: this.value.address}
+
       this.user1 = this.$store.state.user
        let updatedUser = Object.assign(this.user1, updatedInfo)
    this.$store.dispatch('updateUser', updatedUser)
@@ -117,7 +117,6 @@ export default {
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  margin-top: 30px;
   height: 60%;
   text-align: start;
   padding: 30px;
@@ -136,6 +135,11 @@ export default {
   transition: 0.4s;
 }
 
+input{
+  margin:10px;
+  border-radius: 5px;
+  border: solid 1px grey;
+}
 .user-box {
   height: 60%;
 }

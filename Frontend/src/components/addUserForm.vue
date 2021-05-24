@@ -22,21 +22,21 @@
     <input
       v-model="password"
       required
-      type="text"
+      type="password"
       placeholder="Enter password"
     />
     <input
       v-model="rePassword"
       required
-      type="text"
+      type="password"
       placeholder="Re-enter password"
     />
     <p v-if="userTaken === true">User already exists</p>
     <div class="register-btn">
-      <button type="reset">clear</button>
+      <button type="reset">Clear</button>
       <div v-if="validatePassword">
         <!-- Kan vara att detta inte funkar-->
-        <button>create user</button>
+        <button>Create user</button>
       </div>
       <div v-else>Password don´t match</div>
     </div>
@@ -100,14 +100,14 @@ input {
 button {
   width: 120px;
   margin: 10px 10px;
-  background-color: rgb(130, 193, 130);
+  background-color: #007973a6;
   color: white;
   border: none;
   border-radius: 5px;
 }
 button:hover {
   cursor: pointer;
-  background-color: rgb(130, 193, 130);
+  background-color: #007973a6;
   transform: scale(1.05);
 }
 input:focus {
