@@ -2,7 +2,8 @@
   <div class="rental-card" v-if="getImg">
     <div class="info-box">
       <router-link :to="link">
-        <img class="picture" :src="imageList[0]" alt="img" />
+        <div v-if="fetching" class="picture empty" />
+        <img v-else class="picture" :src="imageList[0]" alt="img" />
       </router-link>
       <div class="wrapper">
         <div class="hero">
@@ -42,6 +43,7 @@ export default {
       aircon: '',
       link: '/details/' + this.object.id,
       imageList: [],
+      fetching: true,
     }
   },
 
@@ -63,8 +65,10 @@ export default {
   },
   computed: {
     async getImg() {
+      this.fetching = true
       await this.$store.dispatch('getFileUrl', this.object.id)
-      this.imageList = this.$store.state.imageList
+      this.imageList = await this.$store.state.imageList
+      this.fetching = false
     },
   },
 }
@@ -135,6 +139,13 @@ img {
 
 .picture {
   border: 1px solid rgb(136, 132, 132);
+}
+
+.empty {
+  height: 180px;
+  width: 180px;
+  background: lightgray;
+  margin-right: 16px;
 }
 
 p {

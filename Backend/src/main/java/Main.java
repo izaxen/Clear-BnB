@@ -192,7 +192,7 @@ public class Main {
                         }
                     } else {
                         for (int i = 0; i < fileNames.length; i++) {
-                            fileNames[i] = "http://localhost:4000/uploads/" + id + "/" + fileNames[i];
+                            fileNames[i] = "/uploads/" + id + "/" + fileNames[i];
                         }
                     }
                     res.json(fileNames);

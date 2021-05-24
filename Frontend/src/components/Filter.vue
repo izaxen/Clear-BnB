@@ -3,7 +3,7 @@
     <div class="filter">
       <div class="right-box">
         <div class="input-holder">
-          <select @change="paramObjects" class="city" v-model="city">
+          <select @change="filterObjects" class="city" v-model="city">
             <option value="">All cities</option>
             <option
               v-for="object in cityOption"
@@ -14,7 +14,7 @@
             </option>
           </select>
           <input
-            @change="paramObjects"
+            @change="filterObjects"
             class="number-input"
             type="number"
             v-model="beds"
@@ -23,7 +23,7 @@
           />
         </div>
         <input
-          @keyup="paramObjects"
+          @keyup="filterObjects"
           class="search"
           type="text"
           v-model="text"
@@ -34,7 +34,7 @@
       <div class="price-box">
         <label class="price" for="vol">Price {{ range }} kr</label>
         <input
-          @change="paramObjects"
+          @change="filterObjects"
           type="range"
           v-model="range"
           min="300"
@@ -44,8 +44,29 @@
       </div>
     </div>
   </div>
-  <RentalObject v-for="object in objects" :key="object.id" :object="object" />
-  <div class="no-match" v-if="objects.length == 0">No match</div>
+
+  <div v-if="fetching" class="lds-spinner">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <RentalObject
+    v-else
+    v-for="object in objects"
+    :key="object.id"
+    :object="object"
+  />
+  <div class="no-match" v-if="objects.length == 0 && !fetching">No match</div>
 </template>
 
 <script>
@@ -66,13 +87,14 @@ export default {
       range: 900,
       beds: '',
       timeOut: '',
+      fetching: true,
     }
   },
 
-  watch:{
-    '$store.state.chosenDates'(){
-      this.paramObjects()
-    }
+  watch: {
+    '$store.state.chosenDates'() {
+      this.filterObjects()
+    },
   },
 
   computed: {
@@ -90,32 +112,50 @@ export default {
       this.city = this.$store.state.searchObject.city
       this.beds = this.$store.state.searchObject.guests
       this.$store.commit('removeSearchObject')
-      this.paramObjects()
+      this.filterObjects()
     } else {
-      this.paramObjects()
+      this.fetchFromUrl()
     }
   },
   methods: {
-    async paramObjects() {
-      // price<=900?adress=freeText%?freeText%freText%
-
+    async filterObjects() {
+      this.fetching = true
       clearTimeout(this.timeOut)
       this.timeOut = setTimeout(async () => {
         let params = []
         let bed = this.beds ? `availableBeds>=${this.beds}` : null
         let city = this.city ? `city=${this.city}` : null
         let price = this.range ? `price<=${this.range}` : null
-        let availableFrom = this.$store.state.chosenDates ? `availableFrom<=${this.$store.state.chosenDates[0]}` : null
-        let availableTo = this.$store.state.chosenDates ? `availableTo>=${this.$store.state.chosenDates[1]}` : null
-        let search = `search=${this.text}`
+        let availableFrom = this.$store.state.chosenDates
+          ? `availableFrom<=${this.$store.state.chosenDates[0]}`
+          : null
+        let availableTo = this.$store.state.chosenDates
+          ? `availableTo>=${this.$store.state.chosenDates[1]}`
+          : null
+        let search = this.text ? `search=${this.text}` : null
 
         params.push(bed, city, price, availableFrom, availableTo, search)
         params = params.filter((a) => a != null)
         params = params.join('&')
         let query = params
+        this.$router.replace({ query: { query: params } })
+
         let res = await fetch(`/rest/rental-objects/filter/query?${query}`)
         this.objects = await res.json()
+        this.fetching = false
       }, 300)
+    },
+
+    async fetchFromUrl() {
+      if (this.$route.query.query) {
+        let res = await fetch(
+          `/rest/rental-objects/filter/query?${this.$route.query.query}`
+        )
+        this.objects = await res.json()
+        this.fetching = false
+      } else {
+        this.filterObjects()
+      }
     },
   },
 }
@@ -159,7 +199,7 @@ select,
   background-color: white;
 }
 
-.calendar{
+.calendar {
   margin-top: 8px;
   width: 95%;
 }
@@ -237,6 +277,87 @@ input[type='range']::-moz-range-thumb {
   border: 1px solid rgb(27, 65, 27);
   background: #007973a6;
   margin-top: -0.3rem;
+}
+
+.lds-spinner {
+  font-size: 3rem;
+
+  color: official;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+.lds-spinner div:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: #fff;
+}
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @media screen and (max-width: 840px) {
