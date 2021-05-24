@@ -3,40 +3,58 @@
     <div class="filter">
       <div class="right-box">
         <div class="input-holder">
-      <select class="city" v-model="city">
-        <option value="">All cities</option>
-        <option v-for="object in cityOption" :key="object.id" :value="object">
-          {{ object }}
-        </option>
-      </select>
-        <input class="number-input"
-         type="number"
-         v-model="beds"
-         min="1"
-         placeholder="Beds"
-        />
+          <select @change="paramObjects" class="city" v-model="city">
+            <option value="">All cities</option>
+            <option
+              v-for="object in cityOption"
+              :key="object.id"
+              :value="object"
+            >
+              {{ object }}
+            </option>
+          </select>
+          <input
+            @change="paramObjects"
+            class="number-input"
+            type="number"
+            v-model="beds"
+            min="1"
+            placeholder="Beds"
+          />
         </div>
-      <input class="search" type="text" v-model="text" placeholder="Search..." />
+        <input
+          @keyup="paramObjects"
+          class="search"
+          type="text"
+          v-model="text"
+          placeholder="Search..."
+        />
+        <Calendar class="calendar"><template v-slot:start></template></Calendar>
       </div>
-      <div class="price-box"><label class="price" for="vol">Price {{ range }} kr</label>
-      <input type="range" v-model="range" min="300" max="1500" step="10" />
+      <div class="price-box">
+        <label class="price" for="vol">Price {{ range }} kr</label>
+        <input
+          @change="paramObjects"
+          type="range"
+          v-model="range"
+          min="300"
+          max="1500"
+          step="10"
+        />
       </div>
     </div>
   </div>
-
-  <RentalObject
-    v-for="object in filterObjects"
-    :key="object.id"
-    :object="object"
-  />
-  <div class="no-match" v-if="filterObjects.length == 0">No match</div>
+  <RentalObject v-for="object in objects" :key="object.id" :object="object" />
+  <div class="no-match" v-if="objects.length == 0">No match</div>
 </template>
 
 <script>
 import RentalObject from './RentalObject.vue'
+import Calendar from './Calendar.vue'
 export default {
   components: {
     RentalObject,
+    Calendar,
   },
 
   data() {
@@ -44,66 +62,60 @@ export default {
       text: '',
       city: '',
       objects: [],
-      cityOption: '',
+
       range: 900,
       beds: '',
+      timeOut: '',
     }
   },
 
-  async created() {
-    await this.$store.dispatch('fetchRentalObjects')
-    this.objects = await this.$store.state.rentalObjects
-    let unfilteredArr = []
-    this.objects.forEach((o) => {
-      unfilteredArr.push(o.city)
-    })
-
-    let removedDuplicates = unfilteredArr.filter((value, index) => {
-      return unfilteredArr.indexOf(value) === index
-    })
-    this.cityOption = removedDuplicates
-
-    if (this.$store.state.searchObject) {
-      this.city = this.$store.state.searchObject.city
-      this.beds = this.$store.state.searchObject.guests
-      this.$store.commit('removeSearchObject')
+  watch:{
+    '$store.state.chosenDates'(){
+      this.paramObjects()
     }
   },
 
   computed: {
-    filterObjects: function () {
-      return this.filterObjectByBeds(
-        this.filterObjectsByPrice(
-          this.filterObjectsByCity(
-            this.filterObjectsByText(this.objects)
-          )
-        )
-      )
+    cityOption() {
+      if (!this.$store.state.cityNames) {
+        return ['loading']
+      } else {
+        return this.$store.state.cityNames
+      }
     },
   },
 
+  async created() {
+    if (this.$store.state.searchObject) {
+      this.city = this.$store.state.searchObject.city
+      this.beds = this.$store.state.searchObject.guests
+      this.$store.commit('removeSearchObject')
+      this.paramObjects()
+    } else {
+      this.paramObjects()
+    }
+  },
   methods: {
-    filterObjectsByCity(objects) {
-      if (!this.city) {
-        return objects
-      }
-      return objects.filter((object) => object.city == this.city)
-    },
+    async paramObjects() {
+      // price<=900?adress=freeText%?freeText%freText%
 
-    filterObjectsByText(objects) {
-      return objects.filter((object) => object.freeText.toUpperCase().includes(this.text.toUpperCase()) || object.description.toUpperCase().includes(this.text.toUpperCase()) || object.address.toUpperCase().includes(this.text.toUpperCase()))
-    },
+      clearTimeout(this.timeOut)
+      this.timeOut = setTimeout(async () => {
+        let params = []
+        let bed = this.beds ? `availableBeds>=${this.beds}` : null
+        let city = this.city ? `city=${this.city}` : null
+        let price = this.range ? `price<=${this.range}` : null
+        let availableFrom = this.$store.state.chosenDates ? `availableFrom<=${this.$store.state.chosenDates[0]}` : null
+        let availableTo = this.$store.state.chosenDates ? `availableTo>=${this.$store.state.chosenDates[1]}` : null
+        let search = `search=${this.text}`
 
-    filterObjectsByPrice(objects) {
-      return objects.filter((object) =>
-        object.price < this.range ? object : ''
-      )
-    },
-
-    filterObjectByBeds(objects) {
-      return objects.filter((object) =>
-        object.availableBeds >= this.beds ? object : ''
-      )
+        params.push(bed, city, price, availableFrom, availableTo, search)
+        params = params.filter((a) => a != null)
+        params = params.join('&')
+        let query = params
+        let res = await fetch(`/rest/rental-objects/filter/query?${query}`)
+        this.objects = await res.json()
+      }, 300)
     },
   },
 }
@@ -136,19 +148,27 @@ export default {
 .container {
   padding: 2rem;
 }
+
 input,
-select {
+select,
+.calendar {
   height: 32px;
   border-radius: 5px;
   border: 1px solid rgb(126, 126, 126);
   color: black;
+  background-color: white;
 }
 
-.number-input{
+.calendar{
+  margin-top: 8px;
+  width: 95%;
+}
+
+.number-input {
   width: 20%;
 }
 
-.price-box{
+.price-box {
   display: flex;
   height: 32px;
   align-items: center;
@@ -157,102 +177,100 @@ select {
   margin-bottom: 0.5rem;
 }
 
-.price{
+.price {
   margin-right: 1rem;
 }
 
-.city{
-  width: 47%;
+.city {
+  width: 60%;
   margin-right: 3%;
 }
 
-.search{
+.search {
   margin-top: 0.5rem;
-  width: 70%;
+  width: 95%;
 }
 
-input[type=range]{
-    -webkit-appearance: none;
-    border: none;
-    background-color: rgb(245, 245, 245);
-    width: 150px;
+input[type='range'] {
+  -webkit-appearance: none;
+  border: none;
+  background-color: rgb(245, 245, 245);
+  width: 150px;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-    width: 50px;
-    height: 0.4rem;
-    background: rgb(219, 240, 219);
-    border: 1px solid rgb(134, 128, 128);
-    border-radius: 10px;
+input[type='range']::-webkit-slider-runnable-track {
+  width: 50px;
+  height: 0.4rem;
+  background: rgb(219, 240, 219);
+  border: 1px solid rgb(134, 128, 128);
+  border-radius: 10px;
 }
 
-input[type=range]::-moz-range-track{
-    width: 150px;
-    height: 0.3rem;
-    background: rgb(219, 240, 219);
-    border: 1px solid rgb(134, 128, 128);
-    border-radius: 10px;
+input[type='range']::-moz-range-track {
+  width: 150px;
+  height: 0.3rem;
+  background: rgb(219, 240, 219);
+  border: 1px solid rgb(134, 128, 128);
+  border-radius: 10px;
 }
 
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background: rgba(210, 241, 210, 0.329);
+input[type='range']:focus::-webkit-slider-runnable-track {
+  background: rgba(210, 241, 210, 0.329);
 }
 
-
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 1rem;
-    width: 0.7rem;
-    border-radius: 30px 1px 30px 1px;
-    border: 1px solid rgb(27, 65, 27);
-    background: #007973a6;
-    margin-top: -0.3rem;
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 1rem;
+  width: 0.7rem;
+  border-radius: 30px 1px 30px 1px;
+  border: 1px solid rgb(27, 65, 27);
+  background: #007973a6;
+  margin-top: -0.3rem;
 }
 
-input[type=range]::-moz-range-thumb{
-    border: none;
-    height: 0.9rem;
-    width: 0.6rem;
-    border-radius: 30px 1px 30px 1px;
-    border: 1px solid rgb(27, 65, 27);
-    background: #007973a6;
-    margin-top: -0.3rem;
+input[type='range']::-moz-range-thumb {
+  border: none;
+  height: 0.9rem;
+  width: 0.6rem;
+  border-radius: 30px 1px 30px 1px;
+  border: 1px solid rgb(27, 65, 27);
+  background: #007973a6;
+  margin-top: -0.3rem;
 }
-
 
 @media screen and (max-width: 840px) {
-
 }
 
 @media screen and (max-width: 600px) {
-  .price-box{
+  .price-box {
     flex-direction: column;
   }
 
-  .input-holder, .right-box{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   margin-top: 0.5rem;
+  .input-holder,
+  .right-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
   }
 
-  .right-box{
-   flex-direction: column;
+  .right-box {
+    flex-direction: column;
   }
-  .price-box{
+  .price-box {
     align-self: center;
     margin: 1.2rem;
   }
 
   .filter {
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     width: 20rem;
     flex-shrink: 2;
   }
 
-  .wrapper{
+  .wrapper {
     justify-content: center;
     padding: 0;
   }
