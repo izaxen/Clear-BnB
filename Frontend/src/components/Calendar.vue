@@ -47,6 +47,7 @@
                     booking ? 'booking' : '',
                     addHouse ? 'border bg' : '',
                     searchBar ? 'border1' : '',
+                    searchModal ? 'bg':'',
                   ]"
                   :value="inputValue.start"
                   v-on="inputEvents.start"
@@ -87,6 +88,7 @@
                     booking ? 'booking' : '',
                     addHouse ? 'border bg' : '',
                     searchBar ? 'border1' : '',
+                    searchModal ? 'bg' :'',
                   ]"
                   :value="inputValue.end"
                   v-on="inputEvents.end"
@@ -109,7 +111,7 @@ export default {
     DatePicker,
   },
 
-props: ['textOne', 'searchBar', 'booking', 'addHouse'],
+props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
 
   unmounted() {
   window.removeEventListener("resize", this.myEventHandler);

@@ -18,6 +18,7 @@
             @defaultDates="confirmDates"
             @dateArray="getDateArray"
             :searchBar="searchBar"
+            :searchModal="searchModal"
           />
         </div>
 
@@ -65,6 +66,7 @@ export default {
       fromDate: '',
       toDate: '',
       dateArray: [],
+      searchModal: true,
     }
   },
 
@@ -211,6 +213,7 @@ export default {
 
 label {
   margin: 0 10px;
+  
 }
 
 #add-btn,
@@ -274,14 +277,16 @@ option {
 }
 
 #close {
-  text-align: center;
   width: 67px;
-  background: rgb(219, 240, 219);
-  margin: 10px;
+  height: 28px;
+  margin: 11px;
+  padding:5px;
   cursor: pointer;
   background: rgb(201, 232, 201);
   border-radius: 5px;
   border: 1px solid black;
   padding: 3px;
+  text-align: center;
+
 }
 </style>
