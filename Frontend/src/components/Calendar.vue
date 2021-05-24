@@ -104,7 +104,15 @@ export default {
     Calendar,
     DatePicker,
   },
-  props: ['textOne', 'searchBar', 'booking'],
+
+props: ['textOne', 'searchBar', 'booking'],
+
+  unmounted() {
+    console.log('unmounted')
+  window.removeEventListener("resize", this.myEventHandler);
+},
+
+  
 
   data() {
     return {
@@ -113,17 +121,14 @@ export default {
       range: {
         start: new Date(),
         end: null,
-        size:window.innerWidth,
       },
       masks: {
         input: 'YYYY-MM-DD',
       },
       disabledDates: [],
+      size:window.innerWidth,
     }
-  },
-  
-  unmounted() {
-  window.removeEventListener("resize", this.myEventHandler);
+
   },
 
   watch: {
@@ -132,14 +137,15 @@ export default {
       this.$emit('days-selected', this.findSelectedDays().length - 1)
       this.$emit('dateArray', this.findAllNights())
     },
-  },
+    },
   
   methods: {
-    myEventHandler(e){
-      console.log('size', this.size)
-    this.size= window.innerWidth
-    },
 
+    myEventHandler(e){
+    this.size= window.innerWidth
+    console.log('this size', this.size)
+    },
+    
     findAllNights() {
       let allDates = this.findSelectedDays()
       allDates.pop()
@@ -220,7 +226,9 @@ export default {
       await this.filterReceipts()
     }
     this.range.end = this.addDays(this.range.start, 2)
+
     window.addEventListener("resize", this.myEventHandler)
+    
   },
 }
 </script>
@@ -332,15 +340,5 @@ export default {
   color: black, var(--text-opacity);
   font-weight: 500;
 }
-@media screen and (max-width: 450px){
- .calendar {
-   width: 310px;
- }
-}
 
-@media screen and (max-width: 400px) {
-  .calendar {
-    width: 200px;
-  }
-}
 </style>

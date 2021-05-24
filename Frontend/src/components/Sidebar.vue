@@ -48,22 +48,10 @@ a {
 }
 
 a:hover {
+  border-radius:5px;
   color: rgb(29, 28, 28);
-  transform: scale(1.05);
+  scale: 1.05;
   background-color: rgb(219,243,219) ;
-}
-
-@media screen and (max-width: 1100px) {
-  .sidebar1 {
-    max-width: 40rem;
-    font-size: 15px;
-  }
-}
-@media screen and (max-width: 700px) {
-  .sidebar1 {
-    max-width: 27rem;
-    font-size: 15px;
-  }
 }
 
 @media screen and (max-width: 500px) {

@@ -79,12 +79,6 @@ export default {
   height: 60%;
 }
 
-@media screen and (max-width: 1100px) {
-  .sidebar1 {
-    max-width: 40rem;
-    font-size: 15px;
-  }
-}
 @media screen and (max-width: 850px) {
   .info {
     width: 500px;
