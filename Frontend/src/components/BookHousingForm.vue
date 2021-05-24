@@ -146,12 +146,13 @@ export default {
 @media screen and (max-width: 600px) {
   .container {
     align-self: center;
-    width: 350px;
+    width: 300px;
   }
 }
 @media screen and (max-width: 450px) {
   .container {
-    height: 20px;
+    min-width: 300px;
+    min-height: 300px;
   }
 }
 

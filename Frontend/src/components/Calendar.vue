@@ -67,7 +67,7 @@
                 class="single-date-box text-black-500"
                 :class="
                   booking
-                    ? 'smaller-width font-smaller-thicker margin border'
+                    ? 'smaller-width font-smaller-thicker margin'
                     : ''
                 "
               >
@@ -271,6 +271,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-self: flex-end;
+  min-width: 100%;
 }
 .solid-border {
   font-size: 1.1rem;
@@ -346,7 +347,11 @@ export default {
 
 @media screen and (max-width: 400px) {
   .calendar {
-    width: 200px;
+    width: 300px;
+  }
+  .date-range{
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 </style>

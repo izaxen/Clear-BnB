@@ -347,6 +347,9 @@ img {
   }
 }
 @media screen and (max-width: 750px) {
+  .bookingForm{
+    justify-content: center;
+  }
 
   .avatar {
     display: none;
