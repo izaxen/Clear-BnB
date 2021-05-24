@@ -7,7 +7,7 @@
         <div class="row1">
           <div class="objectform border-radius">
             <div class="calendar">
-              <Calendar :addHouse="true" @dates="inAndOutDate" />
+              <Calendar :addHouse="true" @dates="inAndOutDate"><template v-slot:start>Available From</template><template v-slot:end>Available To</template> </Calendar>
             </div>
             <AddRentalObjectForm
               @fetchObject="houseForm"

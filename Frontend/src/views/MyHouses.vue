@@ -10,10 +10,35 @@
 <script>
 import UserHouseList from '../components/UserHouseList.vue'
 import SideBar from '../components/Sidebar.vue'
+import store from '../store.js'
+
 export default {
   components: {
     SideBar,
     UserHouseList,
+  },
+
+  data() {
+    return {}
+  },
+
+  async beforeRouteEnter(to, from, next) {
+    if (!store.state.user) {
+      await store.dispatch('whoAmI')
+      if (store.state.user) {
+        let id = store.state.user.id
+        await store.dispatch('fetchUserReceipts', id)
+        next()
+      } else {
+        next((vm) => {
+          vm.$router.push('/')
+        })
+      }
+    } else {
+      let id = store.state.user.id
+      await store.dispatch('fetchUserReceipts', id)
+      next()
+    }
   },
 }
 </script>

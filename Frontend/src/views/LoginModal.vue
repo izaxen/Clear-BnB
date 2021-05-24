@@ -79,14 +79,13 @@ export default {
 </script>
 
 <style scoped>
-
 .modal {
   text-align: center;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
   width: 400px;
-  height: 500px;
+  /* height: 500px; */
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 15% 75% 10%;

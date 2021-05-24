@@ -7,7 +7,7 @@
     <router-link to="/overview">Overview</router-link>
     </div>
     
-    <div class="search-bar">
+    <div v-if="!$store.state.isOverview" class="search-bar">
       <SearchBar @showSearchModal="showSearchModal" />
     </div>
 
