@@ -79,18 +79,7 @@ export default {
 </script>
 
 <style scoped>
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.45);
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
+
 .modal {
   text-align: center;
   background: rgba(255, 255, 255, 0.9);

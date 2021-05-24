@@ -1,6 +1,6 @@
 <template>
   <div v-if="!fetching" class="wrapper">
-    <RentalImages :object="rentalObject" />
+    <RentalImages :object="rentalObject" @showPic="openModal"/>
     <hr class="separator" />
 
     <div class="seller-info">
@@ -10,7 +10,7 @@
         <li>{{ rentalObject.address }}</li>
       </ul>
       <div class="avatar">
-        {{ landLord.firstName }}{{ landLord.lastName }}
+        {{ landLord.firstName }} {{ landLord.lastName }}
         <img src="https://www.shankarainfra.com/img/avatar.png" alt="" />
       </div>
     </div>
@@ -18,20 +18,15 @@
     <hr class="separator" />
     <div class="hero">
       <div class="hero-text">
-        <h2>
-          {{ rentalObject.city }}
-        </h2>
-        <h4>
-          {{ rentalObject.address }}
-        </h4>
-        <h5>{{ rentalObject.freeText }}</h5>
-        <DisplayHotAmenity :amenities="amenities" />
+        <h2>{{ rentalObject.city }}</h2>
+        <h4>{{ rentalObject.address }}</h4>
       </div>
-      <div class="disc">
+      <div class="hero-amenity"><DisplayHotAmenity :amenities="amenities" /></div>
+      <div class="bookingForm"><BookHousingForm :object="rentalObject" @receipt="saveTempReceipt" /></div>
+    </div>
+    <div class="disc">
         {{ rentalObject.description }}
       </div>
-      <BookHousingForm :object="rentalObject" @receipt="saveTempReceipt" />
-    </div>
 
     <hr class="separator" />
     <div class="hej">
@@ -43,6 +38,14 @@
           :name="value"
         />
       </div>
+    </div>
+    <div class="overlay" v-show="showPic">
+      <div class="modal" v-show="showPic" @click="none">
+      <div class="imgcontainer" v-for="img in imageList" :key="img">
+          <img :src="img" alt="">
+      </div>
+      <button class="close" @click="closeModal">X</button>
+   </div>
     </div>
   </div>
   <BookingConfirmation :receipt="tempReceipt" />
@@ -73,6 +76,8 @@ export default {
       amenities: {},
       tempReceipt: {},
       landLord: '',
+      imageList: [],
+      showPic: false,
     }
   },
 
@@ -92,22 +97,71 @@ export default {
     saveTempReceipt(receipt) {
       this.tempReceipt = receipt
     },
+    openModal(){
+      this.showPic = true
+      console.log('set modal true');
+    },
+    closeModal(){
+      this.showPic = false
+      console.log('clicked close modal');
+    },
   },
 
   async created() {
+    this.imageList = await this.$store.state.imageList
     this.rentalObject = this.$store.state.rentalObject
     this.amenities = this.rentalObject.amenities
     this.landLord = this.$store.state.landLord
-    this.fetching = false
+    this.fetching = false  
   },
 }
 </script>
 
 <style scoped>
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 5;
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  font-weight: 700;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.698);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+
+.modal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  grid-gap: 3px;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.883);
+  width: 8  0%;
+  max-height: 900px;
+  max-width: 60%;
+  overflow: scroll;
+  overflow: auto;
+  position: absolute;
+  z-index: 5;
+}
+
 .disc {
   display: flex;
   align-items: center;
-  margin: 0 1rem;
+  margin: 3rem 1rem;
+  font-size: 25px;
 }
 
 h2 {
@@ -115,18 +169,19 @@ h2 {
 }
 .avatar {
   display: flex;
-  font-size: 1rem;
   justify-content: center;
   align-items: center;
+  width: 500px;
 }
 ul {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
 }
 li {
   margin-right: 2rem;
-  font-size: 1rem;
 }
 .wrapper {
   margin: auto;
@@ -163,9 +218,7 @@ li {
 }
 
 .hej {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  display: grid;
 }
 
 .am {
@@ -174,11 +227,34 @@ li {
 }
 
 .hero {
-  margin: 3rem 0;
+  margin: 15px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.7fr 1fr;
+  grid-template-areas:
+  "box1 box3"
+  "box2 box3";
+}
+.hero-amenity {
+  grid-area: box2;
+}
+.bookingForm{
+  display: grid;
+  justify-content: center;
+  grid-area: box3;
+  margin-bottom: 20px;
 }
 
 .hero-text {
   padding: 0 1rem;
+  font-size: 30px;
+  grid-area: box1;
+}
+.hero-text h4,h2 {
+  margin: 0;
+}
+.hero-text h4 {
+  font-weight: 200;
 }
 .hero-picture {
   height: 50vh;
@@ -206,36 +282,34 @@ li {
   opacity: 0.3;
 }
 
-.hero {
-  display: flex;
-  justify-content: space-between;
-}
-
 .amenity {
   margin-bottom: 10px;
 }
 
 .seller-info {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   padding-left: 1rem;
   display: flex;
-
-  width: 60%;
-  font-size: 0.8rem;
+  width: 100%;
+  font-weight: 700;
+  font-size: 30px;
 }
 
 .seller-info img {
-  height: 32px;
-  width: 32px;
+  height: 52px;
+  width: 52px;
   border-radius: 50%;
-  margin-left: 1rem;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .amenities {
   padding: 1rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-column-gap: 80px;
 }
 
 img {
@@ -245,6 +319,61 @@ img {
   height: 100%;
   display: block; /* remove extra space below image */
 }
+@media screen and (max-width: 1100px) {
+  .amenities{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-column-gap: 80px;
+  }
+}
+@media screen and (max-width: 920px) {
+  .seller-info {
+    font-size: 20px;
+  } 
+  .modal {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 80%;
+  }
+}
+@media screen and (min-height: 1000px) {
+  .modal {
+    height: 80%;
+  }
+}
+@media screen and (max-height: 850px) {
+  .modal {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    height: 80%;
+  }
+}
+@media screen and (max-width: 750px) {
+
+  .avatar {
+    display: none;
+  }
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .hero-text {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+    "box1"
+    "box2"
+    "box3";
+  }
+  .amenities{
+    width: 100%;
+    justify-items: center;
+  }
+}
 
 @media screen and (max-width: 600px) {
   .seller-info {
@@ -252,21 +381,38 @@ img {
     width: 100%;
     margin: 0;
   }
-  ul {
-    padding: 1rem 0 1rem 1rem;
-  }
-  li {
-    font-size: 0.9rem;
-    margin-left: 0;
-  }
-  .hero {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-  }
 
   .disc {
     margin-bottom: 2rem;
+    font-size: 20px;
+  }
+  .amenities{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-column-gap: 40px;
+  }
+  .modal {
+    max-width: 70%;
+  }
+
+}
+@media screen and (max-width: 450px){
+  .bookingForm {
+    max-width: 450px;
+  }
+  .bookingForm .container {
+    height: 250px;
+    width: 320px;
+  }
+}
+@media screen and (max-width: 400px){
+  .bookingForm .container {
+    height: 250px;
+    width: 260px;
+  }
+
+  .hero-amenity .container {
+    padding: 0;
   }
 }
 </style>

@@ -106,14 +106,26 @@ export default {
 }
 img {
   margin-right: 10px;
-  height: 32px;
-  width: 32px;
+  height: 42px;
+  width: 42px;
 }
 
 .am-display {
-  width: 30%;
+  width: 180px;
   display: flex;
   margin-bottom: 2rem;
-  font-size: 1rem;
+  font-size: 20px;
+}
+@media screen and (max-width: 850px) {
+  .am-display {
+    width: 140px;
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 590px) {
+  .am-display {
+    width: 100px;
+    
+  } 
 }
 </style>
