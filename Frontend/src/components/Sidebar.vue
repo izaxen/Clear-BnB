@@ -1,16 +1,16 @@
 <template>
   <div class="sidebar1">
     <router-link to="/my-page/add-house"
-      ><em class="fas fa-plus-circle"></em>Add house</router-link
+      ><em class="fas fa-plus-circle"></em><p>Add house</p></router-link
     >
     <router-link to="/my-page/my-houses"
-      ><em class="fas fa-home"></em>Houses</router-link
+      ><em class="fas fa-home"></em><p>Houses</p></router-link
     >
     <router-link to="/my-page/my-bookings"
-      ><em class="fas fa-book"></em>Bookings</router-link
+      ><em class="fas fa-book"></em><p>Bookings</p></router-link
     >
     <router-link to="/my-page"
-      ><em class="fas fa-users"></em>Profile</router-link
+      ><em class="fas fa-users"></em><p>Profile</p></router-link
     >
   </div>
 </template>
@@ -22,15 +22,11 @@ export default {}
 <style scoped>
 .sidebar1 {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
   font-size: 20px;
   background: rgb(245,245,245);
   border: 1px solid rgb(63, 63, 63);
-  border-right-style: none;
-  border-top-style:none;
   border-left: none;
-  margin: 0 auto;
   padding: 10px 0 ;
   align-content: center;
 }
@@ -47,21 +43,28 @@ a {
   font-weight: 700;
   margin: 10px 0;
 }
+p{
+  margin-top: 5px;
+  margin-bottom: 0;
+}
 
-a:hover {
+a:hover p {
   border-radius:5px;
   color: rgb(29, 28, 28);
-  scale: 1.05;
-  background-color: rgb(219,243,219) ;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
 }
 
 @media screen and (max-width: 500px) {
   .sidebar1 {
-    flex-direction: row;
-    max-width: 27rem;
+    max-width: 100%;
     font-size: 15px;
     text-align: center;
     
+  }
+  a {
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>

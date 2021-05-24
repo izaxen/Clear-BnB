@@ -36,7 +36,7 @@ export default {
 }
 
 .sidebar {
-  height: 10%;
+  height: fit-content;
 }
 
 .list {
