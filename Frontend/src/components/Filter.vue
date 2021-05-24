@@ -3,7 +3,7 @@
     <div class="filter">
       <div class="right-box">
         <div class="input-holder">
-          <select @change="paramObjects" class="city" v-model="city">
+          <select @change="filterObjects" class="city" v-model="city">
             <option value="">All cities</option>
             <option
               v-for="object in cityOption"
@@ -14,7 +14,7 @@
             </option>
           </select>
           <input
-            @change="paramObjects"
+            @change="filterObjects"
             class="number-input"
             type="number"
             v-model="beds"
@@ -23,7 +23,7 @@
           />
         </div>
         <input
-          @keyup="paramObjects"
+          @keyup="filterObjects"
           class="search"
           type="text"
           v-model="text"
@@ -34,7 +34,7 @@
       <div class="price-box">
         <label class="price" for="vol">Price {{ range }} kr</label>
         <input
-          @change="paramObjects"
+          @change="filterObjects"
           type="range"
           v-model="range"
           min="300"
@@ -93,7 +93,7 @@ export default {
 
   watch: {
     '$store.state.chosenDates'() {
-      this.paramObjects()
+      this.filterObjects()
     },
   },
 
@@ -112,14 +112,13 @@ export default {
       this.city = this.$store.state.searchObject.city
       this.beds = this.$store.state.searchObject.guests
       this.$store.commit('removeSearchObject')
-      this.paramObjects()
+      this.filterObjects()
     } else {
-      this.paramObjects()
+      this.fetchFromUrl()
     }
   },
   methods: {
-    async paramObjects() {
-      // price<=900?adress=freeText%?freeText%freText%
+    async filterObjects() {
       this.fetching = true
       clearTimeout(this.timeOut)
       this.timeOut = setTimeout(async () => {
@@ -133,16 +132,30 @@ export default {
         let availableTo = this.$store.state.chosenDates
           ? `availableTo>=${this.$store.state.chosenDates[1]}`
           : null
-        let search = `search=${this.text}`
+        let search = this.text ? `search=${this.text}` : null
 
         params.push(bed, city, price, availableFrom, availableTo, search)
         params = params.filter((a) => a != null)
         params = params.join('&')
         let query = params
+        this.$router.replace({ query: { query: params } })
+
         let res = await fetch(`/rest/rental-objects/filter/query?${query}`)
         this.objects = await res.json()
         this.fetching = false
       }, 300)
+    },
+
+    async fetchFromUrl() {
+      if (this.$route.query.query) {
+        let res = await fetch(
+          `/rest/rental-objects/filter/query?${this.$route.query.query}`
+        )
+        this.objects = await res.json()
+        this.fetching = false
+      } else {
+        this.filterObjects()
+      }
     },
   },
 }
