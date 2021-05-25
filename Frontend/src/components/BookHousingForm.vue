@@ -152,7 +152,7 @@ button {
   display: flex;
   background: white;
   width: 35%;
-  max-width: 100px;
+  width: calc(100% - 20px);
   font-size: 1.2rem;
   border: none;
   margin: 0 auto;
