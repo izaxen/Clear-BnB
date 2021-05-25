@@ -16,11 +16,11 @@
 
     <div class="Login-btn">
       <router-link to="" @click="showModalLogin" v-if="loggedIn === null">
-        <i class="fas fa-user-circle"></i>
+        <em class="fas fa-user-circle"></em>
       </router-link>
       <div v-if="loggedIn != null" class="show">
-        <i class="fas fa-bars"></i>
-        <i class="fas fa-user-circle"></i>
+        <em class="fas fa-bars"></em>
+        <em class="fas fa-user-circle"></em>
         <div class="user-links">
          
           <router-link to="/my-page" v-if="loggedIn !== null">
@@ -151,7 +151,7 @@ nav {
   align-content: center;
   position: absolute;
   top: 50px;
-  right: 50px;
+  right: 10px;
   width: 0;
   height: 0;
   background: white;
