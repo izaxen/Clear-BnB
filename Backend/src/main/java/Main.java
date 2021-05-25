@@ -40,6 +40,19 @@ public class Main {
             collection("User").deleteById(id);
             res.send("OK");
         });
+
+        app.put("rest/users/:id", (req,res) -> {
+           String id = req.params("id");
+           String name = req.query("name");
+
+           System.out.println(name);
+           System.out.println(id);
+
+           collection("User").updateFieldById(id, "firstName", name);
+
+
+
+        });
         //RentalHouse
         app.get("/rest/rental-objects", (req, res) -> {
             List<RentalObject> rentalObjects = collection("RentalObject").find();

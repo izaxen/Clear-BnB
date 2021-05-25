@@ -20,6 +20,10 @@ export default {
     await this.$store.dispatch('whoAmI')
     await this.$store.dispatch('fetchReceipts')
     await this.$store.dispatch('fetchCityNames')
+
+    await fetch('/rest/users/-PNU45UnVwW-HWRbJWe_H?name=Martinsson', {
+      method: 'PUT',
+    })
   },
 }
 </script>
