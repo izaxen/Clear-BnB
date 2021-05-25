@@ -245,17 +245,14 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
 }
 
 .calendar {
-  /* font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif; */
   display: flex;
   width: 100%;
-  max-width: 21rem;
   flex-direction: column;
   justify-content: center;
 }
 
 .booking {
   background: rgb(201, 232, 201) !important;
-
   border-radius: 7px;
   border: 1px solid black;
   height: 2rem;
@@ -339,7 +336,6 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
   margin-left: 0.2;
 }
 
-
 .text-gray-500 {
   --text-opacity: 1;
   color: rgba(8, 8, 8, 0.61);
@@ -363,13 +359,10 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
   .textt {
     display: inline;
   }
-
   .date-range {
     flex-direction: column;
     align-content: center;
     align-items: center;
   }
-  
 }
-
 </style>

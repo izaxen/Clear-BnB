@@ -63,7 +63,7 @@ export default {
       fromDate: '',
       toDate: '',
       user: null,
-      formData: '',
+      formData: [],
       clearList: {},
       rentalObjects: '',
       validateList: '',
@@ -128,12 +128,13 @@ export default {
 
   computed: {
     checkRentalForm() {
+      let pictures = this.$store.state.uploadedImages
       if (
         this.rentalForm == '' ||
         this.amenitiesList == undefined ||
         this.fromDate == '' ||
         this.toDate == '' ||
-        this.formData == ''
+        pictures.length < 3
       ) {
         return true
       }

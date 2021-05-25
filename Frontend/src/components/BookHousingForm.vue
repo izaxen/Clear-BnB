@@ -126,43 +126,24 @@ export default {
 
 <style scoped>
 .container {
+  display: flex;
+  flex-direction: column;
   background-color: rgba(255, 255, 255, 0.717);
   padding: 10px;
   width: 350px;
   border: 0.1px solid black;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 290px;
   border-radius: 5px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-.calendar {
-  align-self: center;
-  font-size: 20px;
-}
-
-@media screen and (max-width: 600px) {
-  .container {
-    align-self: center;
-    width: 350px;
-  }
-}
-@media screen and (max-width: 450px) {
-  .container {
-    height: 20px;
-  }
-}
-
 button {
   background: rgb(201, 232, 201);
-
   width: 50%;
   max-width: 300px;
   font-size: 1.4rem;
   border: none;
-  margin: 0 auto;
+  margin: 10px auto;
   border-radius: 5px;
   padding: 0.6rem 1.4rem;
   cursor: pointer;
@@ -172,7 +153,13 @@ button {
 
 button:disabled {
   background: rgb(166, 166, 166);
-
   cursor: not-allowed;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    align-self: center;
+    width: 350px;
+  }
 }
 </style>

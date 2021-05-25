@@ -30,7 +30,6 @@ export default {
   methods: {
     addAmenitiesToList() {
       let selected = Object.values(this.selectedAmenities)
-      console.log('selected ', Object.values(this.selectedAmenities))
       let filterList = Object.keys(this.amenities)
 
       let newList = {}

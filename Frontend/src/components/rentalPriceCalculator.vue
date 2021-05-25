@@ -4,9 +4,7 @@
       <div class="link" @click="isActive = !isActive">
         <div class="num-guest-text">Number of guests {{ totalCount }}</div>
       </div>
-    </div>
-
-    <div class="expandable" :class="{ active: isActive }">
+      <div class="expandable" :class="{ active: isActive }">
       <div class="guest-counter">
         <div class="type">Adult:</div>
         <div>{{ adultCount }}</div>
@@ -24,9 +22,9 @@
         </div>
       </div>
       <div class="close">
-        <span>Close</span>
-        <button @click="isActive = !isActive">X</button>
+        <button @click="isActive = !isActive">Close</button>
       </div>
+    </div>
     </div>
   </div>
 
@@ -97,14 +95,12 @@ export default {
 <style scoped>
 .container {
   font-size: 1.3rem;
+  width: 100% ;
+  position: relative;
 }
 .link {
-  margin: 0 0.5rem 0 0.5rem;
-
-  display: block;
   height: 2rem;
   border-radius: 1px;
-  position: relative;
   display: flex;
   align-items: center;
   border: 1px solid black;
@@ -115,7 +111,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: 1rem 0 1rem 1rem;
 }
 
 .link:hover {
@@ -139,19 +134,23 @@ export default {
 
 button {
   width: 30px;
-  height: 20px;
+  height: fit-content;
   border-radius: 6px;
   border: 1px solid #005b96;
+  font-size: 15px;
+  font-weight: 700;
 }
 
-button:hoover {
+button:hover {
   cursor: pointer;
+  background-color: white;
 }
 
 .expandable {
   display: none;
   opacity: 0;
   transition: opacity 300ms;
+  width: 100%;
 }
 
 .type {
@@ -175,21 +174,18 @@ div {
 }
 
 .active {
-  padding: 10px 5px 10px 5px;
-  opacity: 1;
-  justify-content: space-between;
-  position: absolute;
-  z-index: 100;
   display: flex;
   flex-direction: column;
-  width: 17.5rem;
+  padding: 10px;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
   background: rgb(201, 232, 201);
-
-  margin-left: 0.5rem;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border: 1px solid black;
   border-radius: 0 0 4px 4px;
+  width: 100%;
 }
 
 .group {
@@ -198,15 +194,29 @@ div {
 
 .close button {
   cursor: pointer;
+  width: fit-content;
+  height: fit-content;
 }
 
 @media screen and (max-width: 600px) {
   .link {
-    width: 50%;
+    width: 100%;
   }
 
   .num-guest-text {
-    font-size: 0.9rem;
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .container{
+    margin: 10px auto
+  }
+  .link {
+    margin: auto;
+    width: 100%;
+  }
+  .expandable {
+    width: 100%;
   }
 }
 </style>

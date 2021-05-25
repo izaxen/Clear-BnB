@@ -1,6 +1,6 @@
 <template>
   <div class=form>
-    <h3>Add pictures</h3>
+    <h3>Add 3 pictures or more</h3>
     <div class="btns">
       <div class="delete-button" v-show="folderSize > 0">
       <label @click="deleteImages" class="img-btn">Delete images</label>
@@ -35,6 +35,9 @@ export default {
     }
   },
   computed:{
+    folderSize: function(){
+      return this.$store.state.uploadedImages.length
+    },
     imageFolder: function(){
       return this.$store.state.uploadedImages
     } 
