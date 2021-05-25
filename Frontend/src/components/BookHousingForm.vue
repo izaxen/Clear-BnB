@@ -126,7 +126,7 @@ export default {
 <style scoped>
 
 .container {
-  background-color: rgba(247, 247, 247, 0.938);
+  background-color: rgba(255, 255, 255);
   padding: 10px;
   width: 300px;
   border: 0.1px solid black;

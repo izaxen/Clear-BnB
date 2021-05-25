@@ -105,7 +105,7 @@ export default {
   font-size: 1.3rem;
   margin-top: 10px;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 254, 254);
   width:calc(100% - 20px);
   padding: 10px;
   border-radius: 7px;
@@ -148,8 +148,8 @@ export default {
   margin: 0.5rem 0.5rem;
   width: 93%;
   margin: 0.7rem;
-  background: rgba(226, 226, 226, 0.555);
-  
+  background-color: rgba(236, 235, 235, 0.397);
+  border-radius: 7px;
   padding: 0.3rem;
 }
 
