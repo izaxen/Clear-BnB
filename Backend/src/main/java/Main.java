@@ -25,6 +25,19 @@ public class Main {
         //           List<User> users = collection("User").find();
         //           res.json(users);
         //        });
+
+
+        app.put("/rest/users/:id", (req, res) -> {
+            String id = req.params("id");
+        Map<String, List<String>> querySet = req.query();
+
+        for (Map.Entry<String, List<String>> entry : querySet.entrySet()) {
+            collection("User").updateFieldById(id, entry.getKey(), entry.getValue().get(0));
+        }
+        User user = collection("User").findById(id);
+        res.json(user);
+        });
+
         app.post("/rest/updateUser/:id", (req, res) -> {
            String id = req.params("id");
            User user = req.body(User.class);

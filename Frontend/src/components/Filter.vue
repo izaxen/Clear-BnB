@@ -351,6 +351,15 @@ input[type='range']::-moz-range-thumb {
   transform: rotate(330deg);
   animation-delay: 0s;
 }
+
+input{
+  padding: 0 0 0 5px ;
+}
+
+select{
+  padding: 0 5px;
+}
+
 @keyframes lds-spinner {
   0% {
     opacity: 1;

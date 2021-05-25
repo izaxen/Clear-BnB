@@ -96,7 +96,7 @@ export default {
 .modal-header {
   position: relative;
   border-bottom: 1px solid #eeeeee;
-  color: rgb(130, 193, 130);
+  color: #007973a6;
 
   justify-content: space-between;
 }
@@ -104,10 +104,11 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   border-top: 1px solid #eeeeee;
+  margin-bottom: 20px;
 }
 .modal-body {
   position: relative;
-  padding: 20px 10px;
+  padding: 20px 10px 0 10px;
 }
 .btn-close {
   position: absolute;
@@ -118,23 +119,27 @@ export default {
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
-  color: rgb(130, 193, 130);
+  color: #007973a6;
 
   background: transparent;
 }
 .btn-modal {
   color: white;
-  background: rgb(130, 193, 130);
+  background: #007973a6;
   border: none;
   border-radius: 3px;
   width: 100px;
   margin: 3px;
   align-self: center;
   justify-self: center;
+  padding: 5px;
 }
 .btn-modal:hover {
   cursor: pointer;
   transform: scale(1.05);
-  background-color: rgb(130, 193, 130);
+  background-color: #007973a6;
+}
+h1{
+  margin: 20px;
 }
 </style>

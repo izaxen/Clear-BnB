@@ -9,7 +9,7 @@
           <div v-if="!user"></div>
 
           <div v-else class="user-info">
-            <label>Edit</label>
+            <label @click="openEdit()">Edit</label>
             <h3>Firstname: {{ user.firstName }}</h3>
             <h3>Lastname: {{ user.lastName }}</h3>
             <h3>Email: {{ user.email }}</h3>
@@ -49,6 +49,11 @@ export default {
       next()
     }
   },
+  methods:{
+    openEdit(){
+    this.$router.push('/my-page/edit-user')
+    }
+  }
 }
 </script>
 
@@ -67,7 +72,7 @@ img{
 }
 .overlay {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  background-color: rgba(205, 205, 205, 0.9);
+  background-color: rgba(205, 205, 205, 0.6);
   height: 100%;
 }
 

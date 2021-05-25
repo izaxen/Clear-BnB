@@ -76,15 +76,22 @@ export default {
   bottom: 0;
 }
 
-button {
-  height: 40px;
+ button {
   width: 100px;
-  border: none;
-  border-radius: 10px;
-  background: #6497b1;
-  font-weight: 700;
-  font-size: 15px;
-  margin: 5px;
+  cursor: pointer;
+  background: rgb(201, 232, 201);
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  text-align: center;
+  margin: 0px 25px 15px 0;
+}
+
+button:hover {
+  background: #c4eafd;
+  cursor: pointer;
 }
 
 .btn-remove {
@@ -95,10 +102,7 @@ button {
   bottom: 55px;
 }
 
-button:hover {
-  background: #c4eafd;
-  cursor: pointer;
-}
+
 .view {
   display: grid;
   width: 100%;
