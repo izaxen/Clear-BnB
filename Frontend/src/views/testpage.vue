@@ -11,10 +11,11 @@
             <form class="user-info" @submit.prevent="dispatch">
             <input class="border-radius" type="text" v-model="value.firstName" placeholder="Firstname.." required>
 	          <input class="border-radius" type="text" v-model="value.lastName" placeholder="Lastname.." requierd>
-	          <input class="border-radius" type="email" v-model="value.email" placeholder="email.." requierd>
+	          <input class="border-radius" type="text" v-model="value.email" placeholder="email.." requierd>
 	          <input class="border-radius" type="number" v-model="value.phoneNumber" placeholder="Phonenumber.." requierd>
 	          <input class="border-radius" type="text" v-model="value.city" placeholder="City.."  requierd>
 	          <input class="border-radius" type="text" v-model="value.address" placeholder="Address.." requierd>
+	          <input class="border-radius" type="text" v-model="value.image" placeholder="Imageurl..." requierd>
             <input class="border-radius" type="submit" value="Send">
             </form>
             
@@ -43,18 +44,31 @@ export default {
    },
 
    dispatch(){
+     let urlString = []
      let updatedInfo = {
        firstName: this.value.firstName,
        lastName: this.value.lastName,
        email: this.value.email,
        phoneNumber: this.value.phoneNumber,
        city: this.value.city,
-       address: this.value.address}
+       address: this.value.address,
+       }
 
-      this.user1 = this.$store.state.user
-       let updatedUser = Object.assign(this.user1, updatedInfo)
-   this.$store.dispatch('updateUser', updatedUser)
-  },
+    this.user1 = this.$store.state.user
+
+        for(const[key, updated] of Object.entries(updatedInfo)){
+          for(const[key1, normal] of Object.entries(this.user1)){
+            if(key=== key1 && updated != normal){
+            urlString.push(key +'='+updated)
+            break 
+          }
+        }
+      }
+      let test = urlString.join('&')
+      console.log(test)
+    let id= '00'
+      this.$store.dispatch('updateUser', test, id)
+    },
   },
 
 
