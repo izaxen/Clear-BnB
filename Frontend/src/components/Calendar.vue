@@ -235,7 +235,6 @@ export default {
 
 .calendar {
   /* font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif; */
-
   display: flex;
   width: 100%;
   max-width: 21rem;
@@ -341,7 +340,7 @@ export default {
 }
 @media screen and (max-width: 450px){
  .calendar {
-   width: 310px;
+   width: 300px;
  }
 }
 

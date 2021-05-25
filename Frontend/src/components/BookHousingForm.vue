@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <Calendar :booking="true" @days-selected="receive" @dates="confirmDates"
-      ><template v-slot:start>Check in</template
-      ><template v-slot:end>Check out</template>
+      ><template v-slot:start><p class="font-bigger">Check in</p></template
+      ><template v-slot:end><p class="font-bigger">Check out</p></template>
     </Calendar>
     <NumberOfGuests
       @num-guest="confirmGuest"
@@ -124,6 +124,11 @@ export default {
 </script>
 
 <style scoped>
+
+.font-bigger{
+  font-size: 1.3rem;
+  margin-bottom:0.2rem;
+}
 
 .container {
   background-color: rgba(247, 247, 247, 0.938);

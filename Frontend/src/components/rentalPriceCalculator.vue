@@ -248,6 +248,7 @@ div {
    background-color: rgb(201, 200, 200);
 }
 
+
 @media screen and (max-width: 600px) {
   .num-guest-text {
     font-size: 1rem;
@@ -256,10 +257,10 @@ div {
 
 @media screen and (max-width: 450px){
   .container{
-    width: 290px;
+    width: 280px;
   }
   .active{
-    width: 290px;
+    width: 280px;
   }
 }
 
