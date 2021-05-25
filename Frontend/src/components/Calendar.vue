@@ -27,7 +27,7 @@
             >
               <div
                 class="single-date-box"
-                :class="booking ? 'smaller-width font-smaller-thicker' : ''"
+                :class="booking ? 'smaller-width font-smaller-thicker border-right' : ''"
               >
                 <svg
                   class="calendar-logo"
@@ -249,7 +249,7 @@ export default {
   padding: 10px;
 }
 
-.border {
+.border-right {
   border-right: 1px solid black;
 }
 
@@ -359,9 +359,17 @@ export default {
   color: black, var(--text-opacity);
   font-weight: 500;
 }
+
+  .box-bg{
+    padding: 0 10px;
+  }
+
 @media screen and (max-width: 450px) {
   .calendar {
     width: 300px;
+  }
+  .box-bg{
+    padding: 0 10px;
   }
 }
 

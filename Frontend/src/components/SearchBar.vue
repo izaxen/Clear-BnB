@@ -271,6 +271,9 @@ button {
   .box1 {
     display: none;
   }
+  .card{
+    border: none;
+  }
 }
 @media screen and (max-width: 880px) {
   .box4,
