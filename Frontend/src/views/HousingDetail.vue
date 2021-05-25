@@ -162,10 +162,9 @@ export default {
 .disc {
   display: flex;
   align-items: center;
-  margin: 3rem 0rem 0;
   font-size: 25px;
   line-height: 140%;
-  margin: 0 -4rem;
+  margin: 0 -3rem;
   padding: 1.2rem 4rem;
   background-color: rgba(245, 245, 245, 0.623);
   border-radius: 5px;
