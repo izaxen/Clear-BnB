@@ -53,8 +53,8 @@ export default createStore({
     setUserReceipts(state, receipts) {
       state.userReceipts = receipts
     },
-    removeReceipt(state, receipt) {
-      state.receipts = state.receipts.filter((r) => r.id != receipt.id)
+    removeReceipt(state, receiptId) {
+      state.userReceipts = state.userReceipts.filter((r) => r.id != receiptId)
     },
     setUser(state, user) {
       state.user = user
@@ -82,9 +82,7 @@ export default createStore({
     },
     addUploadedImages(state, images) {
       for (let image of images) {
-        if (state.uploadedImages.length < 6) {
-          state.uploadedImages.push(image)
-        }
+        state.uploadedImages.push(image)
       }
     },
     removeUploadedImages(state) {
@@ -125,16 +123,14 @@ export default createStore({
         body: JSON.stringify(receipt),
       })
       let receiptFromServer = await res.json()
-      console.log('postReceipt, receiptsFromServer:', receiptFromServer)
       store.commit('addReceipt', receiptFromServer)
     },
 
     async deleteReceipt(store, receiptId) {
-      let res = await fetch('/rest/booking-receipts/' + receiptId, {
+      await fetch('/rest/booking-receipts/' + receiptId, {
         method: 'DELETE',
       })
-      let deletedReceipt = await res.json()
-      store.commit('removeReceipt', deletedReceipt)
+      store.commit('removeReceipt', receiptId)
     },
 
     async postUser(store, user) {
@@ -143,7 +139,6 @@ export default createStore({
         body: JSON.stringify(user),
       })
       let userFromServer = await res.json()
-      console.log('postUser, userFromServer:', userFromServer)
       store.commit('setUser', userFromServer)
     },
 
@@ -155,11 +150,9 @@ export default createStore({
 
       let loggedInUser = await res.json()
       if ('error' in loggedInUser) {
-        console.log('Failed to register', loggedInUser)
         this.state.failedLogIn = true
         return
       }
-      console.log('Registerd user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
     async deleteUser(store, user) {
@@ -176,7 +169,7 @@ export default createStore({
       store.commit('setRentalObjects', rentalObjects)
     },
     async fetchUserObjects(store, userId) {
-      let res = await fetch('/rest/rental-objects/user/id')
+      let res = await fetch(`/rest/rental-objects/user/${userId}`)
       let rentalObjects = await res.json()
       store.commit('setUserObjects', rentalObjects)
     },
@@ -187,12 +180,7 @@ export default createStore({
       })
 
       let rentalObjectFromServer = await res.json()
-      console.log(
-        'postRentalObject, rentalObjectFromServer:',
-        rentalObjectFromServer
-      )
       store.commit('addRentalObject', rentalObjectFromServer)
-      console.log('rentalObjectFromServer.id', rentalObjectFromServer.id)
       return rentalObjectFromServer.id
     },
     async deleteRentalObject(store, rentalObject) {
@@ -210,11 +198,9 @@ export default createStore({
       })
       let loggedInUser = await res.json()
       if ('error' in loggedInUser) {
-        console.log('Failed to login', loggedInUser)
         this.state.failedLogIn = true
         return
       }
-      console.log('logged in user', loggedInUser)
       store.commit('setUser', loggedInUser)
     },
 
@@ -264,6 +250,21 @@ export default createStore({
       let res = await fetch('/rest/rental-objects/cities/find')
       let nameList = await res.json()
       store.commit('setCityNames', nameList)
+    },
+
+    async updateUser(store, user) {
+      let res = await fetch('/rest/users', {
+        method: 'POST',
+        body: JSON.stringify(user),
+      })
+
+      let loggedInUser = await res.json()
+      /*  if ('error' in loggedInUser) {
+        console.log('Failed to register', loggedInUser)
+        this.state.failedLogIn = true
+        return
+      } */
+      store.commit('setUser', loggedInUser)
     },
   },
 })

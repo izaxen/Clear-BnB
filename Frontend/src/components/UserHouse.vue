@@ -107,6 +107,7 @@ export default {
     color: black;
     box-shadow: 5px 5px 10px 2px rgba(144, 144, 144, 0.603);
     padding: 5px;
+    background-color: rgb(227, 227, 227);
     transition: 0.4s;
   }
 

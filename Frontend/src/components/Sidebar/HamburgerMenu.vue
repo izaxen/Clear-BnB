@@ -60,13 +60,13 @@ export default {
   min-width: 100%;
   min-height: 10vh;
   background: rgb(219, 240, 219);
-
-  /* fixa med display none */
   transform: translateY(-200%);
   transition: all 0.4s;
   justify-content: space-around;
   align-items: center;
   font-size: 1.2rem;
+  box-shadow: rgb(75, 72, 72) -3px 8px 10px -6px;
+
 }
 
 .link {

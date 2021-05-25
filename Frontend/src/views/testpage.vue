@@ -7,15 +7,18 @@
           <h1>My Info</h1>
           
           <div v-if="!user"></div>
-
           <div v-else class="user-info">
-            <label>Edit</label>
-            <h3>Firstname: {{ user.firstName }}</h3>
-            <h3>Lastname: {{ user.lastName }}</h3>
-            <h3>Email: {{ user.email }}</h3>
-            <h3>Phone: {{ user.phoneNumber }}</h3>
-            <h3>Address: {{ user.address }}</h3>
-            <h3>City: {{ user.city }}</h3>
+            <form @submit.prevent="dispatch">
+            <input type="text" v-model="value.firstName" required>
+	          <input type="text" v-model="value.lastName" requierd>
+	          <input type="text" v-model="value.email" requierd>
+	          <input type="text" v-model="value.phoneNumber" requierd>
+	          <input type="text" v-model="value.city" requierd>
+	          <input type="text" v-model="value.address" requierd>
+            <button>ok</button>
+            </form>
+
+            
           </div>
         </div>
       </div>
@@ -26,13 +29,54 @@
 <script>
 import SideBar from '../components/Sidebar.vue'
 import store from '../store.js'
+
 export default {
   components: { SideBar },
 
-  computed: {
-    user() {
-      return this.$store.state.user
-    },
+  methods:{
+  getInfo(indata){
+    this.user1 = this.$store.state.user
+    for(let [key, value] of Object.entries(this.user1)){
+      if(key == indata){
+        return value
+      }
+    }
+   },
+   
+   dispatch(){
+     let updatedInfo = {
+       firstName: this.value.firstName,
+       lastName: this.value.lastName,
+       email: this.value.email,
+       phoneNumber: this.value.phoneNumber,
+       city: this.value.city,
+       address: this.value.address}
+      this.user1 = this.$store.state.user
+       let updatedUser = Object.assign(this.user1, updatedInfo)
+   this.$store.dispatch('updateUser', updatedUser)
+  },
+  },
+
+
+  
+  data(){
+    return{
+      user1:'',
+		value:{
+			firstName: this.getInfo('firstName'),
+			lastName: this.getInfo('lastName'),
+			email: this.getInfo('email'),
+			phoneNumber: this.getInfo('phoneNumber'),
+			city: this.getInfo('city'),
+			address: this.getInfo('address'),
+		}
+    }
+	},
+
+	computed: {
+  user() {
+  return this.$store.state.user
+  },
   },
 
   async beforeRouteEnter(to, from, next) {
@@ -49,15 +93,12 @@ export default {
       next()
     }
   },
+  
 }
+
 </script>
 
 <style scoped>
-img{
-  align-self: flex-end;
-  height: 30px;
-  width: 30px;
-}
 .mypage-container {
   display: flex;
   flex-direction: column;
@@ -76,7 +117,7 @@ img{
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  
+  margin-top: 30px;
   height: 60%;
   text-align: start;
   padding: 30px;
@@ -99,22 +140,6 @@ img{
   height: 60%;
 }
 
-label {
-  align-self: flex-end;
-  cursor: pointer;
-  background: rgb(201, 232, 201);
-  border-radius: 5px;
-  border: 1px solid black;
-  padding: 0.3rem 0.7rem;
-  cursor: pointer;
-  text-align: center;
-}
-
-label:hover {
-  background: #c4eafd;
-  cursor: pointer;
-}
-
 @media screen and (max-width: 850px) {
   .info {
     width: 500px;
@@ -131,8 +156,6 @@ label:hover {
     font-size: 15px;
   }
 }
-
-
 @media screen and (max-width: 400px) {
   .sidebar1 {
     max-width: 40rem;

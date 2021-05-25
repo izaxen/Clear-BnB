@@ -1,5 +1,4 @@
 <template>
-  <div class="height">
     <div class="shell">
       <div class="sidebar"><SideBar /></div>
       <div class="header"><h1>Add rental object</h1></div>
@@ -7,7 +6,7 @@
         <div class="row1">
           <div class="objectform border-radius">
             <div class="calendar">
-              <Calendar @dates="inAndOutDate"><template v-slot:start>Available From</template><template v-slot:end>Available To</template> </Calendar>
+              <Calendar :addHouse="true" @dates="inAndOutDate"><template v-slot:start>Available From</template><template v-slot:end>Available To</template> </Calendar>
             </div>
             <AddRentalObjectForm
               @fetchObject="houseForm"
@@ -15,15 +14,12 @@
           </div>
 
           <div class="add-images border-radius">
-            <h3>Add 6 pictures</h3>
             <AddImageForm @formData="LoadFormData" />
           </div>
         </div>
 
         <div class="row2">
-          <div class="amenities">
-            <AddHouseAmenities @amenitieslist="amenitiesList" />
-          </div>
+          <AddHouseAmenities @amenitieslist="amenitiesList" />
         </div>
       </div>
 
@@ -38,9 +34,8 @@
           >Add rental object</label
         >
       </div>
+      <AddRentalObjectConfirmation @close="pushUrl" />
     </div>
-    <AddRentalObjectConfirmation @close="pushUrl" />
-  </div>
 </template>
 
 <script>
@@ -68,7 +63,7 @@ export default {
       fromDate: '',
       toDate: '',
       user: null,
-      formData: '',
+      formData: [],
       clearList: {},
       rentalObjects: '',
       validateList: '',
@@ -133,12 +128,13 @@ export default {
 
   computed: {
     checkRentalForm() {
+      let pictures = this.$store.state.uploadedImages
       if (
         this.rentalForm == '' ||
         this.amenitiesList == undefined ||
         this.fromDate == '' ||
         this.toDate == '' ||
-        this.formData == ''
+        pictures.length < 3
       ) {
         return true
       }
@@ -154,12 +150,22 @@ export default {
 </script>
 
 <style scoped>
+.addhouse {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+  "row1"
+  "row2"
+  "row3";
+  padding: 10px;
+}
+h3 {
+  font-weight: 700;
+  font-size: 25px;
+}
 .border-radius{
   border-radius: 5px;
-}
-
-.height{
-  height: 100%;
 }
 .header {
   text-align: center;
@@ -167,6 +173,7 @@ export default {
 
 .add-images {
   grid-area: rhTop;
+  padding: 10px;
 }
 
 .shell {
@@ -180,25 +187,26 @@ export default {
 
 .sidebar {
   max-width: 65rem;
-  margin: auto;
   padding: 1px;
-  height: 10%;
 }
 
 .row1 {
   grid-area: top;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 1.5fr;
   grid-template-areas: 'lhTop rhTop';
   justify-self: center;
   grid-gap: 15px;
-  margin: 15px;
+  margin-bottom: 10px;
   min-height: 315px;
+  width: 100%;
+  grid-area: row1;
 }
 
 .row2 {
   grid-area: mid;
   display: flex;
+  grid-area: row2;
 }
 
 .row3 {
@@ -206,6 +214,7 @@ export default {
   margin: 0 15px 35px 15px;
   display: flex;
   justify-content: center;
+  grid-area: row3;
 }
 
 .objectform {
@@ -224,15 +233,8 @@ export default {
 }
 
 .calendar {
-  scale: 100%;
   align-self: center;
-  margin-left: -1px;
-  margin-top: 8px;
-}
-
-.amenties {
-  grid-area: bottom;
-  width: 100%;
+  font-size: 20px;
 }
 
 h3 {
@@ -259,37 +261,34 @@ label:hover {
 }
 
 h1 {
-  margin: 15px;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 #add-rental-disable {
   opacity: 0.3;
 }
-
-@media only screen and (max-width: 575px) {
-  .addhouse {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: 0;
-    justify-content: center;
+.chosen-date-box{
+  border: 1px solid grey;
+}
+@media only screen and (max-width: 860px) {
+  .row1{
+    grid-template-columns: auto;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: 
+    "lhTop" 
+    "rhTop";
   }
-
-  .objectform {
-    width: 100%;
-    justify-items: center;
+}
+@media only screen and (max-width: 380px) {
+  .calendar {
+    transform: scale(0.95);
   }
-
-  .row1 {
-    grid-area: top;
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      'lhTop'
-      'rhTop';
-  }
-
   .add-images {
-    justify-self: left;
+    height: fit-content;
+  }
+  .addhouse {
+    padding: 5px;
   }
 }
 </style>

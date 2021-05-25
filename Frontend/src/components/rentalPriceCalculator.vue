@@ -110,6 +110,7 @@ export default {
   padding: 10px;
   border-radius: 7px;
   border: 1px solid black;
+  position: relative;
 }
 .link {
   display: flex;
@@ -189,6 +190,8 @@ button:hover {
   display: none;
   opacity: 0;
   transition: opacity 300ms;
+  position: absolute;
+  width: 100%;
 }
 
 .type {
@@ -223,7 +226,7 @@ div {
   z-index: 100;
   display: flex;
   flex-direction: column;
-  width: 16.2rem;
+  width: 101%;
   background: white;
   border: 1px solid black;
   border-radius: 7px;
@@ -259,20 +262,15 @@ div {
   .container{
     width: 280px;
   }
-  .active{
-    width: 280px;
-  }
 }
 
 @media screen and (max-width: 330px) {
-    .container{
-    width: 250px;
+  .container{
+    width: 100%;
   }
    .num-guest-text {
     font-size: 1.2rem;
   }
-  .active{
-    width: 250px;
-  }
+
 }
 </style>
