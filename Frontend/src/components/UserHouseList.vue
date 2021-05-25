@@ -15,7 +15,7 @@ export default {
   },
 
   async created() {
-    await this.$store.dispatch('fetchUserObjects', this.$store.state.user)
+    await this.$store.dispatch('fetchUserObjects', this.$store.state.user.id)
   },
 
   computed: {
