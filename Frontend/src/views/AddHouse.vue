@@ -19,9 +19,7 @@
         </div>
 
         <div class="row2">
-          <div class="amenities">
-            <AddHouseAmenities @amenitieslist="amenitiesList" />
-          </div>
+          <AddHouseAmenities @amenitieslist="amenitiesList" />
         </div>
       </div>
 
@@ -234,13 +232,8 @@ h3 {
 }
 
 .calendar {
-  scale: 100%;
   align-self: center;
   font-size: 20px;
-}
-
-.amenties {
-  width: 100%;
 }
 
 h3 {

@@ -135,7 +135,14 @@ label:hover{
   .rendered-images {
     height: fit-content;
     max-height: 435px;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+@media screen and (max-width: 385px){
+.rendered-images {
+    height: fit-content;
+    max-height: 435px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 }
 </style>

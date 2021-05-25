@@ -22,6 +22,7 @@
         >
           <template v-slot="{ inputValue, inputEvents, isDragging }">
             <div class="date-range">
+              <div class="textt"><span><slot class="text-mobile" name="start"></slot></span></div>
               <div
                 class="single-date-box"
                 :class="
@@ -63,6 +64,7 @@
                   />
                 </svg>
               </span>
+              <div class="textt"><span><slot class="text-mobile" name="end"></slot></span></div>
               <div
                 class="single-date-box text-black-500"
                 :class="
@@ -238,6 +240,9 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
 </script>
 
 <style scoped>
+.textt {
+  display: none;
+}
 
 .calendar {
   /* font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif; */
@@ -349,6 +354,22 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
 
 .bg{
   background: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 380px) {
+  .text {
+    display: none;
+  }
+  .textt {
+    display: inline;
+  }
+
+  .date-range {
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+  
 }
 
 </style>

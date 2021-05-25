@@ -5,14 +5,11 @@
         <div class="input-holder">
         <input class="freetext  border-radius" v-model="freeText" type="text" placeholder=" Title..."/>
         <textarea class="description border-radius" v-model="description" type="text" placeholder=" Description..."/>
+        <input class="medium-box  border-radius" v-model="address" required type="text" placeholder=" Address..."/>
+        <input class="medium-box1  border-radius" v-model="city" required type="text" placeholder=" City..."/>
         </div>
-          
-          <div class ="address-row">
-            <input class="medium-box  border-radius" v-model="address" required type="text" placeholder=" Address..."/>
-          </div>
 
         <div class="beds-price">
-          <input class="medium-box1  border-radius" v-model="city" required type="text" placeholder=" City..."/>
           <input class="small-box  border-radius" v-model="zipCode" required type="text" placeholder=" Zip Code..."/>
         <input class="small-box  border-radius" v-model="availableBeds" required type="number" min="1"  max ="25" placeholder=" Beds.."/>
         <input class="small-box border-radius" v-model="price" required type="number" min="400" placeholder=" Price.."/>
@@ -92,6 +89,12 @@ watch:{
 </script>
 
 <style scoped>
+.input-holder{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+  width: 100%;
+}
 
 .border-radius{
   border-radius: 5px;
@@ -100,9 +103,8 @@ watch:{
 }
 
 .rental-info{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
   margin: 10px;
   padding: 10px;
   font-family: 'Times New Roman', Times, serif;
@@ -115,8 +117,8 @@ watch:{
 }
 
 .input-boxes{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   width: 100%;
 }
 
@@ -128,15 +130,6 @@ textarea{
   line-height: 18px;
   width: 100%;
   height: 30px;
-}
-
-.medium-box{
-  width: 100%;
-  line-height: 18px;
-}
-.medium-box1{
-  grid-area: right;
-  line-height: 18px;
 }
 
 .small-box{
