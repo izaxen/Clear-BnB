@@ -41,8 +41,8 @@ public class Main {
         });
         //RentalHouse
         app.get("/rest/rental-objects", (req, res) -> {
-            String hej = req.query("limit");
-            if (hej != null) {
+            String limitQuery = req.query("limit");
+            if (limitQuery != null) {
                 int limit = Integer.parseInt(req.query("limit"));
                 List<RentalObject> rentalObjects = collection("RentalObject").find(op -> {
                     op.limit = limit;
