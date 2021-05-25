@@ -27,9 +27,7 @@
             >
               <div
                 class="single-date-box"
-                :class="
-                  booking ? 'smaller-width font-smaller-thicker border' : ''
-                "
+                :class="booking ? 'smaller-width font-smaller-thicker' : ''"
               >
                 <svg
                   class="calendar-logo"
