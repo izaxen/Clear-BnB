@@ -11,7 +11,7 @@
     <template v-slot:beds-count-two>{{receipt.numChild}}
     </template>
     <template v-slot:price>
-      {{receipt.totalPrice}}
+      {{Math.ceil(receipt.totalPrice * 1.15)}}
     </template>
   </ConfirmationModal>
 </template>
