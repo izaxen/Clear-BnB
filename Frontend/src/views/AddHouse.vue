@@ -287,5 +287,8 @@ h1 {
   .add-images {
     height: fit-content;
   }
+  .addhouse {
+    padding: 5px;
+  }
 }
 </style>

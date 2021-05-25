@@ -121,8 +121,8 @@ h3{
 
 .amenities {
   display: flex;
-  max-width: 180px;
-  margin-left: 15px;
+  max-width: 220px;
+  margin-left: 25px;
 }
 
 @media only screen and (max-width: 575px) {
