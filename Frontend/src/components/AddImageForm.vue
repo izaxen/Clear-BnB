@@ -6,7 +6,7 @@
       <label @click="deleteImages" class="img-btn">Delete images</label>
     </div>
     
-    <div v-show="folderSize < 6">
+    <div>
       <div class="upload-button">
       <label for="file-input" id="upload-button" class="img-btn">Browse files</label>
       <input @change="addPictures" id="file-input" type="file" name="files" multiple>
@@ -15,7 +15,7 @@
     </div>
     </div>
     
-    <div class="rendered-images" v-if="folderSize > 0">
+    <div class="rendered-images">
       <div v-for="(file, i) of imageFolder" :key="file.name" class="image">
       <img :src="url[i]" alt="">
       </div>
@@ -35,9 +35,6 @@ export default {
     }
   },
   computed:{
-    folderSize: function(){
-      return this.$store.state.uploadedImages.length
-    },
     imageFolder: function(){
       return this.$store.state.uploadedImages
     } 
@@ -52,14 +49,14 @@ methods:{
   formData.append('files', file, file.name);
   this.url.push(URL.createObjectURL(file))
   }
-this.$emit('formData', formData)
-this.$store.commit('addUploadedImages', this.files) 
+  this.$emit('formData', formData)
+  this.$store.commit('addUploadedImages', this.files) 
 },
 
 deleteImages(){
   this.$store.commit('removeUploadedImages')
   this.url = []
-  }
+    }
   }
 }
 </script>
