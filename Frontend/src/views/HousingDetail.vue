@@ -403,14 +403,37 @@ img {
     width: 320px;
   }
 }
-@media screen and (max-width: 400px){
+@media screen and (max-width: 380px){
   .bookingForm .container {
     height: fit-content;
-    width: 300px;
+    width: 260px;
   }
 
   .hero-amenity .container {
     padding: 0;
+  }
+  li:nth-child(3){
+    display: none;
+  }
+}
+@media screen and (max-width: 300px){
+  .bookingForm .container {
+    height: fit-content;
+    width: 190px;
+  }
+
+  .hero-amenity .container {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 281px){
+  .seller-info {
+    font-size: 20px;
+    justify-content: center;
+    align-content: center;
+  }
+  li{
+    margin: 0;
   }
 }
 </style>

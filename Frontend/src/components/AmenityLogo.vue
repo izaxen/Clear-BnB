@@ -113,7 +113,7 @@ img {
 .am-display {
   width: 180px;
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-size: 20px;
 }
 @media screen and (max-width: 850px) {
@@ -125,7 +125,12 @@ img {
 @media screen and (max-width: 590px) {
   .am-display {
     width: 100px;
-    
+  } 
+}
+@media screen and (max-width: 290px) {
+  .am-display {
+    display: flex;
+    flex-direction: column;
   } 
 }
 </style>

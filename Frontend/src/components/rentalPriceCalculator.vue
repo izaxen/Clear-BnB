@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="link" @click="isActive = !isActive">
-        <div class="num-guest-text">Number of guests {{ totalCount }}</div>
+        <div class="num-guest-text">Guests {{ totalCount }}</div>
       </div>
       <div class="expandable" :class="{ active: isActive }">
       <div class="guest-counter">
@@ -40,7 +40,7 @@
       <div>
         {{
           sum == 0 || isNaN(sum)
-            ? 'Select all fields'
+            ? ''
             : `${Math.round(sum * 1.15)} kr`
         }}
       </div>

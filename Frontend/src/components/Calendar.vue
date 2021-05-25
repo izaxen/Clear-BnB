@@ -257,9 +257,7 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
   border: 1px solid black;
   height: 2rem;
 }
-.box-bg {
-  padding: 0 10px;
-}
+
 .select-date {
   text-align: left;
   font-size: 0.875rem;
@@ -272,6 +270,7 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
   flex-direction: row;
   justify-content: flex-start;
   align-self: flex-end;
+  width: 100%;
 }
 .solid-border {
   font-size: 1.1rem;
@@ -352,7 +351,7 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
   background: rgb(255, 255, 255);
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 400px) {
   .text {
     display: none;
   }
@@ -363,6 +362,9 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
     flex-direction: column;
     align-content: center;
     align-items: center;
+  }
+  .single-date-box {
+    width: 130px;
   }
 }
 </style>

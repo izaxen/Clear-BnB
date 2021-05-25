@@ -98,14 +98,7 @@ export default {
   width: 100%;
   
 }
-.box-amenities {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+
 h3{
   font-size: 25px;
   margin: 0;
@@ -118,9 +111,11 @@ h3{
 }
 
 .amenities {
-  display: flex;
-  float: left;
-  width: 180px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  justify-content: center;
+  align-content: center;
+  max-width: 180px;
   margin-bottom: 15px;
   margin-left: 15px;
 }

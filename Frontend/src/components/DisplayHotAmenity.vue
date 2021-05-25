@@ -93,7 +93,6 @@ img {
   .card {
     margin: 20px;
   }
-  
 }
 
 @media screen and (max-width: 600px) {
@@ -104,7 +103,6 @@ img {
     "box1 box2";
     font-size: 15px;
   }
-
   .box1 {
     grid-area: box1;
   }
@@ -130,7 +128,6 @@ img {
     justify-self: center;
     align-self: center;
   }
-
   .box1 {
     display: grid;
     width: 160px;
@@ -148,6 +145,28 @@ img {
   }
   .box2 {
     width: 120px;
+  }
+}
+@media screen and (max-width: 285px){
+  .card {
+    margin: 3px;
+    text-align: center;
+  }
+  .am-text {
+    margin: auto;
+  }
+  .bookingForm .container {
+    height: fit-content;
+    width: 140px;
+  }
+
+  .hero-amenity .container {
+    padding: 0;
+  }
+  .container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
   }
 }
 </style>

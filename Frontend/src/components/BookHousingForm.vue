@@ -126,8 +126,7 @@ export default {
 
 <style scoped>
 .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   background-color: rgba(255, 255, 255, 0.717);
   padding: 10px;
   width: 350px;
