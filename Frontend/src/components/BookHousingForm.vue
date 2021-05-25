@@ -143,19 +143,6 @@ export default {
   font-size: 20px;
 }
 
-@media screen and (max-width: 600px) {
-  .container {
-    align-self: center;
-    width: 300px;
-  }
-}
-@media screen and (max-width: 450px) {
-  .container {
-    min-width: 300px;
-    min-height: 300px;
-  }
-}
-
 button {
   display: flex;
   background: white;
@@ -174,12 +161,37 @@ button {
   font-weight: 600;
 }
 
+button:hover{
+  background-color: rgb(219, 240, 219);
+}
+
 button:disabled {
   background: rgb(166, 166, 166);
+  opacity: 0.2;
   cursor: not-allowed;
 }
 
-button:hover{
-  background-color: rgb(219, 240, 219);
+button:disabled:hover {
+  background: rgb(166, 166, 166);
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    align-self: center;
+    width: 300px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .container {
+    min-width: 300px;
+    min-height: 300px;
+  }
+}
+
+@media screen and (max-width: 330px){
+  
+  .container{
+    transform: scale(0.85);
+  }
 }
 </style>

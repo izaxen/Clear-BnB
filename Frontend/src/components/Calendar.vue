@@ -354,4 +354,10 @@ export default {
     padding-right: 0;
   }
 }
+
+@media screen and (max-width: 330px){
+    .calendar {
+    max-width: 270px;
+  }
+}
 </style>
