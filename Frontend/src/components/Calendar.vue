@@ -8,7 +8,7 @@
         </div>
         <DatePicker
           color="green"
-          :columns="size < 800 ? 1:2"
+          :columns="size < 800 ? 1 : 2"
           v-if="range.end != null"
           v-model="range"
           mode="date"
@@ -21,12 +21,15 @@
           :disabled-dates="disabledDates"
         >
           <template v-slot="{ inputValue, inputEvents, isDragging }">
-            <div class="date-range">
-              <div class="textt"><span><slot class="text-mobile" name="start"></slot></span></div>
+            <div
+              class="date-range"
+              :class="booking ? 'solid-border white' : ''"
+            >
               <div
                 class="single-date-box"
                 :class="
-                booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
+                  booking ? 'smaller-width font-smaller-thicker border' : ''
+                "
               >
                 <svg
                   class="calendar-logo"
@@ -45,16 +48,19 @@
                   class="chosen-date-box border-radius"
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
-                    booking ? 'booking' : '',
+                    booking ? 'booking change-width' : '',
                     addHouse ? 'border bg' : '',
                     searchBar ? 'border1' : '',
-                    searchModal ? 'bg':'',
+                    searchModal ? 'bg' : '',
                   ]"
                   :value="inputValue.start"
                   v-on="inputEvents.start"
                 />
               </div>
-              <span class="divider-arrow-box">
+              <span
+                class="divider-arrow-box"
+                :class="booking ? 'display-none' : ''"
+              >
                 <svg class="divider-arrow" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
@@ -64,11 +70,14 @@
                   />
                 </svg>
               </span>
-              <div class="textt"><span><slot class="text-mobile" name="end"></slot></span></div>
+              <div class="textt">
+                <span><slot class="text-mobile" name="end"></slot></span>
+              </div>
               <div
                 class="single-date-box text-black-500"
                 :class="
-                booking ? 'smaller-width solid-border font-smaller-thicker' : ''"
+                  booking ? 'smaller-width font-smaller-thicker margin' : ''
+                "
               >
                 <svg
                   class="calendar-logo"
@@ -85,12 +94,12 @@
                 </svg>
                 <input
                   class="chosen-date-box co border-radius"
-                    :class="[
+                  :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
-                    booking ? 'booking' : '',
                     addHouse ? 'border bg' : '',
                     searchBar ? 'border1' : '',
-                    searchModal ? 'bg' :'',
+                    searchModal ? 'bg' : '',
+                    booking ? 'booking change-width' : '',
                   ]"
                   :value="inputValue.end"
                   v-on="inputEvents.end"
@@ -113,46 +122,45 @@ export default {
     DatePicker,
   },
 
-props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
+  props: ['textOne', 'searchBar', 'booking', 'addHouse', 'searchModal'],
 
   unmounted() {
-  window.removeEventListener("resize", this.myEventHandler);
-},
-
-  
+    window.removeEventListener('resize', this.myEventHandler)
+  },
 
   data() {
     return {
       receipts: null,
       rentalObject: '',
       range: {
-        start: new Date().setHours(0,0,0,0),
+        start: new Date().setHours(0, 0, 0, 0),
         end: null,
       },
       masks: {
         input: 'YYYY-MM-DD',
       },
       disabledDates: [],
-      size:window.innerWidth,
+      size: window.innerWidth,
     }
-
   },
 
   watch: {
     range: function () {
-      this.$store.commit('setChosenDates', [this.range.start.valueOf(), this.range.end.valueOf()])
+      this.$store.commit('setChosenDates', [
+        this.range.start.valueOf(),
+        this.range.end.valueOf(),
+      ])
       this.$emit('dates', this.range.start, this.range.end)
       this.$emit('days-selected', this.findSelectedDays().length - 1)
       this.$emit('dateArray', this.findAllNights())
     },
-    },
-  
-  methods: {
+  },
 
-    myEventHandler(e){
-    this.size= window.innerWidth
+  methods: {
+    myEventHandler(e) {
+      this.size = window.innerWidth
     },
-    
+
     findAllNights() {
       let allDates = this.findSelectedDays()
       allDates.pop()
@@ -220,12 +228,14 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
     this.rentalObject = this.$store.state.rentalObject
     if (this.rentalObject != undefined) {
       this.range.start =
-        this.rentalObject.availableFrom.valueOf() > new Date().setHours(0,0,0,0).valueOf()
+        this.rentalObject.availableFrom.valueOf() >
+        new Date().setHours(0, 0, 0, 0).valueOf()
           ? this.rentalObject.availableFrom
-          : new Date().setHours(0,0,0,0)
+          : new Date().setHours(0, 0, 0, 0)
       this.rentalObject.availableFrom =
-        this.rentalObject.availableFrom.valueOf() < new Date().setHours(0,0,0,0).valueOf()
-          ? new Date().setHours(0,0,0,0)
+        this.rentalObject.availableFrom.valueOf() <
+        new Date().setHours(0, 0, 0, 0).valueOf()
+          ? new Date().setHours(0, 0, 0, 0)
           : this.rentalObject.availableFrom
     }
     if (this.rentalObject != undefined) {
@@ -233,26 +243,38 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
     }
     this.range.end = this.addDays(this.range.start, 2)
 
-    window.addEventListener("resize", this.myEventHandler)
-    
+    window.addEventListener('resize', this.myEventHandler)
   },
 }
 </script>
 
 <style scoped>
-.textt {
-  display: none;
+.white {
+  background-color: white;
+  padding: 10px;
+}
+
+.border {
+  border-right: 1px solid black;
 }
 
 .calendar {
+  /* font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif; */
   display: flex;
   width: 100%;
   flex-direction: column;
   justify-content: center;
 }
 
+.change-width {
+  width: 8rem !important;
+}
+
+.display-none {
+  display: none !important;
+}
+
 .booking {
-  background: rgb(201, 232, 201) !important;
   border-radius: 7px;
   border: 1px solid black;
   height: 2rem;
@@ -268,9 +290,9 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
 .date-range {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-self: flex-end;
-  width: 100%;
+  min-width: 100%;
 }
 .solid-border {
   font-size: 1.1rem;
@@ -283,9 +305,6 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
   position: relative;
   flex-grow: 1;
   width: 8.5rem;
-}
-.smaller-width {
-  width: 7rem;
 }
 
 .calendar-logo {
@@ -308,9 +327,8 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
   background-color: inherit;
 }
 
-.border{
+.border {
   border: solid 1px grey;
-
 }
 .divider-arrow-box {
   margin: 0.5rem;
@@ -346,25 +364,25 @@ props: ['textOne', 'searchBar', 'booking', 'addHouse','searchModal'],
   color: black, var(--text-opacity);
   font-weight: 500;
 }
-
-.bg{
-  background: rgb(255, 255, 255);
+@media screen and (max-width: 450px) {
+  .calendar {
+    width: 300px;
+  }
 }
 
 @media screen and (max-width: 400px) {
-  .text {
-    display: none;
-  }
-  .textt {
-    display: inline;
+  .calendar {
+    width: 300px;
   }
   .date-range {
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
+    padding-left: 0;
+    padding-right: 0;
   }
-  .single-date-box {
-    width: 130px;
+}
+
+@media screen and (max-width: 330px) {
+  .calendar {
+    max-width: 270px;
   }
 }
 </style>

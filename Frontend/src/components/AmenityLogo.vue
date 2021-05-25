@@ -122,6 +122,11 @@ img {
     font-size: 15px;
   }
 }
+@media screen and (max-width: 700px){
+  .am-display {
+    width: 110px;
+  }
+}
 @media screen and (max-width: 590px) {
   .am-display {
     width: 100px;

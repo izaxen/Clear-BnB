@@ -1,32 +1,32 @@
 <template>
-  <div>
+  <div class="center">
     <div class="container">
       <div class="link" @click="isActive = !isActive">
-        <div class="num-guest-text">Guests {{ totalCount }}</div>
+        <p class="num-guest-text">Guests:</p>
+        <p class="num-guest-text">{{ totalCount }}</p>
       </div>
-    </div>
-
-    <div class="expandable" :class="{ active: isActive }">
+      <div class="expandable" :class="{ active: isActive }">
       <div class="guest-counter">
-        <div class="type">Adult:</div>
-        <div>{{ adultCount }}</div>
+        <div class="type">Adults</div>
         <div class="buttons">
-          <button @click="adultCount++, totalCount++">+</button>
           <button @click="subtractAdult">-</button>
+          <div class="count">{{ adultCount }}</div>
+          <button @click="adultCount++, totalCount++">+</button>
         </div>
       </div>
       <div class="guest-counter">
-        <div class="type">Children:</div>
-        <div>{{ childrenCount }}</div>
+        <div class="type">Children</div>
         <div class="buttons">
-          <button @click="childrenCount++, totalCount++">+</button>
           <button @click="subtractChildren">-</button>
+          <div class="count">{{ childrenCount }}</div>
+          <button @click="childrenCount++, totalCount++">+</button>
         </div>
       </div>
       <div class="close">
-        <span>Close</span>
-        <button @click="isActive = !isActive">X</button>
+        
+        <button class="exit" @click="isActive = !isActive">Close</button>
       </div>
+    </div>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
     <div class="group">
       <div>Service fee:</div>
       <div>
-        {{ sum == 0 || isNaN(sum) ? '' : `${Math.round(sum * 0.15)} kr` }}
+        {{ sum == 0 || isNaN(sum) ? '15%' : `${Math.round(sum * 0.15)} $` }}
       </div>
     </div>
     <div class="group">
@@ -42,8 +42,8 @@
       <div>
         {{
           sum == 0 || isNaN(sum)
-            ? ''
-            : `${Math.round(sum * 1.15)} kr`
+            ? 'Select all fields'
+            : `${Math.round(sum * 1.15)} $`
         }}
       </div>
     </div>
@@ -95,27 +95,42 @@ export default {
 </script>
 
 <style scoped>
+.center{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 .container {
+  display: flex;
   font-size: 1.3rem;
+  margin-top: 10px;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  width:calc(100% - 20px);
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid black;
 }
 .link {
-  margin: 0 0.5rem 0 0.5rem;
-
-  display: block;
-  height: 2rem;
-  border-radius: 1px;
-  position: relative;
   display: flex;
+  width: 100%;
+  height: 2rem;
+  position: relative;
   align-items: center;
-  border: 1px solid black;
   border-radius: 5px;
-  background: rgb(201, 232, 201);
+  justify-content: space-between;
 }
 .close {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: 1rem 0 1rem 1rem;
+  margin: 1rem 0 -0.2rem;
+}
+
+.count{
+  display: flex;
+  justify-content: center;
+  width: 2rem;
 }
 
 .link:hover {
@@ -124,11 +139,18 @@ export default {
 }
 
 .num-guest-text {
-  margin-left: 1rem;
+  margin: 0 0.5rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .sum {
-  margin: 0 0.5rem;
+  margin: 0.5rem 0.5rem;
+  width: 93%;
+  margin: 0.7rem;
+  background: rgba(226, 226, 226, 0.555);
+  
+  padding: 0.3rem;
 }
 
 .sum > div {
@@ -137,15 +159,30 @@ export default {
   justify-content: space-between;
 }
 
-button {
-  width: 30px;
-  height: 20px;
-  border-radius: 6px;
-  border: 1px solid #005b96;
+.buttons{
+  display: flex;
+  flex-direction: row;
+  margin-right: 0.3rem;
+  align-items: flex-end;
 }
 
-button:hoover {
+button {
+  display: flex;
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 70px;
+  background-color: rgb(219, 240, 219);
+  border: 1px solid rgb(219, 240, 219);
+  box-shadow: gray 0.6px 1px 1px 0.6px;
+}
+
+button:hover {
   cursor: pointer;
+  background-color: rgb(191, 204, 191);
+  border: 1px solid rgb(206, 204, 204);
 }
 
 .expandable {
@@ -155,8 +192,10 @@ button:hoover {
 }
 
 .type {
-  width: 14px;
+  margin: 0.5rem 0 0 0.5rem;
+  width: 5rem;
   font-size: 1.1rem;
+  font-weight: 600;
 }
 
 div {
@@ -164,7 +203,9 @@ div {
 }
 
 .guest-counter {
-  margin-bottom: 5px;
+  margin-bottom: 0.7rem;
+  height: 2rem;
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -182,31 +223,56 @@ div {
   z-index: 100;
   display: flex;
   flex-direction: column;
-  width: 17.5rem;
-  background: rgb(201, 232, 201);
-
-  margin-left: 0.5rem;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  border-radius: 0 0 4px 4px;
+  width: 16.2rem;
+  background: white;
+  border: 1px solid black;
+  border-radius: 7px;
+  /*margin-top: 40px;*/
+  margin-top: -1rem;
 }
 
 .group {
   font-size: 1.3rem;
+  margin: 0.3rem 0;
 }
 
-.close button {
+.exit{
+  background-color: rgb(228, 228, 228);
+  border: 1px solid rgb(228, 228, 228);
+  width: 5rem;
+  padding: 0.7rem 0;
   cursor: pointer;
 }
 
-@media screen and (max-width: 600px) {
-  .link {
-    width: 50%;
-  }
+.exit:hover{
+   background-color: rgb(201, 200, 200);
+}
 
+
+@media screen and (max-width: 600px) {
   .num-guest-text {
-    font-size: 0.9rem;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 450px){
+  .container{
+    width: 280px;
+  }
+  .active{
+    width: 280px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+    .container{
+    width: 250px;
+  }
+   .num-guest-text {
+    font-size: 1.2rem;
+  }
+  .active{
+    width: 250px;
   }
 }
 </style>
