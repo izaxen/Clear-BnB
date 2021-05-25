@@ -68,9 +68,6 @@
                   />
                 </svg>
               </span>
-              <div class="textt">
-                <span><slot class="text-mobile" name="end"></slot></span>
-              </div>
               <div
                 class="single-date-box text-black-500"
                 :class="
