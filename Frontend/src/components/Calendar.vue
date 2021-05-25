@@ -23,11 +23,11 @@
           <template v-slot="{ inputValue, inputEvents, isDragging }">
             <div
               class="date-range"
-              :class="booking ? 'solid-border white' : ''"
+              :class="[booking ? 'solid-border white' : '', addHouse || size < 400? 'height32 padding10' : '']"
             >
               <div
                 class="single-date-box"
-                :class="booking ? 'smaller-width font-smaller-thicker border-right' : ''"
+                :class="[booking || addHouse || size < 400 ? 'smaller-width font-smaller-thicker border-right' : '']"
               >
                 <svg
                   class="calendar-logo"
@@ -47,7 +47,8 @@
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking change-width' : '',
-                    addHouse ? 'border bg' : '',
+                    size < 400 ? 'booking' : '', 
+                    addHouse ? 'bg' : '',
                     searchBar ? 'border1' : '',
                     searchModal ? 'bg' : '',
                   ]"
@@ -57,7 +58,7 @@
               </div>
               <span
                 class="divider-arrow-box"
-                :class="booking ? 'display-none' : ''"
+                :class="booking || addHouse || size < 400 ? 'display-none' : ''"
               >
                 <svg class="divider-arrow" viewBox="0 0 24 24">
                   <path
@@ -71,7 +72,7 @@
               <div
                 class="single-date-box text-black-500"
                 :class="
-                  booking ? 'smaller-width font-smaller-thicker margin' : ''
+                  booking || size < 400 ? 'smaller-width font-smaller-thicker margin' : ''
                 "
               >
                 <svg
@@ -91,7 +92,7 @@
                   class="chosen-date-box co border-radius"
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
-                    addHouse ? 'border bg' : '',
+                    addHouse ? 'bg' : '',
                     searchBar ? 'border1' : '',
                     searchModal ? 'bg' : '',
                     booking ? 'booking change-width' : '',
@@ -253,6 +254,14 @@ export default {
   border-right: 1px solid black;
 }
 
+.height32{
+  height: 32px;
+}
+
+.border-none{
+  border: none;
+}
+
 .calendar {
   /* font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif; */
   display: flex;
@@ -271,7 +280,7 @@ export default {
 
 .booking {
   border-radius: 7px;
-  border: 1px solid black;
+  
   height: 2rem;
 }
 
@@ -320,6 +329,10 @@ export default {
   font-family: inherit;
   font-size: 100%;
   background-color: inherit;
+}
+
+.padding10{
+  padding: 10px;
 }
 
 .border {
