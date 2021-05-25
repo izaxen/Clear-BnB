@@ -27,7 +27,10 @@
             >
               <div
                 class="single-date-box"
-                :class="[booking ? 'smaller-width font-smaller-thicker border-right' : '', addHouse ? 'border' : '']"
+                :class="[
+                booking ? 'smaller-width font-smaller-thicker border-right' : '', 
+                addHouse ? 'border  border-radius' : '',
+                searchBar ? 'nav-width': '']"
               >
                 <svg
                   class="calendar-logo"
@@ -71,10 +74,11 @@
               </span>
               <div
                 class="single-date-box text-black-500"
-                :class="
-                  booking || size < 430 ? 'smaller-width font-smaller-thicker margin' : '',
-                  addHouse && !size < 430? 'border' : ''
-                "
+                :class="[
+                  booking ? 'smaller-width font-smaller-thicker margin' : '',
+                  addHouse? 'border  border-radius' : '',
+                  searchBar ? 'nav-width': ''
+                ]"
               >
                 <svg
                   class="calendar-logo"
@@ -381,6 +385,10 @@ export default {
   }
 .bg {
   background: rgb(255, 255, 255);
+}
+
+.nav-width{
+  width: 8.5rem;
 }
   
 
