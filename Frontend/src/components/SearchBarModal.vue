@@ -22,7 +22,7 @@
           />
         </div>
 
-        <div class="choose-guest border-radius">
+        <div class="choose-guest border-radius border">
           <div class="person-div">
             <p>{{ guests }} {{ guestText }}</p>
             <div class="plus-add-btn border-radius">
@@ -288,5 +288,9 @@ option {
   padding: 3px;
   text-align: center;
 
+}
+
+.border {
+  border: solid 1px grey;
 }
 </style>
