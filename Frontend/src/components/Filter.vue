@@ -360,6 +360,9 @@ input[type='range']::-moz-range-thumb {
   }
 }
 
+@media screen and (max-width: 840px) {
+}
+
 @media screen and (max-width: 600px) {
   .price-box {
     flex-direction: column;
@@ -391,11 +394,6 @@ input[type='range']::-moz-range-thumb {
   .wrapper {
     justify-content: center;
     padding: 0;
-  }
-}
-@media screen and (max-width: 440) {
-  .calendar {
-    min-height: 62px;
   }
 }
 </style>
