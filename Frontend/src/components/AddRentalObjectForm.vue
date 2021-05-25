@@ -106,15 +106,12 @@ watch:{
   margin: 10px;
   padding: 10px;
   font-family: 'Times New Roman', Times, serif;
-  font-size: 13px;
+  font-size: 18px;
 }
-
-
 
 .beds-price{
   display: flex;
   flex-direction: row;
-  
 }
 
 .input-boxes{
@@ -125,12 +122,12 @@ watch:{
 
 textarea{
   width: 100%;
-  resize: none;
 }
 
 .freetext{
-line-height: 18px;
-width: 100%;
+  line-height: 18px;
+  width: 100%;
+  height: 30px;
 }
 
 .medium-box{
@@ -144,8 +141,8 @@ width: 100%;
 
 .small-box{
   line-height: 18px;
-  width: 60px;
-  margin-left:5px;
+  width: 80px;
+  margin-left: 5px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -160,6 +157,7 @@ input[type=number] {
 
 .description{
   line-height: 20px;
+  height: 160px;
 }
 
 @media only screen and (max-width: 575px){
@@ -167,7 +165,15 @@ input[type=number] {
   justify-content: center;
   align-items: center;
   margin: -3px;
+  }
 }
-
-} 
+@media only screen and (max-width: 525px){
+  .beds-price {
+    display: flex;
+    flex-direction: column;
+  }
+  .small-box {
+    width: 100px;
+  }
+}
 </style>

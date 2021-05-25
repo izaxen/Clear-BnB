@@ -63,7 +63,6 @@ export default {
         freeParking: true, //
         selfCheckIn: true, //
         airCondition: true, //
-        hairDryer: true, //
         dishwasher: true, //
         pool: true, //
         bathtub: true, //
@@ -94,13 +93,15 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 15px 15px 15px;
+  margin-bottom: 15px;
   background-color: rgb(245, 245, 245);
   border: 1px solid gray;
+  width: 100%;
   
 }
 .box-amenities {
   margin-top: 30px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -121,7 +122,7 @@ h3 {
 .amenities {
   display: flex;
   float: left;
-  width: 200px;
+  width: 180px;
   margin-bottom: 15px;
   margin-left: 15px;
 }

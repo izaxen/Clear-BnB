@@ -101,7 +101,7 @@ export default {
 .flex-holder {
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 15px;
   height: 30px;
 }
 img {
