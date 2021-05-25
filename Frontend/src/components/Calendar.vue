@@ -50,7 +50,7 @@
                     size < 400 ? 'booking' : '', 
                     addHouse ? 'bg' : '',
                     searchBar ? 'border1' : '',
-                    searchModal ? 'bg' : '',
+                    searchModal ? 'bg border' : '',
                   ]"
                   :value="inputValue.start"
                   v-on="inputEvents.start"
@@ -94,7 +94,7 @@
                     isDragging ? 'text-gray-500' : 'text-black-500',
                     addHouse ? 'bg' : '',
                     searchBar ? 'border1' : '',
-                    searchModal ? 'bg' : '',
+                    searchModal ? 'bg border' : '',
                     booking ? 'booking change-width' : '',
                   ]"
                   :value="inputValue.end"
@@ -339,6 +339,7 @@ export default {
   border: solid 1px grey;
 }
 .divider-arrow-box {
+  display: flex;
   margin: 0.5rem;
   flex-shrink: 0;
 }
@@ -347,6 +348,7 @@ export default {
   stroke: currentColor;
   height: 1rem;
   display: block;
+  align-self: center;
 }
 
 .text {
@@ -376,6 +378,10 @@ export default {
   .box-bg{
     padding: 0 10px;
   }
+.bg {
+  background: rgb(255, 255, 255);
+}
+  
 
 @media screen and (max-width: 450px) {
   .calendar {

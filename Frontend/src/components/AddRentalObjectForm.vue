@@ -4,7 +4,7 @@
       <div class="input-boxes">
         <div class="input-holder">
         <input class="freetext  border-radius" v-model="freeText" type="text" placeholder=" Title..."/>
-        <textarea class="description border-radius" v-model="description" type="text" placeholder=" Description..."/>
+        <textarea class="description border-radius" v-model="description" type="text"  placeholder=" Description..."/>
         <input class="medium-box  border-radius" v-model="address" required type="text" placeholder=" Address..."/>
         <input class="medium-box1  border-radius" v-model="city" required type="text" placeholder=" City..."/>
         </div>
@@ -124,6 +124,7 @@ watch:{
 
 textarea{
   width: 100%;
+  resize: none;
 }
 
 .freetext{
