@@ -23,11 +23,11 @@
           <template v-slot="{ inputValue, inputEvents, isDragging }">
             <div
               class="date-range"
-              :class="[booking ? 'solid-border white' : '', addHouse || size < 400? 'height32 padding10' : '']"
+              :class="[booking ? 'solid-border white' : '', addHouse || (size < 430 && !booking)? 'height32 padding10' : '']"
             >
               <div
                 class="single-date-box"
-                :class="[booking || addHouse || size < 400 ? 'smaller-width font-smaller-thicker border-right' : '']"
+                :class="[booking || size < 430 ? 'smaller-width font-smaller-thicker border-right' : '']"
               >
                 <svg
                   class="calendar-logo"
@@ -47,7 +47,7 @@
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
                     booking ? 'booking change-width' : '',
-                    size < 400 ? 'booking' : '', 
+                    size < 430 ? 'booking' : '', 
                     addHouse ? 'bg' : '',
                     searchBar ? 'border1' : '',
                     searchModal ? 'bg border' : '',
@@ -58,7 +58,7 @@
               </div>
               <span
                 class="divider-arrow-box"
-                :class="booking || addHouse || size < 400 ? 'display-none' : ''"
+                :class="booking || size < 430 ? 'display-none' : ''"
               >
                 <svg class="divider-arrow" viewBox="0 0 24 24">
                   <path
@@ -72,7 +72,7 @@
               <div
                 class="single-date-box text-black-500"
                 :class="
-                  booking || size < 400 ? 'smaller-width font-smaller-thicker margin' : ''
+                  booking || size < 430 ? 'smaller-width font-smaller-thicker margin' : ''
                 "
               >
                 <svg
