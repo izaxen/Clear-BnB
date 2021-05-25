@@ -27,7 +27,7 @@
             >
               <div
                 class="single-date-box"
-                :class="[booking || size < 430 ? 'smaller-width font-smaller-thicker border-right' : '']"
+                :class="[booking || size < 430 ? 'smaller-width font-smaller-thicker border-right' : '', addHouse && !size < 430? 'border' : '']"
               >
                 <svg
                   class="calendar-logo"
@@ -72,7 +72,8 @@
               <div
                 class="single-date-box text-black-500"
                 :class="
-                  booking || size < 430 ? 'smaller-width font-smaller-thicker margin' : ''
+                  booking || size < 430 ? 'smaller-width font-smaller-thicker margin' : '',
+                  addHouse && !size < 430? 'border' : ''
                 "
               >
                 <svg
