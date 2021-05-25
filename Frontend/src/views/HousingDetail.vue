@@ -1,7 +1,8 @@
 <template>
-  <div v-if="!fetching" class="wrapper">
+  <div v-if="!fetching" class="details-holder">
+    <div class="wrapper">
     <RentalImages :object="rentalObject" @showPic="openModal"/>
-    <hr class="separator" />
+    <hr class="separator top" />
 
     <div class="seller-info">
       <ul>
@@ -15,7 +16,7 @@
       </div>
     </div>
 
-    <hr class="separator" />
+    <hr class="separator bottom" />
     <div class="hero">
       <div class="hero-text">
         <h2>{{ rentalObject.city }}</h2>
@@ -24,12 +25,13 @@
       <div class="hero-amenity"><DisplayHotAmenity :amenities="amenities" /></div>
       <div class="bookingForm"><BookHousingForm :object="rentalObject" @receipt="saveTempReceipt" /></div>
     </div>
+    <hr class="separator" />
     <div class="disc">
         {{ rentalObject.description }}
       </div>
-
     <hr class="separator" />
-    <div class="hej">
+    
+    <div class="amenity-holder">
       <div class="amenities">
         <AmenityLogo
           v-for="(key, value) in amenities"
@@ -46,6 +48,7 @@
       </div>
       <button class="close" @click="closeModal">X</button>
    </div>
+    </div>
     </div>
   </div>
   <BookingConfirmation :receipt="tempReceipt" />
@@ -141,7 +144,6 @@ export default {
   z-index: 3;
 }
 
-
 .modal {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -160,8 +162,12 @@ export default {
 .disc {
   display: flex;
   align-items: center;
-  margin: 3rem 1rem;
   font-size: 25px;
+  line-height: 140%;
+  margin: 0 -3rem;
+  padding: 1.2rem 4rem;
+  background-color: rgba(245, 245, 245, 0.623);
+  border-radius: 5px;
 }
 
 h2 {
@@ -184,16 +190,25 @@ li {
   margin-right: 2rem;
 }
 .wrapper {
-  margin: auto;
-  padding: 1rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  background-color: rgba(205, 205, 205, 0.9);
+ margin: 0 4rem;
+}
+.details-holder{
+ margin: auto;
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.89);
   max-width: 65rem;
 }
 .separator {
-  width: 100%;
-  height: 1px;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
+  margin: 0 -3rem;
+}
+
+.top{
+  margin-top: 4rem;
+}
+
+.bottom{
+  margin-bottom: 3rem;
 }
 
 .picture-text {
@@ -217,8 +232,9 @@ li {
   font-size: 2rem;
 }
 
-.hej {
+.amenity-holder {
   display: grid;
+  justify-content: center;
 }
 
 .am {
@@ -240,7 +256,7 @@ li {
 }
 .bookingForm{
   display: grid;
-  justify-content: center;
+  justify-content: flex-end;
   grid-area: box3;
   margin-bottom: 20px;
 }
@@ -309,7 +325,8 @@ li {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto auto auto;
-  grid-column-gap: 80px;
+  grid-column-gap: 65px;
+  margin-top: 1rem;
 }
 
 img {
@@ -347,6 +364,12 @@ img {
   }
 }
 @media screen and (max-width: 750px) {
+  .details-holder{
+    width: 100%;
+  }
+  .bookingForm{
+    justify-content: center;
+  }
 
   .avatar {
     display: none;
@@ -375,6 +398,13 @@ img {
   }
 }
 
+@media screen and (max-width: 750px){
+  .container{
+    border: none;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .seller-info {
     justify-content: space-between;
@@ -383,7 +413,6 @@ img {
   }
 
   .disc {
-    margin-bottom: 2rem;
     font-size: 20px;
   }
   .amenities{
@@ -396,7 +425,10 @@ img {
   }
 
 }
-@media screen and (max-width: 450px){
+/*@media screen and (max-width: 450px){
+  .hero{
+    margin: auto;
+  }
   .bookingForm {
     max-width: 450px;
   }
@@ -404,8 +436,19 @@ img {
     height: 250px;
     width: 320px;
   }
-}
-@media screen and (max-width: 400px){
+}*/
+@media screen and (max-width: 450px){
+  .separator{
+    margin: 0 -0.8rem;
+  }
+
+  .top{
+    margin: 0.5rem -0.8rem;
+  }
+  .disc{
+    margin: 0 -1rem;
+  }
+
   .bookingForm .container {
     height: 250px;
     width: 260px;
@@ -413,6 +456,9 @@ img {
 
   .hero-amenity .container {
     padding: 0;
+  }
+  .wrapper{
+    margin: 0 1rem;
   }
 }
 </style>

@@ -21,12 +21,12 @@
           :disabled-dates="disabledDates"
         >
           <template v-slot="{ inputValue, inputEvents, isDragging }">
-            <div class="date-range">
+            <div class="date-range" :class="booking ? 'solid-border white' : ''">
               <div
                 class="single-date-box"
                 :class="
                   booking
-                    ? 'smaller-width solid-border font-smaller-thicker'
+                    ? 'smaller-width font-smaller-thicker border'
                     : ''
                 "
               >
@@ -47,13 +47,13 @@
                   class="chosen-date-box border-radius"
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
-                    booking ? 'booking' : '',
+                    booking ? 'booking change-width' : '',
                   ]"
                   :value="inputValue.start"
                   v-on="inputEvents.start"
                 />
               </div>
-              <span class="divider-arrow-box">
+              <span class="divider-arrow-box" :class="booking? 'display-none' : ''">
                 <svg class="divider-arrow" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
@@ -67,7 +67,7 @@
                 class="single-date-box text-black-500"
                 :class="
                   booking
-                    ? 'smaller-width solid-border font-smaller-thicker'
+                    ? 'smaller-width font-smaller-thicker margin'
                     : ''
                 "
               >
@@ -88,7 +88,7 @@
                   class="chosen-date-box co border-radius"
                   :class="[
                     isDragging ? 'text-gray-500' : 'text-black-500',
-                    booking ? 'booking' : '',
+                    booking ? 'booking change-width' : '',
                   ]"
                   :value="inputValue.end"
                   v-on="inputEvents.end"
@@ -224,21 +224,33 @@ export default {
 </script>
 
 <style scoped>
+.white{
+  background-color: white;
+  padding: 10px;
+}
+
+.border{
+  border-right: 1px solid black;
+}
+
 .calendar {
   /* font-family: 'Yanone Kaffeesatz', 'Lucida Grande', Lucida, Verdana, sans-serif; */
-
   display: flex;
   width: 100%;
   max-width: 21rem;
   flex-direction: column;
   justify-content: center;
-  
-  
+}
+
+.change-width{
+  width: 8rem !important;
+}
+
+.display-none{
+  display: none !important;
 }
 
 .booking {
-  background: rgb(201, 232, 201) !important;
-
   border-radius: 7px;
   border: 1px solid black;
   height: 2rem;
@@ -256,8 +268,9 @@ export default {
 .date-range {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-self: flex-end;
+  min-width: 100%;
 }
 .solid-border {
   font-size: 1.1rem;
@@ -270,9 +283,6 @@ export default {
   position: relative;
   flex-grow: 1;
   width: 8.5rem;
-}
-.smaller-width {
-  width: 7rem;
 }
 
 .calendar-logo {
@@ -330,13 +340,23 @@ export default {
 }
 @media screen and (max-width: 450px){
  .calendar {
-   width: 310px;
+   width: 300px;
  }
 }
 
 @media screen and (max-width: 400px) {
   .calendar {
-    width: 200px;
+    width: 300px;
+  }
+  .date-range{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media screen and (max-width: 330px){
+    .calendar {
+    max-width: 270px;
   }
 }
 </style>
