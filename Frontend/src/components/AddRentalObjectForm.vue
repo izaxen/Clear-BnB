@@ -168,6 +168,7 @@ input[type=number] {
   }
   .small-box {
     width: 100px;
+    margin-left: 0;
   }
 }
 </style>

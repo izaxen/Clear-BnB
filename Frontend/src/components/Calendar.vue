@@ -23,11 +23,11 @@
           <template v-slot="{ inputValue, inputEvents, isDragging }">
             <div
               class="date-range"
-              :class="[booking ? 'solid-border white' : '', addHouse || (size < 430 && !booking)? 'height32 padding10' : '']"
+              :class="[booking ? 'solid-border white' : '']"
             >
               <div
                 class="single-date-box"
-                :class="[booking || size < 430 ? 'smaller-width font-smaller-thicker border-right' : '', addHouse && !size < 430? 'border' : '']"
+                :class="[booking ? 'smaller-width font-smaller-thicker border-right' : '', addHouse ? 'border' : '']"
               >
                 <svg
                   class="calendar-logo"
@@ -58,7 +58,7 @@
               </div>
               <span
                 class="divider-arrow-box"
-                :class="booking || size < 430 ? 'display-none' : ''"
+                :class="booking ? 'display-none' : ''"
               >
                 <svg class="divider-arrow" viewBox="0 0 24 24">
                   <path
@@ -309,7 +309,7 @@ export default {
   align-self: center;
   position: relative;
   flex-grow: 1;
-  width: 8.5rem;
+  max-width: 8.5rem;
 }
 
 .calendar-logo {
@@ -385,27 +385,21 @@ export default {
   
 
 @media screen and (max-width: 450px) {
-  .calendar {
-    width: 300px;
-  }
   .box-bg{
-    padding: 0 10px;
+    padding: 0;
+  }
+}
+@media screen and (max-width: 400px) {
+  .single-date-box {
+    width: 130px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .calendar {
-    width: 300px;
-  }
   .date-range {
     padding-left: 0;
     padding-right: 0;
   }
 }
 
-@media screen and (max-width: 330px) {
-  .calendar {
-    max-width: 270px;
-  }
-}
 </style>
