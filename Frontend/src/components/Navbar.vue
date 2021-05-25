@@ -1,48 +1,46 @@
 <template>
-<div>
-  <nav>
-    <div @click="openMenu" class="menu">=</div>
-    <div class="links">
-    <router-link id="img-router" to="/"><img id="logo" src="../assets/clearbnb-grey-house.png" alt=""></router-link>
-    <router-link to="/overview">Overview</router-link>
-    </div>
-    
-    <div v-if="!$store.state.isOverview" class="search-bar">
-      <SearchBar @showSearchModal="showSearchModal" />
-    </div>
+  <div>
+    <nav>
+      <div @click="openMenu" class="menu">=</div>
+      <div class="links">
+        <router-link id="img-router" to="/"
+          ><img id="logo" src="../assets/clearbnb-grey-house.png" alt=""
+        /></router-link>
+        <router-link to="/accommodations">Accommodations</router-link>
+      </div>
 
-  
+      <div v-if="!$store.state.isOverview" class="search-bar">
+        <SearchBar @showSearchModal="showSearchModal" />
+      </div>
 
-
-    <div class="Login-btn">
-      <router-link to="" @click="showModalLogin" v-if="loggedIn === null">
-        <i class="fas fa-user-circle"></i>
-      </router-link>
-      <div v-if="loggedIn != null" class="show">
-        <i class="fas fa-bars"></i>
-        <i class="fas fa-user-circle"></i>
-        <div class="user-links">
-         
-          <router-link to="/my-page" v-if="loggedIn !== null">
-            My Page</router-link
-          >
-          <router-link to="" @click="logout" v-if="loggedIn !== null">
-            Log out</router-link
-          >
+      <div class="Login-btn">
+        <router-link to="" @click="showModalLogin" v-if="loggedIn === null">
+          <i class="fas fa-user-circle"></i>
+        </router-link>
+        <div v-if="loggedIn != null" class="show">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-user-circle"></i>
+          <div class="user-links">
+            <router-link to="/my-page" v-if="loggedIn !== null">
+              My Page</router-link
+            >
+            <router-link to="" @click="logout" v-if="loggedIn !== null">
+              Log out</router-link
+            >
+          </div>
         </div>
       </div>
-    </div>
 
-    <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
-  </nav>
-  <SearchBarModal v-show="isSearchModalVisible" @close="exitModal" />
-  <Hamburger
-    @login="showModalLogin"
-    @logout="logout"
-    @show="openMenu"
-    :open="showHamburger"
-  />
-</div>
+      <LoginModal v-show="isModalVisible" @close="closeModal"></LoginModal>
+    </nav>
+    <SearchBarModal v-show="isSearchModalVisible" @close="exitModal" />
+    <Hamburger
+      @login="showModalLogin"
+      @logout="logout"
+      @show="openMenu"
+      :open="showHamburger"
+    />
+  </div>
 </template>
 
 <script>
@@ -100,12 +98,11 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;700&display=swap');
 
-#logo{
+#logo {
   margin-top: 5px;
   max-height: 50px;
   align-self: center;
 }
-
 
 nav {
   display: flex;
@@ -134,7 +131,8 @@ nav {
   align-items: center;
 }
 .links a {
-  margin: 10px;
+  margin: 10 0px;
+  font-size: 1rem;
 }
 .Login-btn {
   justify-self: right;
@@ -167,7 +165,7 @@ nav {
 
 .fa-user-circle {
   font-size: 2rem;
-  color:  #007973a6;
+  color: #007973a6;
 }
 
 .fa-bars {
@@ -182,14 +180,13 @@ a {
   padding: 10px;
   text-align: center;
 }
- a:hover{
+a:hover {
   background: rgb(219, 240, 219);
- }
+}
 
- #img-router:hover{
-   background: none;
-
- }
+#img-router:hover {
+  background: none;
+}
 
 .menu {
   margin-left: 1rem;
