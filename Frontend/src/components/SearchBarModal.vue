@@ -152,7 +152,7 @@ export default {
   border: 1px solid #011f4b;
   box-shadow: rgb(49, 48, 48) 0px 3px 3px;
   width: 350px;
-  height: px;
+  
   background-color: rgb(205, 205, 205);
   border-radius: 5px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -186,7 +186,7 @@ export default {
   display: grid;
   grid-template-columns: 33% 34% 33%;
   grid-template-areas: 'lh mid rh';
-  margin: 15px;
+  margin: 21.5px;
   background-color: rgb(245, 245, 245);
   justify-items: center;
 }
@@ -287,10 +287,19 @@ option {
   border: 1px solid black;
   padding: 3px;
   text-align: center;
-
 }
 
 .border {
   border: solid 1px grey;
+}
+
+
+@media screen and (max-width: 360px){
+.modal-frame{
+width: 319px;
+}
+.choose-guest{
+  margin: 15px 5px 15px 5px;
+}
 }
 </style>

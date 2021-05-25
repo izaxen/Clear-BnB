@@ -181,7 +181,7 @@ h3 {
   margin: auto;
   padding: 1px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-  background-color: rgba(205, 205, 205, 0.9);
+  background-color: rgba(205, 205, 205, 0.6);
   height: 100%;
 }
 
@@ -196,7 +196,7 @@ h3 {
   grid-template-columns: 2fr 1.5fr;
   grid-template-areas: 'lhTop rhTop';
   justify-self: center;
-  grid-gap: 15px;
+  grid-gap: 20px;
   margin-bottom: 10px;
   min-height: 315px;
   width: 100%;
@@ -204,9 +204,11 @@ h3 {
 }
 
 .row2 {
+  margin-top:10px;
   grid-area: mid;
   display: flex;
   grid-area: row2;
+  
 }
 
 .row3 {
@@ -253,6 +255,7 @@ label {
   padding: 0.3rem 0.7rem;
   cursor: pointer;
   text-align: center;
+  margin-top: 25px
 }
 
 label:hover {
@@ -266,7 +269,7 @@ h1 {
 }
 
 #add-rental-disable {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 .chosen-date-box{
   border: 1px solid grey;

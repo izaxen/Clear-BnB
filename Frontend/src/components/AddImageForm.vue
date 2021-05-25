@@ -112,7 +112,7 @@ img{
   border: 1px solid black;
   padding: 5px;
   text-align: center;
-  font-weight: 700;
+  font-weight: 600;
 }
  
 label:hover{

@@ -3,16 +3,16 @@
     <div class="rental-info">
       <div class="input-boxes">
         <div class="input-holder">
-        <input class="freetext  border-radius" v-model="freeText" type="text" placeholder=" Title..."/>
-        <textarea class="description border-radius" v-model="description" type="text"  placeholder=" Description..."/>
-        <input class="medium-box  border-radius" v-model="address" required type="text" placeholder=" Address..."/>
-        <input class="medium-box1  border-radius" v-model="city" required type="text" placeholder=" City..."/>
+        <input class="freetext  border-radius" v-model="freeText" type="text" placeholder="Title..."/>
+        <textarea class="description border-radius" v-model="description" type="text"  placeholder="Description..."/>
+        <input class="medium-box  border-radius" v-model="address" required type="text" placeholder="Address..."/>
+        <input class="medium-box1  border-radius" v-model="city" required type="text" placeholder="City..."/>
         </div>
 
         <div class="beds-price">
-          <input class="small-box  border-radius" v-model="zipCode" required type="text" placeholder=" Zip Code..."/>
-        <input class="small-box  border-radius" v-model="availableBeds" required type="number" min="1"  max ="25" placeholder=" Beds.."/>
-        <input class="small-box border-radius" v-model="price" required type="number" min="400" placeholder=" Price.."/>
+          <input class="small-box  border-radius" v-model="zipCode" required type="text" placeholder="Zip Code..."/>
+        <input class="small-box  border-radius" v-model="availableBeds" required type="number" min="1"  max ="25" placeholder="Beds.."/>
+        <input class="small-box border-radius" v-model="price" required type="number" min="400" placeholder="Price.."/>
         
         </div>
       </div>
@@ -137,6 +137,13 @@ textarea{
   line-height: 18px;
   width: 80px;
   margin-left: 5px;
+}
+
+input{
+  padding: 5px 10px;
+}
+textarea{
+  padding: 5px 10px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 

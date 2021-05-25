@@ -58,7 +58,7 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   width: 100%;
-  background-color: rgba(205, 205, 205, 0.9);
+  background-color: rgba(205, 205, 205, 0.6);
   height: 100%;
 }
 

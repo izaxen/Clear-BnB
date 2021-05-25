@@ -1,7 +1,8 @@
 <template>
   <form @submit.prevent="loginUser">
-    <input v-model="email" type="text" placeholder="Enter email" />
+    <input class="border-radius border-grey" v-model="email" type="text" placeholder="Enter email" />
     <input
+      class="border-radius border-grey"
       v-model="password"
       required
       type="password"
@@ -9,8 +10,8 @@
     />
     <p v-if="wrongInput === true">Wrong username/password</p>
     <div>
-      <button type="reset">clear</button>
-      <button @click="login">login</button>
+      <button type="reset">Clear</button>
+      <button @click="login">Login</button>
     </div>
 
     <br />
@@ -62,22 +63,24 @@ p {
 }
 div {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  margin-top:20
 }
 button {
-  width: 100px;
+  width: 120px;
   align-self: center;
   justify-self: center;
-  margin-right: 10px;
-  margin-top: 20px;
-  background-color: rgb(130, 193, 130);
+  
+  margin-top: 30px;
+  background-color: #007973a6;
   color: white;
   border: none;
   border-radius: 3px;
+  padding: 5px;
 }
 button:hover {
   cursor: pointer;
-  background-color: rgb(130, 193, 130);
+  background-color: #007973a6;
   transform: scale(1.05);
 }
 .logo {
@@ -85,5 +88,9 @@ button:hover {
   font-weight: 900;
   font-style: italic;
   color: black;
+}
+
+input{
+  padding: 5px 10px;
 }
 </style>

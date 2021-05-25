@@ -16,7 +16,7 @@
     <div class="col-3">
       <div class="btns">
         <button class="btn-link" @click="goToHouse">Details</button>
-        <button class="btn-remove">Edit</button>
+        
       </div>
     </div>
     
@@ -58,16 +58,24 @@ export default {
         bottom: 0;
     }
 
-  button{
-    height: 40px;
-    width: 100px;
-    border: none;
-    border-radius: 10px;
-    background: #6497b1;
-    font-weight: 700;
-    font-size: 15px;
-    margin: 5px;
-  }
+  
+  button {
+  width: 100px;
+  cursor: pointer;
+  background: rgb(201, 232, 201);
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  text-align: center;
+  margin: 25px;
+}
+
+button:hover {
+  background: #c4eafd;
+  cursor: pointer;
+}
 
   .btn-remove {
     bottom: 5px;
@@ -78,11 +86,7 @@ export default {
 
   }
 
-  button:hover {
-    background: #c4eafd;
-    cursor: pointer;
-  }
-  .view {
+    .view {
     display: grid;
     width: 100%;
   }
