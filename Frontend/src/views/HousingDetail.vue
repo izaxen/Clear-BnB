@@ -201,7 +201,7 @@ li {
 }
 .separator {
   background-color: rgb(255, 255, 255);
-  margin: 0 -4rem;
+  margin: 0 -3rem;
 }
 
 .top{
@@ -440,7 +440,11 @@ img {
 }*/
 @media screen and (max-width: 450px){
   .separator{
-    margin: 0 -1rem;
+    margin: 0 -0.8rem;
+  }
+
+  .top{
+    margin: 0.5rem -0.8rem;
   }
   .disc{
     margin: 0 -1rem;
