@@ -9,8 +9,8 @@
     />
     <p v-if="wrongInput === true">Wrong username/password</p>
     <div>
-      <button type="reset">Clear</button>
-      <button @click="login">Login</button>
+      <button type="reset">clear</button>
+      <button @click="login">login</button>
     </div>
 
     <br />
@@ -70,14 +70,14 @@ button {
   justify-self: center;
   margin-right: 10px;
   margin-top: 20px;
-  background-color: #007973a6;
+  background-color: rgb(130, 193, 130);
   color: white;
   border: none;
   border-radius: 3px;
 }
 button:hover {
   cursor: pointer;
-  background-color: #007973a6;
+  background-color: rgb(130, 193, 130);
   transform: scale(1.05);
 }
 .logo {

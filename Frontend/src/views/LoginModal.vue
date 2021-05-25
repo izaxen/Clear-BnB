@@ -96,7 +96,7 @@ export default {
 .modal-header {
   position: relative;
   border-bottom: 1px solid #eeeeee;
-  color: #007973a6;
+  color: rgb(130, 193, 130);
 
   justify-content: space-between;
 }
@@ -118,13 +118,13 @@ export default {
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
-  color: #007973a6;
+  color: rgb(130, 193, 130);
 
   background: transparent;
 }
 .btn-modal {
   color: white;
-  background: #007973a6;
+  background: rgb(130, 193, 130);
   border: none;
   border-radius: 3px;
   width: 100px;
@@ -135,6 +135,6 @@ export default {
 .btn-modal:hover {
   cursor: pointer;
   transform: scale(1.05);
-  background-color: #007973a6;
+  background-color: rgb(130, 193, 130);
 }
 </style>
