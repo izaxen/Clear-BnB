@@ -141,6 +141,7 @@ export default {
   z-index: 3;
 }
 
+
 .modal {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -313,6 +314,7 @@ li {
 
 img {
   border-radius: 5px;
+
   width: 100%;
   height: 100%;
   display: block; /* remove extra space below image */
@@ -405,8 +407,8 @@ img {
 }
 @media screen and (max-width: 400px){
   .bookingForm .container {
-    height: fit-content;
-    width: 300px;
+    height: 250px;
+    width: 260px;
   }
 
   .hero-amenity .container {
