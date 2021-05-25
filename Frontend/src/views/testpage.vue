@@ -140,23 +140,6 @@ export default {
   height: 60%;
 }
 
-label {
-  width: 150px;
-  cursor: pointer;
-  background: rgb(201, 232, 201);
-  margin: 0 auto;
-  border-radius: 5px;
-  border: 1px solid black;
-  padding: 0.3rem 0.7rem;
-  cursor: pointer;
-  text-align: center;
-}
-
-label:hover {
-  background: #c4eafd;
-  cursor: pointer;
-}
-
 @media screen and (max-width: 850px) {
   .info {
     width: 500px;
