@@ -1,4 +1,5 @@
 <template>
+<div>
   <div v-if="!fetching" class="details-holder">
     <div class="wrapper">
     <RentalImages :object="rentalObject" @showPic="openModal"/>
@@ -51,7 +52,8 @@
     </div>
     </div>
   </div>
-  <BookingConfirmation :receipt="tempReceipt" />
+  <BookingConfirmation @close="close" :receipt="tempReceipt" />
+</div>
 </template>
 
 <script>
@@ -102,12 +104,13 @@ export default {
     },
     openModal(){
       this.showPic = true
-      console.log('set modal true');
     },
     closeModal(){
       this.showPic = false
-      console.log('clicked close modal');
     },
+    close(){
+    this.$router.push('/my-page/my-bookings')  
+    }
   },
 
   async created() {

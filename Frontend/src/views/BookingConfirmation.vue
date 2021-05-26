@@ -1,5 +1,5 @@
 <template>
-  <ConfirmationModal :startDate="receipt.startDate" :endDate="receipt.endDate">
+  <ConfirmationModal @close="close" :startDate="receipt.startDate" :endDate="receipt.endDate">
    <template v-slot:header>
       <h2>Your booking has been confirmed!</h2>
     </template>
@@ -11,7 +11,7 @@
     <template v-slot:beds-count-two>{{receipt.numChild}}
     </template>
     <template v-slot:price>
-      {{Math.ceil(receipt.totalPrice * 1.15)}}
+      {{receipt.totalPrice}}
     </template>
   </ConfirmationModal>
 </template>
@@ -26,5 +26,12 @@ props: ["receipt"],
 components:{
   ConfirmationModal,
 },
+
+methods:{
+  close(){
+    this.$emit('close')
+  }
 }
+}
+
 </script>

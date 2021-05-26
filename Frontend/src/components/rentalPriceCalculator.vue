@@ -34,7 +34,7 @@
     <div class="group">
       <div>Service fee:</div>
       <div>
-        {{ sum == 0 || isNaN(sum) ? '15%' : `${Math.round(sum * 0.15)} $` }}
+        {{ sum == 0 || isNaN(sum) ? '' : `${Math.round(sum * 0.15)} $` }}
       </div>
     </div>
     <div class="group">
@@ -43,7 +43,7 @@
         {{
           sum == 0 || isNaN(sum)
             ? 'Select all fields'
-            : `${Math.round(sum * 1.15)} $`
+            : `${sum} $`
         }}
       </div>
     </div>
@@ -69,10 +69,10 @@ export default {
 
   watch: {
     totalCount: function () {
-      this.sum = this.numOfDays * this.price * this.totalCount
+      this.sum = Math.round((this.numOfDays * this.price * this.totalCount) *1.15)
     },
     numOfDays: function () {
-      this.sum = this.numOfDays * this.price * this.totalCount
+      this.sum =  Math.round((this.numOfDays * this.price * this.totalCount) *1.15)
     },
     sum: function () {
       this.$emit('num-guest', this.adultCount, this.childrenCount, this.sum)

@@ -55,7 +55,7 @@
         <div class="bot-modal">
           <div class="total">
             <h5><slot name="price-text">Total price:</slot></h5>
-            <p><slot name="price"></slot> :-</p>
+            <p><slot name="price"></slot> $</p>
           </div>
 
           <div class="button-holder">
