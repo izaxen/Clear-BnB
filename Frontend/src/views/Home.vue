@@ -5,9 +5,9 @@
       <div class="hero-text">SO YOU CAN</div>
       <div class="hero-text">BE THERE</div>
     </div>
-    <CitiesList :text="'POPULAR LOCATIONS'" />
-    <CitiesList :text="'PARTY LOCATION'" />
-    <CitiesList :text="'CLOSE TO YOU'" />
+    <CitiesList :objects="objects" :text="'POPULAR LOCATIONS'" />
+    <CitiesList :objects="objects" :text="'PARTY LOCATION'" />
+    <CitiesList :objects="objects" :text="'CLOSE TO YOU'" />
   </div>
 </template>
 
@@ -19,8 +19,15 @@ export default {
     CitiesList,
   },
 
-  created() {
-    this.$store.dispatch('fetchRentalObjects')
+  data() {
+    return {
+      objects: '',
+    }
+  },
+
+  async created() {
+    let res = await fetch('/rest/rental-objects?limit=6')
+    this.objects = await res.json()
   },
 }
 </script>

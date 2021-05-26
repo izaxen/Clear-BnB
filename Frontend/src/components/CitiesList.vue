@@ -19,7 +19,7 @@
 <script>
 import City from './City.vue'
 export default {
-  props: ['text'],
+  props: ['text', 'objects'],
 
   components: {
     City,
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     rentalObjects() {
-      return this.$store.state.rentalObjects.slice(this.start, this.end)
+      return this.objects.slice(this.start, this.end)
     },
   },
   methods: {

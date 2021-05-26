@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static nosqlite.Database.collection;
-
 import static nosqlite.utilities.Filter.*;
 
 public class Main {
@@ -62,8 +61,17 @@ public class Main {
         });
         //RentalHouse
         app.get("/rest/rental-objects", (req, res) -> {
-            List<RentalObject> rentalObjects = collection("RentalObject").find();
-            res.json(rentalObjects);
+            String limitQuery = req.query("limit");
+            if (limitQuery != null) {
+                int limit = Integer.parseInt(req.query("limit"));
+                List<RentalObject> rentalObjects = collection("RentalObject").find(op -> {
+                    op.limit = limit;
+                });
+                res.json(rentalObjects);
+            } else {
+                List<RentalObject> rentalObjects = collection("RentalObject").find();
+                res.json(rentalObjects);
+            }
         });
         app.get("/rest/rental-objects/:id", (req, res) -> {
             String id = req.params("id");
@@ -76,37 +84,33 @@ public class Main {
             try {
                 String search = "";
                 Map<String, List<String>> querySet = req.query();
-
-                if(querySet.containsKey("search")) {
+                if (querySet.containsKey("search")) {
                     search = querySet.get("search").get(0);
                     querySet.remove("search");
                 }
                 String queryString = querySet.entrySet().stream().map(e ->
                         e.getKey() + "=" + e.getValue().get(0)).collect(Collectors.joining("&&"));
-
-                List<RentalObject>searched;
-                if (!search.equals("")){
+                List<RentalObject> searched;
+                if (!search.equals("")) {
                     searched = collection("RentalObject").find(or(
                             text("address", "%" + search + "%"),
                             text("description", "%" + search + "%"),
                             text("freeText", "%" + search + "%")
                     ));
                     List<RentalObject> filtered = collection("RentalObject").find(queryString);
-                    List<RentalObject>finalList = new ArrayList<>();
-                    for(RentalObject rental: searched){
-                        for(RentalObject r : filtered){
-                            if(rental.getId().equals(r.getId())){
+                    List<RentalObject> finalList = new ArrayList<>();
+                    for (RentalObject rental : searched) {
+                        for (RentalObject r : filtered) {
+                            if (rental.getId().equals(r.getId())) {
                                 finalList.add(rental);
                             }
                         }
                     }
                     searched = finalList;
-                }
-                else {
+                } else {
                     searched = collection("RentalObject").find(queryString);
                 }
                 res.json(searched);
-
             } catch (Exception e) {
                 System.out.println(e);
                 res.status(400);
@@ -134,7 +138,7 @@ public class Main {
         });
         app.get("/rest/rental-objects/user/:id", (req, res) -> {
             String id = req.params("id");
-            List<RentalObject>list = collection("RentalObject").find(eq("userId", id));
+            List<RentalObject> list = collection("RentalObject").find(eq("userId", id));
             res.json(list);
         });
         //BookingReceipt
@@ -149,15 +153,15 @@ public class Main {
         });
         app.get("/rest/booking-receipts/user/:id", (req, res) -> {
             String id = req.params("id");
-            List<BookingReceipt> bookingReceipt = collection("BookingReceipt").find(eq("userId",id));
+            List<BookingReceipt> bookingReceipt = collection("BookingReceipt").find(eq("userId", id));
             res.json(bookingReceipt);
         });
         app.get("/rest/booking-receipts/filter/:id/", (req, res) -> {
             String id = req.params("id");
             try {
                 List<BookingReceipt> bookingReceipts = collection("BookingReceipt").find(eq("rentalObjectId", id));
-            res.json(bookingReceipts);
-            } catch (Exception e ) {
+                res.json(bookingReceipts);
+            } catch (Exception e) {
                 System.out.println(e);
                 res.send("fel");
             }
