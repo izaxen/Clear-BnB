@@ -20,8 +20,8 @@
     <div class="box4">
       <p>{{ guests }} {{ guestText }}</p>
       <div class="person-div">
-        <button type="button" @click="addGuests">+</button>
         <button type="button" @click="subtractGuest">-</button>
+        <button type="button" @click="addGuests">+</button>
       </div>
     </div>
     <a class="search-big" href="#">
@@ -149,12 +149,34 @@ option {
   height: 100%;
 }
 
-button {
+button1 {
   height: 20px;
   width: 20px;
   align-self: center;
   margin-left: 5px;
 }
+
+button {
+  display: flex;
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 70px;
+  background-color: rgb(219, 240, 219);
+  border: 1px solid rgb(219, 240, 219);
+  box-shadow: gray 0.6px 1px 1px 0.6px;
+  
+  
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(191, 204, 191);
+  border: 1px solid rgb(206, 204, 204);
+}
+
 
 .city-name {
   margin: 0;
@@ -165,8 +187,8 @@ button {
 .person-div {
   display: flex;
   overflow: hidden;
-  justify-content: center;
-  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
   position: absolute;
   font-size: 15px;
   font-weight: 800;
@@ -251,7 +273,8 @@ button {
 }
 
 .search-big {
-  margin-left: 0.4rem;
+  
+  margin-right: 10px;
 }
 
 .search-small {

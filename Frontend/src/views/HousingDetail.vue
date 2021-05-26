@@ -7,7 +7,7 @@
     <div class="seller-info">
       <ul>
         <li>{{ rentalObject.availableBeds }} Beds</li>
-        <li>{{ rentalObject.price }} kr /night</li>
+        <li>{{ rentalObject.price }} $ /night</li>
         <li>{{ rentalObject.address }}</li>
       </ul>
       <div class="avatar">

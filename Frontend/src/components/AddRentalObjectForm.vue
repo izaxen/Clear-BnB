@@ -114,6 +114,7 @@ watch:{
 .beds-price{
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .input-boxes{
