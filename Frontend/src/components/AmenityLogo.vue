@@ -23,7 +23,7 @@ export default {
   created() {
     if (this.name == 'wifi') {
       this.url =
-        'https://www.pngfind.com/pngs/m/298-2986400_wifi-signal-png-transparent-png.png'
+        'https://www.freepnglogos.com/uploads/logo-wifi-png/wifi-chargement-gratuit-png-vecteurs-35.png'
       this.text = 'Wifi'
     } else if (this.name == 'smartTv') {
       this.url = 'https://pic.onlinewebfonts.com/svg/img_485439.png'
@@ -122,7 +122,7 @@ img {
     font-size: 15px;
   }
 }
-@media screen and (max-width: 700px){
+@media screen and (max-width: 700px) {
   .am-display {
     width: 110px;
   }
@@ -130,12 +130,12 @@ img {
 @media screen and (max-width: 590px) {
   .am-display {
     width: 100px;
-  } 
+  }
 }
 @media screen and (max-width: 290px) {
   .am-display {
     display: flex;
     flex-direction: column;
-  } 
+  }
 }
 </style>

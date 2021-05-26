@@ -2,27 +2,31 @@
   <div class="container">
     <div class="box1">
       <div class="card">
-      <img class="icon" :src="wifiUrl" alt="img"/>
-      <div class="am-text">{{ amenitiealt="img".wifi ? 'Wifi' : 'No wifi' }}</div>
-    </div>
-    <div class="card">
-      <img class="icon" :src="petsUrl" alt="img"/>
-      <div class="am-text">
-        {{ amenities.petsAllowed ? 'Pets allowed' : 'No pets' }}
+        <img class="icon" :src="wifiUrl" alt="img" />
+        <div class="am-text">{{ amenities.wifi ? 'Wifi' : 'No wifi' }}</div>
       </div>
-     </div>
+      <div class="card">
+        <img class="icon" :src="petsUrl" alt="img" />
+        <div class="am-text">
+          {{ amenities.petsAllowed ? 'Pets allowed' : 'No pets' }}
+        </div>
+      </div>
     </div>
     <div class="box2">
       <div class="card">
-      <img class="icon" :src="poolUrl" alt="img"/>
-      <div class="am-text">{{ amenitiealt="img".pool ? 'Pool' : 'No pool' }}</div>
-    </div>
-    <div class="card">
-      <img class="icon" :src="airUrl" alt="img">
-      <div class="am-text">
-        {{ amenities.airCondition ? 'Air conditioner' : 'No air conditioner' }}
+        <img class="icon" :src="poolUrl" alt="img" />
+        <div class="am-text">
+          {{ amenities.pool ? 'Pool' : 'No pool' }}
+        </div>
       </div>
-    </div>
+      <div class="card">
+        <img class="icon" :src="airUrl" alt="img" />
+        <div class="am-text">
+          {{
+            amenities.airCondition ? 'Air conditioner' : 'No air conditioner'
+          }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +46,7 @@ export default {
 
   mounted() {
     this.wifiUrl = this.amenities.wifi
-      ? 'http://assets.stickpng.com/images/580b585b2edbce24c47b2488.png'
+      ? 'https://www.freepnglogos.com/uploads/logo-wifi-png/wifi-chargement-gratuit-png-vecteurs-35.png'
       : 'https://cdn.iconscout.com/icon/premium/png-512-thumb/no-wifi-1914404-1620362.png'
     this.petsUrl = this.amenities.petsAllowed
       ? 'https://image.flaticon.com/icons/png/512/2262/2262533.png'
@@ -86,8 +90,7 @@ img {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-    "box1 box2";
+    grid-template-areas: 'box1 box2';
   }
 
   .card {
@@ -99,8 +102,7 @@ img {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-    "box1 box2";
+    grid-template-areas: 'box1 box2';
     font-size: 15px;
   }
   .box1 {
@@ -114,8 +116,7 @@ img {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-    "box1 box2";
+    grid-template-areas: 'box1 box2';
     font-size: 15px;
   }
   .card {
@@ -147,7 +148,7 @@ img {
     width: 120px;
   }
 }
-@media screen and (max-width: 285px){
+@media screen and (max-width: 285px) {
   .card {
     margin: 3px;
     text-align: center;
