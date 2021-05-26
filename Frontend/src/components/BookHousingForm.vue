@@ -123,14 +123,14 @@ export default {
       let templateID = 'template_v1jnjqf'
       let userID = 'user_PITuQ6yClqXAIlNw6sizK'
 
-      // emailjs.send(serviceID, templateID, templateParams, userID).then(
-      //   function (response) {
-      //     console.log('SUCCESS!', response.status, response.text)
-      //   },
-      //   function (error) {
-      //     console.log('FAILED...', error)
-      //   }
-      // )
+      emailjs.send(serviceID, templateID, templateParams, userID).then(
+       function (response) {
+        console.log('SUCCESS!', response.status, response.text)
+        },
+        function (error) {
+          console.log('FAILED...', error)
+         }
+       )
     },
   },
 }
