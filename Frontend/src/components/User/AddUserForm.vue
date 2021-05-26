@@ -30,25 +30,29 @@
    class="border-radius border-grey"
       v-model="password"
       required
-      type="text"
+      type="password"
       placeholder="Enter password"
     />
     <input
     class="border-radius border-grey"
       v-model="rePassword"
       required
-      type="text"
+      type="password"
       placeholder="Re-enter password"
     />
     <p v-if="userTaken === true">User already exists</p>
+
+  <div class="wrongPw">
+   <div v-if="!validatePassword">Passwords don´t match</div>
+    
+  </div>
+
     <div class="register-btn">
       <button type="reset">Clear</button>
-      <div v-if="validatePassword">
+      
         <!-- Kan vara att detta inte funkar-->
-        <button>Create user</button>
+        <button :disabled="!validatePassword">Create user</button>
       </div>
-      <div v-else>Password don´t match</div>
-    </div>
   </form>
 </template>
 
@@ -118,6 +122,12 @@ button:hover {
   background-color: #007973a6;
   transform: scale(1.05);
 }
+
+button:disabled{
+  opacity: 0.5;
+
+}
+
 input:focus {
   outline: none;
 }
@@ -135,6 +145,12 @@ p {
 
 input{
   padding: 5px 10px;
+}
+
+.wrongPw{
+  font-size: 80%;
+  margin-top: 5px;
+  margin-bottom: -15px ;
 }
 
 </style>

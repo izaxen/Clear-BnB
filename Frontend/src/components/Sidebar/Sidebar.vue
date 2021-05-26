@@ -1,9 +1,9 @@
 <template>
   <div class="sidebar1">
-    <router-link to="/my-page/add-house"
+    <router-link to="/my-page/add-object"
       ><em class="fas fa-plus-circle"></em><p>Add house</p></router-link
     >
-    <router-link to="/my-page/my-houses"
+    <router-link to="/my-page/my-objects"
       ><em class="fas fa-home"></em><p>Houses</p></router-link
     >
     <router-link to="/my-page/my-bookings"

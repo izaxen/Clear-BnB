@@ -75,7 +75,7 @@ export default {
       this.$store.commit('removeUploadedImages')
       this.$store.commit('setRentalObject', null)
      
-      this.$router.push('/my-page/my-houses')
+      this.$router.push('/my-page/my-objects')
     },
 
     LoadFormData(formData) {

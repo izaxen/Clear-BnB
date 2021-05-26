@@ -134,11 +134,14 @@ export default {
   box-shadow: 5px 5px 10px 2px rgba(144, 144, 144, 0.603);
   transition: 0.4s;
 }
+
 input{
   margin:10px;
   border-radius: 5px;
   border: solid 1px grey;
+  padding: 5px 10px;
 }
+
 .user-box {
   height: 60%;
 }
