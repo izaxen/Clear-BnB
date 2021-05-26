@@ -116,7 +116,8 @@ img{
 }
  
 label:hover{
-  background: #c4eafd;
+  background: #007973a6;
+  color: white;
   cursor: pointer;
 }
 

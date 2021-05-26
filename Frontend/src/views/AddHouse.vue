@@ -259,7 +259,8 @@ label {
 }
 
 label:hover {
-  background: #c4eafd;
+  background: linear-gradient(#007973a6, rgb(219, 240, 219));
+  color: white;
   cursor: pointer;
 }
 
