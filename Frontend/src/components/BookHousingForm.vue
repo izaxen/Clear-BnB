@@ -9,8 +9,9 @@
       :numOfDays="days"
       :price="object.price"
     />
-    <button @click="book" :disabled="receipt.totalPrice == 0 ? '' : disabled">
-      Book
+    <button @click="book" :disabled="receipt.totalPrice == 0 ? '' : disabled" 
+    class="mouse-cursor-gradient-tracking">
+      <span>Book</span>
     </button>
 
     <LoginModal
@@ -52,8 +53,20 @@ export default {
       },
     }
   },
+   mounted(){
+     let button = document.querySelector('.mouse-cursor-gradient-tracking')
+     console.log(button)
+      button.addEventListener('mousemove', e => {
+      let rect = e.target.getBoundingClientRect()
+      let x = e.clientX - rect.left;
+      let y = e.clientY - rect.top;
+      button.style.setProperty('--x', x + 'px')
+      button.style.setProperty('--y', y + 'px')
+    });
+  },
 
   methods: {
+
     receive(data) {
       this.days = data
     },
@@ -149,35 +162,57 @@ export default {
 }
 
 button {
-  display: flex;
-  background: white;
-  width: 35%;
-  max-width: 100px;
-  font-size: 1.2rem;
-  border: none;
-  margin: 0 auto;
+  width: calc(100% - 20px);
+  min-height: 3rem;
   border-radius: 5px;
-  cursor: pointer;
-  border: 1px solid gray;
-  box-shadow: gray 1px 1px 1px 1px;
-  justify-content: center;
-  align-items: center;
-  padding-top: 5px;
+   box-shadow: gray 1px 1px 1px 1px;
   font-weight: 600;
-}
-
-button:hover{
-  background-color: rgb(219, 240, 219);
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: #007973a6;
+  padding: 0;
 }
 
 button:disabled {
-  background: rgb(166, 166, 166);
-  opacity: 0.2;
   cursor: not-allowed;
 }
 
-button:disabled:hover {
-  background: rgb(166, 166, 166);
+.mouse-cursor-gradient-tracking {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  color: white;
+}
+
+.mouse-cursor-gradient-tracking span {
+  position: relative;
+}
+
+.mouse-cursor-gradient-tracking::before {
+  --size: 0;
+  content: '';
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle at center, 
+  #1bafa8a6 0%,#007973a6 30%, rgb(53, 82, 53)55%, rgb(109, 133, 109)70%, transparent);
+  transform: translate(-55%, -50%);
+  transition: width 0.8s ease;
+}
+
+.mouse-cursor-gradient-tracking:hover::before {
+  --size: 900px;
+}
+
+button span{
+  padding: 2rem 5rem;
+  width: 200px;
 }
 
 @media screen and (max-width: 600px) {

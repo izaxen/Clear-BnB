@@ -128,7 +128,8 @@ button:hover {
   box-shadow: 5px 5px 10px 2px rgba(144, 144, 144, 0.603);
   padding: 5px;
   transition: 0.4s;
-  background-color: rgb(227, 227, 227);
+  background-color: white;
+  border: 1px solid rgb(173, 169, 169);
 }
 
 .col-1 {
