@@ -5,11 +5,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from './views/Home.vue'
 import Detail from './views/HousingDetail.vue'
 import Overview from './views/Overview.vue'
-import AddHouse from './views/AddHouse.vue'
+import AddRentalObject from './components/AddRentalObject/AddRentalObject.vue'
 import MyPage from './views/MyPage.vue'
-import MyBookings from './views/MyBookings.vue'
-import MyHouses from './views/MyHouses.vue'
-import EditUser from './components/EditUser.vue'
+import MyBookings from './components/User/MyBookings.vue'
+import MyObjects from './components/User/MyObjects.vue'
+import EditUser from './components/user/EditUser.vue'
 
 // create routes with views
 export default createRouter({
@@ -26,8 +26,8 @@ export default createRouter({
     },
 
     {
-      path: '/my-page/add-house',
-      component: AddHouse,
+      path: '/my-page/add-object',
+      component: AddRentalObject,
     },
     {
       path: '/accommodations',
@@ -42,8 +42,8 @@ export default createRouter({
       component: MyBookings,
     },
     {
-      path: '/my-page/my-houses',
-      component: MyHouses,
+      path: '/my-page/my-objects',
+      component: MyObjects,
     },
     {
       path: '/my-page/edit-user',

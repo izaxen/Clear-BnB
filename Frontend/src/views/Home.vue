@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import CitiesList from '../components/CitiesList.vue'
+import CitiesList from '../components/Filter/CitiesList.vue'
 
 export default {
   components: {

@@ -1,21 +1,25 @@
 <template>
-  <div class="Bookings-page">
+  <div class="main1">
     <div class="overlay">
       <div class="sidebar"><SideBar /></div>
-      <div v-if="!userReceipts"></div>
-      <div v-else class="list"><ReceiptList /></div>
+      <div class="list"><UserHouseList /></div>
     </div>
   </div>
 </template>
 
 <script>
-import SideBar from '../components/Sidebar.vue'
-import ReceiptList from '../components/ReceiptList.vue'
-import store from '../store.js'
+import UserHouseList from './UserHouseList.vue'
+import SideBar from '../Sidebar/Sidebar.vue'
+import store from '../../store.js'
+
 export default {
   components: {
-    ReceiptList,
     SideBar,
+    UserHouseList,
+  },
+
+  data() {
+    return {}
   },
 
   async beforeRouteEnter(to, from, next) {
@@ -36,17 +40,11 @@ export default {
       next()
     }
   },
-
-  computed: {
-    userReceipts() {
-      return this.$store.state.userReceipts
-    },
-  },
 }
 </script>
 
 <style scoped>
-.Bookings-page {
+.main1 {
   display: flex;
   flex-direction: column;
   max-width: 65rem;
@@ -57,7 +55,6 @@ export default {
 .overlay {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  width: 100%;
   background-color: rgba(205, 205, 205, 0.6);
   height: 100%;
 }
@@ -68,6 +65,5 @@ export default {
 
 .list {
   justify-self: center;
-  margin: auto;
 }
 </style>

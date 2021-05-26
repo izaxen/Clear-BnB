@@ -19,7 +19,7 @@
         </div>
 
         <div class="row2">
-          <AddHouseAmenities @amenitieslist="amenitiesList" />
+          <AddRentalAmenities @amenitieslist="amenitiesList" />
         </div>
       </div>
 
@@ -39,16 +39,16 @@
 </template>
 
 <script>
-import AddHouseAmenities from '../components/AddHouseAmenities.vue'
-import AddRentalObjectForm from '../components/AddRentalObjectForm.vue'
-import Calendar from '../components/Calendar.vue'
-import AddImageForm from '../components/AddImageForm.vue'
-import AddRentalObjectConfirmation from '../components/AddRentalObjectConfirmation.vue'
-import SideBar from '../components/Sidebar.vue'
+import AddRentalAmenities from './AddRentalAmenities.vue'
+import AddRentalObjectForm from './AddRentalObjectForm.vue'
+import Calendar from '../Utils/Calendar.vue'
+import AddImageForm from './AddImageForm.vue'
+import AddRentalObjectConfirmation from '../Modals/AddRentalObjectConfirmation.vue'
+import SideBar from '../Sidebar/Sidebar.vue'
 
 export default {
   components: {
-    AddHouseAmenities,
+    AddRentalAmenities,
     AddRentalObjectForm,
     Calendar,
     AddImageForm,

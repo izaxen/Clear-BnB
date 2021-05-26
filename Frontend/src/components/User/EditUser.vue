@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import SideBar from '../components/Sidebar.vue'
-import store from '../store.js'
+import SideBar from '../Sidebar/Sidebar.vue'
+import store from '../../store.js'
 export default {
   components: { SideBar },
   methods:{

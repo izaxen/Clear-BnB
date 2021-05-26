@@ -40,9 +40,9 @@
 </template>
 
 <script>
-import store from '../store.js'
-import AddUserForm from '../components/addUserForm.vue'
-import LoginForm from '../components/LoginForm.vue'
+import store from '../../store.js'
+import AddUserForm from '../User/AddUserForm.vue'
+import LoginForm from '../User/LoginForm.vue'
 export default {
   data() {
     return {

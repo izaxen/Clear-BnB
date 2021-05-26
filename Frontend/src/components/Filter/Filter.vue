@@ -70,8 +70,8 @@
 </template>
 
 <script>
-import RentalObject from './RentalObject.vue'
-import Calendar from './Calendar.vue'
+import RentalObject from '../RentalObject/RentalObject.vue'
+import Calendar from '../Utils/Calendar.vue'
 export default {
   components: {
     RentalObject,

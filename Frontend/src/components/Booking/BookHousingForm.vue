@@ -25,9 +25,9 @@
 <script>
 import emailjs from 'emailjs-com'
 
-import NumberOfGuests from './rentalPriceCalculator.vue'
-import Calendar from './Calendar.vue'
-import LoginModal from '../views/LoginModal.vue'
+import NumberOfGuests from '../Utils/RentalPriceCalculator.vue'
+import Calendar from '../Utils/Calendar.vue'
+import LoginModal from '../Modals/LoginModal.vue'
 
 export default {
   props: ['object'],

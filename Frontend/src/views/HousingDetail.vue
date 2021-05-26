@@ -57,11 +57,11 @@
 </template>
 
 <script>
-import DisplayHotAmenity from '../components/DisplayHotAmenity.vue'
-import BookHousingForm from '../components/BookHousingForm.vue'
-import AmenityLogo from '../components/AmenityLogo.vue'
-import BookingConfirmation from './BookingConfirmation.vue'
-import RentalImages from '../components/RentalImages.vue'
+import DisplayHotAmenity from '../components/Utils/DisplayHotAmenity.vue'
+import BookHousingForm from '../components/Booking/BookHousingForm.vue'
+import AmenityLogo from '../components/Utils/AmenityLogo.vue'
+import BookingConfirmation from '../components/Modals/BookingConfirmation.vue'
+import RentalImages from '../components/RentalObject/RentalImages.vue'
 
 import store from '../store.js'
 export default {

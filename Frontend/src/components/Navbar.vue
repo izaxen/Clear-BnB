@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import LoginModal from '../views/LoginModal.vue'
-import SearchBar from './SearchBar.vue'
-import SearchBarModal from './SearchBarModal.vue'
+import LoginModal from './Modals/LoginModal.vue'
+import SearchBar from './Sidebar/SearchBar.vue'
+import SearchBarModal from './Modals/SearchBarModal.vue'
 import Hamburger from '../components/Sidebar/HamburgerMenu.vue'
 
 export default {

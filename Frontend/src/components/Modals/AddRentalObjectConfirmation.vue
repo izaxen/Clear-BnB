@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import ConfirmationModal from './ConfirmationModal.vue'
+import ConfirmationModal from '../Modals/ConfirmationModal.vue'
 export default {
 emits: ['close'],
 components:{
