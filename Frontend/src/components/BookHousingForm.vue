@@ -201,7 +201,7 @@ button:disabled {
   width: var(--size);
   height: var(--size);
   background: radial-gradient(circle at center, 
-  #1bafa8a6 0%,#007973a6 20%, rgb(53, 82, 53)55%, rgb(109, 133, 109)70%, transparent);
+  #1bafa8a6 0%,#007973a6 30%, rgb(53, 82, 53)55%, rgb(109, 133, 109)70%, transparent);
   transform: translate(-55%, -50%);
   transition: width 0.8s ease;
 }
