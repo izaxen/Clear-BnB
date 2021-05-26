@@ -136,7 +136,7 @@ export default {
 
 .link:hover {
   cursor: pointer;
-  color: red;
+  color: #007973a6;
 }
 
 .num-guest-text {
