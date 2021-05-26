@@ -237,6 +237,7 @@ h3 {
 .calendar {
   align-self: center;
   font-size: 20px;
+  margin-top: 10px;
 }
 
 h3 {

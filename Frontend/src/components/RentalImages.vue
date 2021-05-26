@@ -72,8 +72,8 @@ export default {
   "pic1 pic2"
   "pic1 pic3";
   height: fit-content;
-
   transition: 0.4s;
+  padding-top: 20px;
 }
 .pic1{
   grid-area: pic1;

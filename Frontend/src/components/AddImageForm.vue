@@ -67,7 +67,8 @@ deleteImages(){
 <style scoped>
 h3{
   margin-bottom: 10px;
-  margin-top: 0;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 .btns {
   display: flex;
