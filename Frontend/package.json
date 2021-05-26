@@ -7,8 +7,13 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "emailjs-com": "^2.6.4",
+    "popper.js": "^1.16.1",
+    "v-calendar": "^3.0.0-alpha.3",
     "vue": "^3.0.5",
     "vue-router": "^4.0.6",
+    "vueperslides": "^3.3.0",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

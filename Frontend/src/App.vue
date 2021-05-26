@@ -1,22 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <header>
+    <Navbar />
+  </header>
+  <main>
+    <router-view />
+  </main>
+  <Footer />
 </template>
 
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+<script>
+import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer.vue'
+export default {
+  components: {
+    Navbar,
+    Footer,
+  },
+  async created() {
+    await this.$store.dispatch('whoAmI')
+    await this.$store.dispatch('fetchCityNames')
+  },
+}
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+header {
+  width: 100%;
+  z-index: 1;
 }
 </style>
