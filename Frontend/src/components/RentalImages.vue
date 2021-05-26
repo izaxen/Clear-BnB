@@ -30,7 +30,6 @@ export default {
   methods: {
     showPic(){
       this.$emit('showPic')
-      console.log('Clicked on modal');
     }
   }
 }

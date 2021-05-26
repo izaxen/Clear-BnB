@@ -102,7 +102,6 @@ export default {
     },
 
     close() {
-      console.log('close modal')
       this.$emit('close')
       this.isVisibility = false
     },

@@ -80,7 +80,6 @@ export default {
       this.isSearchModalVisible = false
     },
     showSearchModal() {
-      console.log('nav show search')
       this.isSearchModalVisible = true
     },
     logout() {

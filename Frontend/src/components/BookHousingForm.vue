@@ -55,7 +55,6 @@ export default {
   },
    mounted(){
      let button = document.querySelector('.mouse-cursor-gradient-tracking')
-     console.log(button)
       button.addEventListener('mousemove', e => {
       let rect = e.target.getBoundingClientRect()
       let x = e.clientX - rect.left;
