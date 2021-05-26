@@ -55,7 +55,6 @@ export default {
   },
    mounted(){
      let button = document.querySelector('.mouse-cursor-gradient-tracking')
-     console.log(button)
       button.addEventListener('mousemove', e => {
       let rect = e.target.getBoundingClientRect()
       let x = e.clientX - rect.left;
@@ -123,14 +122,14 @@ export default {
       let templateID = 'template_v1jnjqf'
       let userID = 'user_PITuQ6yClqXAIlNw6sizK'
 
-      // emailjs.send(serviceID, templateID, templateParams, userID).then(
-      //   function (response) {
-      //     console.log('SUCCESS!', response.status, response.text)
-      //   },
-      //   function (error) {
-      //     console.log('FAILED...', error)
-      //   }
-      // )
+      emailjs.send(serviceID, templateID, templateParams, userID).then(
+       function (response) {
+        console.log('SUCCESS!', response.status, response.text)
+        },
+        function (error) {
+          console.log('FAILED...', error)
+         }
+       )
     },
   },
 }

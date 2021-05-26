@@ -57,7 +57,6 @@ import store from '../store.js'
 export default {
   computed: {
     validatePassword() {
-      console.log('Valiedate', this.password, this.rePassword)
       return this.rePassword === this.password
     },
     userTaken() {
@@ -89,7 +88,6 @@ export default {
       if (this.userExists === true) {
         return
       } else {
-        console.log('User', user)
         store.commit('setFailedLogin', false)
       }
     },

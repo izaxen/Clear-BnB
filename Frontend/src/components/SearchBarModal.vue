@@ -38,7 +38,7 @@
           </div>
 
           <div class="close-btn">
-            <label id="close" @click="close">Go back</label>
+            <label id="close" @click="close">Close</label>
           </div>
         </div>
       </form>
@@ -102,7 +102,6 @@ export default {
     },
 
     close() {
-      console.log('close modal')
       this.$emit('close')
       this.isVisibility = false
     },

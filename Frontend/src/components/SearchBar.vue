@@ -99,7 +99,6 @@ export default {
     },
 
     showSearchModal() {
-      console.log('show search')
       this.$emit('showSearchModal')
     },
 
